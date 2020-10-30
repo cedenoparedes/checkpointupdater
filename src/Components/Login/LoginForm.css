@@ -1,0 +1,152 @@
+html,
+body {
+  background-color: rgb(29, 27, 28) !important;
+  margin: auto !important;
+}
+
+#body-container {
+  /* padding-top: 100px;
+  padding-bottom: 100px; */
+  /* border-top: solid 5px;
+  border-bottom: solid 5px;
+  border-color: white; */
+}
+#login-frame {
+  background-color: lightgray;
+  border-radius: 40px;
+}
+
+#login-frame-size {
+  width: 150px;
+  /* margin-top: 5px;
+  margin-bottom: 10px; */
+}
+
+#login-span-size {
+  width: 40px;
+  border-radius: 15px 0 0 15px;
+}
+
+#login-input-size {
+  width: 250px;
+}
+
+#login-span-icon {
+  width: 10px;
+  /* margin-left: 2px; */
+  /* padding: 4px; */
+}
+
+#login-button {
+  width: 250px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 35px;
+  padding: 1px;
+  background-color: rgb(224, 93, 6);
+}
+
+#login-container-border {
+  border: solid;
+  border-color: #2e3131;
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* padding: 25px; */
+}
+
+#login-input-border {
+  border-radius: 0 15px 15px 0;
+}
+
+#login-span-border {
+  border-radius: 15px 0 0 15px;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+  body {
+    min-width: 768px;
+  }
+}
+
+@media (min-width: 768px) {
+  #login-frame-size {
+    width: 150px;
+    /* margin-top: 5px;
+    margin-bottom: 10px; */
+  }
+
+  #login-span-size {
+    width: 40px;
+    border-radius: 15px 0 0 15px;
+  }
+
+  #login-input-size {
+    width: 250px;
+  }
+
+  #login-span-icon {
+    width: 14px;
+    /* padding: 4px; */
+  }
+  #login-container-border {
+    width: 600px;
+  }
+  #login-button {
+    margin-bottom: 25px;
+    margin-top: 35px;
+    width: 250px;
+    height: 50px;
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 960px) {
+  #login-frame-size {
+    width: 225px;
+  }
+
+  #login-span-size {
+    width: 60px;
+  }
+
+  #login-input-size {
+    width: 450px;
+  }
+
+  #login-span-icon {
+    width: 24px;
+    /* padding: 10px; */
+  }
+
+  #login-container-border {
+    width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #login-frame-size {
+    width: 325px;
+  }
+
+  #login-span-size {
+    width: 70px;
+  }
+
+  #login-input-size {
+    width: 550px;
+  }
+
+  #login-span-icon {
+    width: 24px;
+    /* padding: 10px; */
+  }
+
+  #login-container-border {
+    width: 900px;
+  }
+}
