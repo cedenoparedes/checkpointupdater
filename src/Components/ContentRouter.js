@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
+import Menu from "./Login"
 import NoFound from "./NoFound";
 // import GlobalContext from "../context/globalcontext";
 
@@ -13,6 +14,9 @@ const ContentRouter = () => {
       <Switch>
         <Route exact path="/">
             <Login />
+        </Route>
+        <Route exact path="/menu">
+            <Menu />
         </Route>
         <Route path="*">
           <NoFound />
