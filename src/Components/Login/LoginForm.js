@@ -1,5 +1,6 @@
 import React from 'react'
 import LogInIMG from '../../Images/LogIn-IMG.svg'
+import CarnetIcon from '../../Images/SVG/icons/carnet.svg'
 
 
 
@@ -14,7 +15,7 @@ const LoginForm = () => {
             <div className="d-flex justify-content-center">
                 <div className="input-group" id="login-input-size">
                     <div className="input-group-prepend">
-                        <span className="input-group-text" id="login-span-size"> <img className="d-flex justify-content-center" id="login-span-icon" src="../Images/SVG/icons/carnet.svg" alt="" /> </span>
+                        <span className="input-group-text" id="login-span-size"> <img className="d-flex justify-content-center" id="login-span-icon" src={CarnetIcon} alt="" /> </span>
                     </div>
                     <input type="text" aria-label="First name" className="form-control" id="login-input-border" />
                 </div>

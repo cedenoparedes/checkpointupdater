@@ -3,7 +3,7 @@ import LocationLogo from '../Images/location.svg'
 
 const Footer = () => {
     return (
-        <footer className>
+        <footer>
             <div className="footer-style pl-2 pt-1 d-flex text-center align-items-center">
             <figure className="location-img">
                 <img src={LocationLogo} alt=""/>
