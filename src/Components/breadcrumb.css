@@ -1,0 +1,12 @@
+.breadcrumb {
+    background-color: transparent !important;
+    margin: 0;
+    padding: 0;
+}
+.breadcrumb li a {
+color: white;
+}
+.breadcrumb li a:hover {
+text-decoration: none;
+color: rgb(212, 212, 212);
+}  
