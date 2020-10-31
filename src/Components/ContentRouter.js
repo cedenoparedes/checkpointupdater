@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
-import Menu from "./Menu"
+import Menu from "./menu"
 import NoFound from "./NoFound";
-// import GlobalContext from "../context/globalcontext";
+import GlobalContext from "../context/globalcontext";
 
 const ContentRouter = () => {
 //   const [, , contextMiddleware] = useContext(GlobalContext);
