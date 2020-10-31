@@ -19,7 +19,7 @@ const index = () => {
                     <h2 id="title-body">Select An Option</h2>
                 </div>
             </div>
-            <div className="row mt-5 mb-5">
+            <div className="row mb-5">
                 <div className="col-6 d-flex justify-content-center mb-5">
                     <div type="button" className="div-btn-options pt-5" id="chk-point">
                         <div className="row d-flex justify-content-center">

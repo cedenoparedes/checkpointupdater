@@ -3,12 +3,6 @@ body {
   background-color: rgb(29, 27, 28);
 }
 
-.Site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 .Site-content {
   flex: 1;
 }
@@ -40,7 +34,12 @@ body {
   font-weight: 300;
   margin: 0px 0;
 }
-
+.Content{
+  flex: 1 0 auto;
+}
+.Footer{
+  flex-shrink: 0;
+}
 .footer-style {
   border-top: gray 1px solid;
   margin: 0;
