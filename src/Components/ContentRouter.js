@@ -5,8 +5,7 @@ import Menu from "./Menu";
 import ReportCheckPoint from "./ReportCheckPoint";
 import Report from "./Report";
 import NoFound from "./NoFound";
-import Process from './Process'
-import CheckPointProcess from "./checkpointprocess";
+import Process from "./Process";
 import GlobalContext from "../context/globalcontext";
 
 const ContentRouter = () => {
@@ -19,13 +18,14 @@ const ContentRouter = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route  path="/menu">
-            <Menu />
+        <Route path="/menu">
+          <Menu />
         </Route>
         <Route exact path="/ReportCheckPoint">
           <ReportCheckPoint />
-        <Route  path="/process">
-            <Process />
+        </Route>
+        <Route path="/process">
+          <Process />
         </Route>
         <Route exact path="/Report">
           <Report />
