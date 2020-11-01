@@ -1,5 +1,5 @@
 import React from "react";
-import CostumerIcon from "../../Images/SVG/icons/costumer.svg";
+import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
 import ModelIcon from "../../Images/SVG/icons/model.svg";
 import ProcessIcon from "../../Images/SVG/icons/process.svg";
@@ -32,7 +32,7 @@ const ReportCheckPointForm = () => {
         <div className="d-flex justify-content-center">
           <div>
             <button className="format-btn modal-btn btn-client" id>
-              <img className="format-img-costumer" src={CostumerIcon} />
+              <img className="format-img-costumer" src={CustumerIcon} />
             </button>
             <p className="modal-client format-txt-icon">615</p>
           </div>
@@ -40,7 +40,7 @@ const ReportCheckPointForm = () => {
             <button className="format-btn modal-btn btn-client">
               <img
                 className="format-img-costumer"
-                src="../../Images/SVG/icons/costumer.svg"
+                src="../../Images/SVG/icons/custumer.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">787</p>
@@ -49,7 +49,7 @@ const ReportCheckPointForm = () => {
             <button className="format-btn modal-btn btn-client">
               <img
                 className="format-img-costumer"
-                src="../../Images/SVG/icons/costumer.svg"
+                src="../../Images/SVG/icons/custumer.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">506</p>
@@ -227,7 +227,7 @@ const ReportCheckPointForm = () => {
                 value="Client"
               >
                 {" "}
-                <img className="icon-options" src={CostumerIcon} alt />
+                <img className="icon-options" src={CustumerIcon} alt />
                 <p className="label-btn">Custumer</p>
               </div>
             </div>
