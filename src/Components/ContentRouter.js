@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Menu from "./Menu";
+import CheckPointProcessMenu from "./CheckPointProcessMenu"
 import ReportCheckPoint from "./ReportCheckPoint";
 import Report from "./Report";
 import NoFound from "./NoFound";
@@ -29,6 +30,9 @@ const ContentRouter = () => {
         </Route>
         <Route exact path="/Report">
           <Report />
+        </Route>
+        <Route exact path="/CheckPointProcessMenu">
+          <CheckPointProcessMenu />
         </Route>
         <Route path="*">
           <NoFound />
