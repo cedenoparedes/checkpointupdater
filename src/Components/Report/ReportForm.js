@@ -1,17 +1,20 @@
 import React from "react";
+import PdfIcon from "../../Images/SVG/icons/PdfIcon.svg";
+import ExcelIcon from "../../Images/SVG/icons/ExcelIcon.png";
+import PieChart from "../PieChart";
 
 const ReportForm = () => {
   return (
     <div>
       <div className="row">
         <div className="col-6 d-flex justify-content-end btn-export">
-          <button type="button" className="btn btn-primary">
-            Export to PDF
+          <button type="button">
+            <img src={PdfIcon} alt="" style={{ width: "40px" }} />
           </button>
         </div>
         <div className="col-6 d-flex justify-content-start btn-export">
-          <button type="button" className="btn btn-primary">
-            Export to Excel
+          <button type="button">
+            <img src={ExcelIcon} alt="" style={{ width: "40px" }} />
           </button>
         </div>
       </div>
@@ -36,22 +39,7 @@ const ReportForm = () => {
             </a>
           </div>
         </div>
-        <div className="pieChart">
-          <div className="box-yield__fail">
-            <p className="box-text">
-              Pass: <span id="pass" />
-            </p>
-            <p className="box-text">
-              Fails: <span id="fails" />
-            </p>
-          </div>
-          <div className="canvas">
-            <canvas id="myPieChart" />
-          </div>
-        </div>
-        <div className="canvas">
-          <canvas id="barChart" />
-        </div>
+        {<PieChart />}
       </div>
     </div>
   );
