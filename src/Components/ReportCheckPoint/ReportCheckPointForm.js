@@ -1,6 +1,10 @@
 import React from "react";
-import whiteLogo from "../../Images/Logo-white.svg";
-import nameLogo from "../../Images/Name.svg";
+import CostumerIcon from "../../Images/SVG/icons/costumer.svg";
+import DateIcon from "../../Images/SVG/icons/datetime.svg";
+import ModelIcon from "../../Images/SVG/icons/model.svg";
+import ProcessIcon from "../../Images/SVG/icons/process.svg";
+import BackIcon from "../../Images/SVG/icons/back.svg";
+import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 
 const ReportCheckPointForm = () => {
   return (
@@ -28,10 +32,7 @@ const ReportCheckPointForm = () => {
         <div className="d-flex justify-content-center">
           <div>
             <button className="format-btn modal-btn btn-client" id>
-              <img
-                className="format-img-costumer"
-                src="../Images/SVG/icons/costumer.svg"
-              />
+              <img className="format-img-costumer" src={CostumerIcon} />
             </button>
             <p className="modal-client format-txt-icon">615</p>
           </div>
@@ -48,7 +49,7 @@ const ReportCheckPointForm = () => {
             <button className="format-btn modal-btn btn-client">
               <img
                 className="format-img-costumer"
-                src="../Images/SVG/icons/costumer.svg"
+                src="../../Images/SVG/icons/costumer.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">506</p>
@@ -60,13 +61,13 @@ const ReportCheckPointForm = () => {
         <h1 className="modal-title">Select A Model</h1>
         <div className="modal-model__container" id="option-window">
           <div className="back-arrow">
-            <img src="../Images/back-arrow.svg" alt id="slideLeft" />
+            <img src="../../Images/back-arrow.svg" alt id="slideLeft" />
           </div>
           <div>
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP7</p>
@@ -75,7 +76,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP7P</p>
@@ -84,7 +85,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP8</p>
@@ -93,7 +94,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP8P</p>
@@ -102,7 +103,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IPX</p>
@@ -111,7 +112,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IPXR</p>
@@ -120,7 +121,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IPXS</p>
@@ -129,7 +130,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IPXSM</p>
@@ -138,7 +139,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP11</p>
@@ -147,7 +148,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP11P</p>
@@ -156,14 +157,14 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-model">
               <img
                 className="format-img-model"
-                src="../Images/SVG/icons/model.svg"
+                src="../../Images/SVG/icons/model.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">IP11PM</p>
           </div>
         </div>
         <div className="foward-arrow">
-          <img src="../Images/foward-arrow.svg" alt id="slideRight" />
+          <img src="../../Images/foward-arrow.svg" alt id="slideRight" />
         </div>
       </div>
       {/* modal  Process*/}
@@ -174,7 +175,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-process format-btn">
               <img
                 className="format-img-process"
-                src="../Images/SVG/icons/process.svg"
+                src="../../Images/SVG/icons/process.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">Assemble</p>
@@ -183,7 +184,7 @@ const ReportCheckPointForm = () => {
             <button className="modal-btn btn-process format-btn">
               <img
                 className="format-img-process"
-                src="../Images/SVG/icons/process.svg"
+                src="../../Images/SVG/icons/process.svg"
               />
             </button>
             <p className="modal-client format-txt-icon">Disassembly</p>
@@ -202,11 +203,7 @@ const ReportCheckPointForm = () => {
                   id="btn-date"
                   value="display"
                 >
-                  <img
-                    className="icon-options"
-                    src="../Images/SVG/icons/datetime.svg"
-                    alt
-                  />
+                  <img className="icon-options" src={DateIcon} alt />
                   <p className="label-btn">Date</p>
                 </div>
               </div>
@@ -230,11 +227,7 @@ const ReportCheckPointForm = () => {
                 value="Client"
               >
                 {" "}
-                <img
-                  className="icon-options"
-                  src="../Images/SVG/icons/costumer.svg"
-                  alt
-                />
+                <img className="icon-options" src={CostumerIcon} alt />
                 <p className="label-btn">Custumer</p>
               </div>
             </div>
@@ -258,11 +251,7 @@ const ReportCheckPointForm = () => {
                 value="Model"
               >
                 {" "}
-                <img
-                  className="icon-options"
-                  src="../Images/SVG/icons/model.svg"
-                  alt
-                />
+                <img className="icon-options" src={ModelIcon} alt />
                 <p className="label-btn">Model</p>
               </div>
             </div>
@@ -286,11 +275,7 @@ const ReportCheckPointForm = () => {
                 value="Process"
               >
                 {" "}
-                <img
-                  className="icon-options"
-                  src="../Images/SVG/icons/process.svg"
-                  alt
-                />
+                <img className="icon-options" src={ProcessIcon} alt />
                 <p className="label-btn">Process</p>
               </div>
             </div>
@@ -309,24 +294,19 @@ const ReportCheckPointForm = () => {
       <div className="back-refresh-container d-flex justify-content-center">
         <div className="col-4 d-flex justify-content-end">
           <div className="back-refresh-btn justify-content-center">
-            <img src="../Images/SVG/icons/back.svg" alt srcSet />
+            <img src={BackIcon} alt srcSet />
             <p className="btn-lbl">Back</p>
           </div>
         </div>
         <div className="col-4 d-flex justify-content-center">
           <div className="back-refresh-btn justify-content-center">
-            <img src="../Images/SVG/icons/refresh.svg" alt />
+            <img src={RefreshIcon} alt />
             <p className="btn-lbl">Refresh</p>
           </div>
         </div>
         <div className="col-4 d-flex justify-content-start">
           <div className="back-refresh-btn justify-content-center">
-            <img
-              className="btn-next-rotate"
-              src="../Images/SVG/icons/back.svg"
-              alt
-              srcSet
-            />
+            <img className="btn-next-rotate" src={BackIcon} alt srcSet />
             <p className="btn-lbl">Next</p>
           </div>
         </div>
