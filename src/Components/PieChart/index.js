@@ -7,8 +7,8 @@ const PieChart = ()=>  {
     
     useEffect(() => {
       
-        return () => {
-                        //Windows
+
+                    //Windows
                     // const processWindow = document.getElementById('process-window');
                     // const failureWindow = document.getElementById('failure-window');
                     // const backDrop = document.getElementById('backdrop');
@@ -132,7 +132,7 @@ const PieChart = ()=>  {
                     //     }, speed);
                     // }
     
-        }
+        
     }, [])
   
     
