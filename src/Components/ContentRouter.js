@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
-import Menu from "./menu"
+import Menu from "./Menu";
 import NoFound from "./NoFound";
 import CheckPointProcess from './checkpointprocess'
 import GlobalContext from "../context/globalcontext";
