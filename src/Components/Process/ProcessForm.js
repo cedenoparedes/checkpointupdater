@@ -6,7 +6,6 @@ import FowardIcon from '../../Images/foward-arrow.svg'
 import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import PieChart from '../PieChart'
 
-
 const ProcessForm = () => {
     return (
             <div className="container-fluid Site-content">
@@ -44,7 +43,9 @@ const ProcessForm = () => {
                     </div>
                 </div>
                 <div className="col-6">
-                    {<PieChart />}
+                    <div className="chart1">
+                    <PieChart />
+                    </div>
                 </div>
                 <div className="col-3">
                     {/* button fail */}
@@ -108,7 +109,7 @@ const ProcessForm = () => {
                 <div className="back-refresh-container d-flex justify-content-center">
                 <div className="col-6  d-flex justify-content-end">
                     <div className="back-refresh-btn justify-content-center">
-                    <img src={RefreshIcon} alt="" srcSet />
+                    <img src={RefreshIcon} alt=""  />
                     <p className="btn-lbl">Back</p>
                     </div>
                 </div>

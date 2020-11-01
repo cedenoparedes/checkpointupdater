@@ -294,19 +294,19 @@ const ReportCheckPointForm = () => {
       <div className="back-refresh-container d-flex justify-content-center">
         <div className="col-4 d-flex justify-content-end">
           <div className="back-refresh-btn justify-content-center">
-            <img src={BackIcon} alt srcSet />
+            <img src={BackIcon} alt=""  />
             <p className="btn-lbl">Back</p>
           </div>
         </div>
         <div className="col-4 d-flex justify-content-center">
           <div className="back-refresh-btn justify-content-center">
-            <img src={RefreshIcon} alt />
+            <img src={RefreshIcon} alt="" />
             <p className="btn-lbl">Refresh</p>
           </div>
         </div>
         <div className="col-4 d-flex justify-content-start">
           <div className="back-refresh-btn justify-content-center">
-            <img className="btn-next-rotate" src={BackIcon} alt srcSet />
+            <img className="btn-next-rotate" src={BackIcon} alt="" />
             <p className="btn-lbl">Next</p>
           </div>
         </div>
