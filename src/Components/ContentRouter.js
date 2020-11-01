@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Menu from "./Menu";
 import NoFound from "./NoFound";
-import CheckPointProcess from './checkpointprocess'
+import Process from './Process'
 import GlobalContext from "../context/globalcontext";
 
 const ContentRouter = () => {
@@ -16,11 +16,11 @@ const ContentRouter = () => {
         <Route exact path="/">
             <Login />
         </Route>
-        <Route exact path="/menu">
+        <Route  path="/menu">
             <Menu />
         </Route>
-        <Route exact path="/menu">
-            <Menu />
+        <Route  path="/process">
+            <Process />
         </Route>
         <Route path="*">
           <NoFound />

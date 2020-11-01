@@ -1,9 +1,11 @@
 import React from 'react';
-import CheckPointProcess from './CheckPointProcess';
+import Process from './ProcessForm';
 
 const index = () => {
+    
+
     return (
-        <CheckPointProcess />
+        <Process />
     )
 }
 

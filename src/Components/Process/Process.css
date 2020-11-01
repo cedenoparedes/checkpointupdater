@@ -1,0 +1,376 @@
+html,
+body {
+  background-color: rgb(29, 27, 28);
+  min-width: 786px;
+}
+.text {
+  color: white;
+  font-size: 14px;
+  padding: 2px 5px;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+.division {
+  color: white;
+  padding: 0px 2px;
+  font-size: 16px;
+  font-weight: lighter;
+}
+.process-window {
+  position: relative;
+  padding-top: 110px;
+  padding-bottom: 60px;
+}
+/* .pass-button {
+  position: absolute;
+  top: 38%;
+  left: 60px;
+  width: 100px;
+}
+.pass-button > img {
+  width: 100%;
+} */
+/* #pass-percentage {
+  position: absolute;
+  bottom: 0%;
+  left: 42%;
+  color: white;
+  font-weight: bold;
+} */
+/* .fail-button {
+  position: absolute;
+  top: 38%;
+  right: 60px;
+  width: 100px;
+}
+.fail-button > img {
+  width: 100%;
+} */
+/* #fail-percentage {
+  position: absolute;
+  bottom: 0%;
+  left: 42%;
+  color: white;
+  font-weight: bold;
+} */
+.pass-button:hover,
+.pass-button:active {
+  width: 110px;
+}
+.fail-button:hover,
+.fail-button:active {
+  width: 110px;
+}
+
+/* .chart {
+  width: 600px;
+} */
+
+.refresh-btn {
+  margin-top: 14px;
+  width: 60px;
+}
+.refresh-btn > img {
+  width: 100%;
+}
+.back-btn {
+  margin-top: 14px;
+  width: 60px;
+}
+.back-btn > img {
+  width: 100%;
+}
+
+.back-refresh-btn {
+  background-color: white;
+  border-radius: 12px;
+  width: 50px;
+  height: 40px;
+  margin-bottom: 40px;
+}
+
+.back-refresh-container {
+  width: 100%;
+  margin-top: 26px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(163, 163, 163, 0.253);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+.failures-window {
+  position: relative;
+  z-index: 5;
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+.overflow {
+  position: relative;
+  z-index: 2;
+  border: 1px solid gray;
+  border-radius: 30px;
+  background-color: rgb(29, 27, 28);
+  padding: 40px 20px;
+  width: 100%;
+}
+.modal-button-container {
+  margin: 0 39px;
+  overflow-x: hidden;
+}
+.failures-window div {
+  white-space: nowrap;
+}
+.error-list {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 30px;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  overflow-x: auto;
+}
+.error-list .error-tag {
+  font-size: 16px;
+  color: white;
+  padding: 12px 10px;
+  margin: 2px;
+  display: inline-block;
+  border-radius: 30px;
+  background-color: rgb(203, 76, 71);
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+.error-list .error-tag:hover {
+  background-color: rgb(218, 50, 45);
+}
+
+.error-list .error-tag .close-tag::after {
+  content: "x";
+  font-weight: bold;
+  display: inline-block;
+  transform: scale(1.1);
+  border-radius: 360px;
+  padding: 1px 10px 4px 10px;
+  margin-left: 5px;
+  background-color: rgb(184, 46, 42);
+  transition: all 0.1s linear;
+}
+.error-list .error-tag .close-tag:hover::after {
+  color: rgb(184, 46, 42);
+  background-color: white;
+}
+
+.submit-btn {
+  position: relative;
+  z-index: 5;
+  width: 100px;
+  left: 84%;
+}
+.submit-btn > button {
+  width: 100%;
+  height: 75px;
+  background-color: rgb(203, 76, 71);
+  border: 1px solid rgb(211, 61, 56);
+  border-radius: 20px;
+  color: white;
+}
+.back-arrow {
+  position: absolute;
+  z-index: 5;
+  width: 55px;
+  top: 38%;
+  left: -2px;
+}
+.back-arrow > img {
+  padding: 3px;
+  width: 70px;
+}
+.foward-arrow {
+  position: absolute;
+  z-index: 5;
+  width: 55px;
+  top: 38%;
+  right: 12px;
+}
+.foward-arrow > img {
+  padding: 3px;
+  width: 70px;
+}
+.r-1 > button:last-of-type,
+.r-2 > button:last-of-type {
+  margin-right: 0;
+}
+.button {
+  width: 170px;
+  height: 80px;
+  margin: 10px 45px 10px 0px;
+  background-color: rgb(203, 76, 71);
+  border: 1px solid rgb(211, 61, 56);
+  border-radius: 25px;
+  color: white;
+}
+#input {
+  width: 500px;
+}
+
+.button-pass-fail {
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
+.icon-pass-fail {
+  width: 45px;
+}
+
+#icon-fail-margin {
+  margin-top: 10px;
+}
+
+.button-pass-position-color {
+  background-color: #99cc33;
+  color: white;
+  font-weight: bold;
+  /* margin-left: 85px; */
+}
+
+.button-fail-position-color {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  /* margin-right: 85px; */
+}
+
+.txt-porcentage {
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
+  font-size: 18px;
+}
+
+/* @media (min-width: 800px) {
+  body {
+    min-width: 800px;
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(163, 163, 163, 0.253);
+    min-width: 100%;
+    min-height: 120vh;
+    z-index: 1;
+  }
+} */
+.btn-lbl {
+  color: white;
+  display: flex;
+  justify-content: center;
+  /* margin-top: -24px; */
+}
+
+@media (max-width: 786px) {
+  html,
+  body {
+    min-width: 786px;
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(163, 163, 163, 0.253);
+    min-width: 100%;
+    min-height: 120vh;
+    z-index: 1;
+  }
+
+  .button-pass-fail {
+    width: 100px;
+    height: 100px;
+  }
+  .icon-pass-fail {
+    width: 45px;
+  }
+}
+
+@media (min-width: 960px) {
+  /* .chart {
+    width: 500px;
+    margin-top: 0px;
+  } */
+  .back-refresh-container {
+    margin-top: 14px;
+  }
+  .failures-window {
+    width: 750px;
+  }
+  .button {
+    width: 170px;
+    height: 90px;
+  }
+}
+
+/* @media (min-width: 1024px) {
+  .chart {
+    width: 513px;
+    margin-top: 0px;
+  }
+  .pass-button {
+    left: 90px;
+    width: 120px;
+  }
+  .fail-button {
+    right: 90px;
+    width: 120px;
+  }
+  .back-refresh-container {
+    margin-top: 80px;
+  }
+  .failures-window {
+    margin: auto;
+    width: 840px;
+  }
+  .button {
+    width: 200px;
+    height: 90px;
+  }
+  .button-pass-fail {
+    width: 107px;
+    height: 107px;
+  }
+  .icon-pass-fail {
+    width: 49px;
+  }
+}
+
+@media (min-width: 1124px) {
+  .pass-button {
+    left: 100px;
+  }
+  .fail-button {
+    right: 100px;
+  }
+} */
+
+@media (min-width: 1200px) {
+  body {
+    max-width: 1200px;
+  }
+
+  .chart {
+    width: 600px;
+    margin-top: 0px;
+  }
+  .icon-pass-fail {
+    width: 65px;
+  }
+}
