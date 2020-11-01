@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import WhiteLogo from '../Images/Logo-white.svg';
 import NameLogo from '../Images/Name.svg';
-import LogOutLogo from '../Images/Log-out.svg'
-import EmployeeLogo from '../Images/Employee.svg'
-import HomeLogo from '../Images/Home.svg'
+import LogOutLogo from '../Images/Log-out.svg';
+import EmployeeLogo from '../Images/Employee.svg';
+import HomeLogo from '../Images/Home.svg';
 
 
 const Header = () => {

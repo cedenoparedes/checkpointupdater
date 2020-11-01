@@ -1,8 +1,9 @@
-import React from 'react'
-import './menu.css'
-import '../breadcrumb.css'
-import CheckIcon from '../../Images/SVG/icons/check.svg'
-import DataIcon from '../../Images/SVG/icons/data.svg'
+import React from 'react';
+import './menu.css';
+import '../breadcrumb.css';
+import CheckIcon from '../../Images/SVG/icons/check.svg';
+import DataIcon from '../../Images/SVG/icons/data.svg';
+
 const  MenuForm =() => {
     return (
         <div className="container-fluid Site-content">
