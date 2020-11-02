@@ -46,7 +46,7 @@ const ProcessForm = () => {
                     <div className="col-3">
                         <div type="button" className="d-flex  justify-content-center align-self-center button-pass-fail button-pass-position-color" id="pass-btn">
                             <div>
-                                <img className="icon-pass-fail" src={PassCheck} />
+                                <img className="icon-pass" src={PassCheck} />
                             </div>
                             <div className="txt-porcentage">
                                 <p id="pass-percentage">0.00%</p>
@@ -62,7 +62,7 @@ const ProcessForm = () => {
                         {/* button fail */}
                         <div type="button" onClick={showFailureWindows} className="d-flex  justify-content-center align-self-center button-pass-fail button-fail-position-color" id="fail-btn">
                             <div>
-                                <img className="icon-pass-fail" id="icon-fail-margin" src={FailSymbol} />
+                                <img className="icon-fail" id="icon-fail-margin" src={FailSymbol} />
                             </div>
                             <div className="txt-porcentage">
                                 <p id="fail-percentage">0.00%</p>
