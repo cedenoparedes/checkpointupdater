@@ -5,6 +5,7 @@ import BackIcon from '../../Images/SVG/icons/back.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import PieChart from '../PieChart'
+// import passes from '../PieChart/index'
 
 const ProcessForm = () => {
     return (
@@ -35,7 +36,7 @@ const ProcessForm = () => {
                 <div className="col-3">
                     <div type="button" className="d-flex  justify-content-center align-self-center button-pass-fail button-pass-position-color" id="pass-btn">
                     <div>
-                        <img className="icon-pass-fail" src={PassCheck} />
+                        <img className="icon-pass" src={PassCheck} />
                     </div>
                     <div className="txt-porcentage">
                         <p id="pass-percentage">0.00%</p>
@@ -51,7 +52,7 @@ const ProcessForm = () => {
                     {/* button fail */}
                     <div type="button" className="d-flex  justify-content-center align-self-center button-pass-fail button-fail-position-color" id="fail-btn">
                     <div>
-                        <img className="icon-pass-fail" id="icon-fail-margin" src={FailSymbol} />
+                        <img className="icon-fail" id="icon-fail-margin" src={FailSymbol} />
                     </div>
                     <div className="txt-porcentage">
                         <p id="fail-percentage">0.00%</p>
@@ -63,7 +64,7 @@ const ProcessForm = () => {
             <div className="d-none failures-window" id="failure-window">
                 <div className="backdrop" id="backdrop"> </div>
                 <div className="row justify-content-center">
-                <div className="col-12 p- 2">
+                <div className="col-12 p-2">
                     <div className="error-list " data-name="error-tags">
                     </div>
                 </div>
@@ -74,20 +75,20 @@ const ProcessForm = () => {
                     </div>
                     <div className="modal-button-container" id="option-window">
                         <div className="r-1">
-                        <button className="button">Missing Key</button>
-                        <button className="button">Peel Off</button>
-                        <button className="button">Missing Key's Support</button>
-                        <button className="button">Damaged Screw Post</button>
-                        <button className="button">please earase</button>
-                        <button className="button">please earase</button>
+                            <button className="button">Missing Key</button>
+                            <button className="button">Peel Off</button>
+                            <button className="button">Missing Key's Support</button>
+                            <button className="button">Damaged Screw Post</button>
+                            <button className="button">please earase</button>
+                            <button className="button">please earase</button>
                         </div>
                         <div className="r-2">
-                        <button className="button">Scratched</button>
-                        <button className="button">Missing Hook</button>
-                        <button className="button">Missing Screw Post</button>
-                        <button className="button">please earase</button>
-                        <button className="button">please earase</button>
-                        <button className="button">please earase</button>
+                            <button className="button">Scratched</button>
+                            <button className="button">Missing Hook</button>
+                            <button className="button">Missing Screw Post</button>
+                            <button className="button">please earase</button>
+                            <button className="button">please earase</button>
+                            <button className="button">please earase</button>
                         </div>
                     </div>
                     <div className="foward-arrow">
@@ -107,9 +108,9 @@ const ProcessForm = () => {
             <div className="row">
                 {/* Back and Refresh Buttons */}
                 <div className="back-refresh-container d-flex justify-content-center">
-                <div className="col-6  d-flex justify-content-end">
+                <div className="col-6 d-flex justify-content-end">
                     <div className="back-refresh-btn justify-content-center">
-                    <img src={RefreshIcon} alt=""  />
+                    <img src={BackIcon} alt=""  />
                     <p className="btn-lbl">Back</p>
                     </div>
                 </div>
