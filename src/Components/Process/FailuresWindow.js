@@ -6,7 +6,10 @@ const FailuresWindow = (props) => {
 
     const { visible, setVisible } = props
 
+    const failureButtons = document.querySelectorAll('.button');
+
     const sideScroll = (element,direction,speed,distance,step) =>{
+        console.log(failureButtons);
         let scrollAmount = 0;
         var slideTimer = setInterval(function(){
             if(direction === 'left'){
@@ -32,6 +35,8 @@ const FailuresWindow = (props) => {
         const cWidth = container.offsetWidth;
         sideScroll(container,'left',10,cWidth,10);
     };
+
+    
 
 
     return (

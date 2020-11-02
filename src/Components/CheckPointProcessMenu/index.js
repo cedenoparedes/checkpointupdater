@@ -101,7 +101,7 @@ const Index = () => {
             function sideScroll(element, direction, speed, distance, step) {
                 scrollAmount = 0;
                 var slideTimer = setInterval(function () {
-                    if (direction == 'left') {
+                    if (direction === 'left') {
                         element.scrollLeft -= step;
                     } else {
                         element.scrollLeft += step;
