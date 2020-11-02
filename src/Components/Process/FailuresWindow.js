@@ -36,9 +36,6 @@ const FailuresWindow = (props) => {
         sideScroll(container,'left',10,cWidth,10);
     };
 
-    
-
-
     return (
         <div className={`${visible} failures-window `} id="failure-window">
             <div className="backdrop" onClick={() => { setVisible("d-none") }} id="backdrop"> </div>
