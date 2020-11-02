@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PassCheck from '../../Images/SVG/icons/check-symbol.svg'
 import FailSymbol from '../../Images/SVG/icons/cancel.svg'
 import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
+import BackIcon from '../../Images/SVG/icons/back.svg'
 import PieChart from '../PieChart'
 import FailuresWindows from './FailuresWindow'
 
@@ -77,7 +78,7 @@ const ProcessForm = () => {
                 <div className="back-refresh-container d-flex justify-content-center">
                     <div className="col-6  d-flex justify-content-end">
                         <div className="back-refresh-btn justify-content-center">
-                            <img src={RefreshIcon} alt="" />
+                            <img src={BackIcon} alt="" />
                             <p className="btn-lbl">Back</p>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import BackIcon from '../../Images/SVG/icons/back.svg'
+import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 
 const FailuresWindow = (props) => {
