@@ -1,25 +1,30 @@
 import React from "react";
-import "../breadcrumb.css"
+import "../breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
 import ModelIcon from "../../Images/SVG/icons/model.svg";
 import ProcessIcon from "../../Images/SVG/icons/process.svg";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
+// import DateTime from "../DateTime";
 
 const ReportCheckPointForm = () => {
   return (
     <div>
       <div classname="container-fluid Site-content">
         <div class="row">
-            <div class="col-6 pl-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="./menu.html">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Report</li>
-                    </ol>
-                </nav>
-            </div>
+          <div class="col-6 pl-3">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="./menu.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Report
+                </li>
+              </ol>
+            </nav>
+          </div>
         </div>
       </div>
       <div className="backdrop d-none" id="backdrop" />
@@ -308,6 +313,7 @@ const ReportCheckPointForm = () => {
           </div>
         </div>
       </div>
+      {/* {<DateTime />} */}
       {/* Optional JavaScript */}
       {/* jQuery first, then Popper.js, then Bootstrap JS */}
       {/* Just a funtionality test */}

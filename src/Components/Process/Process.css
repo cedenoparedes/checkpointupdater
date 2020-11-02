@@ -30,13 +30,14 @@ body {
 .pass-button > img {
   width: 100%;
 } */
-/* #pass-percentage {
-  position: absolute;
+#pass-percentage {
+  /* position: absolute;
   bottom: 0%;
   left: 42%;
   color: white;
-  font-weight: bold;
-} */
+  font-weight: bold; */
+  margin-bottom: 2px;
+}
 /* .fail-button {
   position: absolute;
   top: 38%;
@@ -46,13 +47,14 @@ body {
 .fail-button > img {
   width: 100%;
 } */
-/* #fail-percentage {
-  position: absolute;
+#fail-percentage {
+  /* position: absolute;
   bottom: 0%;
   left: 42%;
   color: white;
-  font-weight: bold;
-} */
+  font-weight: bold; */
+  margin-bottom: 2px;
+}
 .pass-button:hover,
 .pass-button:active {
   width: 110px;
@@ -228,7 +230,10 @@ body {
   margin: auto;
 }
 
-.icon-pass-fail {
+.icon-pass {
+  width: 50px;
+}
+.icon-fail {
   width: 45px;
 }
 
@@ -297,7 +302,10 @@ body {
     width: 100px;
     height: 100px;
   }
-  .icon-pass-fail {
+  .icon-pass {
+    width: 50px;
+  }
+  .icon-fail {
     width: 45px;
   }
 }
@@ -370,7 +378,10 @@ body {
     width: 600px;
     margin-top: 0px;
   }
-  .icon-pass-fail {
-    width: 65px;
+  .icon-pass {
+    width: 60px;
+  }
+  .icon-fail {
+    width: 50px;
   }
 }
