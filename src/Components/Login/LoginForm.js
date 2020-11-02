@@ -6,7 +6,8 @@ import CarnetIcon from '../../Images/SVG/icons/carnet.svg'
 
 const LoginForm = () => {
     return (
-        <div className="container-fluid Site-content" id="login-container-border">
+        <div className="contenedor">
+        <div className="container-fluid" id="login-container-border">
             <div className="container-fluid">
                 <div className="d-flex justify-content-center">
                     <img src={LogInIMG} id="login-frame-size" alt="" />
@@ -25,6 +26,7 @@ const LoginForm = () => {
                     <button type="button" className="btn btn-secondary" id="login-button">Login</button>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

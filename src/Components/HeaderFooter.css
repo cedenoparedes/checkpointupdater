@@ -2,9 +2,15 @@ html,
 body {
   background-color: rgb(29, 27, 28);
 }
-
-.Site-content {
-  flex: 1;
+.contenedor{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.h-90{
+  height: 90%;
 }
 .navigation-bar {
   border-bottom: 1px gray solid;
@@ -80,7 +86,6 @@ body {
   body {
     max-width: 1200px;
     margin: auto;
-    border: 1px solid gray;
     
   }
   .navigation-bar{

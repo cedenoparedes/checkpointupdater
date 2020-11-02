@@ -1,4 +1,5 @@
 import React from "react";
+import "../breadcrumb.css"
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
 import ModelIcon from "../../Images/SVG/icons/model.svg";
@@ -10,19 +11,15 @@ const ReportCheckPointForm = () => {
   return (
     <div>
       <div classname="container-fluid Site-content">
-        <div classname="row">
-          <div classname="col-6 pl-3">
-            <nav aria-label="breadcrumb">
-              <ol classname="breadcrumb">
-                <li classname="breadcrumb-item">
-                  <a href="./menu.html">Home</a>
-                </li>
-                <li classname="breadcrumb-item active" aria-current="page">
-                  Report
-                </li>
-              </ol>
-            </nav>
-          </div>
+        <div class="row">
+            <div class="col-6 pl-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./menu.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Report</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
       </div>
       <div className="backdrop d-none" id="backdrop" />
@@ -294,7 +291,7 @@ const ReportCheckPointForm = () => {
       <div className="back-refresh-container d-flex justify-content-center">
         <div className="col-4 d-flex justify-content-end">
           <div className="back-refresh-btn justify-content-center">
-            <img src={BackIcon} alt=""  />
+            <img src={BackIcon} alt="" />
             <p className="btn-lbl">Back</p>
           </div>
         </div>

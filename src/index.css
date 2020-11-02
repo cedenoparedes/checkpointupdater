@@ -16,6 +16,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+#main-container{
+  height: 100%;
+}
+.Footer{
+  flex-shrink: 0;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
