@@ -11,7 +11,6 @@ body {
 
 #login-frame-size {
   width: 150px;
-
 }
 
 #login-span-size {
@@ -20,7 +19,7 @@ body {
 }
 
 #login-input-size {
-  width: 250px;
+  width: 150px;
 }
 
 #login-span-icon {
@@ -64,7 +63,7 @@ body {
 
 @media (min-width: 768px) {
   #login-frame-size {
-    width: 150px;
+    width: 100px;
   }
 
   #login-span-size {
@@ -73,7 +72,7 @@ body {
   }
 
   #login-input-size {
-    width: 250px;
+    width: 150px;
   }
 
   #login-span-icon {
@@ -101,7 +100,7 @@ body {
   }
 
   #login-input-size {
-    width: 450px;
+    width: 200px;
   }
 
   #login-span-icon {
@@ -123,7 +122,7 @@ body {
   }
 
   #login-input-size {
-    width: 550px;
+    width: 300px;
   }
 
   #login-span-icon {
