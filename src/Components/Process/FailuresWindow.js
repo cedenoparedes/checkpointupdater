@@ -6,6 +6,32 @@ const FailuresWindow = (props) => {
 
     const { visible, setVisible } = props
 
+    const sideScroll = (element,direction,speed,distance,step) =>{
+        let scrollAmount = 0;
+        var slideTimer = setInterval(function(){
+            if(direction === 'left'){
+                element.scrollLeft -= step;
+            } else {
+                element.scrollLeft += step;
+            }
+            scrollAmount += step;
+            if(scrollAmount >= distance){
+                window.clearInterval(slideTimer);
+            }
+        }, speed);
+    }
+
+    const moveRight = () =>{ 
+        const container = document.getElementById('option-window');
+        const cWidth = container.offsetWidth;
+        sideScroll(container,'right',10,cWidth,10);
+    };
+
+    const moveLeft = () =>{
+        const container = document.getElementById('option-window');
+        const cWidth = container.offsetWidth;
+        sideScroll(container,'left',10,cWidth,10);
+    };
 
 
     return (
@@ -19,7 +45,7 @@ const FailuresWindow = (props) => {
                 <div className="col-12 p-2">
                     <div className="d-flex justify-content-start flex-wrap overflow">
                         <div className="back-arrow">
-                            <img src={BackIcon} alt="" id="slideLeft" />
+                            <img src={BackIcon} onClick={moveLeft} alt="" id="slideLeft" />
                         </div>
                         <div className="modal-button-container" id="option-window">
                             <div className="r-1">
@@ -40,7 +66,7 @@ const FailuresWindow = (props) => {
                             </div>
                         </div>
                         <div className="foward-arrow">
-                            <img src={FowardIcon} alt="" id="slideRight" />
+                            <img src={FowardIcon} onClick={moveRight} alt="" id="slideRight" />
                         </div>
                     </div>
                 </div>
