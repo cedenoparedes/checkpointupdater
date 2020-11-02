@@ -2,6 +2,7 @@ import React from "react";
 import PdfIcon from "../../Images/SVG/icons/PdfIcon.svg";
 import ExcelIcon from "../../Images/SVG/icons/ExcelIcon.png";
 import PieChart from "../PieChart";
+import BarChart from "../BarChart";
 
 const ReportForm = () => {
   return (
@@ -39,7 +40,16 @@ const ReportForm = () => {
             </a>
           </div>
         </div>
+        <div className="box-yield__fail">
+          <p className="box-text">
+            Pass: <span id="pass" />
+          </p>
+          <p className="box-text">
+            Fails: <span id="fails" />
+          </p>
+        </div>
         {<PieChart />}
+        {<BarChart />}
       </div>
     </div>
   );
