@@ -8,47 +8,38 @@ const FailuresWindow = (props) => {
 
     const failureButtons = document.querySelectorAll('.button');
 
-    const sideScroll = (element,direction,speed,distance,step) =>{
+    const sideScroll = (element, direction, speed, distance, step) => {
         console.log(failureButtons);
         let scrollAmount = 0;
-        var slideTimer = setInterval(function(){
-            if(direction === 'left'){
+        var slideTimer = setInterval(function () {
+            if (direction === 'left') {
                 element.scrollLeft -= step;
             } else {
                 element.scrollLeft += step;
             }
             scrollAmount += step;
-            if(scrollAmount >= distance){
+            if (scrollAmount >= distance) {
                 window.clearInterval(slideTimer);
             }
         }, speed);
     }
 
-    const scrollHandler = (direction) =>{ 
+    const scrollHandler = (direction) => {
         const container = document.getElementById('option-window');
         const cWidth = container.offsetWidth;
-        sideScroll(container,direction,10,cWidth,10);
+        sideScroll(container, direction, 10, cWidth, 10);
     };
 
-    const prueba = [
-        {
-          FailureName: "Peel Off",
-          FailureId: 10
-        },
-        {
-            FailureName: "Missing Hook",
-            FailuteId: 11
-        }
-    ]
+
 
     const addTagToListTags = (btn) => {
         const errorList = document.querySelector('.error-list');
         console.log(btn);
-        
+
         const button = document.getElementById(btn);
         const tagAlreadyExist = VerifyIfThereIsATag(button.textContent);
-    
-        if(!tagAlreadyExist){
+
+        if (!tagAlreadyExist) {
             let newTag = document.createElement('span');
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
@@ -61,28 +52,40 @@ const FailuresWindow = (props) => {
     const VerifyIfThereIsATag = (textContent) => {
         const errors = document.querySelectorAll('.error-list > .error-tag');
         let exist = false;
-        errors.forEach(error =>{
-            if(textContent == error.textContent){
+        errors.forEach(error => {
+            if (textContent == error.textContent) {
                 exist = true;
             }
         });
-    
-        if(exist === true){
+
+        if (exist === true) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     };
 
-    const AddEraseFunctionality = closeTag =>{
-    
-        closeTag.addEventListener('click', ()=> {
+    const AddEraseFunctionality = closeTag => {
+
+        closeTag.addEventListener('click', () => {
             let parent = closeTag.parentNode;
             let grandParent = parent.parentNode;
             grandParent.removeChild(parent);
         });
     };
+
+    const failures = [
+        {
+            FailureName: "Peel Off",
+            FailureId: 10
+        },
+        {
+            FailureName: "Missing Hook",
+            FailuteId: 11
+        }
+    ]
+
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">
@@ -99,15 +102,10 @@ const FailuresWindow = (props) => {
                         </div>
                         <div className="modal-button-container" id="option-window">
                             <div className="r-1">
+                                {failures.map((failure, i) => {
 
-                                {/* { prueba.map((pruebas) => <button className="button" id={pruebas.key}>{pruebas[pruebas.key].FailureName}</button>)} */}
-
-                                {/* <button className="button" id="Presionado" onClick={() => addTagToListTags('Presionado')}>Missing Key</button>
-                                <button className="button">Peel Off</button>
-                                <button className="button">Missing Key's Support</button>
-                                <button className="button">Damaged Screw Post</button>
-                                <button className="button">please earase</button>
-                                <button className="button">please earase</button> */}
+                                    return <button className="button" key={i} id={i}>{failure.FailureName}</button>
+                                })}
                             </div>
                             <div className="r-2">
                                 <button className="button" id="">Scratched</button>
