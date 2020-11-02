@@ -6,10 +6,7 @@ const FailuresWindow = (props) => {
 
     const { visible, setVisible } = props
 
-    const failureButtons = document.querySelectorAll('.button');
-
     const sideScroll = (element, direction, speed, distance, step) => {
-        console.log(failureButtons);
         let scrollAmount = 0;
         var slideTimer = setInterval(function () {
             if (direction === 'left') {
@@ -34,7 +31,6 @@ const FailuresWindow = (props) => {
 
     const addTagToListTags = (btn) => {
         const errorList = document.querySelector('.error-list');
-        console.log(btn);
 
         const button = document.getElementById(btn);
         const tagAlreadyExist = VerifyIfThereIsATag(button.textContent);
@@ -75,6 +71,28 @@ const FailuresWindow = (props) => {
         });
     };
 
+    const ClearListError = () => {
+        const errorList = document.querySelector('.error-list');
+        setVisible("d-none");
+        if (errorList.hasChildNodes()){
+            while (errorList.childNodes.length >= 1)
+            {
+                errorList.removeChild(errorList.firstChild);
+            }
+        }
+    }
+
+    const SaveListErros = () =>{
+        const errorTags = document.querySelectorAll('.error-list > .error-tag');
+        let errors = [];
+    
+        errorTags.forEach(error => {
+            errors.push(error.textContent);
+        });
+        ClearListError();
+        return console.log(errors);
+    };
+
     const failures = [
         {
             FailureName: "Peel Off",
@@ -83,13 +101,26 @@ const FailuresWindow = (props) => {
         {
             FailureName: "Missing Hook",
             FailuteId: 11
+        },
+        {
+            FailureName: "11111 Hook",
+            FailuteId: 11
+        },
+        {
+            FailureName: "33412 Hook",
+            FailuteId: 11
+        },
+        {
+            FailureName: "5555 Hook",
+            FailuteId: 11
         }
+
     ]
 
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">
-            <div className="backdrop" onClick={() => { setVisible("d-none") }} id="backdrop"> </div>
+            <div className="backdrop" onClick={ClearListError} id="backdrop"> </div>
             <div className="row justify-content-center">
                 <div className="col-12 p- 2">
                     <div className="error-list " data-name="error-tags">
@@ -101,19 +132,21 @@ const FailuresWindow = (props) => {
                             <img src={BackIcon} onClick={() => scrollHandler('left')} alt="" id="slideLeft" />
                         </div>
                         <div className="modal-button-container" id="option-window">
-                            <div className="r-1">
-                                {failures.map((failure, i) => {
 
-                                    return <button className="button" key={i} id={i}>{failure.FailureName}</button>
+                            <div id="r-1"> 
+                                {failures.map((failure, i) => {
+                                    if(i % 2 === 0){
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                    }
                                 })}
                             </div>
-                            <div className="r-2">
-                                <button className="button" id="">Scratched</button>
-                                <button className="button">Missing Hook</button>
-                                <button className="button">Missing Screw Post</button>
-                                <button className="button">please earase</button>
-                                <button className="button">please earase</button>
-                                <button className="button">please earase</button>
+                            
+                            <div id="r-2">
+                            {failures.map((failure, i) => {
+                                    if(i % 2 !== 0){
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                    }
+                                })}
                             </div>
                         </div>
                         <div type="button" className="foward-arrow">
@@ -123,7 +156,7 @@ const FailuresWindow = (props) => {
                 </div>
                 {/* Failure Buttons */}
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={() => { setVisible("d-none") }} id="submit-btn">
+                    <div className="submit-btn" onClick={ SaveListErros} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>
