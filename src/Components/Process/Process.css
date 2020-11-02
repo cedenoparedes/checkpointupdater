@@ -18,41 +18,15 @@ body {
 }
 .process-window {
   position: relative;
-  padding-top: 110px;
-  padding-bottom: 60px;
 }
-/* .pass-button {
-  position: absolute;
-  top: 38%;
-  left: 60px;
-  width: 100px;
-}
-.pass-button > img {
-  width: 100%;
-} */
-#pass-percentage {
-  /* position: absolute;
-  bottom: 0%;
-  left: 42%;
-  color: white;
-  font-weight: bold; */
+
+
+.percentage {
+  margin-top: 10px;
   margin-bottom: 2px;
 }
-/* .fail-button {
-  position: absolute;
-  top: 38%;
-  right: 60px;
-  width: 100px;
-}
-.fail-button > img {
-  width: 100%;
-} */
+
 #fail-percentage {
-  /* position: absolute;
-  bottom: 0%;
-  left: 42%;
-  color: white;
-  font-weight: bold; */
   margin-bottom: 2px;
 }
 .pass-button:hover,
@@ -63,10 +37,6 @@ body {
 .fail-button:active {
   width: 110px;
 }
-
-/* .chart {
-  width: 600px;
-} */
 
 .refresh-btn {
   margin-top: 14px;
@@ -232,27 +202,27 @@ body {
 
 .icon-pass {
   width: 50px;
+  margin-bottom: 10px;
 }
 .icon-fail {
-  width: 45px;
+  width: 47px;
+  margin-bottom: 10px;
 }
 
-#icon-fail-margin {
-  margin-top: 10px;
-}
+
 
 .button-pass-position-color {
   background-color: #99cc33;
   color: white;
   font-weight: bold;
-  /* margin-left: 85px; */
+
 }
 
 .button-fail-position-color {
   background-color: crimson;
   color: white;
   font-weight: bold;
-  /* margin-right: 85px; */
+
 }
 
 .txt-porcentage {
@@ -262,20 +232,6 @@ body {
   font-size: 18px;
 }
 
-/* @media (min-width: 800px) {
-  body {
-    min-width: 800px;
-  }
-  .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(163, 163, 163, 0.253);
-    min-width: 100%;
-    min-height: 120vh;
-    z-index: 1;
-  }
-} */
 .btn-lbl {
   color: white;
   display: flex;
@@ -311,10 +267,7 @@ body {
 }
 
 @media (min-width: 960px) {
-  /* .chart {
-    width: 500px;
-    margin-top: 0px;
-  } */
+
   .back-refresh-container {
     margin-top: 14px;
   }
@@ -327,47 +280,6 @@ body {
   }
 }
 
-/* @media (min-width: 1024px) {
-  .chart {
-    width: 513px;
-    margin-top: 0px;
-  }
-  .pass-button {
-    left: 90px;
-    width: 120px;
-  }
-  .fail-button {
-    right: 90px;
-    width: 120px;
-  }
-  .back-refresh-container {
-    margin-top: 80px;
-  }
-  .failures-window {
-    margin: auto;
-    width: 840px;
-  }
-  .button {
-    width: 200px;
-    height: 90px;
-  }
-  .button-pass-fail {
-    width: 107px;
-    height: 107px;
-  }
-  .icon-pass-fail {
-    width: 49px;
-  }
-}
-
-@media (min-width: 1124px) {
-  .pass-button {
-    left: 100px;
-  }
-  .fail-button {
-    right: 100px;
-  }
-} */
 
 @media (min-width: 1200px) {
   body {

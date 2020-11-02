@@ -45,12 +45,12 @@ const ProcessForm = () => {
 					<div className={`${visible === "d-none" ? "" : "d-none"} process-window `} id="process-window">
 						<div className="row justify-content-center align-items-center">
 							<div className="col-3">
-								<div type="button" className="d-flex  justify-content-center align-self-center button-pass-fail button-pass-position-color" id="pass-btn">
+								<div type="button" className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color" id="pass-btn">
 									<div>
 										<img className="icon-pass" src={PassCheck} alt="" />
 									</div>
 									<div className="txt-porcentage">
-										<p id="pass-percentage">0.00%</p>
+										<p className="percentage">0.00%</p>
 									</div>
 								</div>
 							</div>
@@ -61,12 +61,12 @@ const ProcessForm = () => {
 							</div>
 							<div className="col-3">
 								{/* button fail */}
-								<div type="button" onClick={showFailureWindows} className="d-flex  justify-content-center align-self-center button-pass-fail button-fail-position-color" id="fail-btn" >
+								<div type="button" onClick={showFailureWindows} className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color" id="fail-btn" >
 									<div>
 										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
 									</div>
 									<div className="txt-porcentage">
-										<p id="fail-percentage">0.00%</p>
+										<p className="percentage">0.00%</p>
 									</div>
 								</div>
 							</div>
