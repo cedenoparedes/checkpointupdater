@@ -20,32 +20,39 @@ const CheckPointProcessMenu = () => {
     });
 
     const showPopUp = (button) => {
-        if (button === 'Customer') {
-            setVisible({
-                contentVisibility: "d-none",
-                customerPopVisibility: "",
-                modelPopVisibility: "d-none",
-                processPopVisibility: "d-none"
-            });
-        }
-        else if (button === 'Model') {
-            setVisible({
-                contentVisibility: "d-none",
-                customerPopVisibility: "d-none",
-                modelPopVisibility: "",
-                processPopVisibility: "d-none"
-            });
-        }
-        else {
-            setVisible({
-                contentVisibility: "d-none",
-                customerPopVisibility: "d-none",
-                modelPopVisibility: "d-none",
-                processPopVisibility: ""
-            });
+
+        switch (button) {
+            case 'Customer':
+                setVisible({
+                    contentVisibility: "d-none",
+                    customerPopVisibility: "",
+                    modelPopVisibility: "d-none",
+                    processPopVisibility: "d-none"
+                });
+                break;
+            case 'Model':
+                setVisible({
+                    contentVisibility: "d-none",
+                    customerPopVisibility: "d-none",
+                    modelPopVisibility: "",
+                    processPopVisibility: "d-none"
+                });
+                break;
+            case 'Process':
+                setVisible({
+                    contentVisibility: "d-none",
+                    customerPopVisibility: "d-none",
+                    modelPopVisibility: "d-none",
+                    processPopVisibility: ""
+                });
+                break;
+            default:
+                break;
         }
 
     };
+
+
 
     return (
         <div className="h-90">
@@ -63,19 +70,19 @@ const CheckPointProcessMenu = () => {
             </div>
             <div className="contenedor">
                 {/* Modal Customer */}
-                <CustomerPopUp visible={visible} setVisible={setVisible}/>
+                <CustomerPopUp visible={visible} setVisible={setVisible} />
                 {/* modal Model*/}
-                <ModelPopUP visible={visible} setVisible={setVisible}/>
+                <ModelPopUP visible={visible} setVisible={setVisible} />
                 {/* modal  Process*/}
-                <ProcessPopUp visible={visible} setVisible={setVisible}/>
+                <ProcessPopUp visible={visible} setVisible={setVisible} />
                 <div className={`${visible.contentVisibility} container-fluid `}>
                     <form className="form-container">
 
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
-                                    <div type="button" className="btn-menu" id="btn-client" onClick={() => showPopUp('Customer')}> 
-                                        <img className="icon-options" src={CustomerIcon} alt="" /> 
+                                    <div type="button" className="btn-menu" id="btn-client" onClick={() => showPopUp('Customer')}>
+                                        <img className="icon-options" src={CustomerIcon} alt="" />
                                         <p className="label-btn">Customer</p>
                                     </div>
                                 </div>
@@ -87,8 +94,8 @@ const CheckPointProcessMenu = () => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
-                                    <div type="button" className="btn-menu" id="btn-model" onClick={() => showPopUp('Model')}> 
-                                        <img className="icon-options" src={ModelIcon} alt="" /> 
+                                    <div type="button" className="btn-menu" id="btn-model" onClick={() => showPopUp('Model')}>
+                                        <img className="icon-options" src={ModelIcon} alt="" />
                                         <p className="label-btn">Model</p>
                                     </div>
                                 </div>
@@ -101,7 +108,7 @@ const CheckPointProcessMenu = () => {
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
                                     <div type="button" className="btn-menu" id="btn-process" onClick={() => showPopUp('Process')} >
-                                        <img className="icon-options" src={ProcessIcon} alt="" /> 
+                                        <img className="icon-options" src={ProcessIcon} alt="" />
                                         <p className="label-btn">Process</p>
                                     </div>
                                 </div>

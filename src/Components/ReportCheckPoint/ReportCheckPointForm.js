@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../Common/breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
@@ -13,7 +13,7 @@ import ProcessPopUp from "../Common/ProcessPopUp"
 import { Link } from "react-router-dom";
 
 const ReportCheckPointForm = () => {
-  
+
   const [visible, setVisible] = useState({
     contentVisibility: "",
     customerPopVisibility: "d-none",
@@ -21,34 +21,48 @@ const ReportCheckPointForm = () => {
     processPopVisibility: "d-none"
   });
 
-	const showPopUp = (button) => {
-    if(button === 'Customer'){
+  const doVisible = () => {
+    setVisible({
+      contentVisibility: "d-none",
+      customerPopVisibility: "",
+      modelPopVisibility: "d-none",
+      processPopVisibility: "d-none"
+    });
+  }
+
+  const showPopUp = (button) => {
+
+    switch (button) {
+      case 'Customer':
         setVisible({
           contentVisibility: "d-none",
           customerPopVisibility: "",
           modelPopVisibility: "d-none",
           processPopVisibility: "d-none"
         });
+        break;
+      case 'Model':
+        setVisible({
+          contentVisibility: "d-none",
+          customerPopVisibility: "d-none",
+          modelPopVisibility: "",
+          processPopVisibility: "d-none"
+        });
+        break;
+      case 'Process':
+        setVisible({
+          contentVisibility: "d-none",
+          customerPopVisibility: "d-none",
+          modelPopVisibility: "d-none",
+          processPopVisibility: ""
+        });
+        break;
+      default:
+        break;
     }
-    else if (button === 'Model'){
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "",
-        processPopVisibility: "d-none"
-      });
-    }
-    else {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "d-none",
-        processPopVisibility: ""
-      });
-    }
-		
+
   };
-  
+
   return (
     <div className="h-90">
       <div className="container-fluid">
@@ -66,11 +80,11 @@ const ReportCheckPointForm = () => {
 
       <div className="contenedor">
         {/* Modal Customer */}
-        <CustomerPopUp visible={visible} setVisible={setVisible}/>
+        <CustomerPopUp visible={visible} setVisible={setVisible} />
         {/* modal Model*/}
-        <ModelPopUP visible={visible} setVisible={setVisible}/>
+        <ModelPopUP visible={visible} setVisible={setVisible} />
         {/* modal  Process*/}
-        <ProcessPopUp visible={visible} setVisible={setVisible}/>
+        <ProcessPopUp visible={visible} setVisible={setVisible} />
 
         <div className={`${visible.contentVisibility} container-fluid `} >
           <form className="form-container">
