@@ -8,18 +8,16 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 
 const ReportForm = () => {
   return (
-    <div>
+    <div className="Container">
       <div className="row">
-        <div className="col-6 d-flex justify-content-end btn-export">
-          <button type="button">
-            <img src={PdfIcon} alt="" style={{ width: "40px" }} />
-          </button>
-        </div>
-        <div className="col-6 d-flex justify-content-start btn-export">
-          <button type="button">
-            <i class="fas fa-file-excel"></i>
-            <img src={ExcelIcon} alt="" style={{ width: "40px" }} />
-          </button>
+        <div className="col-12 d-flex  justify-content-center btn-export">
+          <fieldset>
+            <legend>Export to:</legend>
+            <div className="justify-content-center">
+              <img className="exporticon" src={PdfIcon} alt="" />
+              <img className="exporticon" src={ExcelIcon} alt="" />
+            </div>
+          </fieldset>
         </div>
       </div>
       <div className="container container-format">
