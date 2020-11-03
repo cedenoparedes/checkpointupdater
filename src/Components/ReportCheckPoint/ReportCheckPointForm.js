@@ -6,6 +6,7 @@ import ModelIcon from "../../Images/SVG/icons/model.svg";
 import ProcessIcon from "../../Images/SVG/icons/process.svg";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
+import CustomerPopUp from "../Common/CustomerPopUp";
 // import DateTime from "../DateTime";
 
 const ReportCheckPointForm = () => {
@@ -25,29 +26,7 @@ const ReportCheckPointForm = () => {
       </div>
       <div className="backdrop d-none" id="backdrop">
         {/* modal Client */}
-        <div className="modal d-none" id="modal-client">
-          <h1 className="modal-title">Select Customer</h1>
-          <div className="d-flex justify-content-center">
-            <div>
-              <button className="format-btn modal-btn btn-client" id>
-                <img className="format-img-costumer" src="{CustumerIcon}" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">615</p>
-            </div>
-            <div>
-              <button className="format-btn modal-btn btn-client">
-                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">787</p>
-            </div>
-            <div>
-              <button className="format-btn modal-btn btn-client">
-                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">506</p>
-            </div>
-          </div>
-        </div>
+        <CustomerPopUp />
         {/* modal Model*/}
         <div className="modal d-none" id="modal-model">
           <h1 className="modal-title">Select A Model</h1>

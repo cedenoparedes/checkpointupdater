@@ -1,10 +1,8 @@
 import React from 'react'
 import './ProcessMenuForm.css'
-
 import CustomerIcon from '../../Images/SVG/icons/custumer.svg'
 import ModelIcon from '../../Images/SVG/icons/model.svg'
 import ProcessIcon from '../../Images/SVG/icons/process.svg'
-
 import BackIcon from '../../Images/SVG/icons/back.svg'
 import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 
@@ -20,7 +18,7 @@ const ChkMenu = () => {
                 <div className="d-flex justify-content-center">
                     <div>
                         <button className="format-btn modal-btn btn-client" id>
-                            <img className="format-img-costumer" src={CustomerIcon} alt=""/></button>
+                            <img className="format-img-costumer" src={CustomerIcon} alt="" /></button>
                         <p className="modal-client format-txt-icon">615</p>
                     </div>
                     <div>
@@ -95,13 +93,13 @@ const ChkMenu = () => {
                 <div className="d-flex justify-content-center">
                     <div>
                         <button className="modal-btn btn-process format-btn">
-                            <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt=""/>
+                            <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
                         </button>
                         <p className="modal-client format-txt-icon">Assemble</p>
                     </div>
                     <div>
                         <button className="modal-btn btn-process format-btn">
-                            <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt=""/>
+                            <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
                         </button>
                         <p className="modal-client format-txt-icon">Disassembly</p>
                     </div>
@@ -132,7 +130,7 @@ const ChkMenu = () => {
                     <div className="form-group">
                         <div className="form-row">
                             <div className="col-md-6 d-flex justify-content-center">
-                                <div type="button" className="btn-menu " id="btn-client" value="Client"> <img className="icon-options" src={CustomerIcon} alt=""/> Customer</div>
+                                <div type="button" className="btn-menu " id="btn-client" value="Client"> <img className="icon-options" src={CustomerIcon} alt="" /> Customer</div>
                             </div>
                             <div className="col-md-6 d-flex justify-content-center align-self-center">
                                 <input type="text" className="form-control input-text form-control-lg " id="tb-client" disabled />
@@ -152,7 +150,7 @@ const ChkMenu = () => {
                     <div className="form-group">
                         <div className="form-row">
                             <div className="col-md-6 d-flex justify-content-center">
-                                <div type="button" className="btn-menu" id="btn-process" value="Process"> <img className="icon-options" src={ProcessIcon} alt=""/> Process</div>
+                                <div type="button" className="btn-menu" id="btn-process" value="Process"> <img className="icon-options" src={ProcessIcon} alt="" /> Process</div>
                             </div>
                             <div className="col-md-6 d-flex justify-content-center align-self-center">
                                 <input type="text" className="form-control input-text form-control-lg" id="tb-process" disabled />
