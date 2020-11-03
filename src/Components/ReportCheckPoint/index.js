@@ -1,13 +1,25 @@
 import React from "react";
 import ReportCheckPointForm from "./ReportCheckPointForm";
-import "../../../node_modules/jquery/dist/jquery.slim.min.js";
-import "../../../node_modules/popper.js/dist/umd/popper.min";
-import "../../../node_modules/bootstrap/dist/js/bootstrap.min";
-import moment from "moment/dist/moment";
+import $ from 'jquery';
+import "./bootstrap-datepicker"
+import "./bootstrap-datepicker.css"
 
 
 const index = () => {
-  return <ReportCheckPointForm />;
+  $(function () {
+    console.log('Jquery esta funcionando');
+    $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT' },
+      console.log('funciona abajo')
+    );
+  });
+
+  function clickFunction() {
+    let click = document.getElementById("tb-date")
+    click.click()
+    click.focus()
+  }
+
+  return <ReportCheckPointForm clickFunction={clickFunction}/>;
 };
 
 export default index;

@@ -10,9 +10,12 @@ import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
 // import DateTime from "../DateTime";
+
 import { Link } from "react-router-dom";
 
-const ReportCheckPointForm = () => {
+const ReportCheckPointForm = (props) => {
+
+  const {clickFunction} = props;
 
   const [visible, setVisible] = useState({
     contentVisibility: "",
@@ -20,15 +23,6 @@ const ReportCheckPointForm = () => {
     modelPopVisibility: "d-none",
     processPopVisibility: "d-none"
   });
-
-  const doVisible = () => {
-    setVisible({
-      contentVisibility: "d-none",
-      customerPopVisibility: "",
-      modelPopVisibility: "d-none",
-      processPopVisibility: "d-none"
-    });
-  }
 
   const showPopUp = (button) => {
 
@@ -92,7 +86,7 @@ const ReportCheckPointForm = () => {
               <div className="form-row">
                 <div className="input-group" id="datetimepicker">
                   <div className="col-6 d-flex justify-content-center p-0">
-                    <div type="button" className="btn-menu form-control" id="btn-date" value="display">
+                    <div type="button" className="btn-menu form-control" id="btn-date" onClick={clickFunction}>
                       <img className="icon-options" src={DateIcon} alt="" />
                       <p className="label-btn">Date</p>
                     </div>
