@@ -1,5 +1,5 @@
 import React from "react";
-import "../breadcrumb.css";
+import "../Common/breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
 import ModelIcon from "../../Images/SVG/icons/model.svg";
@@ -30,19 +30,19 @@ const ReportCheckPointForm = () => {
           <div className="d-flex justify-content-center">
             <div>
               <button className="format-btn modal-btn btn-client" id>
-                <img className="format-img-costumer" src="{CustumerIcon}" alt=""/>
+                <img className="format-img-costumer" src="{CustumerIcon}" alt="" />
               </button>
               <p className="modal-client format-txt-icon">615</p>
             </div>
             <div>
               <button className="format-btn modal-btn btn-client">
-                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt=""/>
+                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">787</p>
             </div>
             <div>
               <button className="format-btn modal-btn btn-client">
-                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt=""/>
+                <img className="format-img-costumer" src="../../Images/SVG/icons/custumer.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">506</p>
             </div>
@@ -53,77 +53,77 @@ const ReportCheckPointForm = () => {
           <h1 className="modal-title">Select A Model</h1>
           <div className="modal-model__container" id="option-window">
             <div className="back-arrow">
-              <img src="../../Images/back-arrow.svg" id="slideLeft" alt=""/>
+              <img src="../../Images/back-arrow.svg" id="slideLeft" alt="" />
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP7</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP7P</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP8</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP8P</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IPX</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IPXR</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IPXS</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IPXSM</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP11</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP11P</p>
             </div>
             <div>
               <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt=""/>
+                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">IP11PM</p>
             </div>
           </div>
           <div className="foward-arrow">
-            <img src="../../Images/foward-arrow.svg" id="slideRight" alt=""/>
+            <img src="../../Images/foward-arrow.svg" id="slideRight" alt="" />
           </div>
         </div>
         {/* modal  Process*/}
@@ -132,13 +132,13 @@ const ReportCheckPointForm = () => {
           <div className="d-flex justify-content-center">
             <div>
               <button className="modal-btn btn-process format-btn">
-                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt=""/>
+                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">Assemble</p>
             </div>
             <div>
               <button className="modal-btn btn-process format-btn">
-                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt=""/>
+                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
               </button>
               <p className="modal-client format-txt-icon">Disassembly</p>
             </div>
@@ -153,7 +153,7 @@ const ReportCheckPointForm = () => {
                 <div className="input-group" id="datetimepicker">
                   <div className="col-6 d-flex justify-content-center p-0">
                     <div type="button" className="btn-menu form-control" onclick="myFunction();" id="btn-date" value="display">
-                      <img className="icon-options" src={DateIcon} alt=""/>
+                      <img className="icon-options" src={DateIcon} alt="" />
                       <p className="label-btn">Date</p>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ const ReportCheckPointForm = () => {
           <div className="back-refresh-container d-flex justify-content-center">
             <div className="col-4 d-flex justify-content-end">
               <div className="back-refresh-btn justify-content-center">
-                <img src={BackIcon} alt ="" />
+                <img src={BackIcon} alt="" />
                 <p className="btn-lbl">Back</p>
               </div>
             </div>

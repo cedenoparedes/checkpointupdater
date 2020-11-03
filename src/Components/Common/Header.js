@@ -1,9 +1,10 @@
 import React from 'react';
-import WhiteLogo from '../Images/Logo-white.svg';
-import NameLogo from '../Images/Name.svg';
-import LogOutLogo from '../Images/Log-out.svg';
-import EmployeeLogo from '../Images/Employee.svg';
-import HomeLogo from '../Images/Home.svg';
+import WhiteLogo from '../../Images/Logo-white.svg';
+import NameLogo from '../../Images/Name.svg';
+import LogOutLogo from '../../Images/Log-out.svg';
+import EmployeeLogo from '../../Images/Employee.svg';
+import HomeLogo from '../../Images/Home.svg';
+
 
 
 const Header = () => {
@@ -31,7 +32,7 @@ const Header = () => {
                                 <figcaption className="caption">Employee</figcaption>
                             </figure>
                             <figure className="pl-3 m-0 item">
-                            <img src={HomeLogo} alt="" />
+                                <img src={HomeLogo} alt="" />
                                 <figcaption className="caption">Home</figcaption>
                             </figure>
                         </div>

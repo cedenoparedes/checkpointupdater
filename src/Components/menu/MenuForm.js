@@ -1,6 +1,6 @@
 import React from 'react';
 import './menu.css';
-import '../breadcrumb.css';
+import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
 import DataIcon from '../../Images/SVG/icons/data.svg';
 
@@ -45,7 +45,7 @@ const MenuForm = () => {
                             </div>
                         </div>
                     </div>
-                </div>        
+                </div>
             </div>
         </div>
     )

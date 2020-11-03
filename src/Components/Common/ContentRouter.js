@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Login from "./Login";
-import Menu from "./Menu";
-import CheckPointProcessMenu from "./CheckPointProcessMenu";
-import ReportCheckPoint from "./ReportCheckPoint";
-import Report from "./Report";
+import Login from "../Login";
+import Menu from "../Menu";
+import CheckPointProcessMenu from "../CheckPointProcessMenu";
+import ReportCheckPoint from "../ReportCheckPoint";
+import Report from "../Report";
 import NoFound from "./NoFound";
-import Process from "./Process";
-import GlobalContext from "../context/globalcontext";
+import Process from "../Process";
+import GlobalContext from "../../context/globalcontext";
 
 const ContentRouter = () => {
   //   const [, , contextMiddleware] = useContext(GlobalContext);

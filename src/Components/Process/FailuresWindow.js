@@ -74,18 +74,17 @@ const FailuresWindow = (props) => {
     const ClearListError = () => {
         const errorList = document.querySelector('.error-list');
         setVisible("d-none");
-        if (errorList.hasChildNodes()){
-            while (errorList.childNodes.length >= 1)
-            {
+        if (errorList.hasChildNodes()) {
+            while (errorList.childNodes.length >= 1) {
                 errorList.removeChild(errorList.firstChild);
             }
         }
     }
 
-    const SaveListErros = () =>{
+    const SaveListErros = () => {
         const errorTags = document.querySelectorAll('.error-list > .error-tag');
         let errors = [];
-    
+
         errorTags.forEach(error => {
             errors.push(error.textContent);
         });
@@ -133,17 +132,17 @@ const FailuresWindow = (props) => {
                         </div>
                         <div className="modal-button-container" id="option-window">
 
-                            <div id="r-1"> 
+                            <div id="r-1">
                                 {failures.map((failure, i) => {
-                                    if(i % 2 === 0){
+                                    if (i % 2 === 0) {
                                         return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
                                     }
                                 })}
                             </div>
-                            
+
                             <div id="r-2">
-                            {failures.map((failure, i) => {
-                                    if(i % 2 !== 0){
+                                {failures.map((failure, i) => {
+                                    if (i % 2 !== 0) {
                                         return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
                                     }
                                 })}
@@ -156,7 +155,7 @@ const FailuresWindow = (props) => {
                 </div>
                 {/* Failure Buttons */}
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={ SaveListErros} id="submit-btn">
+                    <div className="submit-btn" onClick={SaveListErros} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>
