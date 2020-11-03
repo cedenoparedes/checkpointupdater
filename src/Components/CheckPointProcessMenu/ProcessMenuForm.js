@@ -60,9 +60,9 @@ const CheckPointProcessMenu = () => {
                 <div className="row pl-3">
                     <div className="col-6 m-0">
                         <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="./menu.html">Home</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">Checkpoint</li>
+                            <ol className="breadcrumb">                              
+                                <li className="breadcrumb-item"><a href="../Menu">Home</a></li>                              
+                                <li className="breadcrumb-item active" aria-current="page">Checkpoint</li>                               
                             </ol>
                         </nav>
                     </div>

@@ -70,7 +70,7 @@ const ReportCheckPointForm = () => {
           <div className="col-6 pl-3">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="./menu.html">Home</a></li>
+                <li className="breadcrumb-item"><a href="./menu">Home</a></li>
                 <li className="breadcrumb-item active" aria-current="page">Report</li>
               </ol>
             </nav>
