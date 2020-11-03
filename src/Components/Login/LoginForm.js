@@ -1,6 +1,7 @@
 import React from 'react'
 import LogInIMG from '../../Images/LogIn-IMG.svg'
 import CarnetIcon from '../../Images/SVG/icons/carnet.svg'
+import { Link } from "react-router-dom";
 
 
 
@@ -22,9 +23,11 @@ const LoginForm = () => {
                 </div>
             </div>
             <div className="container-fluid">
-                <div className="d-flex justify-content-center">
-                    <button type="button" className="btn btn-secondary" id="login-button">Login</button>
-                </div>
+                <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-secondary" id="login-button">Login</button>
+                    </div>
+                </Link>
             </div>
         </div>
         </div>

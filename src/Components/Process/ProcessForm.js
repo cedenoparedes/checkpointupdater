@@ -5,6 +5,7 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
+import { Link } from "react-router-dom";
 
 
 const ProcessForm = () => {
@@ -76,16 +77,20 @@ const ProcessForm = () => {
 						<div className="row pt-5">
 							<div className="back-refresh-container d-flex justify-content-center">
 								<div className="col-6  d-flex justify-content-end">
-									<div className="back-refresh-btn justify-content-center">
-										<img src={BackIcon} alt="" />
-										<p className="btn-lbl">Back</p>
-									</div>
+									<Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+										<div className="back-refresh-btn justify-content-center">
+											<img src={BackIcon} alt="" />
+											<p className="btn-lbl">Back</p>
+										</div>
+									</Link>
 								</div>
 								<div className="col-6 d-flex justify-content-start">
-									<div className="back-refresh-btn justify-content-center">
-										<img src={RefreshIcon} alt="" />
-										<p className="btn-lbl">Refresh</p>
-									</div>
+									<Link to='../Process' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+										<div className="back-refresh-btn justify-content-center">
+											<img src={RefreshIcon} alt="" />
+											<p className="btn-lbl">Refresh</p>
+										</div>
+									</Link>
 								</div>
 							</div>
 						</div>

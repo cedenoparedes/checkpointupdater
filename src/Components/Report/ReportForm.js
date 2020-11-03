@@ -8,6 +8,7 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
+import { Link } from "react-router-dom";
 
 const ReportForm = () => {
   const [visible, setVisible] = useState({
@@ -93,16 +94,20 @@ const ReportForm = () => {
       </div>
       <div className="back-refresh-container d-flex justify-content-right">
         <div className="col-6 d-flex justify-content-end">
-          <div className="back-refresh-btn justify-content-center">
-            <img src={BackIcon} alt="" />
-            <p className="btn-lbl">Back</p>
-          </div>
+          <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+            <div className="back-refresh-btn justify-content-center">
+              <img src={BackIcon} alt="" />
+              <p className="btn-lbl">Back</p>           
+            </div>
+          </Link>
         </div>
         <div className="col-6 d-flex justify-content-left">
-          <div className="back-refresh-btn justify-content-center">
-            <img src={RefreshIcon} alt="" />
-            <p className="btn-lbl">Refresh</p>
-          </div>
+          <Link to='../Report' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+            <div className="back-refresh-btn justify-content-center">
+              <img src={RefreshIcon} alt="" />
+              <p className="btn-lbl">Refresh</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

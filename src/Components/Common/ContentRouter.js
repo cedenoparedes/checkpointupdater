@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "../Login";
 import Menu from "../Menu";
 import CheckPointProcessMenu from "../CheckPointProcessMenu";
@@ -32,6 +32,7 @@ const ContentRouter = () => {
           <Report />
         </Route>
         <Route exact path="/CheckPointProcessMenu">
+          {/* <Redirect exact path="/CheckPointProcessMenu/reload" to="/CheckPointProcessMenu"/> */}
           <CheckPointProcessMenu />
         </Route>
         <Route path="*">

@@ -10,6 +10,7 @@ import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
 // import DateTime from "../DateTime";
+import { Link } from "react-router-dom";
 
 const ReportCheckPointForm = () => {
   
@@ -131,22 +132,28 @@ const ReportCheckPointForm = () => {
           {/* Back and Refresh Buttons */}
           <div className="back-refresh-container d-flex justify-content-center">
             <div className="col-4 d-flex justify-content-end">
-              <div className="back-refresh-btn justify-content-center">
-                <img src={BackIcon} alt="" />
-                <p className="btn-lbl">Back</p>
-              </div>
+              <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                <div className="back-refresh-btn justify-content-center">
+                  <img src={BackIcon} alt="" />
+                  <p className="btn-lbl">Back</p>
+                </div>
+              </Link>
             </div>
             <div className="col-4 d-flex justify-content-center">
-              <div className="back-refresh-btn justify-content-center">
-                <img src={RefreshIcon} alt="" />
-                <p className="btn-lbl">Refresh</p>
-              </div>
+              <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                <div className="back-refresh-btn justify-content-center">
+                  <img src={RefreshIcon} alt="" />
+                  <p className="btn-lbl">Refresh</p>
+                </div>
+              </Link>
             </div>
             <div className="col-4 d-flex justify-content-start">
-              <div className="back-refresh-btn justify-content-center">
-                <img className="btn-next-rotate" src={BackIcon} alt="" />
-                <p className="btn-lbl">Next</p>
-              </div>
+              <Link to='../Report' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                <div className="back-refresh-btn justify-content-center">
+                  <img className="btn-next-rotate" src={BackIcon} alt="" />
+                  <p className="btn-lbl">Next</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
