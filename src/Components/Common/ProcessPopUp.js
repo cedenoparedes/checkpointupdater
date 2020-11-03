@@ -4,14 +4,14 @@ import processIcon from '../../Images/SVG/icons/process.svg'
 const ProcessPopUp = (props) => {
 
     const { visible, setVisible } = props;
-    
+
     const hidePopUp = () => {
         setVisible({
             contentVisibility: "",
             customerPopVisibility: "d-none",
             modelPopVisibility: "d-none",
             processPopVisibility: "d-none"
-        })  
+        })
     }
 
     const setProcess = (id) => {
@@ -22,6 +22,7 @@ const ProcessPopUp = (props) => {
     }
 
     let tittle = "Select A Process"
+
     let items = [
         {
             processCode: 'ASW'
