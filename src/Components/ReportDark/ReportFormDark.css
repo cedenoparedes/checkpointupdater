@@ -1,0 +1,89 @@
+.title1 {
+  margin-top: 2px;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  width: 75%;
+}
+.container {
+  height: 685px;
+  overflow-y: scroll;
+  margin-bottom: 5px;
+}
+.exporticon {
+  width: 34px;
+  margin-bottom: 12px;
+  margin-left: 27px;
+  margin-top: 7px;
+}
+legend {
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: -4px !important;
+}
+fieldset {
+  width: 154px;
+  border: 1px solid grey;
+  justify-content: center;
+}
+.option1 {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border: black 1px solid;
+  padding: 15px 30px;
+  font-size: 18px;
+}
+.pieChart {
+  position: relative;
+}
+
+.box-yield__fail1 {
+  /* position: absolute; */
+  width: 145px;
+  margin-top: 30px;
+  margin-left: 60px;
+  padding: 14px;
+  border: 1px white solid;
+}
+.box-text1 {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+.box-text1:last-of-type {
+  color: #e63946;
+}
+.canvas {
+  position: relative;
+  margin: auto;
+  width: 1000px;
+}
+.canvas > canvas {
+  width: inherit;
+  height: inherit;
+}
+.btn-export {
+  margin-top: 1px;
+  margin-bottom: 7px;
+}
+
+.container-format1 {
+  background-color: black;
+}
+#CustomerBtn {
+  background-color: #f0ece3;
+}
+#ProcessBtn {
+  background-color: #dfd3c3;
+}
+#ModelBtn {
+  background-color: #c7b198;
+}
+.ReportPieChart {
+  /* height: 416px !important;
+  width: 839px !important; */
+}

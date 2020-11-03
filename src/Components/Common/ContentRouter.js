@@ -5,6 +5,7 @@ import Menu from "../Menu";
 import CheckPointProcessMenu from "../CheckPointProcessMenu";
 import ReportCheckPoint from "../ReportCheckPoint";
 import Report from "../Report";
+import ReportDark from "../ReportDark";
 import NoFound from "./NoFound";
 import Process from "../Process";
 import GlobalContext from "../../context/globalcontext";
@@ -31,7 +32,11 @@ const ContentRouter = () => {
         <Route exact path="/Report">
           <Report />
         </Route>
-        <Route exact path="/CheckPointProcessMenu">     
+        <Route exact path="/ReportDark">
+          <ReportDark />
+        </Route>
+        <Route exact path="/CheckPointProcessMenu">
+          {/* <Redirect exact path="/CheckPointProcessMenu/reload" to="/CheckPointProcessMenu"/> */}
           <CheckPointProcessMenu />
         </Route>
         <Route path="*">
