@@ -112,6 +112,22 @@ const FailuresWindow = (props) => {
         {
             FailureName: "5555 Hook",
             FailuteId: 11
+        },
+        {
+            FailureName: "5555 Hook",
+            FailuteId: 11
+        },
+        {
+            FailureName: "5555 Hook",
+            FailuteId: 11
+        },
+        {
+            FailureName: "5555 Hook",
+            FailuteId: 11
+        },
+        {
+            FailureName: "5555 Hook",
+            FailuteId: 11
         }
 
     ]
@@ -132,7 +148,7 @@ const FailuresWindow = (props) => {
                         </div>
                         <div className="modal-button-container" id="option-window">
 
-                            <div id="r-1">
+                            <div className="r-1">
                                 {failures.map((failure, i) => {
                                     if (i % 2 === 0) {
                                         return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
@@ -140,7 +156,7 @@ const FailuresWindow = (props) => {
                                 })}
                             </div>
 
-                            <div id="r-2">
+                            <div className="r-2">
                                 {failures.map((failure, i) => {
                                     if (i % 2 !== 0) {
                                         return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>

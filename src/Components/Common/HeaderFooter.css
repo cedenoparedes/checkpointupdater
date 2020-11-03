@@ -10,7 +10,7 @@ body {
   justify-content: center;
 }
 .h-90{
-  height: 90%;
+  height: 85%;
 }
 .navigation-bar {
   border-bottom: 1px gray solid;
@@ -45,6 +45,7 @@ body {
 }
 .Footer{
   flex-shrink: 0;
+  margin-top: 10px;
 }
 .footer-style {
   border-top: gray 1px solid;

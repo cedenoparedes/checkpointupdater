@@ -3,15 +3,7 @@ body {
   background-color: rgb(29, 27, 28) !important;
   min-width: 786px;
 }
-/* .input-size {
-  padding-right: 5px !important;
-  padding-left: 5px !important;
-} */
-#container-body {
-  padding-bottom: 102px;
-  padding-top: 140px;
-  justify-content: center;
-}
+
 .label-btn {
   color: black;
 }

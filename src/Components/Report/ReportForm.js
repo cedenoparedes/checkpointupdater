@@ -1,12 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
 import BarChart from "../BarChart";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
+import CustomerPopUp from "../Common/CustomerPopUp";
+import ModelPopUP from "../Common/ModelPopUp"
+import ProcessPopUp from "../Common/ProcessPopUp"
 
 const ReportForm = () => {
+  const [visible, setVisible] = useState({
+    contentVisibility: "",
+    customerPopVisibility: "d-none",
+    modelPopVisibility: "d-none",
+    processPopVisibility: "d-none"
+  });
+
+	const showPopUp = (button) => {
+    if(button === 'Customer'){
+        setVisible({
+          contentVisibility: "d-none",
+          customerPopVisibility: "",
+          modelPopVisibility: "d-none",
+          processPopVisibility: "d-none"
+        });
+    }
+    else if (button === 'Model'){
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "",
+        processPopVisibility: "d-none"
+      });
+    }
+    else {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "d-none",
+        processPopVisibility: ""
+      });
+    }
+		
+  };
   return (
     <div className="Container">
       <div className="row">

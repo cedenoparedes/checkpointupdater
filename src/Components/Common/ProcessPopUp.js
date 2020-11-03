@@ -1,7 +1,7 @@
 import React from 'react'
-import customerIcon from '../../Images/SVG/icons/custumer.svg'
+import processIcon from '../../Images/SVG/icons/process.svg'
 
-const CustomerPopUp = (props) => {
+const ProcessPopUp = (props) => {
 
     const { visible, setVisible } = props;
     
@@ -14,33 +14,29 @@ const CustomerPopUp = (props) => {
         })  
     }
 
-    const setCustomer = (id) => {
-        const textClient = document.querySelector('#tb-customer');
+    const setProcess = (id) => {
+        const textClient = document.querySelector('#tb-process');
         const customerButton = document.getElementById(id)
         textClient.value = customerButton.nextElementSibling.textContent;
         hidePopUp();
     }
 
-    let tittle = "Select A Customer"
+    let tittle = "Select A Process"
     let items = [
         {
-            customerCode: 615
+            processCode: 'ASW'
         },
         {
-            customerCode: 564
+            processCode: 'XD'
         },
         {
-            customerCode: 264
-        },
-        {
-            customerCode: 264
+            processCode: 'None'
         },
     ]
-
     return (
-        <div className={`${visible.customerPopVisibility} w-100`}>
-             <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>            
-             <div className="row">
+        <div className={`${visible.processPopVisibility} w-100`}>
+            <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
+            <div className="row">
                 <div className="col-12">
                     <div className="modal" id="modal-client">
                         <h1 className="modal-title">{tittle}</h1>
@@ -50,10 +46,10 @@ const CustomerPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-client" id={item.customerCode} onClick={() => setCustomer(item.customerCode)}>
-                                            <img className="format-img-costumer" src={customerIcon} alt="" />
+                                        <button className="modal-btn btn-client" id={item.processCode} onClick={() => setProcess(item.processCode)}>
+                                            <img className="format-img-process" src={processIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.customerCode}</p>
+                                        <p className="modal-client-text">{item.processCode}</p>
                                     </div>)
                             })}
                         </div>
@@ -64,4 +60,4 @@ const CustomerPopUp = (props) => {
     )
 }
 
-export default CustomerPopUp;
+export default ProcessPopUp;

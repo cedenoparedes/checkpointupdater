@@ -6,6 +6,7 @@ import BackIcon from "../../Images/SVG/icons/back.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 
+
 const ProcessForm = () => {
 	const [visible, setVisible] = useState("d-none");
 
@@ -71,25 +72,26 @@ const ProcessForm = () => {
 								</div>
 							</div>
 						</div>
-					</div>
-					<FailuresWindows visible={visible} setVisible={setVisible} />
-					<div className="row">
 						{/* Back and Refresh Buttons */}
-						<div className="back-refresh-container d-flex justify-content-center">
-							<div className="col-6  d-flex justify-content-end">
-								<div className="back-refresh-btn justify-content-center">
-									<img src={BackIcon} alt="" />
-									<p className="btn-lbl">Back</p>
+						<div className="row pt-5">
+							<div className="back-refresh-container d-flex justify-content-center">
+								<div className="col-6  d-flex justify-content-end">
+									<div className="back-refresh-btn justify-content-center">
+										<img src={BackIcon} alt="" />
+										<p className="btn-lbl">Back</p>
+									</div>
 								</div>
-							</div>
-							<div className="col-6 d-flex justify-content-start">
-								<div className="back-refresh-btn justify-content-center">
-									<img src={RefreshIcon} alt="" />
-									<p className="btn-lbl">Refresh</p>
+								<div className="col-6 d-flex justify-content-start">
+									<div className="back-refresh-btn justify-content-center">
+										<img src={RefreshIcon} alt="" />
+										<p className="btn-lbl">Refresh</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<FailuresWindows visible={visible} setVisible={setVisible} />
+					
 				</div>
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../Common/breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
@@ -7,9 +7,47 @@ import ProcessIcon from "../../Images/SVG/icons/process.svg";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import CustomerPopUp from "../Common/CustomerPopUp";
+import ModelPopUP from "../Common/ModelPopUp"
+import ProcessPopUp from "../Common/ProcessPopUp"
 // import DateTime from "../DateTime";
 
 const ReportCheckPointForm = () => {
+  
+  const [visible, setVisible] = useState({
+    contentVisibility: "",
+    customerPopVisibility: "d-none",
+    modelPopVisibility: "d-none",
+    processPopVisibility: "d-none"
+  });
+
+	const showPopUp = (button) => {
+    if(button === 'Customer'){
+        setVisible({
+          contentVisibility: "d-none",
+          customerPopVisibility: "",
+          modelPopVisibility: "d-none",
+          processPopVisibility: "d-none"
+        });
+    }
+    else if (button === 'Model'){
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "",
+        processPopVisibility: "d-none"
+      });
+    }
+    else {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "d-none",
+        processPopVisibility: ""
+      });
+    }
+		
+  };
+  
   return (
     <div className="h-90">
       <div className="container-fluid">
@@ -24,114 +62,22 @@ const ReportCheckPointForm = () => {
           </div>
         </div>
       </div>
-      <div className="backdrop d-none" id="backdrop">
-        {/* modal Client */}
-        <CustomerPopUp />
-        {/* modal Model*/}
-        <div className="modal d-none" id="modal-model">
-          <h1 className="modal-title">Select A Model</h1>
-          <div className="modal-model__container" id="option-window">
-            <div className="back-arrow">
-              <img src="../../Images/back-arrow.svg" id="slideLeft" alt="" />
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP7</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP7P</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP8</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP8P</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IPX</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IPXR</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IPXS</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IPXSM</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP11</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP11P</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-model">
-                <img className="format-img-model" src="../../Images/SVG/icons/model.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">IP11PM</p>
-            </div>
-          </div>
-          <div className="foward-arrow">
-            <img src="../../Images/foward-arrow.svg" id="slideRight" alt="" />
-          </div>
-        </div>
-        {/* modal  Process*/}
-        <div className="modal d-none" id="modal-process">
-          <h1 className="modal-title">Select Process</h1>
-          <div className="d-flex justify-content-center">
-            <div>
-              <button className="modal-btn btn-process format-btn">
-                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">Assemble</p>
-            </div>
-            <div>
-              <button className="modal-btn btn-process format-btn">
-                <img className="format-img-process" src="../../Images/SVG/icons/process.svg" alt="" />
-              </button>
-              <p className="modal-client format-txt-icon">Disassembly</p>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div className="contenedor">
-        <div className="container-fluid">
-          <form action className="form-container">
+        {/* Modal Customer */}
+        <CustomerPopUp visible={visible} setVisible={setVisible}/>
+        {/* modal Model*/}
+        <ModelPopUP visible={visible} setVisible={setVisible}/>
+        {/* modal  Process*/}
+        <ProcessPopUp visible={visible} setVisible={setVisible}/>
+
+        <div className={`${visible.contentVisibility} container-fluid `} >
+          <form className="form-container">
             <div className="form-group">
               <div className="form-row">
                 <div className="input-group" id="datetimepicker">
                   <div className="col-6 d-flex justify-content-center p-0">
-                    <div type="button" className="btn-menu form-control" onclick="myFunction();" id="btn-date" value="display">
+                    <div type="button" className="btn-menu form-control" id="btn-date" value="display">
                       <img className="icon-options" src={DateIcon} alt="" />
                       <p className="label-btn">Date</p>
                     </div>
@@ -145,20 +91,20 @@ const ReportCheckPointForm = () => {
             <div className="form-group">
               <div className="form-row">
                 <div className="col-6 d-flex justify-content-center">
-                  <div type="button" className="btn-menu " id="btn-client" value="Client">
+                  <div type="button" onClick={() => showPopUp('Customer')} className="btn-menu " id="btn-client" value="Client">
                     <img className="icon-options" src={CustumerIcon} alt="" />
-                    <p className="label-btn">Custumer</p>
+                    <p className="label-btn">Customer</p>
                   </div>
                 </div>
                 <div className="col-6 d-flex justify-content-center  input-size">
-                  <input type="text" className="form-control input-text form-control-lg " id="tb-client" disabled />
+                  <input type="text" className="form-control input-text form-control-lg " id="tb-customer" disabled />
                 </div>
               </div>
             </div>
             <div className="form-group">
               <div className="form-row">
                 <div className="col-6 d-flex justify-content-center">
-                  <div type="button" className="btn-menu" id="btn-model" value="Model">
+                  <div type="button" onClick={() => showPopUp('Model')} className="btn-menu" id="btn-model" value="Model">
                     <img className="icon-options" src={ModelIcon} alt="" />
                     <p className="label-btn">Model</p>
                   </div>
@@ -171,7 +117,7 @@ const ReportCheckPointForm = () => {
             <div className="form-group">
               <div className="form-row">
                 <div className="col-6 d-flex justify-content-center">
-                  <div type="button" className="btn-menu" id="btn-process" value="Process">
+                  <div type="button" onClick={() => showPopUp('Process')} className="btn-menu" id="btn-process" value="Process">
                     <img className="icon-options" src={ProcessIcon} alt="" />
                     <p className="label-btn">Process</p>
                   </div>
