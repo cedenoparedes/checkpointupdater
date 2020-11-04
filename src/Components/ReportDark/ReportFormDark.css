@@ -56,7 +56,7 @@ fieldset {
   display: inline-block;
   text-decoration: none;
   color: black;
-  background-color: white;
+  background-color: #cccccc;
   border: white 2px solid;
   padding: 15px 30px;
   font-size: 18px;
@@ -102,7 +102,7 @@ fieldset {
 .container-format1 {
   background-color: #2f2f2f;
 }
-#CustomerBtn {
+/* #CustomerBtn {
   background-color: #cccccc;
 }
 #ProcessBtn {
@@ -110,4 +110,4 @@ fieldset {
 }
 #ModelBtn {
   background-color: #cccccc;
-}
+} */

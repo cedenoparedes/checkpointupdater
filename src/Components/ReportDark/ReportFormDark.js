@@ -57,19 +57,19 @@ const ReportForm = () => {
       </div>
       <div className="container container-format1">
         <div className="row text-center">
-          <div className="col-6">
+          <div className="col-4">
             <h3 className="title1">Customer</h3>
             <a href="#" className="btn option1" id="CustomerBtn">
               506
             </a>
           </div>
-          {/* <div className="col-4">
+          <div className="col-4">
             <h3 className="title1">Process</h3>
             <a href="#" className="btn option1" id="ProcessBtn">
               DSM
             </a>
-          </div> */}
-          <div className="col-6">
+          </div>
+          <div className="col-4">
             <h3 className="title1">Model</h3>
             <a href="#" className="btn option1" id="ModelBtn">
               IPHX
