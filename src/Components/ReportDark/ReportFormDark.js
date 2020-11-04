@@ -57,36 +57,42 @@ const ReportForm = () => {
       </div>
       <div className="container container-format1">
         <div className="row text-center">
-          <div className="col-4">
+          <div className="col-6">
             <h3 className="title1">Customer</h3>
             <a href="#" className="btn option1" id="CustomerBtn">
               506
             </a>
           </div>
-          <div className="col-4">
+          {/* <div className="col-4">
             <h3 className="title1">Process</h3>
             <a href="#" className="btn option1" id="ProcessBtn">
               DSM
             </a>
-          </div>
-          <div className="col-4">
+          </div> */}
+          <div className="col-6">
             <h3 className="title1">Model</h3>
             <a href="#" className="btn option1" id="ModelBtn">
               IPHX
             </a>
           </div>
         </div>
-        <div className="row mt-5">
+        <div className="row mt-4">
           <div className="col-3 d-flex justify-content-end">
             <div className="box-yield__fail1 align-self-center ">
-              <p className="box-text1">
-                Pass: <span id="pass" />
-                78.85%
-              </p>
-              <p className="box-text1">
-                Fails: <span id="fails" />
-                21.15%
-              </p>
+              <ul className="box-text1">
+                <li className="items-list" id="item-pass">
+                  <a className="header-porcent" id="header-pass">
+                    Pass:
+                  </a>
+                  <a id="value-pass">78.85% </a>
+                </li>
+                <li className="items-list" id="item-fail">
+                  <a className="header-porcent" id="header-pass">
+                    Fails:
+                  </a>
+                  <a id="value-fail">21.15%</a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="col-6 ">
