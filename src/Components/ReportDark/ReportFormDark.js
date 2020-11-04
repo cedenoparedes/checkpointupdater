@@ -76,23 +76,27 @@ const ReportForm = () => {
             </a>
           </div>
         </div>
-        <div>
-          <div className="box-yield__fail1">
-            <p className="box-text1">
-              Pass: <span id="pass" />
-              78.85%
-            </p>
-            <p className="box-text1">
-              Fails: <span id="fails" />
-              21.15%
-            </p>
+        <div className="row mt-5">
+          <div className="col-3 d-flex justify-content-end">
+            <div className="box-yield__fail1 align-self-center ">
+              <p className="box-text1">
+                Pass: <span id="pass" />
+                78.85%
+              </p>
+              <p className="box-text1">
+                Fails: <span id="fails" />
+                21.15%
+              </p>
+            </div>
+          </div>
+          <div className="col-6 ">
+            <div id="chart1 ">{<PieChart />}</div>
           </div>
         </div>
-        <div className="col-12">
-          <div id="chart1">{<PieChart />}</div>
-        </div>
-        <div className="col-12">
-          <div className="chart1"> {<BarChart />}</div>
+        <div className="row mt-5">
+          <div className="col-12">
+            <div className="chart1"> {<BarChart />}</div>
+          </div>
         </div>
       </div>
       <div className="back-refresh-container d-flex justify-content-right">

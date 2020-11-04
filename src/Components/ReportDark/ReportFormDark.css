@@ -7,7 +7,7 @@
   width: 75%;
 }
 .container {
-  height: 685px;
+  height: 482px;
   overflow-y: scroll;
   margin-bottom: 5px;
 }
@@ -33,7 +33,7 @@ fieldset {
   text-decoration: none;
   color: black;
   background-color: white;
-  border: black 1px solid;
+  border: white 2px solid;
   padding: 15px 30px;
   font-size: 18px;
 }
@@ -43,11 +43,10 @@ fieldset {
 
 .box-yield__fail1 {
   /* position: absolute; */
-  width: 145px;
-  margin-top: 30px;
-  margin-left: 60px;
-  padding: 14px;
+  width: 170px;
+  height: 90px;
   border: 1px white solid;
+  padding: 15px;
 }
 .box-text1 {
   margin: 0;
@@ -82,8 +81,4 @@ fieldset {
 }
 #ModelBtn {
   background-color: #c7b198;
-}
-.ReportPieChart {
-  /* height: 416px !important;
-  width: 839px !important; */
 }
