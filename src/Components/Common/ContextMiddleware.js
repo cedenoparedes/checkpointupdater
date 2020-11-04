@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GlobalContext from "../context/globalcontext";
+import GlobalContext from "../../context/globalcontext";
 import { Redirect } from "react-router-dom";
 
 const ContextMiddleware = (props) => {
@@ -55,7 +55,7 @@ const ContextMiddleware = (props) => {
     };
 
     const routeProtectedComponent = (comp) =>
-      localContext.isAuth ? comp : () => <Redirect to="/login" />;
+      localContext.isAuth ? comp : () => <Redirect to="/" />;
 
     return { logOut, logIn, routeProtectedComponent, getTokenClaims };
   };

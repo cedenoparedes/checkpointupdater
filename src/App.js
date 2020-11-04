@@ -5,7 +5,7 @@ import "./Components/Process/Process.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Components/Login/LoginForm.css";
 import "./Components/Common/HeaderFooter.css";
-
+import ContextMiddleware from "./Components/Common/ContextMiddleware"
 import "./Components/ReportCheckPoint/ReportCheckPointForm.css";
 import "./Components/Report/ReportForm.css";
 import "./Components/ReportDark/ReportFormDark.css";
@@ -14,13 +14,15 @@ import Footer from "./Components/Common/Footer";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <div className="Content">
-        <ContentRouter />
-      </div>
-      <Footer />
-    </Router>
+    <ContextMiddleware>
+      <Router>
+        <Header />
+        <div className="Content">
+          <ContentRouter />
+        </div>
+        <Footer />
+      </Router>
+    </ContextMiddleware>
   );
 }
 

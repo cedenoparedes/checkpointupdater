@@ -1,7 +1,7 @@
 import React from 'react'
 import LogInIMG from '../../Images/LogIn-IMG.svg'
 import CarnetIcon from '../../Images/SVG/icons/carnet.svg'
-import { Link } from "react-router-dom";
+
 
 
 

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 
 const Header = () => {
+
     return (
         <nav className="navigation-bar py-1">
             {/* This is the first Row */}
@@ -24,20 +25,20 @@ const Header = () => {
                     <div className="col-3">
                         {/* Iconos NavBar */}
                         <div className="d-flex text-center flex-row-reverse align-items-center">
-                            <Link to='../Login' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                                <figure className="pl-3 m-0 item">                                
+                            <Link to='../Login' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <figure className="pl-3 m-0 item">
                                     <img src={LogOutLogo} alt="" />
-                                    <figcaption className="caption">Log Out</figcaption>                               
+                                    <figcaption className="caption">Log Out</figcaption>
                                 </figure>
                             </Link>
                             <figure className="pl-3 m-0 item">
                                 <img src={EmployeeLogo} alt="" />
                                 <figcaption className="caption">Employee</figcaption>
                             </figure>
-                            <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                                <figure className="pl-3 m-0 item">                               
+                            <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <figure className="pl-3 m-0 item">
                                     <img src={HomeLogo} alt="" />
-                                    <figcaption className="caption">Home</figcaption>                               
+                                    <figcaption className="caption">Home</figcaption>
                                 </figure>
                             </Link>
                         </div>

@@ -6,18 +6,22 @@ import { useHistory } from "react-router-dom";
 import toastr from "toastr";
 
 const Index = () => {
+
     const [employeeCode, setEmployeeCode] = useState("");
     const [, , contextMiddleware] = useContext(GlobalContext);
     const history = useHistory();
 
     const loginHandler = (employeeCode) => {
-        login({ employeeCode })
+
+        let jEmployeeCode = { "employeeCode": employeeCode }
+
+        login(jEmployeeCode)
             .then((json) => {
-                contextMiddleware.login(json.token);
+                contextMiddleware.logIn(json.token);
                 toastr.success("Login Successfully.");
                 history.push("/menu");
             }).catch((error) => toastr.error(console.log(error), "Wrong User Name or Password."));
-        console.log(employeeCode + " click")
+
     }
 
     return (

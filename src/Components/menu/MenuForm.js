@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
 import DataIcon from '../../Images/SVG/icons/data.svg';
 import { Link } from "react-router-dom";
 
-const MenuForm = () => {
+
+const MenuForm = (props) => {
+
+    const { userInfo } = props
+
+    useEffect(() => {
+
+        return () => {
+            console.log(userInfo);
+        }
+    }, [])
+
+
+
     return (
         <div className="container-fluid h-90">
             <div className="row">
@@ -24,21 +37,21 @@ const MenuForm = () => {
                             <h2 id="title-body">Select An Option</h2>
                         </div>
                     </div>
-                    <div className="row mt-5 mb-5">                       
-                            <div className="col-6 d-flex justify-content-center mb-5">
-                                <Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                                    <div type="button" className="div-btn-options pt-5" id="chk-point">
-                                        <div className="row d-flex justify-content-center">
-                                            <img className="img-options align-bottom" src={CheckIcon} alt="" />
-                                        </div>
-                                        <div className="row d-flex justify-content-center">
-                                            <span className="label-btn-options" id="check-label">Check Point</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>                        
+                    <div className="row mt-5 mb-5">
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit'}}>   
+                            <Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <div type="button" className="div-btn-options pt-5" id="chk-point">
+                                    <div className="row d-flex justify-content-center">
+                                        <img className="img-options align-bottom" src={CheckIcon} alt="" />
+                                    </div>
+                                    <div className="row d-flex justify-content-center">
+                                        <span className="label-btn-options" id="check-label">Check Point</span>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="col-6 d-flex justify-content-center mb-5">
+                            <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div type="button" className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options" src={DataIcon} alt="" />
@@ -48,7 +61,7 @@ const MenuForm = () => {
                                     </div>
                                 </div>
                             </Link>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>

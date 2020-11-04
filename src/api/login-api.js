@@ -3,10 +3,11 @@ import config from "../config";
 const baseUrl = config.baseApiURL[config.env] + "/login";
 
 export function login(credentials) {
-  return fetch(baseUrl + "/auth", {
+  return fetch(baseUrl, {
     method: "POST",
     mode: "cors",
     body: JSON.stringify(credentials),
+
   })
     .then(handleResponse)
     .catch(handleError);
