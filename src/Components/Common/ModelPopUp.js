@@ -5,14 +5,14 @@ import fowardArrow from '../../Images/foward-arrow.svg'
 const ModelPopUp = (props) => {
 
     const { visible, setVisible } = props;
-    
+
     const hidePopUp = () => {
         setVisible({
             contentVisibility: "",
             customerPopVisibility: "d-none",
             modelPopVisibility: "d-none",
             processPopVisibility: "d-none"
-        })  
+        })
     }
 
     const setModel = (id) => {
@@ -97,7 +97,7 @@ const ModelPopUp = (props) => {
 
     return (
         <div className={`${visible.modelPopVisibility} w-100`}>
-             <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
+            <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
             <div className="row">
                 <div className="col-12">
                     <div className="modal" id="modal-model">
@@ -111,7 +111,7 @@ const ModelPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-model" id={item.modelCode} onClick={()=> setModel(item.modelCode)}>
+                                        <button className="modal-btn btn-model" id={item.modelCode} onClick={() => setModel(item.modelCode)}>
                                             <img className="format-img-model" src={modelIcon} alt="" />
                                         </button>
                                         <p className="modal-client-text">{item.modelCode}</p>

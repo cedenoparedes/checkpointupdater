@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import LoginForm from './LoginForm';
-import { login } from '../../api/login-api'
-import GlobalContext from '../../context/globalcontext'
-import { useHistory } from "react-router-dom"
-import toastr from "toastr"
+import { login } from '../../api/login-api';
+import GlobalContext from '../../context/globalcontext';
+import { useHistory } from "react-router-dom";
+import toastr from "toastr";
 
 const Index = () => {
     const [employeeCode, setEmployeeCode] = useState("");
@@ -16,7 +16,7 @@ const Index = () => {
                 contextMiddleware.login(json.token);
                 toastr.success("Login Successfully.");
                 history.push("/menu");
-            }).catch(() => toastr.error("Wrong User Name or Password."));
+            }).catch((error) => toastr.error(console.log(error), "Wrong User Name or Password."));
         console.log(employeeCode + " click")
     }
 

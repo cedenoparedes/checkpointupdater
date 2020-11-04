@@ -1,4 +1,4 @@
-// import { handleResponse, handleError } from "./api-utils";
+import { handleResponse, handleError } from "./api-utils";
 import config from "../config";
 const baseUrl = config.baseApiURL[config.env] + "/login";
 
@@ -8,6 +8,6 @@ export function login(credentials) {
     mode: "cors",
     body: JSON.stringify(credentials),
   })
-    // .then(handleResponse)
-    // .catch(handleError);
+    .then(handleResponse)
+    .catch(handleError);
 }
