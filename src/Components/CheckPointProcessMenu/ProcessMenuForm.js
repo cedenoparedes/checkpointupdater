@@ -137,7 +137,13 @@ const CheckPointProcessMenu = () => {
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
-                            <Link to='../Process' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <Link to={{
+                                pathname: '/process',
+                                state: {
+                                    jugo: 'tamarindo',
+                                    mensaje: 'hola mundo'
+                                }
+                            }} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                                 <div className="back-refresh-btn justify-content-center">
                                     <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p>
