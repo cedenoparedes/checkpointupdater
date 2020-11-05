@@ -8,8 +8,9 @@ import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
 
 
-const ProcessForm = () => {
+const ProcessForm = (props) => {
 	const [visible, setVisible] = useState("d-none");
+	const { model, process, customer } = props
 
 	const showFailureWindows = () => {
 		if (visible === "") {
@@ -26,19 +27,19 @@ const ProcessForm = () => {
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
 						<ol className="breadcrumb">
-							<li className="breadcrumb-item"> <a href="../menu">Home</a></li>							
-							<li className="breadcrumb-item"><a href="../CheckPointProcessMenu">Checkpoint</a></li>							
+							<li className="breadcrumb-item"> <a href="../menu">Home</a></li>
+							<li className="breadcrumb-item"><a href="../CheckPointProcessMenu">Checkpoint</a></li>
 							<li className="breadcrumb-item active" aria-current="page">Process</li>
 						</ol>
 					</nav>
 				</div>
 				<div className="col-6">
 					<div className="d-flex justify-content-end">
-						<p className="text">Customer: 506</p>
+						<p className="text">Customer: {customer}</p>
 						<p className="division"> | </p>
-						<p className="text">Model: IphoneX</p>
+						<p className="text">Model: {model}</p>
 						<p className="division"> | </p>
-						<p className="text">Process: DSM</p>
+						<p className="text">Process: {process}</p>
 					</div>
 				</div>
 			</div>
@@ -77,7 +78,7 @@ const ProcessForm = () => {
 						<div className="row pt-5">
 							<div className="back-refresh-container d-flex justify-content-center">
 								<div className="col-6  d-flex justify-content-end">
-									<Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+									<Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
 										<div className="back-refresh-btn justify-content-center">
 											<img src={BackIcon} alt="" />
 											<p className="btn-lbl">Back</p>
@@ -85,7 +86,7 @@ const ProcessForm = () => {
 									</Link>
 								</div>
 								<div className="col-6 d-flex justify-content-start">
-									<Link to='../Process' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+									<Link to='../Process' style={{ color: 'inherit', textDecoration: 'inherit' }}>
 										<div className="back-refresh-btn justify-content-center">
 											<img src={RefreshIcon} alt="" />
 											<p className="btn-lbl">Refresh</p>
@@ -96,7 +97,7 @@ const ProcessForm = () => {
 						</div>
 					</div>
 					<FailuresWindows visible={visible} setVisible={setVisible} />
-					
+
 				</div>
 			</div>
 		</div>

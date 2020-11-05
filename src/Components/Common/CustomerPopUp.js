@@ -3,21 +3,22 @@ import customerIcon from '../../Images/SVG/icons/custumer.svg'
 
 const CustomerPopUp = (props) => {
 
-    const { visible, setVisible } = props;
-    
+    const { visible, setVisible, setCustomerState } = props;
+
     const hidePopUp = () => {
         setVisible({
             contentVisibility: "",
             customerPopVisibility: "d-none",
             modelPopVisibility: "d-none",
             processPopVisibility: "d-none"
-        })  
+        })
     }
 
     const setCustomer = (id) => {
         const textClient = document.querySelector('#tb-customer');
         const customerButton = document.getElementById(id)
         textClient.value = customerButton.nextElementSibling.textContent;
+        setCustomerState(textClient.value)
         hidePopUp();
     }
 
@@ -39,8 +40,8 @@ const CustomerPopUp = (props) => {
 
     return (
         <div className={`${visible.customerPopVisibility} w-100`}>
-             <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>            
-             <div className="row">
+            <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
+            <div className="row">
                 <div className="col-12">
                     <div className="modal" id="modal-client">
                         <h1 className="modal-title">{tittle}</h1>

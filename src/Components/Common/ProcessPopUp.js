@@ -3,7 +3,7 @@ import processIcon from '../../Images/SVG/icons/process.svg'
 
 const ProcessPopUp = (props) => {
 
-    const { visible, setVisible } = props;
+    const { visible, setVisible, setProcessState } = props;
 
     const hidePopUp = () => {
         setVisible({
@@ -18,6 +18,7 @@ const ProcessPopUp = (props) => {
         const textClient = document.querySelector('#tb-process');
         const customerButton = document.getElementById(id)
         textClient.value = customerButton.nextElementSibling.textContent;
+        setProcessState(textClient.value)
         hidePopUp();
     }
 

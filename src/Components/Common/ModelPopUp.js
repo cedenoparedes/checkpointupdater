@@ -4,7 +4,7 @@ import backArrow from '../../Images/back-arrow.svg';
 import fowardArrow from '../../Images/foward-arrow.svg'
 const ModelPopUp = (props) => {
 
-    const { visible, setVisible } = props;
+    const { visible, setVisible, setModelState } = props;
 
     const hidePopUp = () => {
         setVisible({
@@ -19,6 +19,7 @@ const ModelPopUp = (props) => {
         const textClient = document.querySelector('#tb-model');
         const customerButton = document.getElementById(id)
         textClient.value = customerButton.nextElementSibling.textContent;
+        setModelState(textClient.value)
         hidePopUp();
     }
 

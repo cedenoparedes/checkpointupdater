@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Process from './ProcessForm';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const index = () => {
+const Index = () => {
 
     let location = useLocation;
     // let mensaje = location().state.mensaje;
-    console.log(location().state.mensaje)
+    let modelState = location().state.model
+    let customerState = location().state.customer
+    let processState = location().state.process
+
+
+
 
     return (
         <div>
-            <Process />
+            <Process model={modelState} process={processState} customer={customerState} />
             <div>
-            {/* <h1>{mensaje}</h1> */}
+                {/* <h1>{mensaje}</h1> */}
             </div>
         </div>
-        
+
     )
 }
 
-export default index;
+export default Index;

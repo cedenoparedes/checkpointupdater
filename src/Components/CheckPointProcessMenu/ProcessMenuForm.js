@@ -19,6 +19,7 @@ const CheckPointProcessMenu = () => {
         processPopVisibility: "d-none"
     });
 
+
     const showPopUp = (button) => {
 
         switch (button) {
@@ -52,6 +53,20 @@ const CheckPointProcessMenu = () => {
 
     };
 
+    const [model, setModel] = useState("")
+    const [customer, setCustomer] = useState("")
+    const [process, setProcess] = useState("")
+
+
+    let params = {
+        model: model,
+        process: process,
+        customer: customer
+    }
+
+
+
+
 
 
     return (
@@ -60,9 +75,9 @@ const CheckPointProcessMenu = () => {
                 <div className="row pl-3">
                     <div className="col-6 m-0">
                         <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb">                              
-                                <li className="breadcrumb-item"><a href="../Menu">Home</a></li>                              
-                                <li className="breadcrumb-item active" aria-current="page">Checkpoint</li>                               
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><a href="../Menu">Home</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">Checkpoint</li>
                             </ol>
                         </nav>
                     </div>
@@ -70,11 +85,11 @@ const CheckPointProcessMenu = () => {
             </div>
             <div className="contenedor">
                 {/* Modal Customer */}
-                <CustomerPopUp visible={visible} setVisible={setVisible} />
+                <CustomerPopUp visible={visible} setVisible={setVisible} setCustomerState={setCustomer} />
                 {/* modal Model*/}
-                <ModelPopUP visible={visible} setVisible={setVisible} />
+                <ModelPopUP visible={visible} setVisible={setVisible} setModelState={setModel} />
                 {/* modal  Process*/}
-                <ProcessPopUp visible={visible} setVisible={setVisible} />
+                <ProcessPopUp visible={visible} setVisible={setVisible} setProcessState={setProcess} />
                 <div className={`${visible.contentVisibility} container-fluid `}>
                     <form className="form-container">
 
@@ -121,15 +136,15 @@ const CheckPointProcessMenu = () => {
                     {/* Back and Refresh Buttons */}
                     <div className="back-refresh-container d-flex justify-content-center">
                         <div className="col-4 d-flex justify-content-end">
-                            <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="back-refresh-btn justify-content-center">
                                     <img src={BackIcon} alt="" />
                                     <p className="btn-lbl">Back</p>
-                                </div>                        
+                                </div>
                             </Link>
                         </div>
                         <div className="col-4 d-flex justify-content-center">
-                            <Link to='/CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                            <Link to='/CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="back-refresh-btn justify-content-center">
                                     <img src={RefreshIcon} alt="" />
                                     <p className="btn-lbl">Refresh</p>
@@ -139,11 +154,8 @@ const CheckPointProcessMenu = () => {
                         <div className="col-4  d-flex justify-content-start">
                             <Link to={{
                                 pathname: '/process',
-                                state: {
-                                    jugo: 'tamarindo',
-                                    mensaje: 'hola mundo'
-                                }
-                            }} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                                state: params
+                            }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="back-refresh-btn justify-content-center">
                                     <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p>
