@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { jsPDF } from "jspdf";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
 import BarChart from "../BarChart";
+import Chart from "chart.js";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import CustomerPopUp from "../Common/CustomerPopUp";
@@ -42,20 +44,60 @@ const ReportForm = () => {
       });
     }
   };
+  useEffect(() => {
+    Chart.plugins.register({
+      beforeDraw: function (chartInstance) {
+        let ctx = chartInstance.chart.ctx;
+        ctx.fillStyle = "#2f2f2f";
+        ctx.fillRect(
+          0,
+          0,
+          chartInstance.chart.width,
+          chartInstance.chart.height
+        );
+      },
+    });
+  });
+  const jsPdfGenerator = () => {
+    var doc = new jsPDF({
+      orientation: "p",
+      unit: "px",
+      format: 'a2',
+      // format: [1140, 1000],
+      x: 0,
+      y: 0,
+    });
+
+    doc.html(document.getElementById("report-container"), {
+      callback: function (doc) {
+        doc.save("PdfGenerated.pdf");
+      },
+    });
+  };
+
   return (
-    <div className="container-main">
+    <div className="container-main" id="chart">
+      {/* <meta charSet="utf-8" /> */}
       <div className="row">
         <div className="col-12 d-flex  justify-content-center btn-export">
           <fieldset>
             <legend>Export to:</legend>
             <div className="justify-content-center">
-              <img className="exporticon" src={PdfIcon} alt="" />
+              <img
+                type="button"
+                onClick={() => {
+                  jsPdfGenerator();
+                }}
+                className="exporticon"
+                src={PdfIcon}
+                alt=""
+              />
               <img className="exporticon" src={ExcelIcon} alt="" />
             </div>
           </fieldset>
         </div>
       </div>
-      <div className="container container-format1">
+      <div className="container container-format1" id="report-container">
         <div className="row text-center">
           <div className="col-4">
             <h3 className="title1">Customer</h3>
@@ -79,12 +121,12 @@ const ReportForm = () => {
         <div className="row mt-4">
           <div className="col-3 d-flex justify-content-end">
             <div className="box-yield__fail1 align-self-center ">
-              <ul className="box-text1">
+              {/* <ul className="box-text1">
                 <li className="items-list" id="item-pass">
                   <a className="header-porcent" id="header-pass">
                     Pass:
                   </a>
-                  <a id="value-pass">78.85% </a>
+                  <a id="value-pass">78.85%</a>
                 </li>
                 <li className="items-list" id="item-fail">
                   <a className="header-porcent" id="header-pass">
@@ -92,7 +134,11 @@ const ReportForm = () => {
                   </a>
                   <a id="value-fail">21.15%</a>
                 </li>
-              </ul>
+              </ul> */}
+              <div className="box-yield__fail1">
+                <p className="box-text1 ">Pass: <span id="pass" />78.85%</p>
+                <p className="box-text1 ">Fails: <span id="fails" />21.15%</p>
+              </div>
             </div>
           </div>
           <div className="col-6 ">

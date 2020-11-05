@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
@@ -6,8 +6,8 @@ import BarChart from "../BarChart";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import CustomerPopUp from "../Common/CustomerPopUp";
-import ModelPopUP from "../Common/ModelPopUp"
-import ProcessPopUp from "../Common/ProcessPopUp"
+import ModelPopUP from "../Common/ModelPopUp";
+import ProcessPopUp from "../Common/ProcessPopUp";
 import { Link } from "react-router-dom";
 
 const ReportForm = () => {
@@ -15,35 +15,32 @@ const ReportForm = () => {
     contentVisibility: "",
     customerPopVisibility: "d-none",
     modelPopVisibility: "d-none",
-    processPopVisibility: "d-none"
+    processPopVisibility: "d-none",
   });
 
-	const showPopUp = (button) => {
-    if(button === 'Customer'){
-        setVisible({
-          contentVisibility: "d-none",
-          customerPopVisibility: "",
-          modelPopVisibility: "d-none",
-          processPopVisibility: "d-none"
-        });
-    }
-    else if (button === 'Model'){
+  const showPopUp = (button) => {
+    if (button === "Customer") {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "",
+        modelPopVisibility: "d-none",
+        processPopVisibility: "d-none",
+      });
+    } else if (button === "Model") {
       setVisible({
         contentVisibility: "d-none",
         customerPopVisibility: "d-none",
         modelPopVisibility: "",
-        processPopVisibility: "d-none"
+        processPopVisibility: "d-none",
       });
-    }
-    else {
+    } else {
       setVisible({
         contentVisibility: "d-none",
         customerPopVisibility: "d-none",
         modelPopVisibility: "d-none",
-        processPopVisibility: ""
+        processPopVisibility: "",
       });
     }
-		
   };
   return (
     <div className="container-main">
@@ -96,15 +93,21 @@ const ReportForm = () => {
       </div>
       <div className="back-refresh-container d-flex justify-content-right">
         <div className="col-6 d-flex justify-content-end">
-          <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+          <Link
+            to="../ReportCheckPoint"
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
             <div className="back-refresh-btn justify-content-center">
               <img src={BackIcon} alt="" />
-              <p className="btn-lbl">Back</p>           
+              <p className="btn-lbl">Back</p>
             </div>
           </Link>
         </div>
         <div className="col-6 d-flex justify-content-left">
-          <Link to='../Report' style={{ color: 'inherit', textDecoration: 'inherit'}}>
+          <Link
+            to="../Report"
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
             <div className="back-refresh-btn justify-content-center">
               <img src={RefreshIcon} alt="" />
               <p className="btn-lbl">Refresh</p>
