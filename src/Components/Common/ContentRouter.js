@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "../Login";
 import Menu from "../Menu";
@@ -11,7 +11,7 @@ import Process from "../Process";
 import GlobalContext from "../../context/globalcontext";
 
 const ContentRouter = () => {
-  //   const [, , contextMiddleware] = useContext(GlobalContext);
+  const [, , contextMiddleware] = useContext(GlobalContext);
   //   useEffect(() => {}, []);
 
   return (
@@ -20,9 +20,9 @@ const ContentRouter = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route path="/menu">
-          <Menu />
-        </Route>
+        <Route
+          path="/menu"
+          component={contextMiddleware.routeProtectedComponent(Menu)} />
         <Route exact path="/ReportCheckPoint">
           <ReportCheckPoint />
         </Route>
