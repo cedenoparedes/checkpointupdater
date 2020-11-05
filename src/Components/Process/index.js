@@ -14,13 +14,7 @@ const Index = () => {
 
 
     return (
-        <div>
-            <Process model={modelState} process={processState} customer={customerState} />
-            <div>
-                {/* <h1>{mensaje}</h1> */}
-            </div>
-        </div>
-
+        <Process model={modelState} process={processState} customer={customerState} />
     )
 }
 

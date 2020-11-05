@@ -21,7 +21,7 @@ const ProcessForm = (props) => {
 	};
 
 	return (
-		<div className="container-fluid Site-content h-90">
+		<div className="container-fluid h-90">
 			{/* Customer, Model and Process indicator */}
 			<div className="row">
 				<div className="col-6">
