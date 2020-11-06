@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Components/Login/LoginForm.css";
 import "./Components/Common/HeaderFooter.css";
 import ContextMiddleware from "./Components/Common/ContextMiddleware"
-import "./Components/ReportCheckPoint/ReportCheckPointForm.css";
+import "./Components/ReportMenu/ReportCheckPointForm.css";
 import "./Components/Report/ReportForm.css";
 import "./Components/ReportDark/ReportFormDark.css";
 import "toastr/build/toastr.css"
