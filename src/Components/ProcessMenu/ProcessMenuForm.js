@@ -93,6 +93,7 @@ const CheckPointProcessMenu = () => {
     const [model, setModel] = useState("")
     const [customer, setCustomer] = useState("")
     const [process, setProcess] = useState("")
+    // const [linkProperties, setLinkProperties] = useState({})
 
 
     let params = {
@@ -108,22 +109,14 @@ const CheckPointProcessMenu = () => {
         "timeOut": "3000"
     }
 
-    const validateFormIsFill = () => {
-        tbCustomer = document.getElementById('tb-customer');
-        tbModel = document.getElementById('tb-model');
-        tbProcess = document.getElementById('tb-process');
-        if (tbCustomer.value === '' || tbCustomer.value === null ||
-            tbModel.value === '' || tbModel.value === null ||
-            tbProcess.value === '' || tbProcess.value === null) {
+    const fieldValidation = () => {
+        if (model === "" || process === "" || customer === "") {
             toastr.error("Please fill all the fields")
         }
-        else {
-            return {
-                pathname: '/process',
-                state: params
-            }
-        }
+
     }
+
+
 
 
 
@@ -212,8 +205,11 @@ const CheckPointProcessMenu = () => {
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
-                            <Link to={validateFormIsFill} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="back-refresh-btn justify-content-center">
+                            <Link to={model === "" || process === "" || customer === "" ? {} : {
+                                pathname: '/process',
+                                state: params
+                            }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
                                     <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p>
                                 </div>
@@ -222,7 +218,7 @@ const CheckPointProcessMenu = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }
