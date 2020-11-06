@@ -9,6 +9,7 @@ import ContextMiddleware from "./Components/Common/ContextMiddleware"
 import "./Components/ReportCheckPoint/ReportCheckPointForm.css";
 import "./Components/Report/ReportForm.css";
 import "./Components/ReportDark/ReportFormDark.css";
+import "toastr/build/toastr.css"
 import Header from "./Components/Common/Header";
 import Footer from "./Components/Common/Footer";
 
