@@ -5,6 +5,7 @@ import GlobalContext from '../../context/globalcontext';
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
 
+
 const Index = () => {
 
     const [employeeCode, setEmployeeCode] = useState("");
@@ -12,18 +13,35 @@ const Index = () => {
     const history = useHistory();
 
     const loginHandler = (employeeCode) => {
+        toastr.options = {
+            "positionClass": "toast-top-center",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp",
+            "timeOut": "3000"
+        }
+        let jEmployeeCode = { employeeCode: employeeCode }
 
-        let jEmployeeCode = { "employeeCode": employeeCode }
 
-        login(jEmployeeCode)
-            .then((json) => {
-                contextMiddleware.logIn(json.token);
-                toastr.success("Login Successfully.");
-                history.push("/menu");
-            }).catch((error) => toastr.error(console.log(error), "Wrong User Name or Password."));
+        const clearInput = () => {
+            const employeeCodeInput = document.getElementById("login-input-border")
+            employeeCodeInput.value = ""
 
+        }
+        if (jEmployeeCode.employeeCode === "" || null) {
+            toastr.error("Please fill the employee code field")
+            clearInput();
+        } else {
+            console.log(jEmployeeCode.employeeCode)
+            login(jEmployeeCode)
+                .then((json) => {
+                    contextMiddleware.logIn(json.token);
+                    toastr.success("Login Successfully.");
+                    history.push("/menu");
+                }).catch((error) => toastr.error(console.log(error), "Wrong Employee Code."));
+            clearInput();
+
+        }
     }
-
     return (
         <LoginForm
             employeeCodeState={{ employeeCode, setEmployeeCode }}
@@ -31,5 +49,4 @@ const Index = () => {
         />
     )
 }
-
 export default Index;

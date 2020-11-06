@@ -5,7 +5,7 @@ import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
 const LoginForm = ({ employeeCodeState, loginHandler }) => {
   return (
     <div className="contenedor">
-      <div className="container-fluid" id="login-container-border">
+      <div className="container-fluid" >
         <div className="container-fluid">
           <div className="d-flex justify-content-center">
             <img src={LogInIMG} id="login-frame-size" alt="" />
