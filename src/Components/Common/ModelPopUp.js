@@ -4,7 +4,7 @@ import backArrow from '../../Images/back-arrow.svg';
 import fowardArrow from '../../Images/foward-arrow.svg'
 const ModelPopUp = (props) => {
 
-    const { visible, setVisible, setModelState } = props;
+    const { visible, setVisible, setModelState, models } = props;
 
     const hidePopUp = () => {
         setVisible({
@@ -47,55 +47,6 @@ const ModelPopUp = (props) => {
 
     let tittle = "Select A Model";
 
-    let items = [
-        {
-            modelCode: 'IP6',
-        },
-        {
-            modelCode: 'IP6P',
-        },
-        {
-            modelCode: 'IP6S',
-        },
-        {
-            modelCode: 'IP6SP',
-        },
-        {
-            modelCode: 'IP7',
-        },
-        {
-            modelCode: 'IP7P',
-        },
-        {
-            modelCode: 'IP8',
-        },
-        {
-            modelCode: 'IP8P',
-        },
-        {
-            modelCode: 'IPX',
-        },
-        {
-            modelCode: 'IPXR',
-        },
-        {
-            modelCode: 'IPXS',
-        },
-        {
-            modelCode: 'IPXSM',
-        },
-        {
-            modelCode: 'IP11',
-        },
-        {
-            modelCode: 'IP11P',
-        },
-        {
-            modelCode: 'IP11PM',
-        },
-
-    ]
-
     return (
         <div className={`${visible.modelPopVisibility} w-100`}>
             <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
@@ -108,14 +59,14 @@ const ModelPopUp = (props) => {
                                 <img src={backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
-                            {items.map((item, i) => {
+                            {models.map((item, i) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-model" id={item.modelCode} onClick={() => setModel(item.modelCode)}>
+                                        <button className="modal-btn btn-model" id={item.ModelName} onClick={() => setModel(item.ModelName)}>
                                             <img className="format-img-model" src={modelIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.modelCode}</p>
+                                        <p className="modal-client-text">{item.ModelName}</p>
                                     </div>)
                             })}
                             <div className="foward-arrow">

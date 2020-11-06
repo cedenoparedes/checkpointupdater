@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './ProcessMenuForm.css'
 import CustomerIcon from '../../Images/SVG/icons/custumer.svg'
 import ModelIcon from '../../Images/SVG/icons/model.svg'
@@ -8,19 +8,53 @@ import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
+import GlobalContext from "../../context/globalcontext"
+import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
 import { Link } from "react-router-dom";
 
 
 const CheckPointProcessMenu = () => {
+    const [, , contextMiddleware] = useContext(GlobalContext);
     const [visible, setVisible] = useState({
         contentVisibility: "",
         customerPopVisibility: "d-none",
         modelPopVisibility: "d-none",
         processPopVisibility: "d-none"
     });
+    const [customers, setCustomers] = useState([])
+    const [models, setModels] = useState([])
+    const [processes, setProcesses] = useState([])
+
+    let token = contextMiddleware.getTokenClaims();
+
+    const getCustomerParams = (token) => {
+
+        getCustomers(token)
+            .then((json) => {
+                setCustomers(json)
+            }).catch((error) => { console.log(error) })
+
+    }
+    const getModelParams = (token) => {
+
+        getModels(token)
+            .then((json) => {
+                setModels(json)
+            }).catch((error) => { console.log(error) })
+
+    }
+
+    const getProcessParams = (token) => {
+
+        getProcesses(token)
+            .then((json) => {
+                setProcesses(json)
+            }).catch((error) => { console.log(error) })
+
+    }
 
 
-    const showPopUp = (button) => {
+    const showPopUp = (button, token) => {
 
         switch (button) {
             case 'Customer':
@@ -30,6 +64,7 @@ const CheckPointProcessMenu = () => {
                     modelPopVisibility: "d-none",
                     processPopVisibility: "d-none"
                 });
+                getCustomerParams(token);
                 break;
             case 'Model':
                 setVisible({
@@ -38,6 +73,7 @@ const CheckPointProcessMenu = () => {
                     modelPopVisibility: "",
                     processPopVisibility: "d-none"
                 });
+                getModelParams(token);
                 break;
             case 'Process':
                 setVisible({
@@ -46,6 +82,7 @@ const CheckPointProcessMenu = () => {
                     modelPopVisibility: "d-none",
                     processPopVisibility: ""
                 });
+                getProcessParams(token);
                 break;
             default:
                 break;
@@ -85,18 +122,18 @@ const CheckPointProcessMenu = () => {
             </div>
             <div className="contenedor">
                 {/* Modal Customer */}
-                <CustomerPopUp visible={visible} setVisible={setVisible} setCustomerState={setCustomer} />
+                <CustomerPopUp visible={visible} setVisible={setVisible} setCustomerState={setCustomer} customers={customers} />
                 {/* modal Model*/}
-                <ModelPopUP visible={visible} setVisible={setVisible} setModelState={setModel} />
+                <ModelPopUP visible={visible} setVisible={setVisible} setModelState={setModel} models={models} />
                 {/* modal  Process*/}
-                <ProcessPopUp visible={visible} setVisible={setVisible} setProcessState={setProcess} />
+                <ProcessPopUp visible={visible} setVisible={setVisible} setProcessState={setProcess} processes={processes} />
                 <div className={`${visible.contentVisibility} container-fluid `}>
                     <form className="form-container">
 
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
-                                    <div type="button" className="btn-menu" id="btn-client" onClick={() => showPopUp('Customer')}>
+                                    <div type="button" className="btn-menu" id="btn-client" onClick={() => showPopUp('Customer', token)}>
                                         <img className="icon-options" src={CustomerIcon} alt="" />
                                         <p className="label-btn">Customer</p>
                                     </div>
@@ -109,7 +146,7 @@ const CheckPointProcessMenu = () => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
-                                    <div type="button" className="btn-menu" id="btn-model" onClick={() => showPopUp('Model')}>
+                                    <div type="button" className="btn-menu" id="btn-model" onClick={() => showPopUp('Model', token)}>
                                         <img className="icon-options" src={ModelIcon} alt="" />
                                         <p className="label-btn">Model</p>
                                     </div>
@@ -122,7 +159,7 @@ const CheckPointProcessMenu = () => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-md-6 d-flex justify-content-center">
-                                    <div type="button" className="btn-menu" id="btn-process" onClick={() => showPopUp('Process')} >
+                                    <div type="button" className="btn-menu" id="btn-process" onClick={() => showPopUp('Process', token)} >
                                         <img className="icon-options" src={ProcessIcon} alt="" />
                                         <p className="label-btn">Process</p>
                                     </div>

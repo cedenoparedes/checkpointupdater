@@ -51,7 +51,7 @@ const MenuForm = (props) => {
                             </Link>
                         </div>
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <Link to='../report-menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <Link to='../reportmenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div type="button" className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options" src={DataIcon} alt="" />

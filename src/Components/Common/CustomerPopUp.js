@@ -3,7 +3,7 @@ import customerIcon from '../../Images/SVG/icons/custumer.svg'
 
 const CustomerPopUp = (props) => {
 
-    const { visible, setVisible, setCustomerState } = props;
+    const { visible, setVisible, setCustomerState, customers } = props;
 
     const hidePopUp = () => {
         setVisible({
@@ -23,20 +23,6 @@ const CustomerPopUp = (props) => {
     }
 
     let tittle = "Select A Customer"
-    let items = [
-        {
-            customerCode: 615
-        },
-        {
-            customerCode: 564
-        },
-        {
-            customerCode: 264
-        },
-        {
-            customerCode: 264
-        },
-    ]
 
     return (
         <div className={`${visible.customerPopVisibility} w-100`}>
@@ -47,14 +33,14 @@ const CustomerPopUp = (props) => {
                         <h1 className="modal-title">{tittle}</h1>
                         <div className="d-flex justify-content-between">
 
-                            {items.map((item, i) => {
+                            {customers.map((item, i) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-client" id={item.customerCode} onClick={() => setCustomer(item.customerCode)}>
+                                        <button className="modal-btn btn-client" id={item.CostumerName} onClick={() => setCustomer(item.CostumerName)}>
                                             <img className="format-img-costumer" src={customerIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.customerCode}</p>
+                                        <p className="modal-client-text">{item.CostumerName}</p>
                                     </div>)
                             })}
                         </div>
