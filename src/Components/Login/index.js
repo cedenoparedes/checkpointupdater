@@ -27,11 +27,10 @@ const Index = () => {
             employeeCodeInput.value = ""
 
         }
-        if (jEmployeeCode.employeeCode === "" || null) {
+        if (jEmployeeCode.employeeCode === "" || jEmployeeCode.employeeCode === null) {
             toastr.error("Please fill the employee code field")
             clearInput();
         } else {
-            console.log(jEmployeeCode.employeeCode)
             login(jEmployeeCode)
                 .then((json) => {
                     contextMiddleware.logIn(json.token);
