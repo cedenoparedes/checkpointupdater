@@ -39,7 +39,7 @@ const MenuForm = (props) => {
                     </div>
                     <div className="row mt-5 mb-5">
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <Link to='../ProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div type="button" className="div-btn-options pt-5" id="chk-point">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options align-bottom" src={CheckIcon} alt="" />
@@ -51,7 +51,7 @@ const MenuForm = (props) => {
                             </Link>
                         </div>
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <Link to='../report-menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div type="button" className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options" src={DataIcon} alt="" />
