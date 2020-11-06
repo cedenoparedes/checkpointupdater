@@ -11,7 +11,7 @@ import ProcessPopUp from "../Common/ProcessPopUp"
 import GlobalContext from "../../context/globalcontext"
 import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
 import { Link } from "react-router-dom";
-
+import toastr from "toastr";
 
 const CheckPointProcessMenu = () => {
     const [, , contextMiddleware] = useContext(GlobalContext);
@@ -101,6 +101,29 @@ const CheckPointProcessMenu = () => {
         customer: customer
     }
 
+    toastr.options = {
+        "positionClass": "toast-top-center",
+        "showMethod": "slideDown",
+        "hideMethod": "slideUp",
+        "timeOut": "3000"
+    }
+
+    const validateFormIsFill = () => {
+        tbCustomer = document.getElementById('tb-customer');
+        tbModel = document.getElementById('tb-model');
+        tbProcess = document.getElementById('tb-process');
+        if (tbCustomer.value === '' || tbCustomer.value === null ||
+            tbModel.value === '' || tbModel.value === null ||
+            tbProcess.value === '' || tbProcess.value === null) {
+            toastr.error("Please fill all the fields")
+        }
+        else {
+            return {
+                pathname: '/process',
+                state: params
+            }
+        }
+    }
 
 
 
@@ -189,10 +212,7 @@ const CheckPointProcessMenu = () => {
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
-                            <Link to={{
-                                pathname: '/process',
-                                state: params
-                            }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <Link to={validateFormIsFill} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="back-refresh-btn justify-content-center">
                                     <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p>
