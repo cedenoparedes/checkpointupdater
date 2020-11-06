@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
 import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
@@ -6,12 +6,20 @@ import BackIcon from "../../Images/SVG/icons/back.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
+import GlobalContext from '../../context/globalcontext';
 
 
 const ProcessForm = (props) => {
-	const [visible, setVisible] = useState("d-none");
-	const { model, process, customer } = props
+	//Here we are getting the token
+	const [, , contextMiddleware] = useContext(GlobalContext);
+	let token = contextMiddleware.getTokenClaims();
 
+	//Here we are destructing the props 
+	const { model, process, customer, fillPieParams } = props
+
+	fillPieParams(model, customer, customer, token)
+	//The following state and Funtion controls the visibility of the FailuresWindow
+	const [visible, setVisible] = useState("d-none");
 	const showFailureWindows = () => {
 		if (visible === "") {
 			setVisible("d-none");
