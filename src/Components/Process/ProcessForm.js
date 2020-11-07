@@ -7,21 +7,30 @@ import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
 import GlobalContext from '../../context/globalcontext';
+import { getFailures } from '../../api/process-api'
 
 
 const ProcessForm = (props) => {
 	//Here we are getting the token
 	const [, , contextMiddleware] = useContext(GlobalContext);
+	const [failures, setFailures] = useState([])
 	let token = contextMiddleware.getTokenClaims();
+
+
 
 	//Here we are destructing the props 
 	const { model, process, customer, fillPieParams, totalPass, TotalFail, TotalProcessed } = props
 
 	useEffect(() => {
-
 		fillPieParams(customer, model, process, token);
 
-	}, [])
+		getFailures(customer, model, process, token)
+			.then((Response) => {
+				setFailures(Response)
+			}).catch((error) => { console.log(error) })
+
+	}, [customer, model, process])
+
 
 
 	//The following state and Funtion controls the visibility of the FailuresWindow
@@ -112,7 +121,7 @@ const ProcessForm = (props) => {
 							</div>
 						</div>
 					</div>
-					<FailuresWindows visible={visible} setVisible={setVisible} />
+					<FailuresWindows visible={visible} setVisible={setVisible} failures={failures} />
 
 				</div>
 			</div>
