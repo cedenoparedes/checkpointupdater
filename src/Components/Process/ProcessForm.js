@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
 import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
@@ -15,10 +15,18 @@ const ProcessForm = (props) => {
 	let token = contextMiddleware.getTokenClaims();
 
 	//Here we are destructing the props 
-	const { model, process, customer, fillPieParams } = props
+	const { model, process, customer, fillPieParams, totalPass, TotalFail, TotalProcessed } = props
 
-	fillPieParams(model, customer, customer, token)
+	useEffect(() => {
+
+		fillPieParams(customer, model, process, token);
+
+	}, [])
+
+
 	//The following state and Funtion controls the visibility of the FailuresWindow
+
+
 	const [visible, setVisible] = useState("d-none");
 	const showFailureWindows = () => {
 		if (visible === "") {
@@ -61,13 +69,13 @@ const ProcessForm = (props) => {
 										<img className="icon-pass" src={PassCheck} alt="" />
 									</div>
 									<div className="txt-porcentage">
-										<p className="percentage">0.00%</p>
+										<p className="percentage">{totalPass}</p>
 									</div>
 								</div>
 							</div>
 							<div className="col-6">
 								<div className="chart1">
-									<PieChart />
+									<PieChart totalPass={totalPass} TotalFail={TotalFail} TotalProcessed={TotalProcessed} />
 								</div>
 							</div>
 							<div className="col-3">
@@ -77,7 +85,7 @@ const ProcessForm = (props) => {
 										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
 									</div>
 									<div className="txt-porcentage">
-										<p className="percentage">0.00%</p>
+										<p className="percentage">{TotalFail}</p>
 									</div>
 								</div>
 							</div>
