@@ -29,7 +29,7 @@ const ProcessForm = (props) => {
 				setFailures(Response)
 			}).catch((error) => { console.log(error) })
 
-	}, [customer, model, process])
+	}, [])
 
 
 

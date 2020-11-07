@@ -9,7 +9,8 @@ import ContextMiddleware from "./Components/Common/ContextMiddleware"
 import "./Components/ReportMenu/ReportCheckPointForm.css";
 import "./Components/Report/ReportForm.css";
 import "./Components/ReportDark/ReportFormDark.css";
-import "toastr/build/toastr.css"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import "toastr/build/toastr.css";
 import Header from "./Components/Common/Header";
 import Footer from "./Components/Common/Footer";
 

@@ -5,9 +5,6 @@ import FowardIcon from '../../Images/foward-arrow.svg'
 const FailuresWindow = (props) => {
 
     const { visible, setVisible, failures } = props
-
-    console.log(failures)
-
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
         var slideTimer = setInterval(function () {
@@ -93,47 +90,6 @@ const FailuresWindow = (props) => {
         ClearListError();
         return console.log(errors);
     };
-
-    // const failures = [
-    //     {
-    //         FailureName: "Peel Off",
-    //         FailureId: 10
-    //     },
-    //     {
-    //         FailureName: "Missing Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "11111 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "33412 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "5555 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "5555 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "5555 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "5555 Hook",
-    //         FailuteId: 11
-    //     },
-    //     {
-    //         FailureName: "5555 Hook",
-    //         FailuteId: 11
-    //     }
-
-    // ]
-
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">

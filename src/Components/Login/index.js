@@ -9,6 +9,8 @@ import toastr from "toastr";
 const Index = () => {
 
     const [employeeCode, setEmployeeCode] = useState("");
+    const [isLouser, setIsLouder] = useState(true);
+
     const [, , contextMiddleware] = useContext(GlobalContext);
     const history = useHistory();
 
@@ -31,13 +33,18 @@ const Index = () => {
             toastr.error("Please fill the employee code field")
             clearInput();
         } else {
+            setIsLouder(true)
             login(jEmployeeCode)
                 .then((json) => {
                     contextMiddleware.logIn(json.token);
                     toastr.success("Login Successfully.");
                     history.push("/menu");
-                }).catch((error) => toastr.error(console.log(error), "Wrong Employee Code."));
+                    setIsLouder(false)
+                }).catch((error) => { toastr.error(console.log(error), "Wrong Employee Code.") });
             clearInput();
+            setIsLouder(false)
+
+
 
         }
     }
@@ -45,6 +52,8 @@ const Index = () => {
         <LoginForm
             employeeCodeState={{ employeeCode, setEmployeeCode }}
             loginHandler={loginHandler}
+            isLouser={isLouser}
+
         />
     )
 }

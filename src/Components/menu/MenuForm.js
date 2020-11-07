@@ -8,16 +8,6 @@ import { Link } from "react-router-dom";
 
 const MenuForm = (props) => {
 
-    const { userInfo } = props
-
-    useEffect(() => {
-
-        return () => {
-            console.log(userInfo);
-        }
-    }, [])
-
-
 
     return (
         <div className="container-fluid h-90">

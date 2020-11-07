@@ -25,7 +25,7 @@ const PieChart = (props) => {
           {
             label: "Amount",
             data: [totalPass, TotalFail, TotalProcessed],
-            backgroundColor: ["#4cf08e", "#e63946", "#4cc9f0"],
+            backgroundColor: ["#99cc33", "crimson", "#4cc9f0"],
           },
         ],
       },
