@@ -4,12 +4,12 @@ import { login } from '../../api/login-api';
 import GlobalContext from '../../context/globalcontext';
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
-
+import Loading from '../Common/Loading'
 
 const Index = () => {
 
     const [employeeCode, setEmployeeCode] = useState("");
-    const [isLouser, setIsLouder] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [, , contextMiddleware] = useContext(GlobalContext);
     const history = useHistory();
@@ -33,28 +33,32 @@ const Index = () => {
             toastr.error("Please fill the employee code field")
             clearInput();
         } else {
-            setIsLouder(true)
+            setIsLoading(true)
             login(jEmployeeCode)
                 .then((json) => {
                     contextMiddleware.logIn(json.token);
                     toastr.success("Login Successfully.");
                     history.push("/menu");
-                    setIsLouder(false)
+                    setIsLoading(false)
                 }).catch((error) => { toastr.error(console.log(error), "Wrong Employee Code.") });
             clearInput();
-            setIsLouder(false)
+            setIsLoading(false)
 
 
 
         }
     }
     return (
-        <LoginForm
-            employeeCodeState={{ employeeCode, setEmployeeCode }}
-            loginHandler={loginHandler}
-            isLouser={isLouser}
+        <div>
+            <LoginForm
+                employeeCodeState={{ employeeCode, setEmployeeCode }}
+                loginHandler={loginHandler}
+                isLouser={isLoading}
 
-        />
+            />
+            <Loading isLoading={isLoading} />
+        </div>
+
     )
 }
 export default Index;

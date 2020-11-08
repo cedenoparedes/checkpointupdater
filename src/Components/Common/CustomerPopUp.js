@@ -1,9 +1,10 @@
 import React from 'react'
 import customerIcon from '../../Images/SVG/icons/custumer.svg'
+import Loading from '../Common/Loading'
 
 const CustomerPopUp = (props) => {
 
-    const { visible, setVisible, setCustomerState, customers } = props;
+    const { visible, setVisible, setCustomerState, customers, isLoading } = props;
 
     const hidePopUp = () => {
         setVisible({
@@ -25,6 +26,7 @@ const CustomerPopUp = (props) => {
     let tittle = "Select A Customer"
 
     return (
+
         <div className={`${visible.customerPopVisibility} w-100`}>
             <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
             <div className="row">
@@ -32,7 +34,7 @@ const CustomerPopUp = (props) => {
                     <div className="modal" id="modal-client">
                         <h1 className="modal-title">{tittle}</h1>
                         <div className="d-flex justify-content-between">
-
+                            <Loading isLoading={isLoading} />
                             {customers.map((item, i) => {
                                 return (
 

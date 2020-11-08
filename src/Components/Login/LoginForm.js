@@ -37,7 +37,6 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLouser }) => {
         </div>
         <div className="container-fluid">
           <div className="d-flex justify-content-center">
-            <Loader type="Rings" visible={isLouser} color="#e05d06" height={80} width={80} />
             <button
               type="button"
               onClick={() => loginHandler(employeeCodeState.employeeCode)}

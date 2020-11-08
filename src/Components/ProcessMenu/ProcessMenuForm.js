@@ -13,7 +13,9 @@ import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
 import { Link } from "react-router-dom";
 import toastr from "toastr";
 
+
 const CheckPointProcessMenu = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [, , contextMiddleware] = useContext(GlobalContext);
     const [visible, setVisible] = useState({
         contentVisibility: "",
@@ -29,9 +31,11 @@ const CheckPointProcessMenu = () => {
 
     const getCustomerParams = (token) => {
 
+        setIsLoading(true);
         getCustomers(token)
             .then((json) => {
                 setCustomers(json)
+                setIsLoading(false);
             }).catch((error) => { console.log(error) })
 
     }
@@ -138,7 +142,7 @@ const CheckPointProcessMenu = () => {
             </div>
             <div className="contenedor">
                 {/* Modal Customer */}
-                <CustomerPopUp visible={visible} setVisible={setVisible} setCustomerState={setCustomer} customers={customers} />
+                <CustomerPopUp visible={visible} setVisible={setVisible} setCustomerState={setCustomer} customers={customers} isLoading={isLoading} />
                 {/* modal Model*/}
                 <ModelPopUP visible={visible} setVisible={setVisible} setModelState={setModel} models={models} />
                 {/* modal  Process*/}
