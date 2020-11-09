@@ -1,7 +1,7 @@
 import React from "react";
 import LogInIMG from "../../Images/LogIn-IMG.svg";
 import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
-import Loader from 'react-loader-spinner'
+// import Loader from 'react-loader-spinner'
 const LoginForm = ({ employeeCodeState, loginHandler, isLouser }) => {
 
   return (

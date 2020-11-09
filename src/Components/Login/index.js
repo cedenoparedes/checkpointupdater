@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { login } from '../../api/login-api';
 import GlobalContext from '../../context/globalcontext';
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
-
+// import { Button } from 'react-bootstrap';
+import $ from 'jquery';
 const Index = () => {
 
     const [employeeCode, setEmployeeCode] = useState("");
@@ -48,6 +49,21 @@ const Index = () => {
 
         }
     }
+
+
+
+    useEffect(() => {
+        $('#login-input-border').keypress(function (e) {
+            var key = e.which;
+            if (key === 13)   //the enter key code
+            {
+                $('#login-button').click();
+                return;
+            }
+        });
+
+    }, [])
+
     return (
         <div>
             <LoginForm
