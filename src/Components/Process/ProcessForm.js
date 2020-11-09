@@ -7,7 +7,7 @@ import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
 import GlobalContext from '../../context/globalcontext';
-import { getFailures, passProcess } from '../../api/process-api'
+import { getFailures, saveProcess } from '../../api/process-api'
 import toastr from 'toastr'
 
 
@@ -15,29 +15,35 @@ const ProcessForm = (props) => {
 	//Here we are getting the token
 	const [, , contextMiddleware] = useContext(GlobalContext);
 	const [failures, setFailures] = useState([]);
+	const [failureToSave, setFailureToSave] = useState([]);
+
 	let token = contextMiddleware.getToken();
 	let userInfo = contextMiddleware.getTokenClaims();
 
 
 
 	//Here we are destructing the props 
-	const { model, process, customer, fillPieParams, totalPass, TotalFail, TotalProcessed } = props
+	const { model, process,
+		customer, fillPieParams,
+		totalPass, TotalFail,
+		TotalProcessed, setTotalPass, setTotalFail, setTotalProcessed } = props
 
 	useEffect(() => {
 		fillPieParams(customer, model, process, token);
 
 		getFailures(customer, model, process, token)
 			.then((Response) => {
-				setFailures(Response)
+				if (Response === null) {
+					toastr.error("no failures")
+				} else {
+
+					setFailures(Response)
+				}
 			}).catch((error) => { console.log(error) })
 
 	}, [])
 
-
-
 	//The following state and Funtion controls the visibility of the FailuresWindow
-
-
 	const [visible, setVisible] = useState("d-none");
 	const showFailureWindows = () => {
 		if (visible === "") {
@@ -55,20 +61,36 @@ const ProcessForm = (props) => {
 		EmployeeCode: userInfo.employeeCode,
 		FailureId: []
 	}
+	let failsParams = {
+		CustomerCode: customer,
+		ProcessName: process,
+		ModelName: model,
+		Result: "fail",
+		EmployeeCode: userInfo.employeeCode,
+		FailureId: failureToSave
+	}
 
 	/// pass method handler
 	const passHandler = (passParams, token) => {
-		console.log(passParams)
-		passProcess(passParams, token)
+		saveProcess(passParams, token)
 			.then((Response) => {
-				toastr.success("Pass " + Response)
+				setTotalPass(Response.TotalPass)
+				setTotalFail(Response.TotalFail)
+				setTotalProcessed(Response.TotalProcessed)
+			}).catch((error) => { console.log(error) })
+	}
+	/// fail method handler
+	const failHandler = (failsParams, token) => {
+		saveProcess(failsParams, token)
+			.then((Response) => {
+				setTotalPass(Response.TotalPass)
+				setTotalFail(Response.TotalFail)
+				setTotalProcessed(Response.TotalProcessed)
 			}).catch((error) => { console.log(error) })
 	}
 
-
 	return (
 		<div className="container-fluid h-90">
-			{/* Customer, Model and Process indicator */}
 			<div className="row">
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
@@ -142,7 +164,13 @@ const ProcessForm = (props) => {
 							</div>
 						</div>
 					</div>
-					<FailuresWindows visible={visible} setVisible={setVisible} failures={failures} />
+					<FailuresWindows
+						visible={visible}
+						setVisible={setVisible}
+						failures={failures}
+						setFailureToSave={setFailureToSave}
+						failHandler={failHandler}
+						failsParams={failsParams} />
 
 				</div>
 			</div>

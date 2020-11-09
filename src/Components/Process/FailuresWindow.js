@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
+import GlobalContext from '../../context/globalcontext'
 
 const FailuresWindow = (props) => {
-
-    const { visible, setVisible, failures } = props
+    const [, , contextMiddleware] = useContext(GlobalContext)
+    let token = contextMiddleware.getToken();
+    const { visible, setVisible, failures, setFailureToSave, failHandler, failsParams } = props
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
         var slideTimer = setInterval(function () {
@@ -48,7 +50,7 @@ const FailuresWindow = (props) => {
         const errors = document.querySelectorAll('.error-list > .error-tag');
         let exist = false;
         errors.forEach(error => {
-            if (textContent == error.textContent) {
+            if (textContent === error.textContent) {
                 exist = true;
             }
         });
@@ -80,15 +82,22 @@ const FailuresWindow = (props) => {
         }
     }
 
-    const SaveListErros = () => {
+    const setFailures = () => {
         const errorTags = document.querySelectorAll('.error-list > .error-tag');
-        let errors = [];
+        let failures = [];
 
         errorTags.forEach(error => {
-            errors.push(error.textContent);
+            setFailureToSave(error.textContent);
         });
         ClearListError();
-        return console.log(errors);
+        return console.log(failures);
+    }
+
+    async function saveFailures(failHandler, failsParams, token) {
+        await setFailures()
+            .then(failHandler(failsParams, token))
+
+
     };
 
     return (
@@ -127,9 +136,8 @@ const FailuresWindow = (props) => {
                         </div>
                     </div>
                 </div>
-                {/* Failure Buttons */}
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={SaveListErros} id="submit-btn">
+                    <div className="submit-btn" onClick={saveFailures(failHandler, failsParams, token)} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>

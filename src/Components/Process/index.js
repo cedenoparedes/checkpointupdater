@@ -16,10 +16,6 @@ const Index = () => {
     let customer = location().state.customer
     let process = location().state.process
 
-    // let totalPass = ""
-    // let TotalFail = ""
-    // let TotalProcessed=""
-
     //This funcion is set to receive the data from the API
     const fillPieParams = (customer, model, process, token) => {
         getPieParams(customer, model, process, token)
@@ -42,6 +38,9 @@ const Index = () => {
             totalPass={totalPass}
             TotalFail={TotalFail}
             TotalProcessed={TotalProcessed}
+            setTotalPass={setTotalPass}
+            setTotalFail={setTotalFail}
+            setTotalProcessed={setTotalProcessed}
         />
     )
 }

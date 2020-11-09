@@ -30,7 +30,7 @@ export function getFailures(customer, model, process, token) {
         .catch(handleError);
 }
 
-export function passProcess(passParams, token) {
+export function saveProcess(passParams, token) {
 
     return fetch(baseUrl, {
         method: "POST",
