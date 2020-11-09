@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
@@ -11,6 +11,7 @@ import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp";
 import ProcessPopUp from "../Common/ProcessPopUp";
 import { Link } from "react-router-dom";
+import { jsPdfGenerator } from './ExportPdf';
 
 const ReportForm = () => {
   const [visible, setVisible] = useState({
@@ -58,22 +59,22 @@ const ReportForm = () => {
       },
     });
   });
-  const jsPdfGenerator = () => {
-    var doc = new jsPDF({
-      orientation: "p",
-      unit: "px",
-      format: 'a2',
-      // format: [1140, 1000],
-      x: 0,
-      y: 0,
-    });
+  // const jsPdfGenerator = () => {
+  //   var doc = new jsPDF({
+  //     orientation: "p",
+  //     unit: "px",
+  //     format: [1140, 2190.65],
+  //     // format: [1140, 1000],
+  //     x: 0,
+  //     y: 0,
+  //   });
 
-    doc.html(document.getElementById("report-container"), {
-      callback: function (doc) {
-        doc.save("PdfGenerated.pdf");
-      },
-    });
-  };
+  //   doc.html(document.getElementById("report-container"), {
+  //     callback: function (doc) {
+  //       doc.save("PdfGenerated.pdf");
+  //     },
+  //   });
+  // };
 
   return (
     <div className="container-main" id="chart">
