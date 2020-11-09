@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
@@ -7,6 +7,8 @@ const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
     let token = contextMiddleware.getToken();
     const { visible, setVisible, failures, setFailureToSave, failHandler, failsParams } = props
+
+
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
         var slideTimer = setInterval(function () {
@@ -82,23 +84,24 @@ const FailuresWindow = (props) => {
         }
     }
 
-    const setFailures = () => {
+    let errors = []
+
+    const setFailures = (failHandler, failsParams, token, errors) => {
         const errorTags = document.querySelectorAll('.error-list > .error-tag');
-        let failures = [];
+
 
         errorTags.forEach(error => {
-            setFailureToSave(error.textContent);
+            console.log(error.textContent)
+            errors.push(error.textContent)
+
+
         });
+        setFailureToSave(errors);
         ClearListError();
-        return console.log(failures);
+        failHandler(failsParams, token);
+        setFailureToSave(errors);
     }
 
-    async function saveFailures(failHandler, failsParams, token) {
-        await setFailures()
-            .then(failHandler(failsParams, token))
-
-
-    };
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">
@@ -137,7 +140,7 @@ const FailuresWindow = (props) => {
                     </div>
                 </div>
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={saveFailures(failHandler, failsParams, token)} id="submit-btn">
+                    <div className="submit-btn" onClick={() => setFailures(failHandler, failsParams, token, errors)} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>

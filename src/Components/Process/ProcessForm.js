@@ -61,13 +61,14 @@ const ProcessForm = (props) => {
 		EmployeeCode: userInfo.employeeCode,
 		FailureId: []
 	}
+
 	let failsParams = {
 		CustomerCode: customer,
 		ProcessName: process,
 		ModelName: model,
 		Result: "fail",
 		EmployeeCode: userInfo.employeeCode,
-		FailureId: failureToSave
+		FailureName: failureToSave
 	}
 
 	/// pass method handler
