@@ -7,14 +7,16 @@ import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
 import GlobalContext from '../../context/globalcontext';
-import { getFailures } from '../../api/process-api'
+import { getFailures, passProcess } from '../../api/process-api'
+import toastr from 'toastr'
 
 
 const ProcessForm = (props) => {
 	//Here we are getting the token
 	const [, , contextMiddleware] = useContext(GlobalContext);
-	const [failures, setFailures] = useState([])
-	let token = contextMiddleware.getTokenClaims();
+	const [failures, setFailures] = useState([]);
+	let token = contextMiddleware.getToken();
+	let userInfo = contextMiddleware.getTokenClaims();
 
 
 
@@ -45,6 +47,25 @@ const ProcessForm = (props) => {
 		}
 	};
 
+	let passParams = {
+		CustomerCode: customer,
+		ProcessName: process,
+		ModelName: model,
+		Result: "pass",
+		EmployeeCode: userInfo.employeeCode,
+		FailureId: []
+	}
+
+	/// pass method handler
+	const passHandler = (passParams, token) => {
+		console.log(passParams)
+		passProcess(passParams, token)
+			.then((Response) => {
+				toastr.success("Pass " + Response)
+			}).catch((error) => { console.log(error) })
+	}
+
+
 	return (
 		<div className="container-fluid h-90">
 			{/* Customer, Model and Process indicator */}
@@ -73,7 +94,7 @@ const ProcessForm = (props) => {
 					<div className={`${visible === "d-none" ? "" : "d-none"} process-window `} id="process-window">
 						<div className="row justify-content-center align-items-center">
 							<div className="col-3">
-								<div type="button" className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color" id="pass-btn">
+								<div type="button" onClick={() => passHandler(passParams, token)} className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color" id="pass-btn">
 									<div>
 										<img className="icon-pass" src={PassCheck} alt="" />
 									</div>

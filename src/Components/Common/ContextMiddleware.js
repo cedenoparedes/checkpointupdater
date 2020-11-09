@@ -54,10 +54,14 @@ const ContextMiddleware = (props) => {
       return JSON.parse(decodedString);
     };
 
+    const getToken = () => {
+      return localContext.token
+    }
+
     const routeProtectedComponent = (comp) =>
       localContext.isAuth ? comp : () => <Redirect to="/" />;
 
-    return { logOut, logIn, routeProtectedComponent, getTokenClaims };
+    return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims };
   };
 
   return (

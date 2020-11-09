@@ -29,3 +29,18 @@ export function getFailures(customer, model, process, token) {
         .then(handleResponse)
         .catch(handleError);
 }
+
+export function passProcess(passParams, token) {
+
+    return fetch(baseUrl, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify(passParams),
+    })
+        .then(handleResponse)
+        .catch(handleError);
+}
