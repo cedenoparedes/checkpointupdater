@@ -23,8 +23,6 @@ const FailuresWindow = (props) => {
         setTotalProcessed
     } = props
 
-    let fails = [];
-
 
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
@@ -60,8 +58,7 @@ const FailuresWindow = (props) => {
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
             errorList.appendChild(newTag);
-            fails.push(button.textContent);
-            setFailuresToSave(fails);
+            setFailuresToSave([...failuresToSave, button.textContent]);
             const closeTag = newTag.querySelector('.close-tag');
             AddEraseFunctionality(closeTag);
         }
@@ -91,9 +88,11 @@ const FailuresWindow = (props) => {
             let parent = closeTag.parentNode;
             let grandParent = parent.parentNode;
             grandParent.removeChild(parent);
-            console.log(fails);
-            fails = fails.filter((n) => { return n !== parent.textContent })
-            setFailuresToSave(fails);
+            setFailuresToSave(() => {
+                let fails = [...failuresToSave];
+                fails = fails.filter((n) => n !== parent.textContent)
+                return fails;
+            });
         });
     };
 
