@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../Common/breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
@@ -19,6 +19,29 @@ import $ from 'jquery';
 
 const ReportCheckPointForm = () => {
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [, , contextMiddleware] = useContext(GlobalContext);
+  const [customers, setCustomers] = useState([])
+  const [models, setModels] = useState([])
+  const [processes, setProcesses] = useState([])
+  const [menuVisible, setMenuVisible] = useState(true);
+  const [customerVisible, setCustomerVisible] = useState(false);
+  const [modelVisible, setModelVisible] = useState(false);
+  const [processVisible, setProcessVisible] = useState(false);
+  const [model, setModel] = useState("")
+  const [customer, setCustomer] = useState("")
+  const [process, setProcess] = useState("")
+  const [params, setParams] = useState({})
+
+
+  useEffect(() => {
+    setParams({
+      model: model,
+      process: process,
+      customer: customer
+    })
+  }, [models, process, customer])
+
   $(function () {
     console.log('Jquery esta funcionando');
     $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT' },
@@ -32,25 +55,12 @@ const ReportCheckPointForm = () => {
     click.focus()
   }
 
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [, , contextMiddleware] = useContext(GlobalContext);
-
-  const [menuVisible, setMenuVisible] = useState(true);
-  const [customerVisible, setCustomerVisible] = useState(false);
-  const [modelVisible, setModelVisible] = useState(false);
-  const [processVisible, setProcessVisible] = useState(false);
-
   const hidePopUps = () => {
     setMenuVisible(true);
     setCustomerVisible(false);
     setModelVisible(false);
     setProcessVisible(false);
   }
-
-  const [customers, setCustomers] = useState([])
-  const [models, setModels] = useState([])
-  const [processes, setProcesses] = useState([])
 
   let token = contextMiddleware.getTokenClaims();
 
@@ -115,15 +125,8 @@ const ReportCheckPointForm = () => {
 
   }
 
-  const [model, setModel] = useState("")
-  const [customer, setCustomer] = useState("")
-  const [process, setProcess] = useState("")
 
-  let params = {
-    model: model,
-    process: process,
-    customer: customer
-  }
+
 
   toastr.options = {
     "positionClass": "toast-top-center",

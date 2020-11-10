@@ -4,8 +4,7 @@ let baseUrl = `${config.baseApiURL[config.env]}/checkpoint/report/daily/`;
 
 
 export const getTableData = (customer, model, process, date, token) => {
-    baseUrl += `${"export"}/${customer}/${model}/${process}/${date}`;
-    return fetch(baseUrl, {
+    return fetch(baseUrl + "export/" + customer + "/" + model + "/" + process + "/" + date, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -16,11 +15,11 @@ export const getTableData = (customer, model, process, date, token) => {
     })
         .then(handleResponse)
         .catch(handleError);
+
 }
 
 export const getPieCharData = (customer, model, process, date, token) => {
-    baseUrl += `${"graphic"}/${customer}/${model}/${process}/${date}`;
-    return fetch(baseUrl, {
+    return fetch(baseUrl = "graphic" + "/" + customer + "/" + model + "/" + process + "/" + date, {
         method: "GET",
         mode: "cors",
         headers: {

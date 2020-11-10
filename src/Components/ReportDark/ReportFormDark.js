@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useContext } from "react";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
@@ -10,11 +9,15 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import { getTableData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
-import { Form } from "react-bootstrap";
-import GlobalContex from "../Common/ContextMiddleware"
+import GlobalContext from '../../context/globalcontext';
+
+
 
 const ReportForm = () => {
 
+  const [, , contextMiddleware] = useContext(GlobalContext);
+  const token = contextMiddleware.getToken()
+  const [excelData, setExcelData] = useState([])
   let location = useLocation;
   let model = location().state.model;
   let customer = location().state.customer;
@@ -40,43 +43,14 @@ const ReportForm = () => {
   });
 
 
-  const [visible, setVisible] = useState({
-    contentVisibility: "",
-    customerPopVisibility: "d-none",
-    modelPopVisibility: "d-none",
-    processPopVisibility: "d-none",
-  });
+  const exportExelHandler = () => {
+    getTableData(customer, model, process, '2020-11-10', token)
+      .then((Response) => {
+        setExcelData(Response)
+        console.log(excelData)
 
-  const showPopUp = (button) => {
-    if (button === "Customer") {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "",
-        modelPopVisibility: "d-none",
-        processPopVisibility: "d-none",
-      });
-    } else if (button === "Model") {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "",
-        processPopVisibility: "d-none",
-      });
-    } else {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "d-none",
-        processPopVisibility: "",
-      });
-    }
-  };
-
-
-
-  const exportToExcelHandler = () => {
-
-    getTableData(customer, model, process)
+      })
+      .catch((error) => { console.log(error) })
   }
 
   return (
@@ -96,7 +70,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <img className="exporticon" src={ExcelIcon} alt="" />
+              <img onClick={exportExelHandler} className="exporticon" src={ExcelIcon} alt="" />
             </div>
           </fieldset>
         </div>
