@@ -1,12 +1,27 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
+import { saveProcess } from '../../api/process-api.js'
 
 const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
-    let token = contextMiddleware.getToken();
-    const { visible, setVisible, failures, setFailureToSave, failHandler, failsParams } = props
+    const userInfo = contextMiddleware.getTokenClaims();
+    const [failsParams, setFailsParams] = useState({})
+    const [failureToSave, setFailureToSave] = useState([])
+    const token = contextMiddleware.getToken();
+    const {
+        visible,
+        setVisible,
+        failures,
+        model,
+        process,
+        customer,
+        setTotalPass,
+        setTotalFail,
+        setTotalProcessed
+    } = props
+
 
 
     const sideScroll = (element, direction, speed, distance, step) => {
@@ -84,23 +99,47 @@ const FailuresWindow = (props) => {
         }
     }
 
-    let errors = []
 
-    const setFailures = (failHandler, failsParams, token, errors) => {
+
+    /// fail method handler
+    const failHandler = (failsParams, token) => {
+
+        saveProcess(failsParams, token)
+            .then((Response) => {
+                setTotalPass(Response.TotalPass)
+                setTotalFail(Response.TotalFail)
+                setTotalProcessed(Response.TotalProcessed)
+            }).catch((error) => { console.log(error) })
+    }
+
+
+
+    const setFailures = (failHandler, failsParams, token) => {
+        let errors = []
         const errorTags = document.querySelectorAll('.error-list > .error-tag');
-
-
         errorTags.forEach(error => {
-            console.log(error.textContent)
             errors.push(error.textContent)
 
-
         });
-        setFailureToSave(errors);
+
+        console.log(errors)
+        setFailsParams({
+            CustomerCode: customer,
+            ProcessName: process,
+            ModelName: model,
+            Result: "fail",
+            EmployeeCode: userInfo.employeeCode,
+            FailureName: errors
+        })
+        console.log(failsParams)
+
         ClearListError();
         failHandler(failsParams, token);
-        setFailureToSave(errors);
+
     }
+
+
+
 
 
     return (
@@ -140,7 +179,7 @@ const FailuresWindow = (props) => {
                     </div>
                 </div>
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={() => setFailures(failHandler, failsParams, token, errors)} id="submit-btn">
+                    <div className="submit-btn" onClick={() => setFailures(failHandler, failsParams, token)} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>

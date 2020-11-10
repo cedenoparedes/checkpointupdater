@@ -15,18 +15,23 @@ const ProcessForm = (props) => {
 	//Here we are getting the token
 	const [, , contextMiddleware] = useContext(GlobalContext);
 	const [failures, setFailures] = useState([]);
-	const [failureToSave, setFailureToSave] = useState([]);
-
-	let token = contextMiddleware.getToken();
-	let userInfo = contextMiddleware.getTokenClaims();
-
-
+	const [passParams, setPassParams] = useState({})
+	const userInfo = contextMiddleware.getTokenClaims();
+	const token = contextMiddleware.getToken()
 
 	//Here we are destructing the props 
-	const { model, process,
-		customer, fillPieParams,
-		totalPass, TotalFail,
-		TotalProcessed, setTotalPass, setTotalFail, setTotalProcessed } = props
+	const {
+		model,
+		process,
+		customer,
+		fillPieParams,
+		totalPass,
+		TotalFail,
+		TotalProcessed,
+		setTotalPass,
+		setTotalFail,
+		setTotalProcessed
+	} = props
 
 	useEffect(() => {
 		fillPieParams(customer, model, process, token);
@@ -41,6 +46,15 @@ const ProcessForm = (props) => {
 				}
 			}).catch((error) => { console.log(error) })
 
+		setPassParams({
+			CustomerCode: customer,
+			ProcessName: process,
+			ModelName: model,
+			Result: "pass",
+			EmployeeCode: userInfo.employeeCode,
+			FailureId: []
+		})
+
 	}, [])
 
 	//The following state and Funtion controls the visibility of the FailuresWindow
@@ -53,23 +67,7 @@ const ProcessForm = (props) => {
 		}
 	};
 
-	let passParams = {
-		CustomerCode: customer,
-		ProcessName: process,
-		ModelName: model,
-		Result: "pass",
-		EmployeeCode: userInfo.employeeCode,
-		FailureId: []
-	}
 
-	let failsParams = {
-		CustomerCode: customer,
-		ProcessName: process,
-		ModelName: model,
-		Result: "fail",
-		EmployeeCode: userInfo.employeeCode,
-		FailureName: failureToSave
-	}
 
 	/// pass method handler
 	const passHandler = (passParams, token) => {
@@ -80,16 +78,6 @@ const ProcessForm = (props) => {
 				setTotalProcessed(Response.TotalProcessed)
 			}).catch((error) => { console.log(error) })
 	}
-	/// fail method handler
-	const failHandler = (failsParams, token) => {
-		saveProcess(failsParams, token)
-			.then((Response) => {
-				setTotalPass(Response.TotalPass)
-				setTotalFail(Response.TotalFail)
-				setTotalProcessed(Response.TotalProcessed)
-			}).catch((error) => { console.log(error) })
-	}
-
 	return (
 		<div className="container-fluid h-90">
 			<div className="row">
@@ -169,9 +157,14 @@ const ProcessForm = (props) => {
 						visible={visible}
 						setVisible={setVisible}
 						failures={failures}
-						setFailureToSave={setFailureToSave}
-						failHandler={failHandler}
-						failsParams={failsParams} />
+						model={model}
+						process={process}
+						customer={customer}
+						setTotalPass={setTotalPass}
+						setTotalFail={setTotalFail}
+						setTotalProcessed={setTotalProcessed}
+
+					/>
 
 				</div>
 			</div>
