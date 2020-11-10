@@ -22,13 +22,13 @@ const ContentRouter = () => {
         <Route
           path="/menu"
           component={contextMiddleware.routeProtectedComponent(Menu)} />
-        <Route exact path="/report-menu">
+        <Route exact path="/report/menu">
           <ReportMenu />
         </Route>
         <Route path="/process">
           <Process />
         </Route>
-        <Route path="/report">
+        <Route exact path="/report">
           <Report />
         </Route>
         <Route exact path="/reportDark">

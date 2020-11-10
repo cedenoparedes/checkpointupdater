@@ -127,12 +127,6 @@ const CheckPointProcessMenu = () => {
 
     }
 
-
-
-
-
-
-
     return (
         <div className="h-90">
 
@@ -149,7 +143,7 @@ const CheckPointProcessMenu = () => {
                 </div>
             </div>
             <div className="contenedor">
-                {isLoading === true ? <Loading isLoading={isLoading} /> : null}
+                {isLoading === true ? <Loading /> : null}
                 {customerVisible === true ? <CustomerPopUp setCustomer={setCustomer} customers={customers} hidePopUps={hidePopUps} /> : null}
                 {modelVisible === true ? <ModelPopUP setModel={setModel} models={models} hidePopUps={hidePopUps} /> : null}
                 {processVisible === true ? <ProcessPopUp setProcess={setProcess} processes={processes} hidePopUps={hidePopUps} /> : null}
@@ -158,7 +152,7 @@ const CheckPointProcessMenu = () => {
 
 
                 {menuVisible === true ?
-                    <div className={'container-fluid '}>
+                    <div className="container-fluid">
                         <form className="form-container">
 
                             <div className="form-group">

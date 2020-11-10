@@ -26,7 +26,10 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
                 />
               </span>
             </div>
-            <Loading isLoading={isLoading} />
+            {
+              isLoading === true ? <Loading /> : null
+            }
+
             <input
               onChange={(e) => {
                 employeeCodeState.setEmployeeCode(e.target.value);

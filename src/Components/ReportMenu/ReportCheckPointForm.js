@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../Common/breadcrumb.css";
 import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
 import DateIcon from "../../Images/SVG/icons/datetime.svg";
@@ -9,53 +9,135 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
-// import DateTime from "../DateTime";
-
+import GlobalContext from "../../context/globalcontext"
+import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
 import { Link } from "react-router-dom";
+import toastr from "toastr";
+import Loading from '../Common/Loading'
+import $ from 'jquery';
 
-const ReportCheckPointForm = (props) => {
 
-  const {clickFunction} = props;
+const ReportCheckPointForm = () => {
 
-  const [visible, setVisible] = useState({
-    contentVisibility: "",
-    customerPopVisibility: "d-none",
-    modelPopVisibility: "d-none",
-    processPopVisibility: "d-none"
+  $(function () {
+    console.log('Jquery esta funcionando');
+    $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT' },
+      console.log('funciona abajo')
+    );
   });
 
-  const showPopUp = (button) => {
+  const dateTimePicker = () => {
+    let click = document.getElementById("tb-date")
+    click.click()
+    click.focus()
+  }
 
-    switch (button) {
-      case 'Customer':
-        setVisible({
-          contentVisibility: "d-none",
-          customerPopVisibility: "",
-          modelPopVisibility: "d-none",
-          processPopVisibility: "d-none"
-        });
-        break;
-      case 'Model':
-        setVisible({
-          contentVisibility: "d-none",
-          customerPopVisibility: "d-none",
-          modelPopVisibility: "",
-          processPopVisibility: "d-none"
-        });
-        break;
-      case 'Process':
-        setVisible({
-          contentVisibility: "d-none",
-          customerPopVisibility: "d-none",
-          modelPopVisibility: "d-none",
-          processPopVisibility: ""
-        });
-        break;
-      default:
-        break;
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [, , contextMiddleware] = useContext(GlobalContext);
+
+  const [menuVisible, setMenuVisible] = useState(true);
+  const [customerVisible, setCustomerVisible] = useState(false);
+  const [modelVisible, setModelVisible] = useState(false);
+  const [processVisible, setProcessVisible] = useState(false);
+
+  const hidePopUps = () => {
+    setMenuVisible(true);
+    setCustomerVisible(false);
+    setModelVisible(false);
+    setProcessVisible(false);
+  }
+
+  const [customers, setCustomers] = useState([])
+  const [models, setModels] = useState([])
+  const [processes, setProcesses] = useState([])
+
+  let token = contextMiddleware.getTokenClaims();
+
+  const getCustomerParams = (token) => {
+    setMenuVisible(false);
+    setIsLoading(true);
+    getCustomers(token)
+      .then((json) => {
+        setCustomers(json);
+        setIsLoading(false);
+        setCustomerVisible(true);
+      }).catch((error) => {
+        console.log(error);
+
+        setTimeout(() => {
+          hidePopUps();
+          setIsLoading(false);
+          toastr.error("Error While Retrieving Data");
+        }
+          , 1000);
+
+      })
+
+  }
+  const getModelParams = (token) => {
+    setMenuVisible(false);
+    setIsLoading(true);
+    getModels(token)
+      .then((json) => {
+        setModels(json);
+        setIsLoading(false);
+        setModelVisible(true);
+      }).catch((error) => {
+        console.log(error);
+        setTimeout(() => {
+          hidePopUps();
+          setIsLoading(false);
+          toastr.error("Error While Retrieving Data");
+        }
+          , 1000);
+
+      })
+
+  }
+
+  const getProcessParams = (token) => {
+    setMenuVisible(false);
+    setIsLoading(true);
+    getProcesses(token)
+      .then((json) => {
+        setProcesses(json)
+        setIsLoading(false);
+        setProcessVisible(true);
+      }).catch((error) => {
+        console.log(error);
+        setTimeout(() => {
+          hidePopUps();
+          setIsLoading(false);
+          toastr.error("Error While Retrieving Data");
+        }, 1000);
+      })
+
+  }
+
+  const [model, setModel] = useState("")
+  const [customer, setCustomer] = useState("")
+  const [process, setProcess] = useState("")
+
+  let params = {
+    model: model,
+    process: process,
+    customer: customer
+  }
+
+  toastr.options = {
+    "positionClass": "toast-top-center",
+    "showMethod": "slideDown",
+    "hideMethod": "slideUp",
+    "timeOut": "3000"
+  }
+
+  const fieldValidation = () => {
+    if (model === "" || process === "" || customer === "") {
+      toastr.error("Please fill all the fields")
     }
 
-  };
+  }
 
   return (
     <div className="h-90">
@@ -73,98 +155,100 @@ const ReportCheckPointForm = (props) => {
       </div>
 
       <div className="contenedor">
-        {/* Modal Customer */}
-        <CustomerPopUp visible={visible} setVisible={setVisible} />
-        {/* modal Model*/}
-        <ModelPopUP visible={visible} setVisible={setVisible} />
-        {/* modal  Process*/}
-        <ProcessPopUp visible={visible} setVisible={setVisible} />
-
-        <div className={`${visible.contentVisibility} container-fluid `} >
-          <form className="form-container">
-            <div className="form-group">
-              <div className="form-row">
-                <div className="input-group" id="datetimepicker">
-                  <div className="col-6 d-flex justify-content-center p-0">
-                    <div type="button" className="btn-menu form-control" id="btn-date" onClick={clickFunction}>
-                      <img className="icon-options" src={DateIcon} alt="" />
-                      <p className="label-btn">Date</p>
+        {isLoading === true ? <Loading /> : null}
+        {customerVisible === true ? <CustomerPopUp setCustomer={setCustomer} customers={customers} hidePopUps={hidePopUps} /> : null}
+        {modelVisible === true ? <ModelPopUP setModel={setModel} models={models} hidePopUps={hidePopUps} /> : null}
+        {processVisible === true ? <ProcessPopUp setProcess={setProcess} processes={processes} hidePopUps={hidePopUps} /> : null}
+        {menuVisible === true ?
+          <div className="container-fluid">
+            <form className="form-container">
+              <div className="form-group">
+                <div className="form-row">
+                  <div className="input-group" id="datetimepicker">
+                    <div className="col-6 d-flex justify-content-center p-0">
+                      <div type="button" className="btn-menu form-control" id="btn-date" onClick={dateTimePicker}>
+                        <img className="icon-options" src={DateIcon} alt="" />
+                        <p className="label-btn">Date</p>
+                      </div>
+                    </div>
+                    <div className="col-6 d-flex justify-content-center input-size p-0 ">
+                      <input type="text" className="form-control  form-control-lg" id="tb-date" />
                     </div>
                   </div>
-                  <div className="col-6 d-flex justify-content-center input-size p-0 ">
-                    <input type="text" className="form-control  form-control-lg" id="tb-date" />
+                </div>
+              </div>
+              <div className="form-group">
+                <div className="form-row">
+                  <div className="col-6 d-flex justify-content-center">
+                    <div type="button" className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
+                      <img className="icon-options" src={CustumerIcon} alt="" />
+                      <p className="label-btn">Customer</p>
+                    </div>
+                  </div>
+                  <div className="col-6 d-flex justify-content-center  input-size">
+                    <input type="text" className="form-control input-text form-control-lg " id="tb-customer" value={customer} disabled />
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="form-row">
-                <div className="col-6 d-flex justify-content-center">
-                  <div type="button" onClick={() => showPopUp('Customer')} className="btn-menu " id="btn-client" value="Client">
-                    <img className="icon-options" src={CustumerIcon} alt="" />
-                    <p className="label-btn">Customer</p>
+              <div className="form-group">
+                <div className="form-row">
+                  <div className="col-6 d-flex justify-content-center">
+                    <div type="button" className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
+                      <img className="icon-options" src={ModelIcon} alt="" />
+                      <p className="label-btn">Model</p>
+                    </div>
+                  </div>
+                  <div className="col-6 d-flex justify-content-center  input-size">
+                    <input type="text" className="form-control input-text form-control-lg" id="tb-model" value={model} disabled />
                   </div>
                 </div>
-                <div className="col-6 d-flex justify-content-center  input-size">
-                  <input type="text" className="form-control input-text form-control-lg " id="tb-customer" disabled />
-                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="form-row">
-                <div className="col-6 d-flex justify-content-center">
-                  <div type="button" onClick={() => showPopUp('Model')} className="btn-menu" id="btn-model" value="Model">
-                    <img className="icon-options" src={ModelIcon} alt="" />
-                    <p className="label-btn">Model</p>
+              <div className="form-group">
+                <div className="form-row">
+                  <div className="col-6 d-flex justify-content-center">
+                    <div type="button" className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
+                      <img className="icon-options" src={ProcessIcon} alt="" />
+                      <p className="label-btn">Process</p>
+                    </div>
+                  </div>
+                  <div className="col-6 d-flex justify-content-center  input-size">
+                    <input type="text" className="form-control input-text form-control-lg" id="tb-process" value={process} disabled />
                   </div>
                 </div>
-                <div className="col-6 d-flex justify-content-center  input-size">
-                  <input type="text" className="form-control input-text form-control-lg" id="tb-model" disabled />
-                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="form-row">
-                <div className="col-6 d-flex justify-content-center">
-                  <div type="button" onClick={() => showPopUp('Process')} className="btn-menu" id="btn-process" value="Process">
-                    <img className="icon-options" src={ProcessIcon} alt="" />
-                    <p className="label-btn">Process</p>
+            </form>
+            {/* Back and Refresh Buttons */}
+            <div className="back-refresh-container d-flex justify-content-center">
+              <div className="col-4 d-flex justify-content-end">
+                <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <div className="back-refresh-btn justify-content-center">
+                    <img src={BackIcon} alt="" />
+                    <p className="btn-lbl">Back</p>
                   </div>
-                </div>
-                <div className="col-6 d-flex justify-content-center  input-size">
-                  <input type="text" className="form-control input-text form-control-lg" id="tb-process" disabled />
-                </div>
+                </Link>
+              </div>
+              <div className="col-4 d-flex justify-content-center">
+                <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <div className="back-refresh-btn justify-content-center">
+                    <img src={RefreshIcon} alt="" />
+                    <p className="btn-lbl">Refresh</p>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-4 d-flex justify-content-start">
+                <Link to={model === "" || process === "" || customer === "" ? {} : {
+                  pathname: '../Report',
+                  state: params
+                }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
+                    <img className="btn-next-rotate" src={BackIcon} alt="" />
+                    <p className="btn-lbl">Next</p>
+                  </div>
+                </Link>
               </div>
             </div>
-          </form>
-          {/* Back and Refresh Buttons */}
-          <div className="back-refresh-container d-flex justify-content-center">
-            <div className="col-4 d-flex justify-content-end">
-              <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                <div className="back-refresh-btn justify-content-center">
-                  <img src={BackIcon} alt="" />
-                  <p className="btn-lbl">Back</p>
-                </div>
-              </Link>
-            </div>
-            <div className="col-4 d-flex justify-content-center">
-              <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                <div className="back-refresh-btn justify-content-center">
-                  <img src={RefreshIcon} alt="" />
-                  <p className="btn-lbl">Refresh</p>
-                </div>
-              </Link>
-            </div>
-            <div className="col-4 d-flex justify-content-start">
-              <Link to='../Report' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                <div className="back-refresh-btn justify-content-center">
-                  <img className="btn-next-rotate" src={BackIcon} alt="" />
-                  <p className="btn-lbl">Next</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
+          </div> : null
+        }
       </div>
     </div>
 

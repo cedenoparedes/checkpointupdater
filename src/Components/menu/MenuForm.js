@@ -35,19 +35,19 @@ const MenuForm = (props) => {
                                         <img className="img-options align-bottom" src={CheckIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                        <span className="label-btn-options" id="check-label">Check Point</span>
+                                        <span className="label-btn-options">Check Point</span>
                                     </div>
                                 </div>
                             </Link>
                         </div>
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <Link to='../reportmenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <Link to='../report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div type="button" className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options" src={DataIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                        <span className="label-btn-options" id="daily-data-label">Daily Data</span>
+                                        <span className="label-btn-options">Daily Data</span>
                                     </div>
                                 </div>
                             </Link>
