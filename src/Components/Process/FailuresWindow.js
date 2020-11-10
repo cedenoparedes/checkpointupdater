@@ -110,7 +110,7 @@ const FailuresWindow = (props) => {
 
     /// fail method handler
     const failHandler = (failsParams, token) => {
-        console.log(failsParams);
+        // console.log(failsParams);
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.TotalPass)
@@ -123,18 +123,19 @@ const FailuresWindow = (props) => {
 
     const setFailures = (failHandler, token) => {
 
-        setFailsParams({
+        const obj = {
             CustomerCode: customer,
             ProcessName: process,
             ModelName: model,
             Result: "fail",
             EmployeeCode: userInfo.employeeCode,
             FailureName: failuresToSave
-        })
+        }
         // console.log(failsParams)
-
+        console.log(obj);
         ClearListError();
-        failHandler(failsParams, token);
+        setFailuresToSave([]);
+        failHandler(obj, token);
 
     }
 
