@@ -4,23 +4,13 @@ import backArrow from '../../Images/back-arrow.svg';
 import fowardArrow from '../../Images/foward-arrow.svg'
 const ModelPopUp = (props) => {
 
-    const { visible, setVisible, setModelState, models } = props;
+    const { setModel, models, hidePopUps } = props;
 
-    const hidePopUp = () => {
-        setVisible({
-            contentVisibility: "",
-            customerPopVisibility: "d-none",
-            modelPopVisibility: "d-none",
-            processPopVisibility: "d-none"
-        })
-    }
-
-    const setModel = (id) => {
-        const textClient = document.querySelector('#tb-model');
+    const setModelState = (id) => {
         const customerButton = document.getElementById(id)
-        textClient.value = customerButton.nextElementSibling.textContent;
-        setModelState(textClient.value)
-        hidePopUp();
+        let model = customerButton.nextElementSibling.textContent;
+        hidePopUps();
+        setModel(model)
     }
 
     const sideScroll = (element, direction, speed, distance, step) => {
@@ -45,11 +35,11 @@ const ModelPopUp = (props) => {
     };
 
 
-    let tittle = "Select A Model";
+    let tittle = "Select Model";
 
     return (
-        <div className={`${visible.modelPopVisibility} w-100`}>
-            <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
+        <div className="d-block w-100">
+            <div className="backdrop" onClick={hidePopUps} id="backdrop"></div>
             <div className="row">
                 <div className="col-12">
                     <div className="modal" id="modal-model">
@@ -63,7 +53,7 @@ const ModelPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-model" id={item.ModelName} onClick={() => setModel(item.ModelName)}>
+                                        <button className="modal-btn btn-model" id={item.ModelName} onClick={() => setModelState(item.ModelName)}>
                                             <img className="format-img-model" src={modelIcon} alt="" />
                                         </button>
                                         <p className="modal-client-text">{item.ModelName}</p>
@@ -76,7 +66,7 @@ const ModelPopUp = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

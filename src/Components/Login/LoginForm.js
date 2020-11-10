@@ -1,12 +1,14 @@
 import React from "react";
 import LogInIMG from "../../Images/LogIn-IMG.svg";
 import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
-// import Loader from 'react-loader-spinner'
-const LoginForm = ({ employeeCodeState, loginHandler, isLouser }) => {
+import Loading from '../Common/Loading'
+
+const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 
   return (
     <div className="contenedor">
       <div className="container-fluid" >
+
         <div className="container-fluid">
           <div className="d-flex justify-content-center">
             <img src={LogInIMG} id="login-frame-size" alt="" />
@@ -24,6 +26,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLouser }) => {
                 />
               </span>
             </div>
+            <Loading isLoading={isLoading} />
             <input
               onChange={(e) => {
                 employeeCodeState.setEmployeeCode(e.target.value);

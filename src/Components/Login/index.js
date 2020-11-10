@@ -4,8 +4,6 @@ import { login } from '../../api/login-api';
 import GlobalContext from '../../context/globalcontext';
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
-import Loading from '../Common/Loading'
-// import { Button } from 'react-bootstrap';
 import $ from 'jquery';
 const Index = () => {
 
@@ -40,13 +38,17 @@ const Index = () => {
                     contextMiddleware.logIn(json.token);
                     toastr.success("Login Successfully.");
                     history.push("/menu");
-                    setIsLoading(false)
-                }).catch((error) => { toastr.error(console.log(error), "Wrong Employee Code.") });
+                    setIsLoading(false);
+                }).catch((error) => {
+                    console.log(error);
+                    setTimeout(() => {
+                        setIsLoading(false);
+                        toastr.error("Wrong Employee Code.");
+                    }, 1000);
+
+
+                });
             clearInput();
-            setIsLoading(false)
-
-
-
         }
     }
 
@@ -65,15 +67,12 @@ const Index = () => {
     }, [])
 
     return (
-        <div>
-            <LoginForm
-                employeeCodeState={{ employeeCode, setEmployeeCode }}
-                loginHandler={loginHandler}
-                isLouser={isLoading}
+        <LoginForm
+            employeeCodeState={{ employeeCode, setEmployeeCode }}
+            loginHandler={loginHandler}
+            isLoading={isLoading}
+        />
 
-            />
-            <Loading isLoading={isLoading} />
-        </div>
 
     )
 }

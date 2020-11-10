@@ -9,7 +9,7 @@ const Loading = (props) => {
     return (
         <div className="Loader">
             <div className={isLoading === true ? "Loader-backdrop" : ""}></div>
-            <Loader className="Loader-style" type="Rings" visible={isLoading} color="#e05d06" />
+            <Loader className="Loader-style" type="TailSpin" visible={isLoading} color="#e05d06" />
         </div>
     )
 }

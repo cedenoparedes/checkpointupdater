@@ -3,29 +3,21 @@ import processIcon from '../../Images/SVG/icons/process.svg'
 
 const ProcessPopUp = (props) => {
 
-    const { visible, setVisible, setProcessState, processes } = props;
+    const { setProcess, processes, hidePopUps } = props;
 
-    const hidePopUp = () => {
-        setVisible({
-            contentVisibility: "",
-            customerPopVisibility: "d-none",
-            modelPopVisibility: "d-none",
-            processPopVisibility: "d-none"
-        })
+
+    const setProcessState = (id) => {
+        const processButton = document.getElementById(id)
+        let process = processButton.nextElementSibling.textContent;
+        hidePopUps();
+        setProcess(process)
+
     }
 
-    const setProcess = (id) => {
-        const textClient = document.querySelector('#tb-process');
-        const customerButton = document.getElementById(id)
-        textClient.value = customerButton.nextElementSibling.textContent;
-        setProcessState(textClient.value)
-        hidePopUp();
-    }
-
-    let tittle = "Select A Process"
+    let tittle = "Select Process"
     return (
-        <div className={`${visible.processPopVisibility} w-100`}>
-            <div className="backdrop" onClick={hidePopUp} id="backdrop"></div>
+        <div className={'d-block w-100'}>
+            <div className="backdrop" onClick={hidePopUps} id="backdrop"></div>
             <div className="row">
                 <div className="col-12">
                     <div className="modal" id="modal-client">
@@ -36,7 +28,7 @@ const ProcessPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-client" id={item.ProcessName} onClick={() => setProcess(item.ProcessName)}>
+                                        <button className="modal-btn btn-client" id={item.ProcessName} onClick={() => setProcessState(item.ProcessName)}>
                                             <img className="format-img-process" src={processIcon} alt="" />
                                         </button>
                                         <p className="modal-client-text">{item.ProcessName}</p>

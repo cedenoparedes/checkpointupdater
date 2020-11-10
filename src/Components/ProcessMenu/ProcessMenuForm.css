@@ -14,7 +14,7 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(27, 27, 27, 0.76);
+  background-color: rgba(27, 27, 27, 0.75);
 }
 .back-arrow {
   position: absolute;
@@ -100,12 +100,8 @@ body {
 }
 .form-group {
   margin: 25px 25px;
-  /* margin-right: -450px;*/
 }
-/*.form-group:last-of-type {
-  margin: 75px 25px 25px 25px;
-  margin-right: -450px;
-}*/
+
 .btn {
   padding: 15px;
   width: 170px;
@@ -305,26 +301,4 @@ body {
     border: 1px black solid;
     background-color: rgba(27, 27, 27, 0.76);
   }
-
-  /* .back-arrow {
-    top: 48%;
-    left: 34px;
-  }
-
-  .foward-arrow {
-    top: 48%;
-    right: 44px;
-  } */
 }
-
-/* @media (min-width: 1400px) {
-  .back-arrow {
-    top: 48%;
-    left: 44px;
-  }
-
-  .foward-arrow {
-    top: 48%;
-    right: 54px;
-  }
-} */
