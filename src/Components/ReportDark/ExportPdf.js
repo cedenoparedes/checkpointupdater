@@ -3,16 +3,17 @@ import { jsPDF } from "jspdf";
 
 export function jsPdfGenerator() {
     var doc = new jsPDF({
-        orientation: "p",
+        orientation: "l",
         unit: "px",
-        format: [1140, 2190.65],
+        format: [998, 1135],
         // format: [1140, 1000],
-        x: 0,
+        x: 5,
         y: 0,
     });
 
     doc.html(document.getElementById("report-container"), {
         callback: function (doc) {
+
             doc.save("PdfGenerated.pdf");
         },
     });

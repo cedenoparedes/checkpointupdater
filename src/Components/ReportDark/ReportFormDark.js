@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { jsPDF } from "jspdf";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
@@ -7,11 +6,9 @@ import BarChart from "../BarChart";
 import Chart from "chart.js";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
-import CustomerPopUp from "../Common/CustomerPopUp";
-import ModelPopUP from "../Common/ModelPopUp";
-import ProcessPopUp from "../Common/ProcessPopUp";
 import { Link } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
+import { getDailyData } from '../../api/report-api';
 
 const ReportForm = () => {
   const [visible, setVisible] = useState({
@@ -59,22 +56,6 @@ const ReportForm = () => {
       },
     });
   });
-  // const jsPdfGenerator = () => {
-  //   var doc = new jsPDF({
-  //     orientation: "p",
-  //     unit: "px",
-  //     format: [1140, 2190.65],
-  //     // format: [1140, 1000],
-  //     x: 0,
-  //     y: 0,
-  //   });
-
-  //   doc.html(document.getElementById("report-container"), {
-  //     callback: function (doc) {
-  //       doc.save("PdfGenerated.pdf");
-  //     },
-  //   });
-  // };
 
   return (
     <div className="container-main" id="chart">
@@ -122,20 +103,6 @@ const ReportForm = () => {
         <div className="row mt-4">
           <div className="col-3 d-flex justify-content-end">
             <div className="box-yield__fail1 align-self-center ">
-              {/* <ul className="box-text1">
-                <li className="items-list" id="item-pass">
-                  <a className="header-porcent" id="header-pass">
-                    Pass:
-                  </a>
-                  <a id="value-pass">78.85%</a>
-                </li>
-                <li className="items-list" id="item-fail">
-                  <a className="header-porcent" id="header-pass">
-                    Fails:
-                  </a>
-                  <a id="value-fail">21.15%</a>
-                </li>
-              </ul> */}
               <div className="box-yield__fail1">
                 <p className="box-text1 ">Pass: <span id="pass" />78.85%</p>
                 <p className="box-text1 ">Fails: <span id="fails" />21.15%</p>
