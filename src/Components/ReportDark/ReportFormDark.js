@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
-import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
 import BarChart from "../BarChart";
 import Chart from "chart.js";
@@ -11,7 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
 import { Form } from "react-bootstrap";
 import GlobalContex from "../../context/globalcontext"
-
+import ReactExport from 'react-data-export';
+import ExportExcel from "./ExportExcel"
 
 
 const ReportForm = () => {
@@ -86,7 +86,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <img onClick={exportExelHandler} className="exporticon" src={ExcelIcon} alt="" />
+              <ExportExcel />
             </div>
           </fieldset>
         </div>
