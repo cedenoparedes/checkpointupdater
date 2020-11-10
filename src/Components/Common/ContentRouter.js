@@ -29,7 +29,7 @@ const ContentRouter = () => {
           <Process />
         </Route>
         <Route exact path="/report">
-          <Report />
+          <ReportDark />
         </Route>
         <Route exact path="/reportDark">
           <ReportDark />
