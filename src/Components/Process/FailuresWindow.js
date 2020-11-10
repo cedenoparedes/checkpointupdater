@@ -33,9 +33,6 @@ const FailuresWindow = (props) => {
     } = props
 
 
-
-
-
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
         var slideTimer = setInterval(function () {
@@ -71,10 +68,7 @@ const FailuresWindow = (props) => {
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
             errorList.appendChild(newTag);
-            fails.push(button.textContent);
-            console.log(fails);
             setFailuresToSave([...failuresToSave, button.textContent]);
-            console.log(failures)
             const closeTag = newTag.querySelector('.close-tag');
             AddEraseFunctionality(closeTag);
         }
@@ -104,9 +98,11 @@ const FailuresWindow = (props) => {
             let parent = closeTag.parentNode;
             let grandParent = parent.parentNode;
             grandParent.removeChild(parent);
-            console.log(fails);
-            fails = fails.filter((n) => { return n !== parent.textContent })
-            setFailuresToSave(fails);
+            setFailuresToSave(() => {
+                let fails = [...failuresToSave];
+                fails = fails.filter((n) => n !== parent.textContent)
+                return fails;
+            });
         });
     };
 
@@ -124,7 +120,7 @@ const FailuresWindow = (props) => {
 
     /// fail method handler
     const failHandler = (failsParams, token) => {
-        console.log(failsParams);
+        // console.log(failsParams);
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.TotalPass)
@@ -136,30 +132,20 @@ const FailuresWindow = (props) => {
 
 
     const setFailures = (failHandler, token) => {
-        console.log(failuresToSave);
-        console.log(fails);
-        let objet = {
+
+        const obj = {
             CustomerCode: customer,
             ProcessName: process,
             ModelName: model,
             Result: "fail",
             EmployeeCode: userInfo.employeeCode,
-            FailureName: fails
+            FailureName: failuresToSave
         }
-        // setFailsParams({
-        //     CustomerCode: customer,
-        //     ProcessName: process,
-        //     ModelName: model,
-        //     Result: "fail",
-        //     EmployeeCode: userInfo.employeeCode,
-        //     FailureName: failuresToSave
-        // })
         // console.log(failsParams)
-
+        console.log(obj);
         ClearListError();
-        fails = [];
-        // console.log(objet)
-        failHandler(objet, token);
+        setFailuresToSave([]);
+        failHandler(obj, token);
 
     }
 
