@@ -31,3 +31,17 @@ export const getPieCharData = (customer, model, process, date, token) => {
         .then(handleResponse)
         .catch(handleError);
 }
+
+export function getDailyData(customer, process, model, result, token) {
+
+    return fetch(baseUrl + "daily" + customer + "/" + process + "/" + model + "/" + result, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        }
+    })
+        .then(handleResponse)
+        .catch(handleError);
+}

@@ -9,7 +9,9 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import { getTableData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
-import GlobalContext from '../../context/globalcontext';
+import { Form } from "react-bootstrap";
+import GlobalContex from "../Common/ContextMiddleware"
+import { getDailyData } from '../../api/report-api';
 
 
 
@@ -51,6 +53,50 @@ const ReportForm = () => {
 
       })
       .catch((error) => { console.log(error) })
+  const showPopUp = (button) => {
+    if (button === "Customer") {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "",
+        modelPopVisibility: "d-none",
+        processPopVisibility: "d-none",
+      });
+    } else if (button === "Model") {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "",
+        processPopVisibility: "d-none",
+      });
+    } else {
+      setVisible({
+        contentVisibility: "d-none",
+        customerPopVisibility: "d-none",
+        modelPopVisibility: "d-none",
+        processPopVisibility: "",
+      });
+    }
+  };
+  useEffect(() => {
+    Chart.plugins.register({
+      beforeDraw: function (chartInstance) {
+        let ctx = chartInstance.chart.ctx;
+        ctx.fillStyle = "#2f2f2f";
+        ctx.fillRect(
+          0,
+          0,
+          chartInstance.chart.width,
+          chartInstance.chart.height
+        );
+      },
+    });
+  });
+
+
+
+  const exportToExcelHandler = () => {
+
+    getTableData(customer, model, process)
   }
 
   return (
@@ -99,20 +145,6 @@ const ReportForm = () => {
         <div className="row mt-4">
           <div className="col-3 d-flex justify-content-end">
             <div className="box-yield__fail1 align-self-center ">
-              {/* <ul className="box-text1">
-                <li className="items-list" id="item-pass">
-                  <a className="header-porcent" id="header-pass">
-                    Pass:
-                  </a>
-                  <a id="value-pass">78.85%</a>
-                </li>
-                <li className="items-list" id="item-fail">
-                  <a className="header-porcent" id="header-pass">
-                    Fails:
-                  </a>
-                  <a id="value-fail">21.15%</a>
-                </li>
-              </ul> */}
               <div className="box-yield__fail1">
                 <p className="box-text1 ">Pass: <span id="pass" />78.85%</p>
                 <p className="box-text1 ">Fails: <span id="fails" />21.15%</p>

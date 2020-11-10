@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
 import $ from 'jquery';
+import { now } from "moment";
 
 
 const ReportCheckPointForm = () => {
@@ -42,17 +43,40 @@ const ReportCheckPointForm = () => {
     })
   }, [models, process, customer])
 
+  const [currentDate, setCurrentDate] = useState();
+  const changedDate = () => {
+    setCurrentDate(() => {
+      $(function () {
+        $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT', autoclose: true }
+
+        ).datepicker("setDate", new Date());
+        console.log("pase por aqui")
+      });
+    })
+
+
+  };
+  useEffect(() => {
+    if (currentDate === "" || currentDate !== null) {
+      changedDate();
+      console.log('entre')
+    }
+  }, [])
+
   $(function () {
-    console.log('Jquery esta funcionando');
-    $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT' },
-      console.log('funciona abajo')
-    );
+    $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT', autoclose: true, value: "xs" }
+
+    ).datepicker("setDate", `${currentDate}`);
   });
 
   const dateTimePicker = () => {
-    let click = document.getElementById("tb-date")
+    let click = document.getElementById("tb-date");
+
     click.click()
     click.focus()
+    console.log(click.value);
+    setCurrentDate(click.value)
+    console.log(click.value);
   }
 
   const hidePopUps = () => {
