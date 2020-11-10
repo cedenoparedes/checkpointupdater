@@ -8,7 +8,8 @@ const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
     const userInfo = contextMiddleware.getTokenClaims();
     const [failsParams, setFailsParams] = useState({})
-    const [failureToSave, setFailureToSave] = useState([])
+    const [failuresToSave, setFailuresToSave] = useState([]);
+
     const token = contextMiddleware.getToken();
     const {
         visible,
@@ -22,6 +23,7 @@ const FailuresWindow = (props) => {
         setTotalProcessed
     } = props
 
+    let fails = [];
 
 
     const sideScroll = (element, direction, speed, distance, step) => {
@@ -58,11 +60,14 @@ const FailuresWindow = (props) => {
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
             errorList.appendChild(newTag);
-
+            fails.push(button.textContent);
+            setFailuresToSave(fails);
             const closeTag = newTag.querySelector('.close-tag');
             AddEraseFunctionality(closeTag);
         }
     }
+
+
     const VerifyIfThereIsATag = (textContent) => {
         const errors = document.querySelectorAll('.error-list > .error-tag');
         let exist = false;
@@ -86,6 +91,9 @@ const FailuresWindow = (props) => {
             let parent = closeTag.parentNode;
             let grandParent = parent.parentNode;
             grandParent.removeChild(parent);
+            console.log(fails);
+            fails = fails.filter((n) => { return n !== parent.textContent })
+            setFailuresToSave(fails);
         });
     };
 
@@ -103,7 +111,7 @@ const FailuresWindow = (props) => {
 
     /// fail method handler
     const failHandler = (failsParams, token) => {
-
+        console.log(failsParams);
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.TotalPass)
@@ -114,24 +122,17 @@ const FailuresWindow = (props) => {
 
 
 
-    const setFailures = (failHandler, failsParams, token) => {
-        let errors = []
-        const errorTags = document.querySelectorAll('.error-list > .error-tag');
-        errorTags.forEach(error => {
-            errors.push(error.textContent)
+    const setFailures = (failHandler, token) => {
 
-        });
-
-        console.log(errors)
         setFailsParams({
             CustomerCode: customer,
             ProcessName: process,
             ModelName: model,
             Result: "fail",
             EmployeeCode: userInfo.employeeCode,
-            FailureName: errors
+            FailureName: failuresToSave
         })
-        console.log(failsParams)
+        // console.log(failsParams)
 
         ClearListError();
         failHandler(failsParams, token);
@@ -179,7 +180,7 @@ const FailuresWindow = (props) => {
                     </div>
                 </div>
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={() => setFailures(failHandler, failsParams, token)} id="submit-btn">
+                    <div className="submit-btn" onClick={() => setFailures(failHandler, token)} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>
