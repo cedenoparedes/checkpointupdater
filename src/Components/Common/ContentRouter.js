@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "../Login";
 import Menu from "../Menu";
-import CheckPointProcessMenu from "../CheckPointProcessMenu";
-import ReportCheckPoint from "../ReportCheckPoint";
+import ProcessMenu from "../ProcessMenu";
+import ReportMenu from "../ReportMenu";
 import Report from "../Report";
+import ReportDark from "../ReportDark";
 import NoFound from "./NoFound";
 import Process from "../Process";
 import GlobalContext from "../../context/globalcontext";
 
 const ContentRouter = () => {
-  //   const [, , contextMiddleware] = useContext(GlobalContext);
-  //   useEffect(() => {}, []);
+  const [, , contextMiddleware] = useContext(GlobalContext);
 
   return (
     <div id="main-container">
@@ -19,20 +19,23 @@ const ContentRouter = () => {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route path="/menu">
-          <Menu />
-        </Route>
-        <Route exact path="/ReportCheckPoint">
-          <ReportCheckPoint />
+        <Route
+          path="/menu"
+          component={contextMiddleware.routeProtectedComponent(Menu)} />
+        <Route exact path="/report/menu">
+          <ReportMenu />
         </Route>
         <Route path="/process">
           <Process />
         </Route>
-        <Route exact path="/Report">
-          <Report />
+        <Route exact path="/report">
+          <ReportDark />
         </Route>
-        <Route exact path="/CheckPointProcessMenu">
-          <CheckPointProcessMenu />
+        <Route exact path="/reportDark">
+          <ReportDark />
+        </Route>
+        <Route exact path="/processMenu">
+          <ProcessMenu />
         </Route>
         <Route path="*">
           <NoFound />

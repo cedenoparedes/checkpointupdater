@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
+import GlobalContext from '../../context/globalcontext'
+import { saveProcess } from '../../api/process-api.js'
+
+let fails = [];
 
 const FailuresWindow = (props) => {
+    const [, , contextMiddleware] = useContext(GlobalContext)
+    const userInfo = contextMiddleware.getTokenClaims();
+    // const [failsParams, setFailsParams] = useState({
+    //     CustomerCode: "",
+    //     ProcessName: "",
+    //     ModelName: "",
+    //     Result: "",
+    //     EmployeeCode: "",
+    //     FailureName: []
+    // })
+    const [failuresToSave, setFailuresToSave] = useState([]);
 
-    const { visible, setVisible } = props
+    const token = contextMiddleware.getToken();
+    const {
+        visible,
+        setVisible,
+        failures,
+        model,
+        process,
+        customer,
+        setTotalPass,
+        setTotalFail,
+        setTotalProcessed
+    } = props
+
 
     const sideScroll = (element, direction, speed, distance, step) => {
         let scrollAmount = 0;
@@ -36,20 +63,23 @@ const FailuresWindow = (props) => {
         const tagAlreadyExist = VerifyIfThereIsATag(button.textContent);
 
         if (!tagAlreadyExist) {
+
             let newTag = document.createElement('span');
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
             errorList.appendChild(newTag);
-
+            setFailuresToSave([...failuresToSave, button.textContent]);
             const closeTag = newTag.querySelector('.close-tag');
             AddEraseFunctionality(closeTag);
         }
     }
+
+
     const VerifyIfThereIsATag = (textContent) => {
         const errors = document.querySelectorAll('.error-list > .error-tag');
         let exist = false;
         errors.forEach(error => {
-            if (textContent == error.textContent) {
+            if (textContent === error.textContent) {
                 exist = true;
             }
         });
@@ -68,6 +98,11 @@ const FailuresWindow = (props) => {
             let parent = closeTag.parentNode;
             let grandParent = parent.parentNode;
             grandParent.removeChild(parent);
+            setFailuresToSave(() => {
+                let fails = [...failuresToSave];
+                fails = fails.filter((n) => n !== parent.textContent)
+                return fails;
+            });
         });
     };
 
@@ -81,56 +116,41 @@ const FailuresWindow = (props) => {
         }
     }
 
-    const SaveListErros = () => {
-        const errorTags = document.querySelectorAll('.error-list > .error-tag');
-        let errors = [];
 
-        errorTags.forEach(error => {
-            errors.push(error.textContent);
-        });
-        ClearListError();
-        return console.log(errors);
-    };
 
-    const failures = [
-        {
-            FailureName: "Peel Off",
-            FailureId: 10
-        },
-        {
-            FailureName: "Missing Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "11111 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "33412 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "5555 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "5555 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "5555 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "5555 Hook",
-            FailuteId: 11
-        },
-        {
-            FailureName: "5555 Hook",
-            FailuteId: 11
+    /// fail method handler
+    const failHandler = (failsParams, token) => {
+        // console.log(failsParams);
+        saveProcess(failsParams, token)
+            .then((Response) => {
+                setTotalPass(Response.TotalPass)
+                setTotalFail(Response.TotalFail)
+                setTotalProcessed(Response.TotalProcessed)
+            }).catch((error) => { console.log(error) })
+    }
+
+
+
+    const setFailures = (failHandler, token) => {
+
+        const obj = {
+            CustomerCode: customer,
+            ProcessName: process,
+            ModelName: model,
+            Result: "fail",
+            EmployeeCode: userInfo.employeeCode,
+            FailureName: failuresToSave
         }
+        // console.log(failsParams)
+        console.log(obj);
+        ClearListError();
+        setFailuresToSave([]);
+        failHandler(obj, token);
 
-    ]
+    }
+
+
+
 
 
     return (
@@ -169,9 +189,8 @@ const FailuresWindow = (props) => {
                         </div>
                     </div>
                 </div>
-                {/* Failure Buttons */}
                 <div className="col-12 p-2">
-                    <div className="submit-btn" onClick={SaveListErros} id="submit-btn">
+                    <div className="submit-btn" onClick={() => setFailures(failHandler, token)} id="submit-btn">
                         <button>Complete</button>
                     </div>
                 </div>

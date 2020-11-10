@@ -1,0 +1,113 @@
+.title1 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  width: 75%;
+  border-radius: 9px;
+  border: solid 1px;
+  /* opacity: 47%; */
+}
+.header-porcent {
+  color: #cccccc;
+  margin-right: 10px;
+}
+#value-pass {
+  color: #4df08f;
+}
+
+#value-fail {
+  color: #e63946;
+}
+#item-pass {
+  color: #4df08f;
+}
+#item-fail {
+  color: #e63946;
+}
+.items-list {
+  list-style-type: square;
+}
+.container {
+  height: 482px;
+  overflow-y: scroll;
+  border-radius: 7px;
+}
+.exporticon {
+  width: 34px;
+  margin-bottom: 12px;
+  margin-top: 7px;
+  margin-left: 27px;
+}
+legend {
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: -4px !important;
+}
+fieldset {
+  width: 154px;
+  border: 1px solid grey;
+  justify-content: center;
+}
+.option1 {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  background-color: #cccccc;
+  border: white 2px solid;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 14px !important;
+}
+.pieChart {
+  position: relative;
+}
+.back-refresh-container {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.box-yield__fail1 {
+  /* position: absolute; */
+  width: 170px;
+  height: 90px;
+  /* border: 1px white solid; */
+  padding: 15px;
+  /* background-color: #525252; */
+}
+.box-text1 {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+.box-text1:last-of-type {
+  color: #e63946;
+}
+.canvas {
+  position: relative;
+  margin: auto;
+  width: 1000px;
+}
+.canvas > canvas {
+  width: inherit;
+  height: inherit;
+}
+.btn-export {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.container-format1 {
+  background-color: #2f2f2f;
+}
+/* #CustomerBtn {
+  background-color: #cccccc;
+}
+#ProcessBtn {
+  background-color: #dfd3c3;
+}
+#ModelBtn {
+  background-color: #cccccc;
+} */

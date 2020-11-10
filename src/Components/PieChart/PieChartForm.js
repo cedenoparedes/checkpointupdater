@@ -12,7 +12,7 @@ const PieChartForm = () => {
     //     <p className="box-text">Fails: <span id="fails" /></p>
     //   </div> */}
     <React.Fragment>
-      <canvas id="pieChart1"></canvas>
+      <canvas id="pieChart1" className="ReportPieChart"></canvas>
     </React.Fragment>
 
     // </div>

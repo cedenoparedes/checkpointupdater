@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
 import DataIcon from '../../Images/SVG/icons/data.svg';
+import { Link } from "react-router-dom";
 
-const MenuForm = () => {
+
+const MenuForm = (props) => {
+
+
     return (
         <div className="container-fluid h-90">
             <div className="row">
@@ -25,24 +29,28 @@ const MenuForm = () => {
                     </div>
                     <div className="row mt-5 mb-5">
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <div type="button" className="div-btn-options pt-5" id="chk-point">
-                                <div className="row d-flex justify-content-center">
-                                    <img className="img-options align-bottom" src={CheckIcon} alt="" />
+                            <Link to='../ProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <div type="button" className="div-btn-options pt-5" id="chk-point">
+                                    <div className="row d-flex justify-content-center">
+                                        <img className="img-options align-bottom" src={CheckIcon} alt="" />
+                                    </div>
+                                    <div className="row d-flex justify-content-center">
+                                        <span className="label-btn-options">Check Point</span>
+                                    </div>
                                 </div>
-                                <div className="row d-flex justify-content-center">
-                                    <span className="label-btn-options" id="check-label">Check Point</span>
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                         <div className="col-6 d-flex justify-content-center mb-5">
-                            <div type="button" className="div-btn-options pt-5" id="d-data">
-                                <div className="row d-flex justify-content-center">
-                                    <img className="img-options" src={DataIcon} alt="" />
+                            <Link to='../report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <div type="button" className="div-btn-options pt-5" id="d-data">
+                                    <div className="row d-flex justify-content-center">
+                                        <img className="img-options" src={DataIcon} alt="" />
+                                    </div>
+                                    <div className="row d-flex justify-content-center">
+                                        <span className="label-btn-options">Daily Data</span>
+                                    </div>
                                 </div>
-                                <div className="row d-flex justify-content-center">
-                                    <span className="label-btn-options" id="daily-data-label">Daily Data</span>
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
