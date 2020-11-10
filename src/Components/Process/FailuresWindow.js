@@ -4,10 +4,19 @@ import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
 import { saveProcess } from '../../api/process-api.js'
 
+let fails = [];
+
 const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
     const userInfo = contextMiddleware.getTokenClaims();
-    const [failsParams, setFailsParams] = useState({})
+    // const [failsParams, setFailsParams] = useState({
+    //     CustomerCode: "",
+    //     ProcessName: "",
+    //     ModelName: "",
+    //     Result: "",
+    //     EmployeeCode: "",
+    //     FailureName: []
+    // })
     const [failuresToSave, setFailuresToSave] = useState([]);
 
     const token = contextMiddleware.getToken();
@@ -54,6 +63,7 @@ const FailuresWindow = (props) => {
         const tagAlreadyExist = VerifyIfThereIsATag(button.textContent);
 
         if (!tagAlreadyExist) {
+
             let newTag = document.createElement('span');
             newTag.classList.add('error-tag');
             newTag.innerHTML = `${button.textContent}<span class="close-tag"></span>`;
