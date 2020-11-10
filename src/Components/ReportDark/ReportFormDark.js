@@ -10,20 +10,34 @@ import { getTableData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
 import { Form } from "react-bootstrap";
-import GlobalContex from "../Common/ContextMiddleware"
-import { getDailyData } from '../../api/report-api';
+import GlobalContex from "../../context/globalcontext"
 
 
 
 const ReportForm = () => {
 
-  const [, , contextMiddleware] = useContext(GlobalContext);
+  const [, , contextMiddleware] = useContext(GlobalContex);
   const token = contextMiddleware.getToken()
   const [excelData, setExcelData] = useState([])
   let location = useLocation;
   let model = location().state.model;
   let customer = location().state.customer;
   let process = location().state.process;
+
+  useEffect(() => {
+    Chart.plugins.register({
+      beforeDraw: function (chartInstance) {
+        let ctx = chartInstance.chart.ctx;
+        ctx.fillStyle = "#2f2f2f";
+        ctx.fillRect(
+          0,
+          0,
+          chartInstance.chart.width,
+          chartInstance.chart.height
+        );
+      },
+    });
+  });
 
 
   useEffect(() => {
@@ -49,56 +63,12 @@ const ReportForm = () => {
     getTableData(customer, model, process, '2020-11-10', token)
       .then((Response) => {
         setExcelData(Response)
-        console.log(excelData)
+
 
       })
       .catch((error) => { console.log(error) })
-  const showPopUp = (button) => {
-    if (button === "Customer") {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "",
-        modelPopVisibility: "d-none",
-        processPopVisibility: "d-none",
-      });
-    } else if (button === "Model") {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "",
-        processPopVisibility: "d-none",
-      });
-    } else {
-      setVisible({
-        contentVisibility: "d-none",
-        customerPopVisibility: "d-none",
-        modelPopVisibility: "d-none",
-        processPopVisibility: "",
-      });
-    }
-  };
-  useEffect(() => {
-    Chart.plugins.register({
-      beforeDraw: function (chartInstance) {
-        let ctx = chartInstance.chart.ctx;
-        ctx.fillStyle = "#2f2f2f";
-        ctx.fillRect(
-          0,
-          0,
-          chartInstance.chart.width,
-          chartInstance.chart.height
-        );
-      },
-    });
-  });
-
-
-
-  const exportToExcelHandler = () => {
-
-    getTableData(customer, model, process)
   }
-
+  console.log(excelData)
   return (
     <div className="container-main" id="chart">
       {/* <meta charSet="utf-8" /> */}
