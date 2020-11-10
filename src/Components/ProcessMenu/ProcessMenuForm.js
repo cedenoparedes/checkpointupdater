@@ -17,7 +17,12 @@ import Loading from '../Common/Loading'
 const CheckPointProcessMenu = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [, , contextMiddleware] = useContext(GlobalContext);
-
+    const [model, setModel] = useState("")
+    const [customer, setCustomer] = useState("")
+    const [process, setProcess] = useState("")
+    const [customers, setCustomers] = useState([])
+    const [models, setModels] = useState([])
+    const [processes, setProcesses] = useState([])
     const [menuVisible, setMenuVisible] = useState(true);
     const [customerVisible, setCustomerVisible] = useState(false);
     const [modelVisible, setModelVisible] = useState(false);
@@ -31,11 +36,16 @@ const CheckPointProcessMenu = () => {
         setProcessVisible(false);
     }
 
-    const [customers, setCustomers] = useState([])
-    const [models, setModels] = useState([])
-    const [processes, setProcesses] = useState([])
 
     let token = contextMiddleware.getTokenClaims();
+
+
+    let params = {
+        model: model,
+        process: process,
+        customer: customer
+    }
+
 
     const getCustomerParams = (token) => {
         setMenuVisible(false);
@@ -101,17 +111,8 @@ const CheckPointProcessMenu = () => {
 
 
 
-    const [model, setModel] = useState("")
-    const [customer, setCustomer] = useState("")
-    const [process, setProcess] = useState("")
+
     // const [linkProperties, setLinkProperties] = useState({})
-
-
-    let params = {
-        model: model,
-        process: process,
-        customer: customer
-    }
 
     toastr.options = {
         "positionClass": "toast-top-center",

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { jsPDF } from "jspdf";
+
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import PieChart from "../PieChart";
@@ -7,13 +7,39 @@ import BarChart from "../BarChart";
 import Chart from "chart.js";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
-import CustomerPopUp from "../Common/CustomerPopUp";
-import ModelPopUP from "../Common/ModelPopUp";
-import ProcessPopUp from "../Common/ProcessPopUp";
-import { Link } from "react-router-dom";
+import { getTableData } from "../../api/report-api"
+import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
+import { Form } from "react-bootstrap";
+import GlobalContex from "../Common/ContextMiddleware"
 
 const ReportForm = () => {
+
+  let location = useLocation;
+  let model = location().state.model;
+  let customer = location().state.customer;
+  let process = location().state.process;
+
+
+  useEffect(() => {
+    Chart.plugins.register({
+      beforeDraw: function (chartInstance) {
+        let ctx = chartInstance.chart.ctx;
+        ctx.fillStyle = "#2f2f2f";
+        ctx.fillRect(
+          0,
+          0,
+          chartInstance.chart.width,
+          chartInstance.chart.height
+        );
+      },
+    });
+
+
+
+  });
+
+
   const [visible, setVisible] = useState({
     contentVisibility: "",
     customerPopVisibility: "d-none",
@@ -45,36 +71,13 @@ const ReportForm = () => {
       });
     }
   };
-  useEffect(() => {
-    Chart.plugins.register({
-      beforeDraw: function (chartInstance) {
-        let ctx = chartInstance.chart.ctx;
-        ctx.fillStyle = "#2f2f2f";
-        ctx.fillRect(
-          0,
-          0,
-          chartInstance.chart.width,
-          chartInstance.chart.height
-        );
-      },
-    });
-  });
-  // const jsPdfGenerator = () => {
-  //   var doc = new jsPDF({
-  //     orientation: "p",
-  //     unit: "px",
-  //     format: [1140, 2190.65],
-  //     // format: [1140, 1000],
-  //     x: 0,
-  //     y: 0,
-  //   });
 
-  //   doc.html(document.getElementById("report-container"), {
-  //     callback: function (doc) {
-  //       doc.save("PdfGenerated.pdf");
-  //     },
-  //   });
-  // };
+
+
+  const exportToExcelHandler = () => {
+
+    getTableData(customer, model, process)
+  }
 
   return (
     <div className="container-main" id="chart">
