@@ -14,7 +14,6 @@ import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
 import { Link } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
-import $ from 'jquery';
 import DatePicker from 'react-datepicker'
 
 
@@ -34,15 +33,32 @@ const ReportCheckPointForm = () => {
   const [process, setProcess] = useState("")
   const [params, setParams] = useState({})
   const [startDate, setStartDate] = useState(new Date());
+  const [dateToSend, setDateToSend] = useState("")
 
 
   useEffect(() => {
     setParams({
       model: model,
       process: process,
-      customer: customer
+      customer: customer,
+      startDate: dateToSend
     })
   }, [models, process, customer])
+
+  useEffect(() => {
+    getDateToSends();
+  }, [startDate])
+
+  const getDateToSends = () => {
+    let dateSend = document.getElementById("tb-date")
+    setDateToSend(dateSend.value)
+  }
+
+  const getDateToSend = (date) => {
+    setStartDate(date)
+    let dateSend = document.getElementById("tb-date")
+    setDateToSend(dateSend.value)
+  }
 
   const dateTimePicker = () => {
     let click = document.getElementById("tb-date");
@@ -171,9 +187,10 @@ const ReportCheckPointForm = () => {
                       </div>
                     </div>
                     <div className="col-6 d-flex justify-content-center input-size p-0 ">
-
-                      {/* <input type="text" className="form-control  form-control-lg" id="tb-date" /> */}
-                      <DatePicker className="form-control  form-control-lg" id="tb-date" selected={startDate} onChange={date => setStartDate(date)} />
+                      <DatePicker className="form-control  form-control-lg"
+                        id="tb-date" dateFormat="yyyy-MM-dd"
+                        selected={startDate}
+                        onChange={(date) => getDateToSend(date)} />
                     </div>
                   </div>
                 </div>

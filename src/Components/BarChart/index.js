@@ -4,7 +4,7 @@ import Chart from "chart.js";
 
 const NewChartjs = (props) => {
 
-  const { totalFailures, failuresByGroup } = props
+  const { totalFailures, failuresByGroup, FailuresByGroupPer } = props
 
   useEffect(() => {
 
@@ -19,7 +19,7 @@ const NewChartjs = (props) => {
           backgroundColor: "#BA1E14",
           pointBorderWidth: 5,
           fill: false,
-          data: [62.5, 37.5],
+          data: FailuresByGroupPer,
           yAxisID: "y-axis-2",
         },
         {

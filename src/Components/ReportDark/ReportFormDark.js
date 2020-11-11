@@ -23,6 +23,7 @@ const ReportForm = () => {
   let model = location().state.model;
   let customer = location().state.customer;
   let process = location().state.process;
+  let date = location().state.startDate
 
 
 
@@ -47,7 +48,7 @@ const ReportForm = () => {
 
   const getDataCharts = () => {
 
-    getPieCharData(customer, model, process, '2020-11-10', token)
+    getPieCharData(customer, model, process, date, token)
       .then((Response) => {
         setChartsData(Response)
       })
@@ -56,7 +57,7 @@ const ReportForm = () => {
   }
 
   const exportExelHandler = () => {
-    getTableData(customer, model, process, '2020-11-10')
+    getTableData(customer, model, process, date)
       .then((Response) => {
         setExcelData(Response)
 
@@ -127,6 +128,7 @@ const ReportForm = () => {
             <div className="chart1"> {<BarChart
               totalFailures={chartsData.TotalFailures}
               failuresByGroup={chartsData.FailuresByGroup}
+              FailuresByGroupPer={chartsData.FailuresByGroupPer}
             />}</div>
           </div>
         </div>
