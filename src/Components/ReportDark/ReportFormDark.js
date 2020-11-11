@@ -86,7 +86,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <ExportExcel />
+              <ExportExcel customer={customer} model={model} process={process} token={token}/>
             </div>
           </fieldset>
         </div>
@@ -134,7 +134,7 @@ const ReportForm = () => {
       <div className="back-refresh-container d-flex justify-content-right">
         <div className="col-6 d-flex justify-content-end">
           <Link
-            to="../ReportCheckPoint"
+            to="../report/menu"
             style={{ color: "inherit", textDecoration: "inherit" }}
           >
             <div className="back-refresh-btn justify-content-center">

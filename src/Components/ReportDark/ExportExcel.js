@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactExport from 'react-data-export';
 import jsondata from "./jsondata.json"
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
@@ -9,14 +9,17 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 
 
-const ExportToExcel = () => {
-    const exportExelHandler = () => {
+const ExportToExcel = (props) => {
+    const { customer, model, process, token } = props
+    const [excelData, setExcelData] = useState([]);
+    const [dataS, setDataS] = useState([]);
+
+    useEffect(() => {
         getTableData(customer, model, process, '2020-11-10', token)
             .then((Response) => {
-
+                console.log('david');
                 let arreglo = [];
 
-                console.log('entre');
                 Response.forEach(element => {
                     let obj = [];
                     for (const key in element) {
@@ -24,29 +27,37 @@ const ExportToExcel = () => {
 
                     }
                     arreglo.push(obj);
-                    console.log(arreglo)
-                }
-let dataset = [
-                    {
-                        columns: [{ title: "Date", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "Time", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "CustomerCode", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "ProcessName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "ModelName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "Result", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "FailureName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                        { title: "UserName", widthPx: 100, style: { font: { sz: "16", bold: true } }, }],
-                        data: arreglo
-                    }];
+                })
+                console.log(dataS);
+                setDataS([
 
+                    {
+                        columns:
+                            [
+                                { title: "Date", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "Time", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "CustomerCode", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "ProcessName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "ModelName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "Result", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "FailureName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
+                                { title: "UserName", widthPx: 100, style: { font: { sz: "16", bold: true } }, }
+                            ],
+                        data: arreglo
+                    }]
+                );
             })
             .catch((error) => { console.log(error) })
+    }, [excelData])
+    
+    const exportExelHandler = () => {
+
     }
 
     return (
         <div className="exporticon">
-            <ExcelFile element={<img type="button" src={ExcelIcon} alt="" onClick={RellenarArreglo} />}>
-                <ExcelSheet dataSet={dataset} name="Organization" />
+            <ExcelFile element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
+                <ExcelSheet dataSet={dataS} name="Organization" />
             </ExcelFile>
         </div>
     );
@@ -56,3 +67,15 @@ let dataset = [
 
 
 export default ExportToExcel;
+
+
+/*const  RellenarArreglo = (jsondata)=> {
+     jsondata.forEach(element => {
+         let obj = [];
+         for (const key in element) {
+             obj.push({ value: element[key] });
+         }
+         arreglo.push(obj);
+         console.log(arreglo)
+     })
+ }*/
