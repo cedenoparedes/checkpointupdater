@@ -16,13 +16,22 @@ const ExportToExcel = (props) => {
     useEffect(() => {
         getTableData(customer, model, process, date, token)
             .then((Response) => {
-                console.log('david');
                 let arreglo = [];
 
                 Response.forEach(element => {
                     let obj = [];
                     for (const key in element) {
-                        obj.push({ value: element[key] });
+                        obj.push({
+                            value: element[key], style: {
+                                font: { name: "Century Gothic", sz: "10", bold: false, patternType: "solid", color: { rgb: "000000" } },
+                                alignment: { vertical: "center", horizontal: "center" },
+                                border: {
+                                    top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                    left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
+                                    diagonal: { style: "medium", color: { rgb: "343232" } }
+                                }
+                            },
+                        });
 
                     }
                     arreglo.push(obj);
@@ -32,72 +41,107 @@ const ExportToExcel = (props) => {
 
                     {
 
+
                         columns:
                             [
                                 {
                                     title: "Date", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "Time", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "CustomerCode", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "ProcessName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "ModelName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "Result", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "FailureName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 },
                                 {
                                     title: "UserName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "343232" } },
-                                        alignment: { vertical: "center", horizontal: "center" }
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
                                     },
                                 }
                             ],
                         data: arreglo
-
-
-
-
-
-
 
                     }]
                 );
@@ -111,7 +155,7 @@ const ExportToExcel = (props) => {
 
     return (
         <div className="exporticon">
-            <ExcelFile filename="Data" element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
+            <ExcelFile filename="Check Point Data" element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
                 <ExcelSheet dataSet={excelData} name={customer + "-" + model + "-" + process + "-" + date} />
             </ExcelFile>
         </div>
