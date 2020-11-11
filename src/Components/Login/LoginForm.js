@@ -1,7 +1,7 @@
 import React from "react";
 import LogInIMG from "../../Images/LogIn-IMG.svg";
 import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
-import Loading from '../Common/Loading'
+import Loading from '../Common/Loading';
 
 const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 

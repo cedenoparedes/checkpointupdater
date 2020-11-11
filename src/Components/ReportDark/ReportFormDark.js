@@ -10,11 +10,13 @@ import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
 import GlobalContex from "../../context/globalcontext"
 import ReactExport from 'react-data-export';
-import ExportExcel from "./ExportExcel"
+import ExportExcel from "./ExportExcel";
+import Loading from '../Common/Loading';
 
 
 const ReportForm = () => {
 
+  const [isLoading, setIsLoading] = useState(false);
   const [, , contextMiddleware] = useContext(GlobalContex);
   const token = contextMiddleware.getToken()
   const [excelData, setExcelData] = useState([])
@@ -55,7 +57,13 @@ const ReportForm = () => {
       .catch((error) => { console.log(error) })
 
   }
-
+  const exportToPDF = ()=>{
+    setIsLoading(true);
+    jsPdfGenerator();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); 
+  }
   const exportExelHandler = () => {
     getTableData(customer, model, process, date)
       .then((Response) => {
@@ -75,9 +83,7 @@ const ReportForm = () => {
             <div className="justify-content-center">
               <img
                 type="button"
-                onClick={() => {
-                  jsPdfGenerator();
-                }}
+                onClick={exportToPDF}
                 className="exporticon"
                 src={PdfIcon}
                 alt=""
@@ -87,6 +93,7 @@ const ReportForm = () => {
           </fieldset>
         </div>
       </div>
+      {isLoading === true ? <Loading /> : null}
       <div className="container container-format1" id="report-container">
         <div className="row text-center">
           <div className="col-4">
