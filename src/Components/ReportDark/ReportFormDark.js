@@ -9,10 +9,6 @@ import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import { getTableData, getPieCharData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
-<<<<<<< HEAD
-=======
-import { Form } from "react-bootstrap";
->>>>>>> master
 import GlobalContex from "../../context/globalcontext"
 
 
@@ -58,7 +54,6 @@ const ReportForm = () => {
       },
     });
 
-<<<<<<< HEAD
     getDataCharts()
 
 
@@ -83,23 +78,6 @@ const ReportForm = () => {
       })
       .catch((error) => { console.log(error) })
   }
-=======
-
-
-  });
-
-
-  const exportExelHandler = () => {
-    getTableData(customer, model, process, '2020-11-10', token)
-      .then((Response) => {
-        setExcelData(Response)
-
-
-      })
-      .catch((error) => { console.log(error) })
-  }
-  console.log(excelData)
->>>>>>> master
   return (
     <div className="container-main" id="chart">
       {/* <meta charSet="utf-8" /> */}
