@@ -1,36 +1,16 @@
 import React, { useEffect } from "react";
 import Chart from "chart.js";
-import BarChartForm from "./BarChartForm";
 
-const NewChartjs = () => {
-  //     let data = {
-  //         datasets: [{
-  //             data: [10, 20, 30]
-  //         }],
 
-  //         // These labels appear in the legend and in the tooltips when hovering different arcs
-  //         labels: [
-  //             'Red',
-  //             'Yellow',
-  //             'Blue'
-  //         ],
+const NewChartjs = (props) => {
 
-  //     };
-
-  //    let options = {
-
-  //     }
-
-  //     var myPieChart = new Chart(ctx, {
-  //         type: 'pie',
-  //         data: data,
-  //         options: options
-  //     });
+  const { totalFailures, failuresByGroup } = props
 
   useEffect(() => {
+
     const ctx = document.getElementById("barChart");
     let data = {
-      labels: ["8", "7", "9", "11"],
+      labels: failuresByGroup,
       datasets: [
         {
           type: "line",
@@ -39,7 +19,7 @@ const NewChartjs = () => {
           backgroundColor: "#BA1E14",
           pointBorderWidth: 5,
           fill: false,
-          data: [34.04, 57.45, 76.6, 89.36, 100.0],
+          data: [62.5, 37.5],
           yAxisID: "y-axis-2",
         },
         {
@@ -47,7 +27,7 @@ const NewChartjs = () => {
           label: "Failures",
           borderColor: "#e63946",
           backgroundColor: "#e63946",
-          data: [21, 11, 9, 6, 5],
+          data: totalFailures,
           yAxisID: "y-axis-1",
         },
       ],
@@ -103,7 +83,7 @@ const NewChartjs = () => {
       data: data,
       options: options,
     });
-  }, []);
+  }, [totalFailures]);
 
   return (
     // <div>

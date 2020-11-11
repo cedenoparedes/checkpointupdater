@@ -10,7 +10,6 @@ const PieChart = (props) => {
   useEffect(() => {
 
 
-
     const pieChart = document.getElementById("pieChart1").getContext("2d");
 
     Chart.defaults.global.defaultFontFamily = "Lato";
