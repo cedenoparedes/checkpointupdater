@@ -5,10 +5,9 @@ import BarChart from "../BarChart";
 import Chart from "chart.js";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
-import { getTableData } from "../../api/report-api"
+import { getTableData, getPieCharData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
-import { Form } from "react-bootstrap";
 import GlobalContex from "../../context/globalcontext"
 import ReactExport from 'react-data-export';
 import ExportExcel from "./ExportExcel"
@@ -19,6 +18,7 @@ const ReportForm = () => {
   const [, , contextMiddleware] = useContext(GlobalContex);
   const token = contextMiddleware.getToken()
   const [excelData, setExcelData] = useState([])
+  const [chartsData, setChartsData] = useState({})
   let location = useLocation;
   let model = location().state.model;
   let customer = location().state.customer;
@@ -54,13 +54,23 @@ const ReportForm = () => {
       },
     });
 
+    getDataCharts()
 
 
-  });
+  }, []);
 
+  const getDataCharts = () => {
+
+    getPieCharData(customer, model, process, '2020-11-10', token)
+      .then((Response) => {
+        setChartsData(Response)
+      })
+      .catch((error) => { console.log(error) })
+
+  }
 
   const exportExelHandler = () => {
-    getTableData(customer, model, process, '2020-11-10', token)
+    getTableData(customer, model, process, '2020-11-10')
       .then((Response) => {
         setExcelData(Response)
 
@@ -68,7 +78,6 @@ const ReportForm = () => {
       })
       .catch((error) => { console.log(error) })
   }
-  console.log(excelData)
   return (
     <div className="container-main" id="chart">
       {/* <meta charSet="utf-8" /> */}
@@ -96,19 +105,19 @@ const ReportForm = () => {
           <div className="col-4">
             <h3 className="title1">Customer</h3>
             <a href="#" className="btn option1" id="CustomerBtn">
-              506
+              {chartsData.CustomerCode}
             </a>
           </div>
           <div className="col-4">
             <h3 className="title1">Process</h3>
             <a href="#" className="btn option1" id="ProcessBtn">
-              DSM
+              {chartsData.ProcessName}
             </a>
           </div>
           <div className="col-4">
             <h3 className="title1">Model</h3>
             <a href="#" className="btn option1" id="ModelBtn">
-              IPHX
+              {chartsData.ModelName}
             </a>
           </div>
         </div>
@@ -116,18 +125,23 @@ const ReportForm = () => {
           <div className="col-3 d-flex justify-content-end">
             <div className="box-yield__fail1 align-self-center ">
               <div className="box-yield__fail1">
-                <p className="box-text1 ">Pass: <span id="pass" />78.85%</p>
-                <p className="box-text1 ">Fails: <span id="fails" />21.15%</p>
+                <p className="box-text1 ">Pass: <span id="pass" />{chartsData.TotalPassPct + "%"}</p>
+                <p className="box-text1 ">Fails: <span id="fails" />{chartsData.TotalFailsPct + "%"}</p>
               </div>
             </div>
           </div>
           <div className="col-6 ">
-            <div id="chart1 ">{<PieChart />}</div>
+            <div id="chart1 ">{<PieChart
+              totalPass={chartsData.TotalQtyPass}
+              TotalFail={chartsData.TotalQtyFail} />}</div>
           </div>
         </div>
         <div className="row mt-5">
           <div className="col-12">
-            <div className="chart1"> {<BarChart />}</div>
+            <div className="chart1"> {<BarChart
+              totalFailures={chartsData.TotalFailures}
+              failuresByGroup={chartsData.FailuresByGroup}
+            />}</div>
           </div>
         </div>
       </div>

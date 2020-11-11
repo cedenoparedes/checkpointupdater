@@ -19,7 +19,7 @@ export const getTableData = (customer, model, process, date, token) => {
 }
 
 export const getPieCharData = (customer, model, process, date, token) => {
-    return fetch(baseUrl = "graphic" + "/" + customer + "/" + model + "/" + process + "/" + date, {
+    return fetch(baseUrl + "graphic/" + customer + "/" + model + "/" + process + "/" + date, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -27,20 +27,6 @@ export const getPieCharData = (customer, model, process, date, token) => {
             Authorization: token
         }
 
-    })
-        .then(handleResponse)
-        .catch(handleError);
-}
-
-export function getDailyData(customer, process, model, result, token) {
-
-    return fetch(baseUrl + "daily" + customer + "/" + process + "/" + model + "/" + result, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: token
-        }
     })
         .then(handleResponse)
         .catch(handleError);
