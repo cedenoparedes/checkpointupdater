@@ -9,12 +9,12 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 
 const ExportToExcel = (props) => {
-    const { customer, model, process, token } = props
+    const { customer, model, process, date, token } = props
     const [excelData, setExcelData] = useState([]);
 
 
     useEffect(() => {
-        getTableData(customer, model, process, '2020-11-10', token)
+        getTableData(customer, model, process, date, token)
             .then((Response) => {
                 console.log('david');
                 let arreglo = [];
@@ -27,7 +27,7 @@ const ExportToExcel = (props) => {
                     }
                     arreglo.push(obj);
                 })
-                
+
                 setExcelData([
 
                     {
@@ -92,20 +92,27 @@ const ExportToExcel = (props) => {
                                 }
                             ],
                         data: arreglo
+
+
+
+
+
+
+
                     }]
                 );
             })
             .catch((error) => { console.log(error) })
-    }, [customer, model, process])
-    
+    }, [customer, model, process, date])
+
     const exportExelHandler = () => {
 
     }
 
     return (
         <div className="exporticon">
-            <ExcelFile element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
-                <ExcelSheet dataSet={excelData} name="Organization" />
+            <ExcelFile filename="Data" element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
+                <ExcelSheet dataSet={excelData} name={customer + "-" + model + "-" + process + "-" + date} />
             </ExcelFile>
         </div>
     );

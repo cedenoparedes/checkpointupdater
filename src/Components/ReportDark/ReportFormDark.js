@@ -57,12 +57,12 @@ const ReportForm = () => {
       .catch((error) => { console.log(error) })
 
   }
-  const exportToPDF = ()=>{
+  const exportToPDF = () => {
     setIsLoading(true);
     jsPdfGenerator();
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000); 
+    }, 3000);
   }
   const exportExelHandler = () => {
     getTableData(customer, model, process, date)
@@ -88,7 +88,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <ExportExcel customer={customer} model={model} process={process} token={token} />
+              <ExportExcel customer={customer} model={model} process={process} date={date} token={token} />
             </div>
           </fieldset>
         </div>
