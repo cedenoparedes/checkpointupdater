@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import Chart from "chart.js";
 import PieChartForm from "./PieChartForm";
+import '../Common/ChartCustom';
+
 
 const PieChart = (props) => {
-
 
   const { totalPass, TotalFail, TotalProcessed } = props
 
@@ -46,7 +47,11 @@ const PieChart = (props) => {
 
   }, [totalPass, TotalFail, TotalProcessed]);
 
-  return <PieChartForm />;
+  return (
+    <div>
+      <PieChartForm />
+    </div>
+  );
 };
 
 export default PieChart;

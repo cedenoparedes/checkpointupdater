@@ -1,6 +1,7 @@
 import React from "react";
 import "./PieChartForm.css";
 
+
 const PieChartForm = () => {
   return (
     // <div className="">
@@ -12,7 +13,7 @@ const PieChartForm = () => {
     //     <p className="box-text">Fails: <span id="fails" /></p>
     //   </div> */}
     <React.Fragment>
-      <canvas id="pieChart1" className="ReportPieChart"></canvas>
+      <canvas id="pieChart1" className="ReportPieChart"> </canvas>
     </React.Fragment>
 
     // </div>

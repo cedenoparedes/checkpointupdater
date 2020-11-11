@@ -72,6 +72,7 @@ fieldset {
   padding: 15px 30px;
   font-size: 18px;
   border-radius: 14px !important;
+  width: 181px;
 }
 .pieChart {
   position: relative;
@@ -111,7 +112,7 @@ fieldset {
 }
 
 .container-format1 {
-  background-color: #2f2f2f;
+  background-color: #1d1b1c;
 }
 /* #CustomerBtn {
   background-color: #cccccc;
