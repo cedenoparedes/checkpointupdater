@@ -57,12 +57,12 @@ const ReportForm = () => {
       .catch((error) => { console.log(error) })
 
   }
-  const exportToPDF = ()=>{
+  const exportToPDF = () => {
     setIsLoading(true);
     jsPdfGenerator();
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000); 
+    }, 3000);
   }
   const exportExelHandler = () => {
     getTableData(customer, model, process, date)
@@ -80,7 +80,7 @@ const ReportForm = () => {
         <div className="col-12 d-flex  justify-content-center btn-export">
           <fieldset>
             <legend>Export to:</legend>
-            <div className="justify-content-center">
+            <div className="d-flex justify-content-start">
               <img
                 type="button"
                 onClick={exportToPDF}
