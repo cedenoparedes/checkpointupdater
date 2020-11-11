@@ -24,20 +24,6 @@ const ReportForm = () => {
   let customer = location().state.customer;
   let process = location().state.process;
 
-  useEffect(() => {
-    Chart.plugins.register({
-      beforeDraw: function (chartInstance) {
-        let ctx = chartInstance.chart.ctx;
-        ctx.fillStyle = "#2f2f2f";
-        ctx.fillRect(
-          0,
-          0,
-          chartInstance.chart.width,
-          chartInstance.chart.height
-        );
-      },
-    });
-  });
 
 
   useEffect(() => {
@@ -95,7 +81,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <ExportExcel customer={customer} model={model} process={process} token={token}/>
+              <ExportExcel customer={customer} model={model} process={process} token={token} />
             </div>
           </fieldset>
         </div>

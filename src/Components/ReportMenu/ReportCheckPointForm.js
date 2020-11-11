@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
 import $ from 'jquery';
-import { now } from "moment";
+import DatePicker from 'react-datepicker'
 
 
 const ReportCheckPointForm = () => {
@@ -33,6 +33,7 @@ const ReportCheckPointForm = () => {
   const [customer, setCustomer] = useState("")
   const [process, setProcess] = useState("")
   const [params, setParams] = useState({})
+  const [startDate, setStartDate] = useState(new Date());
 
 
   useEffect(() => {
@@ -43,40 +44,11 @@ const ReportCheckPointForm = () => {
     })
   }, [models, process, customer])
 
-  const [currentDate, setCurrentDate] = useState();
-  const changedDate = () => {
-    setCurrentDate(() => {
-      $(function () {
-        $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT', autoclose: true }
-
-        ).datepicker("setDate", new Date());
-        console.log("pase por aqui")
-      });
-    })
-
-
-  };
-  useEffect(() => {
-    if (currentDate === "" || currentDate !== null) {
-      changedDate();
-      console.log('entre')
-    }
-  }, [])
-
-  $(function () {
-    $("#tb-date").datepicker({ dateFormat: 'DD-MM-YYYY H:mmTT', autoclose: true, value: "xs" }
-
-    ).datepicker("setDate", `${currentDate}`);
-  });
-
   const dateTimePicker = () => {
     let click = document.getElementById("tb-date");
-
     click.click()
     click.focus()
-    console.log(click.value);
-    setCurrentDate(click.value)
-    console.log(click.value);
+
   }
 
   const hidePopUps = () => {
@@ -199,7 +171,9 @@ const ReportCheckPointForm = () => {
                       </div>
                     </div>
                     <div className="col-6 d-flex justify-content-center input-size p-0 ">
-                      <input type="text" className="form-control  form-control-lg" id="tb-date" />
+
+                      {/* <input type="text" className="form-control  form-control-lg" id="tb-date" /> */}
+                      <DatePicker className="form-control  form-control-lg" id="tb-date" selected={startDate} onChange={date => setStartDate(date)} />
                     </div>
                   </div>
                 </div>
