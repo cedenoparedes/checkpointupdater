@@ -8,7 +8,6 @@ const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 
-
 const ExportToExcel = (props) => {
     const { customer, model, process, token } = props
     const [excelData, setExcelData] = useState([]);
@@ -32,16 +31,65 @@ const ExportToExcel = (props) => {
                 setExcelData([
 
                     {
+
                         columns:
                             [
-                                { title: "Date", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "Time", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "CustomerCode", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "ProcessName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "ModelName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "Result", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "FailureName", widthPx: 100, style: { font: { sz: "16", bold: true } }, },
-                                { title: "UserName", widthPx: 100, style: { font: { sz: "16", bold: true } }, }
+                                {
+                                    title: "Date", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "Time", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "CustomerCode", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "ProcessName", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "ModelName", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "Result", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "FailureName", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                },
+                                {
+                                    title: "UserName", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        alignment: { vertical: "center", horizontal: "center" }
+                                    },
+                                }
                             ],
                         data: arreglo
                     }]
