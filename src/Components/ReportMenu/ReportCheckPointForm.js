@@ -264,7 +264,7 @@ const ReportCheckPointForm = () => {
               </div>
               <div className="col-4 d-flex justify-content-start">
                 <Link to={model === "" || process === "" || customer === "" ? {} : {
-                  pathname: '../Report',
+                  pathname: '../reportDark',
                   state: params
                 }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
