@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactExport from 'react-data-export';
-import jsondata from "./jsondata.json"
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import { getTableData } from "../../api/report-api"
 
@@ -12,6 +11,8 @@ const ExportToExcel = (props) => {
     const { customer, model, process, date, token } = props
     const [excelData, setExcelData] = useState([]);
 
+    const litlesheet = ['']
+
 
     useEffect(() => {
         getTableData(customer, model, process, date, token)
@@ -22,8 +23,10 @@ const ExportToExcel = (props) => {
                     let obj = [];
                     for (const key in element) {
                         obj.push({
+
                             value: element[key], style: {
                                 font: { name: "Century Gothic", sz: "10", bold: false, patternType: "solid", color: { rgb: "000000" } },
+                                fill: { patternType: "solid", fgColor: { rgb: "DAEEF3" } },
                                 alignment: { vertical: "center", horizontal: "center" },
                                 border: {
                                     top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
@@ -31,27 +34,37 @@ const ExportToExcel = (props) => {
                                     diagonal: { style: "medium", color: { rgb: "343232" } }
                                 }
                             },
+
                         });
 
                     }
-                    arreglo.push(obj);
+
+
+                    arreglo.push(litlesheet.concat(obj));
+
+
                 })
 
                 setExcelData([
 
                     {
 
-
                         columns:
                             [
                                 {
+                                    title: customer + "-" + model + "-" + process + "-" + date, width: { wpx: 200 }, style: {
+                                        font: { name: "Century Gothic", sz: "20", bold: true, patternType: "solid", color: { rgb: "974706" } },
+                                        alignment: { vertical: "center", horizontal: "center", wrapText: true }
+                                    },
+                                },
+                                {
                                     title: "Date", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -59,11 +72,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "Time", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -71,11 +84,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "CustomerCode", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -83,11 +96,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "ProcessName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -95,11 +108,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "ModelName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -107,11 +120,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "Result", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -119,11 +132,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "FailureName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -131,11 +144,11 @@ const ExportToExcel = (props) => {
                                 {
                                     title: "UserName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
-                                        fill: { patternType: "solid", fgColor: { rgb: "343232" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
                                         alignment: { vertical: "center", horizontal: "center" },
                                         border: {
-                                            top: { style: "medium", color: { rgb: "FFFFFF" } }, bottom: { style: "medium", color: { rgb: "FFFFFF" } },
-                                            left: { style: "medium", color: { rgb: "FFFFFF" } }, right: { style: "medium", color: { rgb: "FFFFFF" } },
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
                                             diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
                                         }
                                     },
@@ -168,13 +181,3 @@ const ExportToExcel = (props) => {
 export default ExportToExcel;
 
 
-/*const  RellenarArreglo = (jsondata)=> {
-     jsondata.forEach(element => {
-         let obj = [];
-         for (const key in element) {
-             obj.push({ value: element[key] });
-         }
-         arreglo.push(obj);
-         console.log(arreglo)
-     })
- }*/
