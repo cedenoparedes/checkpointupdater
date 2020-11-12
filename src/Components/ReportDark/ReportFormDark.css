@@ -48,7 +48,7 @@
   width: 34px;
   margin-bottom: 12px;
   margin-top: 7px;
-  margin-left: 27px;
+  margin-left: 20px;
 }
 legend {
   color: white;
@@ -60,6 +60,8 @@ fieldset {
   width: 154px;
   border: 1px solid grey;
   justify-content: center;
+  padding: -1px !important;
+  margin: -1px !important;
 }
 .option1 {
   display: inline-block;
@@ -70,6 +72,7 @@ fieldset {
   padding: 15px 30px;
   font-size: 18px;
   border-radius: 14px !important;
+  width: 181px;
 }
 .pieChart {
   position: relative;
@@ -109,7 +112,7 @@ fieldset {
 }
 
 .container-format1 {
-  background-color: #2f2f2f;
+  background-color: #1d1b1c;
 }
 /* #CustomerBtn {
   background-color: #cccccc;

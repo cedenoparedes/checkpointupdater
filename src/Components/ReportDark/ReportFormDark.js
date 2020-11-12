@@ -80,7 +80,7 @@ const ReportForm = () => {
         <div className="col-12 d-flex  justify-content-center btn-export">
           <fieldset>
             <legend>Export to:</legend>
-            <div className="justify-content-center">
+            <div className="d-flex justify-content-start">
               <img
                 type="button"
                 onClick={exportToPDF}
@@ -98,21 +98,21 @@ const ReportForm = () => {
         <div className="row text-center">
           <div className="col-4">
             <h3 className="title1">Customer</h3>
-            <a href="#" className="btn option1" id="CustomerBtn">
+            <span className="option1" id="CustomerBtn">
               {chartsData.CustomerCode}
-            </a>
+            </span>
           </div>
           <div className="col-4">
             <h3 className="title1">Process</h3>
-            <a href="#" className="btn option1" id="ProcessBtn">
+            <span className="option1" id="ProcessBtn">
               {chartsData.ProcessName}
-            </a>
+            </span>
           </div>
           <div className="col-4">
             <h3 className="title1">Model</h3>
-            <a href="#" className="btn option1" id="ModelBtn">
+            <span className="option1" id="ModelBtn">
               {chartsData.ModelName}
-            </a>
+            </span>
           </div>
         </div>
         <div className="row mt-4">
