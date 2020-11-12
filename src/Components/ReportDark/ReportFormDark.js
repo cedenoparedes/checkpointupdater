@@ -88,7 +88,7 @@ const ReportForm = () => {
                 src={PdfIcon}
                 alt=""
               />
-              <ExportExcel customer={customer} model={model} process={process} token={token} />
+              <ExportExcel customer={customer} model={model} process={process} date={date} token={token} />
             </div>
           </fieldset>
         </div>

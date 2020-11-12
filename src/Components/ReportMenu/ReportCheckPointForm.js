@@ -254,7 +254,7 @@ const ReportCheckPointForm = () => {
                 </Link>
               </div>
               <div className="col-4 d-flex justify-content-start">
-                <Link to={model === "" || process === "" || customer === "" ? {} : {
+                <Link to={model === "" || process === "" || customer === "" || dateToSend === "" ? {} : {
                   pathname: '../reportDark',
                   state: params
                 }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
