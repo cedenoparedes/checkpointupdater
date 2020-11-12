@@ -9,7 +9,6 @@ const PieChart = (props) => {
 
   useEffect(() => {
 
-    console.log(TotalFail)
 
     let passLabel = "Pass " + totalPass
     let failLabel = "Fail " + TotalFail

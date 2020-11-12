@@ -52,7 +52,7 @@ const ReportForm = () => {
     getDataCharts()
 
 
-  }, []);
+  }, [customer, process, model, date]);
 
   const getDataCharts = () => {
     getPieCharData(customer, model, process, date, token)
@@ -67,6 +67,7 @@ const ReportForm = () => {
           }, 1000);
         }
         else{
+          console.log('Hice fetch');
           setChartsData(Response)
           setTimeout(() => {
             setIsLoading(false)
