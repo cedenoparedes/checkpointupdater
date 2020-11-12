@@ -1,25 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useHistory} from 'react-router-dom';
 import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import PieChart from "../PieChart";
 import BarChart from "../BarChart";
 import Chart from "chart.js";
 import BackIcon from "../../Images/SVG/icons/back.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
-import { getTableData, getPieCharData } from "../../api/report-api"
+import { getPieCharData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
 import GlobalContex from "../../context/globalcontext"
-import ReactExport from 'react-data-export';
 import ExportExcel from "./ExportExcel";
 import Loading from '../Common/Loading';
+import toastr from 'toastr';
 
 
 const ReportForm = () => {
-
-  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
   const [, , contextMiddleware] = useContext(GlobalContex);
   const token = contextMiddleware.getToken()
-  const [excelData, setExcelData] = useState([])
   const [chartsData, setChartsData] = useState({})
   let location = useLocation;
   let model = location().state.model;
@@ -27,13 +27,19 @@ const ReportForm = () => {
   let process = location().state.process;
   let date = location().state.startDate
 
+  toastr.options = {
+    "positionClass": "toast-top-center",
+    "showMethod": "slideDown",
+    "hideMethod": "slideUp",
+    "timeOut": "3000"
+  }
 
 
   useEffect(() => {
     Chart.plugins.register({
       beforeDraw: function (chartInstance) {
         let ctx = chartInstance.chart.ctx;
-        ctx.fillStyle = "#2f2f2f";
+        // ctx.fillStyle = "#2f2f2f";
         ctx.fillRect(
           0,
           0,
@@ -49,10 +55,24 @@ const ReportForm = () => {
   }, []);
 
   const getDataCharts = () => {
-
     getPieCharData(customer, model, process, date, token)
       .then((Response) => {
-        setChartsData(Response)
+        if(Response.TotalQtyFail === 0 && Response.TotalQtyPass === 0){
+          console.log('nada')
+          history.push("/report/menu"); 
+          toastr.error("There is no result for the data provided");  
+          
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
+        }
+        else{
+          setChartsData(Response)
+          setTimeout(() => {
+            setIsLoading(false)
+          }, 1000);
+        }
+        
       })
       .catch((error) => { console.log(error) })
 
@@ -64,18 +84,14 @@ const ReportForm = () => {
       setIsLoading(false);
     }, 3000);
   }
-  const exportExelHandler = () => {
-    getTableData(customer, model, process, date)
-      .then((Response) => {
-        setExcelData(Response)
-
-
-      })
-      .catch((error) => { console.log(error) })
-  }
+  
   return (
+
     <div className="container-main" id="chart">
+      {isLoading === true ? <Loading /> : null}
       {/* <meta charSet="utf-8" /> */}
+      {isLoading === true ? null : 
+      <>
       <div className="row">
         <div className="col-12 d-flex  justify-content-center btn-export">
           <fieldset>
@@ -93,7 +109,7 @@ const ReportForm = () => {
           </fieldset>
         </div>
       </div>
-      {isLoading === true ? <Loading /> : null}
+      
       <div className="container container-format1" id="report-container">
         <div className="row text-center">
           <div className="col-4">
@@ -164,6 +180,8 @@ const ReportForm = () => {
           </Link>
         </div>
       </div>
+      </>
+      }
     </div>
   );
 };

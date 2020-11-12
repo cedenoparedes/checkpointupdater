@@ -187,10 +187,15 @@ const ReportCheckPointForm = () => {
                       </div>
                     </div>
                     <div className="col-6 d-flex justify-content-center input-size p-0 ">
-                      <DatePicker className="form-control  form-control-lg"
+                      <DatePicker className="form-control  form-control-lg font-weight-bold"
                         id="tb-date" dateFormat="yyyy-MM-dd"
                         selected={startDate}
-                        onChange={(date) => getDateToSend(date)} />
+                        onChange={(date) => getDateToSend(date)}
+                        minDate={new Date("2020-11-1")}
+                        maxDate={new Date()}
+                        showYearDropdown
+                        scrollableMonthYearDropdown
+                        withPortal/>
                     </div>
                   </div>
                 </div>
