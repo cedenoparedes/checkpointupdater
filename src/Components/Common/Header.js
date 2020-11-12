@@ -36,7 +36,7 @@ const Header = () => {
             {token !== null ?
               <div className="d-flex text-center flex-row-reverse align-items-center">
 
-                <figure type="button" onClick={() => { logOutHandler() }} className="pl-3 m-0 item">
+                <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item">
                   <img src={LogOutLogo} alt="" />
                   <figcaption className="caption">Log Out</figcaption>
                 </figure>

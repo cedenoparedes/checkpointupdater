@@ -155,7 +155,7 @@ const ExportToExcel = (props) => {
 
     return (
         <div className="exporticon">
-            <ExcelFile filename="Check Point Data" element={<img type="button" src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
+            <ExcelFile filename="Check Point Data" element={<img src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
                 <ExcelSheet dataSet={excelData} name={customer + "-" + model + "-" + process + "-" + date} />
             </ExcelFile>
         </div>

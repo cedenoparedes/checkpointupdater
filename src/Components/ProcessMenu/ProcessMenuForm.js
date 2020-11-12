@@ -159,7 +159,7 @@ const CheckPointProcessMenu = () => {
                             <div className="form-group">
                                 <div className="form-row">
                                     <div className="col-md-6 d-flex justify-content-center">
-                                        <div type="button" className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
+                                        <div className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
                                             <img className="icon-options" src={CustomerIcon} alt="" />
                                             <p className="label-btn">Customer</p>
                                         </div>
@@ -172,7 +172,7 @@ const CheckPointProcessMenu = () => {
                             <div className="form-group">
                                 <div className="form-row">
                                     <div className="col-md-6 d-flex justify-content-center">
-                                        <div type="button" className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
+                                        <div className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
                                             <img className="icon-options" src={ModelIcon} alt="" />
                                             <p className="label-btn">Model</p>
                                         </div>
@@ -185,7 +185,7 @@ const CheckPointProcessMenu = () => {
                             <div className="form-group">
                                 <div className="form-row">
                                     <div className="col-md-6 d-flex justify-content-center">
-                                        <div type="button" className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
+                                        <div className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
                                             <img className="icon-options" src={ProcessIcon} alt="" />
                                             <p className="label-btn">Process</p>
                                         </div>

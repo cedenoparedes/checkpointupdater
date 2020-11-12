@@ -24,13 +24,13 @@ const MenuForm = (props) => {
                 <div className="container-fluid p-0 m-0">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-center">
-                            <h2 id="title-body">Select an Option</h2>
+                            <h2 id="title-body">Select An Option</h2>
                         </div>
                     </div>
                     <div className="row mt-5 mb-5">
                         <div className="col-6 d-flex justify-content-center mb-5">
                             <Link to='../ProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div type="button" className="div-btn-options pt-5" id="chk-point">
+                                <div className="div-btn-options pt-5" id="chk-point">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options align-bottom" src={CheckIcon} alt="" />
                                     </div>
@@ -42,7 +42,7 @@ const MenuForm = (props) => {
                         </div>
                         <div className="col-6 d-flex justify-content-center mb-5">
                             <Link to='../report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div type="button" className="div-btn-options pt-5" id="d-data">
+                                <div className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
                                         <img className="img-options" src={DataIcon} alt="" />
                                     </div>

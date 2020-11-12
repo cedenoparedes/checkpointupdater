@@ -99,7 +99,6 @@ const ReportForm = () => {
             <legend>Export to:</legend>
             <div className="d-flex justify-content-start">
               <img
-                type="button"
                 onClick={exportToPDF}
                 className="exporticon"
                 src={PdfIcon}
