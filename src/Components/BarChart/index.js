@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Chart from "chart.js";
+import { pluginCharts } from '../Common/PlugingCharts'
 
 
 const NewChartjs = (props) => {
@@ -7,7 +8,7 @@ const NewChartjs = (props) => {
   const { totalFailures, failuresByGroup, FailuresByGroupPer } = props
 
   useEffect(() => {
-
+    pluginCharts()
     const ctx = document.getElementById("barChart");
     let data = {
       labels: failuresByGroup,

@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import Chart from "chart.js";
 import PieChartForm from "./PieChartForm";
-import '../Common/ChartCustom';
-
+import { pluginCharts } from '../Common/PlugingCharts'
 
 const PieChart = (props) => {
-
+  pluginCharts();
   const { totalPass, TotalFail, TotalProcessed } = props
 
   useEffect(() => {
 
+    console.log(TotalFail)
+
+    let passLabel = "Pass " + totalPass
+    let failLabel = "Fail " + TotalFail
 
     const pieChart = document.getElementById("pieChart1").getContext("2d");
 
@@ -20,12 +23,12 @@ const PieChart = (props) => {
     let displayPieChart = new Chart(pieChart, {
       type: "pie",
       data: {
-        labels: ["Pass", "Fail", "Process"],
+        labels: [passLabel, failLabel],
         datasets: [
           {
             label: "Amount",
-            data: [totalPass, TotalFail, TotalProcessed],
-            backgroundColor: ["#99cc33", "crimson", "#4cc9f0"],
+            data: [totalPass, TotalFail],
+            backgroundColor: ["#99cc33", "crimson"],
           },
         ],
       },
@@ -45,7 +48,7 @@ const PieChart = (props) => {
       },
     });
 
-  }, [totalPass, TotalFail, TotalProcessed]);
+  }, [totalPass, TotalFail]);
 
   return (
     <div>
