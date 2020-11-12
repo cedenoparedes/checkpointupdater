@@ -60,7 +60,7 @@ const ReportForm = () => {
         if(Response.TotalQtyFail === 0 && Response.TotalQtyPass === 0){
           console.log('nada')
           history.push("/report/menu"); 
-          toastr.error("There is no result for the data provided");  
+          toastr.error("There is no data for the info provided");  
           
           setTimeout(() => {
             setIsLoading(false);
