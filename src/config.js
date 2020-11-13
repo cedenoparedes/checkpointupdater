@@ -3,7 +3,7 @@ const enviroments = { dev: "dev", prod: "prod" };
 module.exports = {
   env: enviroments.dev,
   baseApiURL: {
-    dev: "http://c7128af11493.ngrok.io",
+    dev: "http://52.170.189.52:8080",
     prod: "",
   },
 };

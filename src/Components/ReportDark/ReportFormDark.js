@@ -75,7 +75,14 @@ const ReportForm = () => {
         }
         
       })
-      .catch((error) => { console.log(error) })
+      .catch((error) => { 
+        console.log(error)
+        history.push("/report/menu"); 
+        toastr.error("There was an error while retrieving data");  
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+       })
 
   }
   const exportToPDF = () => {

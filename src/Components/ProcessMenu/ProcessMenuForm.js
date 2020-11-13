@@ -158,39 +158,39 @@ const CheckPointProcessMenu = () => {
 
                             <div className="form-group">
                                 <div className="form-row">
-                                    <div className="col-md-6 d-flex justify-content-center">
+                                    <div className="col-6 d-flex justify-content-center">
                                         <div className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
                                             <img className="icon-options" src={CustomerIcon} alt="" />
                                             <p className="label-btn">Customer</p>
                                         </div>
                                     </div>
-                                    <div className="col-md-6 d-flex justify-content-center align-self-center">
+                                    <div className="col-6 d-flex justify-content-center align-self-center">
                                         <input type="text" className="form-control input-text form-control-lg " id="tb-customer" value={customer} disabled />
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="form-row">
-                                    <div className="col-md-6 d-flex justify-content-center">
+                                    <div className="col-6 d-flex justify-content-center">
                                         <div className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
                                             <img className="icon-options" src={ModelIcon} alt="" />
                                             <p className="label-btn">Model</p>
                                         </div>
                                     </div>
-                                    <div className="col-md-6 d-flex justify-content-center align-self-center">
+                                    <div className="col-6 d-flex justify-content-center align-self-center">
                                         <input type="text" className="form-control input-text form-control-lg" id="tb-model" value={model} disabled />
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="form-row">
-                                    <div className="col-md-6 d-flex justify-content-center">
+                                    <div className="col-6 d-flex justify-content-center">
                                         <div className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
                                             <img className="icon-options" src={ProcessIcon} alt="" />
                                             <p className="label-btn">Process</p>
                                         </div>
                                     </div>
-                                    <div className="col-md-6 d-flex justify-content-center align-self-center">
+                                    <div className="col-6 d-flex justify-content-center align-self-center">
                                         <input type="text" className="form-control input-text form-control-lg" id="tb-process" value={process} disabled />
                                     </div>
                                 </div>

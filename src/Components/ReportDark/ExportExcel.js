@@ -160,7 +160,7 @@ const ExportToExcel = (props) => {
                 );
             })
             .catch((error) => { console.log(error) })
-    }, [customer, model, process, date])
+    }, [])
 
     const exportExelHandler = () => {
 
