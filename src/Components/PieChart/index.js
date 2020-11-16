@@ -10,8 +10,8 @@ const PieChart = (props) => {
   useEffect(() => {
 
 
-    let passLabel = "Pass " + totalPass
-    let failLabel = "Fail " + TotalFail
+    let passLabel = "Pass"
+    let failLabel = "Fail "
 
     const pieChart = document.getElementById("pieChart1").getContext("2d");
 

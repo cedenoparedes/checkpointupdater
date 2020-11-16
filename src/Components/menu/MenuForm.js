@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
@@ -6,7 +6,7 @@ import DataIcon from '../../Images/SVG/icons/data.svg';
 import { Link } from "react-router-dom";
 
 
-const MenuForm = (props) => {
+const MenuForm = () => {
 
 
     return (

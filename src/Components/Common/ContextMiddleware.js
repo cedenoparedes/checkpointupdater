@@ -59,7 +59,10 @@ const ContextMiddleware = (props) => {
     }
 
     const routeProtectedComponent = (comp) =>
-      localContext.isAuth ? comp : () => <Redirect to="/" />;
+      localContext.isAuth ? comp : () => {
+        logOut()
+        return < Redirect to="/" />
+      };
 
     return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims };
   };

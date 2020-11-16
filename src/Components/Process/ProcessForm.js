@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
 import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
-import BackIcon from "../../Images/SVG/icons/back.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
 import { Link } from "react-router-dom";
@@ -133,23 +132,13 @@ const ProcessForm = (props) => {
 						</div>
 						{/* Back and Refresh Buttons */}
 						<div className="row pt-5">
-							<div className="back-refresh-container d-flex justify-content-center">
-								<div className="col-6  d-flex justify-content-end">
-									<Link to='../CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-										<div className="back-refresh-btn justify-content-center">
-											<img src={BackIcon} alt="" />
-											<p className="btn-lbl">Back</p>
-										</div>
-									</Link>
-								</div>
-								<div className="col-6 d-flex justify-content-start">
-									<Link to='../Process' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-										<div className="back-refresh-btn justify-content-center">
-											<img src={RefreshIcon} alt="" />
-											<p className="btn-lbl">Refresh</p>
-										</div>
-									</Link>
-								</div>
+							<div className="col-12 d-flex justify-content-center">
+								<Link to='../processMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+									<div className="back-refresh-btn justify-content-center">
+										<img src={RefreshIcon} alt="" />
+										<p className="btn-lbl">Refresh</p>
+									</div>
+								</Link>
 							</div>
 						</div>
 					</div>
