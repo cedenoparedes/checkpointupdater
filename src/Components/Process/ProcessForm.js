@@ -104,7 +104,7 @@ const ProcessForm = (props) => {
 					<div className={`${visible === "d-none" ? "" : "d-none"} process-window `} id="process-window">
 						<div className="row justify-content-center align-items-center">
 							<div className="col-3">
-								<div onClick={() => passHandler(passParams, token)} className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color" id="pass-btn">
+								<div onClick={() => passHandler(passParams, token)} className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color hoverbuttons" id="pass-btn">
 									<div>
 										<img className="icon-pass" src={PassCheck} alt="" />
 									</div>
@@ -120,7 +120,7 @@ const ProcessForm = (props) => {
 							</div>
 							<div className="col-3">
 								{/* button fail */}
-								<div onClick={showFailureWindows} className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color" id="fail-btn" >
+								<div onClick={showFailureWindows} className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color hoverbuttons" id="fail-btn" >
 									<div>
 										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
 									</div>

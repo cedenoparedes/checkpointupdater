@@ -26,11 +26,13 @@ const Index = () => {
         const clearInput = () => {
             const employeeCodeInput = document.getElementById("login-input-border")
             employeeCodeInput.value = ""
+            employeeCodeInput.focus()
 
         }
         if (jEmployeeCode.employeeCode === "" || jEmployeeCode.employeeCode === null) {
             toastr.error("Please fill the employee code field")
             clearInput();
+
         } else {
             setIsLoading(true)
             login(jEmployeeCode)

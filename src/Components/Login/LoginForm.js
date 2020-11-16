@@ -38,6 +38,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
               aria-label="First name"
               className="form-control"
               id="login-input-border"
+              autoFocus
             />
           </div>
         </div>
@@ -48,6 +49,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
               onClick={() => loginHandler(employeeCodeState.employeeCode)}
               className="btn btn-secondary"
               id="login-button"
+
             >
               Login
             </button>
