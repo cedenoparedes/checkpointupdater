@@ -47,7 +47,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
             <button
               type="button"
               onClick={() => loginHandler(employeeCodeState.employeeCode)}
-              className="btn btn-secondary"
+              className="btn btn-secondary hoverbuttons"
               id="login-button"
 
             >
