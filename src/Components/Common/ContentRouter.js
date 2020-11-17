@@ -4,7 +4,6 @@ import Login from "../Login";
 import Menu from "../Menu";
 import ProcessMenu from "../ProcessMenu";
 import ReportMenu from "../ReportMenu";
-import Report from "../Report";
 import ReportDark from "../ReportDark";
 import NoFound from "./NoFound";
 import Process from "../Process";

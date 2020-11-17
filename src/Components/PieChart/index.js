@@ -19,7 +19,7 @@ const PieChart = (props) => {
     Chart.defaults.global.defaultFontSize = 18;
     Chart.defaults.global.defaultFontColor = "#777";
 
-    let displayPieChart = new Chart(pieChart, {
+    new Chart(pieChart, {
       type: "pie",
       data: {
         labels: [passLabel, failLabel],
@@ -47,7 +47,7 @@ const PieChart = (props) => {
       },
     });
 
-  }, [totalPass, TotalFail]);
+  }, [totalPass, TotalFail, TotalProcessed]);
 
   return (
     <div>

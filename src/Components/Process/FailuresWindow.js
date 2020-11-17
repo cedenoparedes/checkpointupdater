@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
 import { saveProcess } from '../../api/process-api.js'
-
-let fails = [];
 
 const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
@@ -148,10 +146,6 @@ const FailuresWindow = (props) => {
         failHandler(obj, token);
 
     }
-
-
-
-
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">

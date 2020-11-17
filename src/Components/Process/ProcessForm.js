@@ -54,7 +54,7 @@ const ProcessForm = (props) => {
 			FailureId: []
 		})
 
-	}, [])
+	}, [customer, fillPieParams, model, process, token, userInfo])
 
 	//The following state and Funtion controls the visibility of the FailuresWindow
 	const [visible, setVisible] = useState("d-none");

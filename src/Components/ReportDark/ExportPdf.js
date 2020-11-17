@@ -1,4 +1,3 @@
-import React from "react";
 import { jsPDF } from "jspdf";
 
 export function jsPdfGenerator() {
@@ -19,8 +18,9 @@ export function jsPdfGenerator() {
             doc.save("PdfGenerated.pdf");
         },
     });
-    setTimeout(()=>{ reportContainer.classList.remove("export-canvas")
-} ,3000)
+    setTimeout(() => {
+        reportContainer.classList.remove("export-canvas")
+    }, 3000)
 
 }
-   
+

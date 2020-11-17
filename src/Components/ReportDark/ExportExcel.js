@@ -9,9 +9,9 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 const ExportToExcel = (props) => {
     const { customer, model, process, date, token } = props
-    const [excelData, setExcelData] = useState([]);
+    const [excelData, setExcelData, litlesheet] = useState([]);
 
-    const litlesheet = ['']
+    // const  = ['']
 
 
     useEffect(() => {
@@ -160,7 +160,7 @@ const ExportToExcel = (props) => {
                 );
             })
             .catch((error) => { console.log(error) })
-    }, [])
+    }, [customer, model, process, date, token, litlesheet, setExcelData])
 
     const exportExelHandler = () => {
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import WhiteLogo from '../../Images/Logo-white.svg';
 import NameLogo from '../../Images/Name.svg';
 import LogOutLogo from '../../Images/Log-out.svg';
