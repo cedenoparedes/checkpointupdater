@@ -163,7 +163,7 @@ const FailuresWindow = (props) => {
                 </div>
                 <div className="col-12 p-2">
                     <div className="d-flex justify-content-start flex-wrap overflow">
-                        <div className="back-arrow">
+                        <div className="back-arrow hoverbuttons">
                             <img src={BackIcon} onClick={() => scrollHandler('left')} alt="" id="slideLeft" />
                         </div>
                         <div className="modal-button-container" id="option-window">
@@ -184,7 +184,7 @@ const FailuresWindow = (props) => {
                                 })}
                             </div>
                         </div>
-                        <div className="foward-arrow">
+                        <div className="foward-arrow hoverbuttons">
                             <img src={FowardIcon} onClick={() => scrollHandler('right')} alt="" id="slideRight" />
                         </div>
                     </div>
