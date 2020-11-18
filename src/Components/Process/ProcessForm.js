@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
 import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
@@ -32,29 +32,29 @@ const ProcessForm = (props) => {
 		setTotalProcessed
 	} = props
 
-	useEffect(() => {
-		fillPieParams(customer, model, process, token);
+	// useEffect(() => {
+	// 	fillPieParams(customer, model, process, token);
 
-		getFailures(customer, model, process, token)
-			.then((Response) => {
-				if (Response === null) {
-					toastr.error("no failures")
-				} else {
+	// 	getFailures(customer, model, process, token)
+	// 		.then((Response) => {
+	// 			if (Response === null) {
+	// 				toastr.error("no failures")
+	// 			} else {
 
-					setFailures(Response)
-				}
-			}).catch((error) => { console.log(error) })
+	// 				setFailures(Response)
+	// 			}
+	// 		}).catch((error) => { console.log(error) })
 
-		setPassParams({
-			CustomerCode: customer,
-			ProcessName: process,
-			ModelName: model,
-			Result: "pass",
-			EmployeeCode: userInfo.employeeCode,
-			FailureId: []
-		})
+	// 	setPassParams({
+	// 		CustomerCode: customer,
+	// 		ProcessName: process,
+	// 		ModelName: model,
+	// 		Result: "pass",
+	// 		EmployeeCode: userInfo.employeeCode,
+	// 		FailureId: []
+	// 	})
 
-	}, [customer, fillPieParams, model, process, token, userInfo])
+	// }, [])
 
 	//The following state and Funtion controls the visibility of the FailuresWindow
 	const [visible, setVisible] = useState("d-none");
@@ -65,7 +65,6 @@ const ProcessForm = (props) => {
 			setVisible("");
 		}
 	};
-
 
 
 	/// pass method handler
