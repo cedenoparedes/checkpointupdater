@@ -3,6 +3,10 @@ body {
   background-color: rgb(29, 27, 28) !important;
   min-width: 786px;
 }
+.back-refresh-container1 {
+  margin-top: 162px;
+  margin-bottom: -207px;
+}
 
 .label-btn {
   color: black;
@@ -122,7 +126,7 @@ body {
 }
 .input-text {
   font-weight: bold;
-  color: rgb(74, 80, 86);
+  color: rgb(228, 228, 228) !important;
 }
 
 .back-refresh {
@@ -139,14 +143,18 @@ body {
   margin-right: 26px;
 }
 
-.form-control-lg {
+.form-control-lg1 {
   font-size: 23px;
-  margin-bottom: 20px;
-  width: 300px;
-  height: 50px;
-  margin-top: -2px;
+  margin-bottom: 10px;
+  width: 874px;
+  height: 73px;
+  margin-top: 10px;
   justify-content: center;
   border-radius: 13px !important;
+  background-color: white;
+  text-decoration-color: gray;
+  color: black;
+  text-align: center;
 }
 
 #btn-date {
@@ -176,6 +184,7 @@ body {
 @media (max-width: 768px) {
   body {
     min-width: 768px;
+    min-height: 755px;
   }
   .modal-btn {
     width: 145px;
@@ -199,13 +208,13 @@ body {
     /* padding-right: 40px; */
   }
 
-  .form-control-lg {
+  .form-control-lg1 {
     font-size: 23px;
-    margin-bottom: 20px;
-    margin-top: -2px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     justify-content: center;
-    width: 300px;
-    height: 50px;
+    width: 400px;
+    height: 58px;
   }
   .modal-btn {
     background: inherit;
@@ -233,12 +242,12 @@ body {
     font-size: 30px;
   }
 
-  .form-control-lg {
+  .form-control-lg1 {
     font-size: 25px;
-    margin-bottom: 5px;
-    width: 300px;
-    height: 50px;
-    margin-top: 2px;
+    margin-bottom: 10px;
+    width: 550px;
+    height: 60px;
+    margin-top: 10px;
     justify-content: center;
   }
   .modal-btn {
@@ -282,10 +291,10 @@ body {
     /* padding-right: 40px; */
   }
 
-  .form-control-lg {
+  .form-control-lg1 {
     font-size: 30px;
     margin-bottom: 5px;
-    width: 550px;
+    width: 874px;
     height: 73px;
     margin-top: 3px;
     justify-content: center;
