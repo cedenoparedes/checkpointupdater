@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { getPieParams } from '../../api/process-api'
 import './ProcessMenuForm.css'
-import BackIcon from '../../Images/SVG/icons/back.svg'
-import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
+// import BackIcon from '../../Images/SVG/icons/back.svg'
+// import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import GlobalContext from "../../context/globalcontext"
 import { Link } from "react-router-dom";
 import toastr from "toastr";
@@ -40,14 +40,15 @@ const CheckPointProcessMenu = (props) => {
         DoClick()
     }
 
-
-
     const params = {
         model: model,
         process: process,
         customer: customer,
+        totalFail: totalFail,
         totalPass: totalPass,
-        setTotalProcessed: setTotalProcessed
+        setTotalProcessed: setTotalProcessed,
+        setTotalPass: setTotalPass,
+        setTotalFail: setTotalFail
     }
 
     //Here we are destructing the props 
@@ -97,7 +98,7 @@ const CheckPointProcessMenu = (props) => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <input type="text" placeholder="SCANN ANGLE LOCATION LABEL" className="form-control-lg1 " id="tb-customer" onChange={Splitter} />
+                                    <input type="text" placeholder="SCANN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={Splitter} />
                                 </div>
                             </div>
                         </div>
@@ -107,29 +108,31 @@ const CheckPointProcessMenu = (props) => {
                     <div className="back-refresh-container1 d-flex justify-content-center">
                         <div className="col-4 d-flex justify-content-end">
                             <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="back-refresh-btn justify-content-center">
+                                {/* <div className="back-refresh-btn justify-content-center">
                                     <img src={BackIcon} alt="" />
                                     <p className="btn-lbl">Back</p>
-                                </div>
+                                </div> */}
                             </Link>
                         </div>
                         <div className="col-4 d-flex justify-content-center">
                             <Link to='/CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="back-refresh-btn justify-content-center">
+                                {/* <div className="back-refresh-btn justify-content-center">
                                     <img src={RefreshIcon} alt="" />
                                     <p className="btn-lbl">Refresh</p>
-                                </div>
+                                </div> */}
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
+
+                            {console.log(totalFail, totalPass, totalProcessed)}
+
                             <Link to={totalFail === null || totalFail === "" || totalPass === null || totalPass === "" || totalProcessed === null || totalProcessed === "" ? {} : {
                                 pathname: '/process',
                                 state: params
                             }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="back-refresh-btn justify-content-center" id='next-button' onClick={ValidatePassFailInfo(customer, model, process, token)}>
-
-                                    <img className="btn-next-rotate" src={BackIcon} alt="" />
-                                    <p className="btn-lbl">Next</p>
+                                <div className="justify-content-center" id='next-button' onClick={ValidatePassFailInfo(customer, model, process, token)}>
+                                    {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
+                                    <p className="btn-lbl">Next</p> */}
                                 </div>
                             </Link>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
 import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
@@ -25,36 +25,36 @@ const ProcessForm = (props) => {
 		customer,
 		fillPieParams,
 		totalPass,
-		TotalFail,
-		TotalProcessed,
+		totalFail,
+		totalProcessed,
 		setTotalPass,
 		setTotalFail,
 		setTotalProcessed
 	} = props
 
-	// useEffect(() => {
-	// 	fillPieParams(customer, model, process, token);
+	useEffect(() => {
+		fillPieParams(customer, model, process, token);
 
-	// 	getFailures(customer, model, process, token)
-	// 		.then((Response) => {
-	// 			if (Response === null) {
-	// 				toastr.error("no failures")
-	// 			} else {
+		getFailures(customer, model, process, token)
+			.then((Response) => {
+				if (Response === null) {
+					toastr.error("no failures")
+				} else {
 
-	// 				setFailures(Response)
-	// 			}
-	// 		}).catch((error) => { console.log(error) })
+					setFailures(Response)
+				}
+			}).catch((error) => { console.log(error) })
 
-	// 	setPassParams({
-	// 		CustomerCode: customer,
-	// 		ProcessName: process,
-	// 		ModelName: model,
-	// 		Result: "pass",
-	// 		EmployeeCode: userInfo.employeeCode,
-	// 		FailureId: []
-	// 	})
+		setPassParams({
+			CustomerCode: customer,
+			ProcessName: process,
+			ModelName: model,
+			Result: "pass",
+			EmployeeCode: userInfo.employeeCode,
+			FailureId: []
+		})
 
-	// }, [])
+	}, [])
 
 	//The following state and Funtion controls the visibility of the FailuresWindow
 	const [visible, setVisible] = useState("d-none");
@@ -71,9 +71,9 @@ const ProcessForm = (props) => {
 	const passHandler = (passParams, token) => {
 		saveProcess(passParams, token)
 			.then((Response) => {
-				setTotalPass(Response.TotalPass)
-				setTotalFail(Response.TotalFail)
-				setTotalProcessed(Response.TotalProcessed)
+				setTotalPass(Response.totalPass)
+				setTotalFail(Response.totalFail)
+				setTotalProcessed(Response.totalProcessed)
 			}).catch((error) => { console.log(error) })
 	}
 	return (
@@ -114,7 +114,7 @@ const ProcessForm = (props) => {
 							</div>
 							<div className="col-6">
 								<div className="chart1">
-									<PieChart totalPass={totalPass} TotalFail={TotalFail} TotalProcessed={TotalProcessed} />
+									<PieChart TotalPass={totalPass} TotalFail={totalFail} TotalProcessed={totalProcessed} />
 								</div>
 							</div>
 							<div className="col-3">
@@ -124,7 +124,7 @@ const ProcessForm = (props) => {
 										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
 									</div>
 									<div className="txt-porcentage">
-										<p className="percentage">{TotalFail}</p>
+										<p className="percentage">{totalFail}</p>
 									</div>
 								</div>
 							</div>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Process from './ProcessForm';
 import { useLocation } from 'react-router-dom';
-import { getPieParams } from '../../api/process-api';
+// import { getPieParams } from '../../api/process-api';
 
 
 const Index = () => {
@@ -16,9 +16,9 @@ const Index = () => {
     let customer = location().state.customer
     let process = location().state.process
 
-    let totalPass = location().state.setTotalPass
-    let totalFail = location().state.setTotalFail
-    let totalProcessed = location().state.setTotalProcessed
+    let totalPass = location().state.totalPass
+    let totalFail = location().state.totalFail
+    let totalProcessed = location().state.totalProcessed
 
     let setTotalPass = location().state.setTotalPass
     let setTotalFail = location().state.setTotalFail
@@ -44,8 +44,8 @@ const Index = () => {
             customer={customer}
             // fillPieParams={fillPieParams}
             totalPass={totalPass}
-            TotalFail={totalFail}
-            TotalProcessed={totalProcessed}
+            totalFail={totalFail}
+            totalProcessed={totalProcessed}
             setTotalPass={setTotalPass}
             setTotalFail={setTotalFail}
             setTotalProcessed={setTotalProcessed}
