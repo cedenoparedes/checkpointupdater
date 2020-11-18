@@ -58,7 +58,6 @@ const ReportForm = () => {
     getPieCharData(customer, model, process, date, token)
       .then((Response) => {
         if (Response.TotalQtyFail === 0 && Response.TotalQtyPass === 0) {
-          console.log('nada')
           history.push("/report/menu");
           toastr.error("There is no data for the info provided");
 
@@ -67,7 +66,6 @@ const ReportForm = () => {
           }, 1000);
         }
         else {
-          console.log('Hice fetch');
           setChartsData(Response)
           setTimeout(() => {
             setIsLoading(false)
@@ -76,7 +74,6 @@ const ReportForm = () => {
 
       })
       .catch((error) => {
-        console.log(error)
         history.push("/report/menu");
         toastr.error("There was an error while retrieving data");
         setTimeout(() => {

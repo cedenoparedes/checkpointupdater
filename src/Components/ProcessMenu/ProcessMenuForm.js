@@ -65,7 +65,12 @@ const CheckPointProcessMenu = (props) => {
 
 
                 }
-            }).catch((error) => { console.log(error) })
+            }).catch((error) => {
+                console.log(error);
+                setTimeout(() => {
+                    toastr.error("Call failed.");
+                }, 1000);
+            })
 
     }
 

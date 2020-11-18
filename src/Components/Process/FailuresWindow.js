@@ -3,6 +3,7 @@ import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
 import { saveProcess } from '../../api/process-api.js'
+import toastr from "toastr";
 
 const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
@@ -115,19 +116,20 @@ const FailuresWindow = (props) => {
     }
 
 
-
     /// fail method handler
     const failHandler = (failsParams, token) => {
-        // console.log(failsParams);
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.TotalPass)
                 setTotalFail(Response.TotalFail)
                 setTotalProcessed(Response.TotalProcessed)
-            }).catch((error) => { console.log(error) })
+            }).catch((error) => {
+                console.log(error);
+                setTimeout(() => {
+                    toastr.error("Call failed.");
+                }, 1000);
+            })
     }
-
-
 
     const setFailures = (failHandler, token) => {
 
@@ -139,8 +141,6 @@ const FailuresWindow = (props) => {
             EmployeeCode: userInfo.employeeCode,
             FailureName: failuresToSave
         }
-        // console.log(failsParams)
-        console.log(obj);
         ClearListError();
         setFailuresToSave([]);
         failHandler(obj, token);
