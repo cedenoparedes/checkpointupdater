@@ -1,11 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getPieParams } from '../../api/process-api'
 import './ProcessMenuForm.css'
 import ScanBarcode from '../../Images/SVG/icons/ScanBarcode.png'
-// import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import GlobalContext from "../../context/globalcontext"
 import { Link } from "react-router-dom";
-import toastr from "toastr";
 import Loading from '../Common/Loading'
 
 
@@ -16,23 +13,23 @@ const CheckPointProcessMenu = (props) => {
     const [model, setModel] = useState("");
     const [customer, setCustomer] = useState("");
     const [process, setProcess] = useState("");
-    const [totalPass, setTotalPass] = useState("");
-    const [totalFail, setTotalFail] = useState("");
-    const [totalProcessed, setTotalProcessed] = useState("");
     const token = contextMiddleware.getToken();
 
     //this function split the input's string
 
-    let ArrayString = "";
 
-
+    const params = {
+        model: model,
+        process: process,
+        customer: customer
+    }
 
     const Splitter = () => {
 
         const Qr = document.getElementById("tb-customer")
         const Qr2 = Qr.value
         const separator = "|"
-        ArrayString = Qr2.split(separator);
+        const ArrayString = Qr2.split(separator);
 
         setCustomer(ArrayString[0])
         setModel(ArrayString[1])
@@ -42,47 +39,17 @@ const CheckPointProcessMenu = (props) => {
     }
 
     useEffect(() => {
-        DoClick()
-    }, [customer])
+        if (customer !== "" && model !== "" && process !== "") { } else {
+            console.log(customer)
+            console.log(model)
+            console.log(process)
+            DoClick()
+        }
 
-    const params = {
-        model: model,
-        process: process,
-        customer: customer,
-        totalFail: totalFail,
-        totalPass: totalPass,
-        setTotalProcessed: setTotalProcessed,
-        setTotalPass: setTotalPass,
-        setTotalFail: setTotalFail
-    }
+    }, [customer, model, process])
 
-    //Here we are destructing the props 
-    const ValidatePassFailInfo = (customer, model, process, token) => {
-
-
-        // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
-        //This funcion is set to receive the data from the API
-        getPieParams(customer, model, process, token)
-            .then((Response) => {
-                if (Response === null || Response === "") {
-                    toastr.error("There is no matching information.")
-                } else {
-                    setTotalPass(Response.TotalPass)
-                    setTotalFail(Response.TotalFail)
-                    setTotalProcessed(Response.TotalProcessed)
-                    console.log(totalPass, totalFail, totalProcessed)
-                }
-            }).catch((error) => {
-                console.log(error);
-                setTimeout(() => {
-                    toastr.error("Call failed.");
-                }, 1000);
-            })
-
-    }
 
     const DoClick = () => {//evento click del boton Next
-        ValidatePassFailInfo(customer, model, process, token)
         const Dclick = document.getElementById("next-button")
         Dclick.click()
 
@@ -141,10 +108,11 @@ const CheckPointProcessMenu = (props) => {
 
 
 
-                            <Link to={totalFail === null || totalFail === "" || totalPass === null || totalPass === "" || totalProcessed === null || totalProcessed === "" ? {} : {
+                            <Link to={customer === null || customer === "" || model === "" || process === "" ? {} : {
                                 pathname: '/process',
                                 state: params
-                            }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            }
+                            } style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="justify-content-center" id='next-button'>
                                     {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p> */}
