@@ -4,6 +4,7 @@ let baseUrl = `${config.baseApiURL[config.env]}/checkpoint/process/`;
 
 export function getPieParams(customer, model, process, token) {
 
+
     return fetch(baseUrl + "resume/" + customer + "/" + model + "/" + process, {
         method: "GET",
         mode: "cors",

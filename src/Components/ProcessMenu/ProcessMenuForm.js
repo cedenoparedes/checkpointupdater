@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { getPieParams } from '../../api/process-api'
 import './ProcessMenuForm.css'
-// import BackIcon from '../../Images/SVG/icons/back.svg'
+import ScanBarcode from '../../Images/SVG/icons/ScanBarcode.png'
 // import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import GlobalContext from "../../context/globalcontext"
 import { Link } from "react-router-dom";
@@ -13,32 +13,37 @@ const CheckPointProcessMenu = (props) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [, , contextMiddleware] = useContext(GlobalContext);
-    const [model, setModel] = useState("")
-    const [customer, setCustomer] = useState("")
-    const [process, setProcess] = useState("")
-    const [totalPass, setTotalPass] = useState("")
-    const [totalFail, setTotalFail] = useState("")
-    const [totalProcessed, setTotalProcessed] = useState("")
-
-
-
+    const [model, setModel] = useState("");
+    const [customer, setCustomer] = useState("");
+    const [process, setProcess] = useState("");
+    const [totalPass, setTotalPass] = useState("");
+    const [totalFail, setTotalFail] = useState("");
+    const [totalProcessed, setTotalProcessed] = useState("");
     const token = contextMiddleware.getToken();
 
     //this function split the input's string
+
+    let ArrayString = "";
+
+
+
     const Splitter = () => {
 
         const Qr = document.getElementById("tb-customer")
         const Qr2 = Qr.value
         const separator = "|"
-
-        const ArrayString = Qr2.split(separator);
+        ArrayString = Qr2.split(separator);
 
         setCustomer(ArrayString[0])
         setModel(ArrayString[1])
         setProcess(ArrayString[2])
 
-        DoClick()
+
     }
+
+    useEffect(() => {
+        DoClick()
+    }, [customer])
 
     const params = {
         model: model,
@@ -53,27 +58,29 @@ const CheckPointProcessMenu = (props) => {
 
     //Here we are destructing the props 
     const ValidatePassFailInfo = (customer, model, process, token) => {
+
+
+        // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
         //This funcion is set to receive the data from the API
         getPieParams(customer, model, process, token)
             .then((Response) => {
                 if (Response === null || Response === "") {
                     toastr.error("There is no matching information.")
                 } else {
-                    setIsLoading(false);
-                    setTotalPass(Response.totalPass)
-                    setTotalFail(Response.totalFail)
-                    setTotalProcessed(Response.totalProcessed)
-
-
+                    setTotalPass(Response.TotalPass)
+                    setTotalFail(Response.TotalFail)
+                    setTotalProcessed(Response.TotalProcessed)
+                    console.log(totalPass, totalFail, totalProcessed)
                 }
             }).catch((error) => { console.log(error) })
 
     }
 
     const DoClick = () => {//evento click del boton Next
-
+        ValidatePassFailInfo(customer, model, process, token)
         const Dclick = document.getElementById("next-button")
         Dclick.click()
+
     }
 
     return (
@@ -90,7 +97,7 @@ const CheckPointProcessMenu = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="contenedor">
+            <div className="contenedor contenedor2">
                 {isLoading === true ? <Loading /> : null}
 
                 <div className="container-fluid">
@@ -98,7 +105,10 @@ const CheckPointProcessMenu = (props) => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <input type="text" placeholder="SCANN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={Splitter} />
+                                    <img src={ScanBarcode} className="scanLabel" alt="" />
+                                </div>
+                                <div className="col-12 d-flex justify-content-center align-self-center">
+                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={() => Splitter()} />
                                 </div>
                             </div>
                         </div>
@@ -124,13 +134,13 @@ const CheckPointProcessMenu = (props) => {
                         </div>
                         <div className="col-4  d-flex justify-content-start">
 
-                            {console.log(totalFail, totalPass, totalProcessed)}
+
 
                             <Link to={totalFail === null || totalFail === "" || totalPass === null || totalPass === "" || totalProcessed === null || totalProcessed === "" ? {} : {
                                 pathname: '/process',
                                 state: params
                             }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="justify-content-center" id='next-button' onClick={ValidatePassFailInfo(customer, model, process, token)}>
+                                <div className="justify-content-center" id='next-button'>
                                     {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p> */}
                                 </div>
