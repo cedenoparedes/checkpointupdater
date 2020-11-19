@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactExport from 'react-data-export';
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import { getTableData } from "../../api/report-api"
+import toastr from "toastr";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -159,7 +160,12 @@ const ExportToExcel = (props) => {
                     }]
                 );
             })
-            .catch((error) => { console.log(error) })
+            .catch((error) => {
+                console.log(error);
+                setTimeout(() => {
+                    toastr.error("Call failed.");
+                }, 1000);
+            })
     }, [customer, model, process, date, token, litlesheet, setExcelData])
 
     const exportExelHandler = () => {

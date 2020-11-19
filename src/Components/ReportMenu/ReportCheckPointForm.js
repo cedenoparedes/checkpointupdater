@@ -43,7 +43,7 @@ const ReportCheckPointForm = () => {
       customer: customer,
       startDate: dateToSend
     })
-  }, [models, process, customer])
+  }, [models, process, customer, model, dateToSend])
 
   useEffect(() => {
     getDateToSends();
