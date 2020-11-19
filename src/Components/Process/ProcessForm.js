@@ -67,13 +67,14 @@ const ProcessForm = (props) => {
 	};
 
 
+
 	/// pass method handler
 	const passHandler = (passParams, token) => {
 		saveProcess(passParams, token)
 			.then((Response) => {
-				setTotalPass(Response.totalPass)
-				setTotalFail(Response.totalFail)
-				setTotalProcessed(Response.totalProcessed)
+				setTotalPass(Response.TotalPass)
+				setTotalFail(Response.TotalFail)
+				setTotalProcessed(Response.TotalProcessed)
 			}).catch((error) => { console.log(error) })
 	}
 	return (
