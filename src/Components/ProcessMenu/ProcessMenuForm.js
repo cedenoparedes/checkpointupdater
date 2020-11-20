@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './ProcessMenuForm.css'
-import ScanBarcode from '../../Images/SVG/icons/ScanBarcode.png'
+import angleLocationLabel from '../../Images/SVG/icons/angleLocationLabel.png'
 import GlobalContext from "../../context/globalcontext"
 import { Link } from "react-router-dom";
 import Loading from '../Common/Loading'
@@ -39,6 +39,9 @@ const CheckPointProcessMenu = (props) => {
     }
 
     useEffect(() => {
+        const InputFocus = document.getElementById("tb-customer")
+        InputFocus.focus();
+
         if (customer !== "" && model !== "" && process !== "") { } else {
             console.log(customer)
             console.log(model)
@@ -77,7 +80,7 @@ const CheckPointProcessMenu = (props) => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <img src={ScanBarcode} className="scanLabel" alt="" />
+                                    <img src={angleLocationLabel} className="scanLabel" alt="" />
                                 </div>
                                 <div className="col-12 d-flex justify-content-center align-self-center">
                                     <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={() => Splitter()} />
