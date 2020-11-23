@@ -4,7 +4,7 @@ import './ProcessMenuForm.css'
 import ScanBarcode from '../../Images/SVG/icons/ScanBarcode.png'
 // import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
 import GlobalContext from "../../context/globalcontext"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
 
@@ -19,6 +19,7 @@ const CheckPointProcessMenu = (props) => {
     const [totalPass, setTotalPass] = useState("");
     const [totalFail, setTotalFail] = useState("");
     const [totalProcessed, setTotalProcessed] = useState("");
+    const history = useHistory();
     const token = contextMiddleware.getToken();
 
     //this function split the input's string
@@ -26,6 +27,14 @@ const CheckPointProcessMenu = (props) => {
     let ArrayString = "";
 
 
+    useEffect(() => {
+        if (!(customer === "") && !(model === "") && !(process === "")) {
+            // DoClick();
+
+
+        }
+
+    }, [customer, model, process])
 
     const Splitter = () => {
 
@@ -33,58 +42,65 @@ const CheckPointProcessMenu = (props) => {
         const Qr2 = Qr.value
         const separator = "|"
         ArrayString = Qr2.split(separator);
-
         setCustomer(ArrayString[0])
         setModel(ArrayString[1])
         setProcess(ArrayString[2])
+        const params = {
+            customer: ArrayString[0],
+            model: ArrayString[1],
+            process: ArrayString[2],
+        }
+        pushProcess(params);
 
 
     }
 
-    useEffect(() => {
-        DoClick()
-    }, [customer])
 
-    const params = {
-        model: model,
-        process: process,
-        customer: customer,
-        totalFail: totalFail,
-        totalPass: totalPass,
-        setTotalProcessed: setTotalProcessed,
-        setTotalPass: setTotalPass,
-        setTotalFail: setTotalFail
-    }
+    // //Here we are destructing the props 
+    // const ValidatePassFailInfo = (customer, model, process, token) => {
+    //     // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
+    //     //This funcion is set to receive the data from the API
+    //     console.log("API call")
+    //     console.log(customer, model, process)
+    //     getPieParams(customer, model, process, token)
+    //         .then((Response) => {
+    //             params.totalPass = Response.TotalPass
+    //             params.totalFail = Response.TotalFail
+    //             params.totalProcessed = Response.TotalProcessed
 
-    //Here we are destructing the props 
-    const ValidatePassFailInfo = (customer, model, process, token) => {
+    //         })
+
+    //         .catch(
+    //             (error) => {
+    //                 console.log(error);
+    //                 setTimeout(() => {
+    //                     toastr.error("Call failed.");
+    //                 }, 1000);
+
+    //                 //document.getElementById("tb-customer").value = ""
+    //             }
+    //         )
 
 
-        // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
-        //This funcion is set to receive the data from the API
-        getPieParams(customer, model, process, token)
-            .then((Response) => {
-                if (Response === null || Response === "") {
-                    toastr.error("There is no matching information.")
-                } else {
-                    setTotalPass(Response.TotalPass)
-                    setTotalFail(Response.TotalFail)
-                    setTotalProcessed(Response.TotalProcessed)
-                    console.log(totalPass, totalFail, totalProcessed)
-                }
-            }).catch((error) => {
-                console.log(error);
-                setTimeout(() => {
-                    toastr.error("Call failed.");
-                }, 1000);
-            })
 
-    }
+    // }
 
-    const DoClick = () => {//evento click del boton Next
-        ValidatePassFailInfo(customer, model, process, token)
-        const Dclick = document.getElementById("next-button")
-        Dclick.click()
+    // const DoClick = () => {//evento click del boton Next
+    //     // console.log("estoy aqui")
+    //     // ValidatePassFailInfo(customer, model, process, token)
+    //     const Dclick = document.getElementById("next-button")
+    //     // Dclick.click()
+    //     pushProcess()
+
+    //     // console.log(params)
+
+    // }
+
+    const pushProcess = (params) => {
+        history.push({
+            pathname: '/process',
+            state: params
+        })
 
     }
 
@@ -113,7 +129,7 @@ const CheckPointProcessMenu = (props) => {
                                     <img src={ScanBarcode} className="scanLabel" alt="" />
                                 </div>
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={() => Splitter()} />
+                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onKeyDown={(e) => e.key === 'Enter' ? Splitter() : null} />
                                 </div>
                             </div>
                         </div>
@@ -138,18 +154,10 @@ const CheckPointProcessMenu = (props) => {
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
-
-
-
-                            <Link to={totalFail === null || totalFail === "" || totalPass === null || totalPass === "" || totalProcessed === null || totalProcessed === "" ? {} : {
-                                pathname: '/process',
-                                state: params
-                            }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="justify-content-center" id='next-button'>
-                                    {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
+                            <div className="justify-content-center" id='next-button'>
+                                {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p> */}
-                                </div>
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

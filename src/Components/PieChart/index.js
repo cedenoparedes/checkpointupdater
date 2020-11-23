@@ -5,8 +5,8 @@ import { pluginCharts } from '../Common/PlugingCharts'
 
 const PieChart = (props) => {
   pluginCharts();
-  const { totalPass, TotalFail, TotalProcessed } = props
-
+  const { TotalPass, TotalFail, TotalProcessed } = props
+  console.log(props);
   useEffect(() => {
 
 
@@ -26,7 +26,7 @@ const PieChart = (props) => {
         datasets: [
           {
             label: "Amount",
-            data: [totalPass, TotalFail],
+            data: [TotalPass, TotalFail],
             backgroundColor: ["#99cc33", "crimson"],
           },
         ],
@@ -47,7 +47,7 @@ const PieChart = (props) => {
       },
     });
 
-  }, [totalPass, TotalFail, TotalProcessed]);
+  }, [TotalPass, TotalFail, TotalProcessed]);
 
   return (
     <div>
