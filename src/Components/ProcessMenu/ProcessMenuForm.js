@@ -2,7 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import './ProcessMenuForm.css'
 import angleLocationLabel from '../../Images/SVG/icons/angleLocationLabel.png'
 import GlobalContext from "../../context/globalcontext"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import toastr from "toastr";
 import Loading from '../Common/Loading'
 
 
@@ -13,6 +14,10 @@ const CheckPointProcessMenu = (props) => {
     const [model, setModel] = useState("");
     const [customer, setCustomer] = useState("");
     const [process, setProcess] = useState("");
+    const [totalPass, setTotalPass] = useState("");
+    const [totalFail, setTotalFail] = useState("");
+    const [totalProcessed, setTotalProcessed] = useState("");
+    const history = useHistory();
     const token = contextMiddleware.getToken();
 
     //this function split the input's string
@@ -24,37 +29,80 @@ const CheckPointProcessMenu = (props) => {
         customer: customer
     }
 
+    useEffect(() => {
+        if (!(customer === "") && !(model === "") && !(process === "")) {
+            // DoClick();
+
+
+        }
+
+    }, [customer, model, process])
+
     const Splitter = () => {
 
         const Qr = document.getElementById("tb-customer")
         const Qr2 = Qr.value
         const separator = "|"
-        const ArrayString = Qr2.split(separator);
-
+        ArrayString = Qr2.split(separator);
         setCustomer(ArrayString[0])
         setModel(ArrayString[1])
         setProcess(ArrayString[2])
+        const params = {
+            customer: ArrayString[0],
+            model: ArrayString[1],
+            process: ArrayString[2],
+        }
+        pushProcess(params);
 
 
     }
 
-    useEffect(() => {
-        const InputFocus = document.getElementById("tb-customer")
-        InputFocus.focus();
 
-        if (customer !== "" && model !== "" && process !== "") { } else {
-            console.log(customer)
-            console.log(model)
-            console.log(process)
-            DoClick()
-        }
+    // //Here we are destructing the props 
+    // const ValidatePassFailInfo = (customer, model, process, token) => {
+    //     // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
+    //     //This funcion is set to receive the data from the API
+    //     console.log("API call")
+    //     console.log(customer, model, process)
+    //     getPieParams(customer, model, process, token)
+    //         .then((Response) => {
+    //             params.totalPass = Response.TotalPass
+    //             params.totalFail = Response.TotalFail
+    //             params.totalProcessed = Response.TotalProcessed
 
-    }, [customer, model, process])
+    //         })
+
+    //         .catch(
+    //             (error) => {
+    //                 console.log(error);
+    //                 setTimeout(() => {
+    //                     toastr.error("Call failed.");
+    //                 }, 1000);
+
+    //                 //document.getElementById("tb-customer").value = ""
+    //             }
+    //         )
 
 
-    const DoClick = () => {//evento click del boton Next
-        const Dclick = document.getElementById("next-button")
-        Dclick.click()
+
+    // }
+
+    // const DoClick = () => {//evento click del boton Next
+    //     // console.log("estoy aqui")
+    //     // ValidatePassFailInfo(customer, model, process, token)
+    //     const Dclick = document.getElementById("next-button")
+    //     // Dclick.click()
+    //     pushProcess()
+
+    //     // console.log(params)
+
+    // }
+
+    const pushProcess = (params) => {
+        history.push({
+            pathname: '/process',
+            state: params
+        })
 
     }
 
@@ -83,7 +131,7 @@ const CheckPointProcessMenu = (props) => {
                                     <img src={angleLocationLabel} className="scanLabel" alt="" />
                                 </div>
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onChange={() => Splitter()} />
+                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onKeyDown={(e) => e.key === 'Enter' ? Splitter() : null} />
                                 </div>
                             </div>
                         </div>
@@ -108,19 +156,10 @@ const CheckPointProcessMenu = (props) => {
                             </Link>
                         </div>
                         <div className="col-4  d-flex justify-content-start">
-
-
-
-                            <Link to={customer === null || customer === "" || model === "" || process === "" ? {} : {
-                                pathname: '/process',
-                                state: params
-                            }
-                            } style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                <div className="justify-content-center" id='next-button'>
-                                    {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
+                            <div className="justify-content-center" id='next-button'>
+                                {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
                                     <p className="btn-lbl">Next</p> */}
-                                </div>
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
