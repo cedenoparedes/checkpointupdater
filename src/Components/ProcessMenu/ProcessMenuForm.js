@@ -22,7 +22,7 @@ const CheckPointProcessMenu = (props) => {
 
     //this function split the input's string
 
-
+    let ArrayString = []
     const params = {
         model: model,
         process: process,
