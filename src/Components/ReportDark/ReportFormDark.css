@@ -56,8 +56,9 @@ legend {
   text-align: center;
   margin-bottom: -4px !important;
 }
+
 fieldset {
-  width: 154px;
+  width: 131px;
   border: 1px solid grey;
   justify-content: center;
   padding: -1px !important;
@@ -123,3 +124,25 @@ fieldset {
 #ModelBtn {
   background-color: #cccccc;
 } */
+#barChart {
+  min-width: 707px !important;
+  min-height: 290px !important;
+}
+@media (min-width: 786px) {
+  #barChart {
+    width: 707px !important;
+    height: 290px !important;
+  }
+}
+@media (min-width: 960px) {
+  #barChart {
+    width: 710px !important;
+    height: 290px !important;
+  }
+}
+@media (min-width: 1200px) {
+  #barChart {
+    width: 1044px !important;
+    height: 484px !important;
+  }
+}
