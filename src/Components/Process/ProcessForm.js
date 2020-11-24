@@ -16,6 +16,8 @@ const ProcessForm = (props) => {
 	const [, , contextMiddleware] = useContext(GlobalContext);
 	const [failures, setFailures] = useState([]);
 	const [passParams, setPassParams] = useState({})
+	const [chartRefrechData, setChartRefrechData] = useState({})
+
 	const userInfo = contextMiddleware.getTokenClaims();
 	const token = contextMiddleware.getToken()
 	const model = location.state.model
@@ -62,10 +64,30 @@ const ProcessForm = (props) => {
 		// 		}
 		// 	}).catch((error) => { console.log(error) })
 
+		setPassParams({
+			CustomerCode: customer,
+			ProcessName: process,
+			ModelName: model,
+			Result: "pass",
+			EmployeeCode: userInfo.employeeCode,
+			FailureId: []
+		})
+
 
 	}, [])
-	console.log()
+
+	useEffect(() => {
+
+
+		setTotalPass(chartRefrechData.TotalPass)
+		setTotalFail(chartRefrechData.TotalFail)
+		setTotalProcessed(chartRefrechData.TotalProcessed)
+
+	}, [chartRefrechData])
+
+
 	// The following state and Funtion controls the visibility of the FailuresWindow
+
 	const [visible, setVisible] = useState("d-none");
 	const showFailureWindows = () => {
 		if (visible === "") {
@@ -77,15 +99,13 @@ const ProcessForm = (props) => {
 
 
 
-	/// pass method handler
-	// const passHandler = (passParams, token) => {
-	// 	saveProcess(passParams, token)
-	// 		.then((Response) => {
-	// 			setTotalPass(Response.totalPass)
-	// 			setTotalFail(Response.totalFail)
-	// 			setTotalProcessed(Response.totalProcessed)
-	// 		}).catch((error) => { console.log(error) })
-	// }
+	// pass method handler
+	const passHandler = (passParams, token) => {
+		saveProcess(passParams, token)
+			.then((Response) => {
+				setChartRefrechData(Response)
+			}).catch((error) => { console.log(error) })
+	}
 	return (
 		<div className="container-fluid h-90">
 			<div className="row">
@@ -113,7 +133,7 @@ const ProcessForm = (props) => {
 					<div className={`${visible === "d-none" ? "" : "d-none"} process-window `} id="process-window">
 						<div className="row justify-content-center align-items-center">
 							<div className="col-3">
-								<div /*onClick={() => passHandler(passParams, token)} */ className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color hoverbuttons" id="pass-btn">
+								<div onClick={() => passHandler(passParams, token)} className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color hoverbuttons" id="pass-btn">
 									<div>
 										<img className="icon-pass" src={PassCheck} alt="" />
 									</div>
