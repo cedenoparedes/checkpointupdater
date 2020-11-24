@@ -54,15 +54,15 @@ const ProcessForm = (props) => {
 				}
 			)
 
-		// getFailures(customer, model, process, token)
-		// 	.then((Response) => {
-		// 		if (Response === null) {
-		// 			toastr.error("no failures")
-		// 		} else {
+		getFailures(customer, model, process, token)
+			.then((Response) => {
+				if (Response === null) {
+					toastr.error("no failures")
+				} else {
 
-		// 			setFailures(Response)
-		// 		}
-		// 	}).catch((error) => { console.log(error) })
+					setFailures(Response)
+				}
+			}).catch((error) => { console.log(error) })
 
 		setPassParams({
 			CustomerCode: customer,
@@ -149,7 +149,7 @@ const ProcessForm = (props) => {
 							</div>
 							<div className="col-3">
 								{/* button fail */}
-								<div /*onClick={showFailureWindows}*/ className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color hoverbuttons" id="fail-btn" >
+								<div onClick={showFailureWindows} className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color hoverbuttons" id="fail-btn" >
 									<div>
 										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
 									</div>
@@ -180,7 +180,7 @@ const ProcessForm = (props) => {
 						customer={customer}
 						setTotalPass={setTotalPass}
 						setTotalFail={setTotalFail}
-					// setTotalProcessed={setTotalProcessed}
+						setTotalProcessed={setTotalProcessed}
 
 					/>
 
