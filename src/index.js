@@ -2,12 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import ContextMiddleware from "./Components/Common/ContextMiddleware"
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
+    <ContextMiddleware>
     <App />
-  </React.StrictMode>,
+    </ContextMiddleware>
+  </React.StrictMode>
+ ,
   document.getElementById("root")
 );
 
