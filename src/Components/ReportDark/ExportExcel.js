@@ -16,6 +16,7 @@ const ExportToExcel = (props) => {
 
 
     useEffect(() => {
+        console.log(date)
         getTableData(customer, model, process, date, token)
             .then((Response) => {
                 let arreglo = [];
@@ -166,7 +167,7 @@ const ExportToExcel = (props) => {
                     toastr.error("Call failed.");
                 }, 1000);
             })
-    }, [customer, model, process, date, token, litlesheet, setExcelData])
+    }, [])
 
     const exportExelHandler = () => {
 

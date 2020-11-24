@@ -146,7 +146,7 @@ const ReportForm = () => {
               </div>
               <div className="col-6 ">
                 <div id="chart1 ">{<PieChart
-                  totalPass={chartsData.TotalQtyPass}
+                  TotalPass={chartsData.TotalQtyPass}
                   TotalFail={chartsData.TotalQtyFail} />}</div>
               </div>
             </div>
