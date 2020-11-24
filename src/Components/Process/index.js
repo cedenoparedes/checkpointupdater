@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Process from './ProcessForm';
 import { useLocation } from 'react-router-dom';
 import { getPieParams } from '../../api/process-api';
 
 
 const Index = () => {
-
     const [totalPass, setTotalPass] = useState("")
-    const [TotalFail, setTotalFail] = useState("")
-    const [TotalProcessed, setTotalProcessed] = useState("")
+    const [totalFail, setTotalFail] = useState("")
+    const [totalProcessed, setTotalProcessed] = useState("")
 
     //getting State via Link
     let location = useLocation;
@@ -28,16 +27,14 @@ const Index = () => {
     }
 
 
-
-
     return (
         <Process model={model}
             process={process}
             customer={customer}
             fillPieParams={fillPieParams}
             totalPass={totalPass}
-            TotalFail={TotalFail}
-            TotalProcessed={TotalProcessed}
+            totalFail={totalFail}
+            totalProcessed={totalProcessed}
             setTotalPass={setTotalPass}
             setTotalFail={setTotalFail}
             setTotalProcessed={setTotalProcessed}

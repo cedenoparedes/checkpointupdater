@@ -1,136 +1,113 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 import './ProcessMenuForm.css'
-import CustomerIcon from '../../Images/SVG/icons/custumer.svg'
-import ModelIcon from '../../Images/SVG/icons/model.svg'
-import ProcessIcon from '../../Images/SVG/icons/process.svg'
-import BackIcon from '../../Images/SVG/icons/back.svg'
-import RefreshIcon from '../../Images/SVG/icons/refresh.svg'
-import CustomerPopUp from "../Common/CustomerPopUp";
-import ModelPopUP from "../Common/ModelPopUp"
-import ProcessPopUp from "../Common/ProcessPopUp"
+import angleLocationLabel from '../../Images/SVG/icons/angleLocationLabel.png'
 import GlobalContext from "../../context/globalcontext"
-import { getCustomers, getModels, getProcesses } from '../../api/menu-api'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import toastr from "toastr";
 import Loading from '../Common/Loading'
 
-const CheckPointProcessMenu = () => {
+
+const CheckPointProcessMenu = (props) => {
+
     const [isLoading, setIsLoading] = useState(false);
     const [, , contextMiddleware] = useContext(GlobalContext);
-    const [model, setModel] = useState("")
-    const [customer, setCustomer] = useState("")
-    const [process, setProcess] = useState("")
-    const [customers, setCustomers] = useState([])
-    const [models, setModels] = useState([])
-    const [processes, setProcesses] = useState([])
-    const [menuVisible, setMenuVisible] = useState(true);
-    const [customerVisible, setCustomerVisible] = useState(false);
-    const [modelVisible, setModelVisible] = useState(false);
-    const [processVisible, setProcessVisible] = useState(false);
+    const [model, setModel] = useState("");
+    const [customer, setCustomer] = useState("");
+    const [process, setProcess] = useState("");
+    const [totalPass, setTotalPass] = useState("");
+    const [totalFail, setTotalFail] = useState("");
+    const [totalProcessed, setTotalProcessed] = useState("");
+    const history = useHistory();
+    const token = contextMiddleware.getToken();
 
+    //this function split the input's string
 
-    const hidePopUps = () => {
-        setMenuVisible(true);
-        setCustomerVisible(false);
-        setModelVisible(false);
-        setProcessVisible(false);
-    }
-
-
-    let token = contextMiddleware.getTokenClaims();
-
-
-    let params = {
+    let ArrayString = []
+    const params = {
         model: model,
         process: process,
         customer: customer
     }
 
-
-    const getCustomerParams = (token) => {
-        setMenuVisible(false);
-        setIsLoading(true);
-        getCustomers(token)
-            .then((json) => {
-                setCustomers(json);
-                setIsLoading(false);
-                setCustomerVisible(true);
-            }).catch((error) => {
-                console.log(error);
-
-                setTimeout(() => {
-                    hidePopUps();
-                    setIsLoading(false);
-                    toastr.error("Error While Retrieving Data");
-                }
-                    , 1000);
-
-            })
-
-    }
-    const getModelParams = (token) => {
-        setMenuVisible(false);
-        setIsLoading(true);
-        getModels(token)
-            .then((json) => {
-                setModels(json);
-                setIsLoading(false);
-                setModelVisible(true);
-            }).catch((error) => {
-                console.log(error);
-                setTimeout(() => {
-                    hidePopUps();
-                    setIsLoading(false);
-                    toastr.error("Error While Retrieving Data");
-                }
-                    , 1000);
-
-            })
-
-    }
-
-    const getProcessParams = (token) => {
-        setMenuVisible(false);
-        setIsLoading(true);
-        getProcesses(token)
-            .then((json) => {
-                setProcesses(json)
-                setIsLoading(false);
-                setProcessVisible(true);
-            }).catch((error) => {
-                console.log(error);
-                setTimeout(() => {
-                    hidePopUps();
-                    setIsLoading(false);
-                    toastr.error("Error While Retrieving Data");
-                }, 1000);
-            })
-
-    }
+    useEffect(() => {
+        if (!(customer === "") && !(model === "") && !(process === "")) {
+            // DoClick();
 
 
-
-
-
-    // const [linkProperties, setLinkProperties] = useState({})
-
-    toastr.options = {
-        "positionClass": "toast-top-center",
-        "showMethod": "slideDown",
-        "hideMethod": "slideUp",
-        "timeOut": "3000"
-    }
-
-    const fieldValidation = () => {
-        if (model === "" || process === "" || customer === "") {
-            toastr.error("Please fill all the fields")
         }
+
+    }, [customer, model, process])
+
+    const Splitter = () => {
+
+        const Qr = document.getElementById("tb-customer")
+        const Qr2 = Qr.value
+        const separator = "|"
+        ArrayString = Qr2.split(separator);
+        setCustomer(ArrayString[0])
+        setModel(ArrayString[1])
+        setProcess(ArrayString[2])
+        const params = {
+            customer: ArrayString[0],
+            model: ArrayString[1],
+            process: ArrayString[2],
+        }
+        pushProcess(params);
+
+
+    }
+
+
+    // //Here we are destructing the props 
+    // const ValidatePassFailInfo = (customer, model, process, token) => {
+    //     // console.log(customer, model, process, totalPass, totalFail, totalProcessed)
+    //     //This funcion is set to receive the data from the API
+    //     console.log("API call")
+    //     console.log(customer, model, process)
+    //     getPieParams(customer, model, process, token)
+    //         .then((Response) => {
+    //             params.totalPass = Response.TotalPass
+    //             params.totalFail = Response.TotalFail
+    //             params.totalProcessed = Response.TotalProcessed
+
+    //         })
+
+    //         .catch(
+    //             (error) => {
+    //                 console.log(error);
+    //                 setTimeout(() => {
+    //                     toastr.error("Call failed.");
+    //                 }, 1000);
+
+    //                 //document.getElementById("tb-customer").value = ""
+    //             }
+    //         )
+
+
+
+    // }
+
+    // const DoClick = () => {//evento click del boton Next
+    //     // console.log("estoy aqui")
+    //     // ValidatePassFailInfo(customer, model, process, token)
+    //     const Dclick = document.getElementById("next-button")
+    //     // Dclick.click()
+    //     pushProcess()
+
+    //     // console.log(params)
+
+    // }
+
+    const pushProcess = (params) => {
+        history.push({
+            pathname: '/process',
+            state: params
+        })
 
     }
 
     return (
         <div className="h-90">
-
             <div className="container-fluid">
                 <div className="row pl-3">
                     <div className="col-6 m-0">
@@ -143,91 +120,49 @@ const CheckPointProcessMenu = () => {
                     </div>
                 </div>
             </div>
-            <div className="contenedor">
+            <div className="contenedor contenedor2">
                 {isLoading === true ? <Loading /> : null}
-                {customerVisible === true ? <CustomerPopUp setCustomer={setCustomer} customers={customers} hidePopUps={hidePopUps} /> : null}
-                {modelVisible === true ? <ModelPopUP setModel={setModel} models={models} hidePopUps={hidePopUps} /> : null}
-                {processVisible === true ? <ProcessPopUp setProcess={setProcess} processes={processes} hidePopUps={hidePopUps} /> : null}
 
-
-
-
-                {menuVisible === true ?
-                    <div className="container-fluid">
-                        <form className="form-container">
-
-                            <div className="form-group">
-                                <div className="form-row">
-                                    <div className="col-6 d-flex justify-content-center">
-                                        <div className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
-                                            <img className="icon-options" src={CustomerIcon} alt="" />
-                                            <p className="label-btn">Customer</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-6 d-flex justify-content-center align-self-center">
-                                        <input type="text" className="form-control input-text form-control-lg " id="tb-customer" value={customer} disabled />
-                                    </div>
+                <div className="container-fluid">
+                    <form className="form-container">
+                        <div className="form-group">
+                            <div className="form-row">
+                                <div className="col-12 d-flex justify-content-center align-self-center">
+                                    <img src={angleLocationLabel} className="scanLabel" alt="" />
                                 </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="form-row">
-                                    <div className="col-6 d-flex justify-content-center">
-                                        <div className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
-                                            <img className="icon-options" src={ModelIcon} alt="" />
-                                            <p className="label-btn">Model</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-6 d-flex justify-content-center align-self-center">
-                                        <input type="text" className="form-control input-text form-control-lg" id="tb-model" value={model} disabled />
-                                    </div>
+                                <div className="col-12 d-flex justify-content-center align-self-center">
+                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL" className="form-control-lg1 input-text2" id="tb-customer" onKeyDown={(e) => e.key === 'Enter' ? Splitter() : null} />
                                 </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="form-row">
-                                    <div className="col-6 d-flex justify-content-center">
-                                        <div className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
-                                            <img className="icon-options" src={ProcessIcon} alt="" />
-                                            <p className="label-btn">Process</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-6 d-flex justify-content-center align-self-center">
-                                        <input type="text" className="form-control input-text form-control-lg" id="tb-process" value={process} disabled />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        {/* Back and Refresh Buttons */}
-                        <div className="back-refresh-container d-flex justify-content-center">
-                            <div className="col-4 d-flex justify-content-end">
-                                <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                    <div className="back-refresh-btn justify-content-center">
-                                        <img src={BackIcon} alt="" />
-                                        <p className="btn-lbl">Back</p>
-                                    </div>
-                                </Link>
-                            </div>
-                            <div className="col-4 d-flex justify-content-center">
-                                <Link to='/CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                    <div className="back-refresh-btn justify-content-center">
-                                        <img src={RefreshIcon} alt="" />
-                                        <p className="btn-lbl">Refresh</p>
-                                    </div>
-                                </Link>
-                            </div>
-                            <div className="col-4  d-flex justify-content-start">
-                                <Link to={model === "" || process === "" || customer === "" ? {} : {
-                                    pathname: '/process',
-                                    state: params
-                                }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                    <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
-                                        <img className="btn-next-rotate" src={BackIcon} alt="" />
-                                        <p className="btn-lbl">Next</p>
-                                    </div>
-                                </Link>
                             </div>
                         </div>
-                    </div> : null
-                }
+
+                    </form>
+                    {/* Back and Refresh Buttons */}
+                    <div className="back-refresh-container1 d-flex justify-content-center">
+                        <div className="col-4 d-flex justify-content-end">
+                            <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                {/* <div className="back-refresh-btn justify-content-center">
+                                    <img src={BackIcon} alt="" />
+                                    <p className="btn-lbl">Back</p>
+                                </div> */}
+                            </Link>
+                        </div>
+                        <div className="col-4 d-flex justify-content-center">
+                            <Link to='/CheckPointProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                {/* <div className="back-refresh-btn justify-content-center">
+                                    <img src={RefreshIcon} alt="" />
+                                    <p className="btn-lbl">Refresh</p>
+                                </div> */}
+                            </Link>
+                        </div>
+                        <div className="col-4  d-flex justify-content-start">
+                            <div className="justify-content-center" id='next-button'>
+                                {/* <img className="btn-next-rotate" src={BackIcon} alt="" />
+                                    <p className="btn-lbl">Next</p> */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div >

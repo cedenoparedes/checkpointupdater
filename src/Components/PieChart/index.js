@@ -5,13 +5,13 @@ import { pluginCharts } from '../Common/PlugingCharts'
 
 const PieChart = (props) => {
   pluginCharts();
-  const { totalPass, TotalFail, TotalProcessed } = props
-
+  const { TotalPass, TotalFail, TotalProcessed } = props
+  console.log(props);
   useEffect(() => {
 
 
-    let passLabel = "Pass " + totalPass
-    let failLabel = "Fail " + TotalFail
+    let passLabel = "Pass"
+    let failLabel = "Fail "
 
     const pieChart = document.getElementById("pieChart1").getContext("2d");
 
@@ -19,14 +19,14 @@ const PieChart = (props) => {
     Chart.defaults.global.defaultFontSize = 18;
     Chart.defaults.global.defaultFontColor = "#777";
 
-    let displayPieChart = new Chart(pieChart, {
+    new Chart(pieChart, {
       type: "pie",
       data: {
         labels: [passLabel, failLabel],
         datasets: [
           {
             label: "Amount",
-            data: [totalPass, TotalFail],
+            data: [TotalPass, TotalFail],
             backgroundColor: ["#99cc33", "crimson"],
           },
         ],
@@ -47,7 +47,7 @@ const PieChart = (props) => {
       },
     });
 
-  }, [totalPass, TotalFail]);
+  }, [TotalPass, TotalFail, TotalProcessed]);
 
   return (
     <div>

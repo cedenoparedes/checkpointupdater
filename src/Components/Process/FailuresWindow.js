@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
 import { saveProcess } from '../../api/process-api.js'
-
-let fails = [];
+import toastr from "toastr";
 
 const FailuresWindow = (props) => {
     const [, , contextMiddleware] = useContext(GlobalContext)
@@ -117,19 +116,20 @@ const FailuresWindow = (props) => {
     }
 
 
-
     /// fail method handler
     const failHandler = (failsParams, token) => {
-        // console.log(failsParams);
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.TotalPass)
                 setTotalFail(Response.TotalFail)
                 setTotalProcessed(Response.TotalProcessed)
-            }).catch((error) => { console.log(error) })
+            }).catch((error) => {
+                console.log(error);
+                setTimeout(() => {
+                    toastr.error("Call failed.");
+                }, 1000);
+            })
     }
-
-
 
     const setFailures = (failHandler, token) => {
 
@@ -141,17 +141,11 @@ const FailuresWindow = (props) => {
             EmployeeCode: userInfo.employeeCode,
             FailureName: failuresToSave
         }
-        // console.log(failsParams)
-        console.log(obj);
         ClearListError();
         setFailuresToSave([]);
         failHandler(obj, token);
 
     }
-
-
-
-
 
     return (
         <div className={`${visible} failures-window `} id="failure-window">
@@ -163,7 +157,7 @@ const FailuresWindow = (props) => {
                 </div>
                 <div className="col-12 p-2">
                     <div className="d-flex justify-content-start flex-wrap overflow">
-                        <div className="back-arrow">
+                        <div className="back-arrow hoverbuttons">
                             <img src={BackIcon} onClick={() => scrollHandler('left')} alt="" id="slideLeft" />
                         </div>
                         <div className="modal-button-container" id="option-window">
@@ -184,7 +178,7 @@ const FailuresWindow = (props) => {
                                 })}
                             </div>
                         </div>
-                        <div className="foward-arrow">
+                        <div className="foward-arrow hoverbuttons">
                             <img src={FowardIcon} onClick={() => scrollHandler('right')} alt="" id="slideRight" />
                         </div>
                     </div>

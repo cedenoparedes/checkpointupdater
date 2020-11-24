@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import WhiteLogo from '../../Images/Logo-white.svg';
 import NameLogo from '../../Images/Name.svg';
 import LogOutLogo from '../../Images/Log-out.svg';
@@ -36,7 +36,7 @@ const Header = () => {
             {token !== null ?
               <div className="d-flex text-center flex-row-reverse align-items-center">
 
-                <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item">
+                <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item  hoverbuttons">
                   <img src={LogOutLogo} alt="" />
                   <figcaption className="caption">Log Out</figcaption>
                 </figure>

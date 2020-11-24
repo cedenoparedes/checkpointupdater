@@ -43,7 +43,7 @@ const ReportCheckPointForm = () => {
       customer: customer,
       startDate: dateToSend
     })
-  }, [models, process, customer])
+  }, [models, process, customer, model, dateToSend])
 
   useEffect(() => {
     getDateToSends();
@@ -181,7 +181,7 @@ const ReportCheckPointForm = () => {
                 <div className="form-row">
                   <div className="input-group" id="datetimepicker">
                     <div className="col-6 d-flex justify-content-center p-0">
-                      <div className="btn-menu form-control" id="btn-date" onClick={dateTimePicker}>
+                      <div className="btn-menu form-control hoverbuttons" id="btn-date" onClick={dateTimePicker}>
                         <img className="icon-options" src={DateIcon} alt="" />
                         <p className="label-btn">Date</p>
                       </div>
@@ -195,7 +195,7 @@ const ReportCheckPointForm = () => {
                         maxDate={new Date()}
                         showYearDropdown
                         scrollableMonthYearDropdown
-                        withPortal/>
+                        withPortal />
                     </div>
                   </div>
                 </div>
@@ -203,7 +203,7 @@ const ReportCheckPointForm = () => {
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
-                    <div className="btn-menu" id="btn-client" onClick={() => getCustomerParams(token)}>
+                    <div className="btn-menu hoverbuttons" id="btn-client" onClick={() => getCustomerParams(token)}>
                       <img className="icon-options" src={CustumerIcon} alt="" />
                       <p className="label-btn">Customer</p>
                     </div>
@@ -216,7 +216,7 @@ const ReportCheckPointForm = () => {
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
-                    <div className="btn-menu" id="btn-model" onClick={() => getModelParams(token)}>
+                    <div className="btn-menu hoverbuttons" id="btn-model" onClick={() => getModelParams(token)}>
                       <img className="icon-options" src={ModelIcon} alt="" />
                       <p className="label-btn">Model</p>
                     </div>
@@ -229,7 +229,7 @@ const ReportCheckPointForm = () => {
               <div className="form-group">
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
-                    <div className="btn-menu" id="btn-process" onClick={() => getProcessParams(token)} >
+                    <div className="btn-menu hoverbuttons" id="btn-process" onClick={() => getProcessParams(token)} >
                       <img className="icon-options" src={ProcessIcon} alt="" />
                       <p className="label-btn">Process</p>
                     </div>

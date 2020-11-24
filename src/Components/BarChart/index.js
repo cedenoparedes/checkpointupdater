@@ -84,7 +84,7 @@ const NewChartjs = (props) => {
       data: data,
       options: options,
     });
-  }, [totalFailures]);
+  }, [totalFailures, failuresByGroup, FailuresByGroupPer]);
 
   return (
     // <div>
