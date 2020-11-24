@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import GlobalContext from "../../context/globalcontext";
 import { Redirect } from "react-router-dom";
+import { getLanguage } from '../../api/language-api';
 
 const ContextMiddleware = (props) => {
+  const [language, setLanguage] = useState("EN")
+  const [languageLabel, setLanguageLabel] = useState([])
   const [contextState, setContextState] = useState({
     isAuth: false,
     token: "",
+    languageLabel: "",
   });
 
   const getLocalCache = () => {
@@ -18,10 +22,31 @@ const ContextMiddleware = (props) => {
     if (localContextCached !== null) {
       setContextState(localContextCached);
     }
-  }, []);
 
-  const middleware = (state, setState) => {
+    getLanguage(language)
+      .then((Response) => {
+        setLanguageLabel(Response)
+      })
+      .catch((error) => console.log(error))
+  }, [language]);
+
+  const middleware = (state, setState, setLanguage, languageLabel) => {
     let localContext = Object.assign({}, { ...state });
+
+    const getLanguageLabel = () => {
+      localContext = Object.assign(
+        {},
+        { ...localContext },
+        { languageLabel: languageLabel }
+      );
+      setLocalCache(localContext);
+
+    }
+
+    const setLocaLanguage = (language) => {
+      setLanguage(language)
+    }
+
 
     const setLocalCache = (localContextCached) => {
       localStorage.setItem("localContext", JSON.stringify(localContextCached));
@@ -64,7 +89,7 @@ const ContextMiddleware = (props) => {
         return < Redirect to="/" />
       };
 
-    return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims };
+    return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims, getLanguageLabel, setLocaLanguage };
   };
 
   return (
@@ -72,7 +97,7 @@ const ContextMiddleware = (props) => {
       value={[
         contextState,
         setContextState,
-        middleware(contextState, setContextState),
+        middleware(contextState, setContextState, setLanguage, languageLabel),
       ]}
     >
       {props.children}
