@@ -34,6 +34,8 @@ const ReportCheckPointForm = () => {
   const [params, setParams] = useState({})
   const [startDate, setStartDate] = useState(new Date());
   const [dateToSend, setDateToSend] = useState("")
+  let token = contextMiddleware.getToken();
+
 
 
   useEffect(() => {
@@ -74,13 +76,13 @@ const ReportCheckPointForm = () => {
     setProcessVisible(false);
   }
 
-  let token = contextMiddleware.getTokenClaims();
 
   const getCustomerParams = (token) => {
     setMenuVisible(false);
     setIsLoading(true);
     getCustomers(token)
       .then((json) => {
+        console.log(json)
         setCustomers(json);
         setIsLoading(false);
         setCustomerVisible(true);

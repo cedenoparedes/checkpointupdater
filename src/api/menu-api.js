@@ -8,7 +8,7 @@ export function getProcesses(token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: 'Bearer ' + token,
         }
     })
         .then(handleResponse)
@@ -23,7 +23,7 @@ export function getModels(token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: 'Bearer ' + token,
         }
     })
         .then(handleResponse)
@@ -36,7 +36,7 @@ export function getCustomers(token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: 'Bearer ' + token,
         }
     })
         .then(handleResponse)

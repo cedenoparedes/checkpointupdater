@@ -53,10 +53,10 @@ const ModelPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-model" id={item.ModelName} onClick={() => setModelState(item.ModelName)}>
+                                        <button className="modal-btn btn-model" id={item.modelName} onClick={() => setModelState(item.modelName)}>
                                             <img className="format-img-model" src={modelIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.ModelName}</p>
+                                        <p className="modal-client-text">{item.modelName}</p>
                                     </div>)
                             })}
                             <div className="foward-arrow">
