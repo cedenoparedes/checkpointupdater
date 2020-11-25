@@ -22,6 +22,12 @@ const Index = () => {
         }
         let jEmployeeCode = { employeeCode: employeeCode }
 
+        const errorResponse = message => {
+            setTimeout(() => {
+                setIsLoading(false);
+                toastr.error(message);
+            }, 1000);
+        }
 
         const clearInput = () => {
             const employeeCodeInput = document.getElementById("login-input-border")
@@ -43,11 +49,16 @@ const Index = () => {
                     setIsLoading(false);
                 }).catch((error) => {
                     console.log(error);
-                    setTimeout(() => {
-                        setIsLoading(false);
-                        toastr.error("Wrong Employee Code.");
-                    }, 1000);
-
+                    const Error = error.message;
+                    if (Error === 'Failed to fetch') {
+                        errorResponse('Network Error')
+                    }
+                    else if (Error === '401: unauthorized') {
+                        errorResponse('User not Found or Unauthorized')
+                    }
+                    else if (Error === '402: unauthorized') {
+                        errorResponse('Error 402: Unauthorized')
+                    }
 
                 });
             clearInput();

@@ -114,7 +114,11 @@ const FailuresWindow = (props) => {
         }
     }
 
-
+    const errorResponse = message => {
+        setTimeout(() => {
+            toastr.error(message);
+        }, 1000);
+    }
     /// fail method handler
     const failHandler = (failsParams, token) => {
         saveProcess(failsParams, token)
@@ -124,9 +128,19 @@ const FailuresWindow = (props) => {
                 setTotalProcessed(Response.totalProcessed)
             }).catch((error) => {
                 console.log(error);
-                setTimeout(() => {
-                    toastr.error("Call failed.");
-                }, 1000);
+                const Error = error.message;
+                if (Error === 'Failed to fetch') {
+                    errorResponse('Network Error')
+                }
+                else if (Error === '401: unauthorized') {
+                    errorResponse('User not Found or Unauthorized')
+                }
+                else if (Error === '402: unauthorized') {
+                    errorResponse('Error 402: Unauthorized')
+                }
+                else if (Error === '404: not found') {
+                    errorResponse('Error 404: Not Found')
+                }
             })
     }
 

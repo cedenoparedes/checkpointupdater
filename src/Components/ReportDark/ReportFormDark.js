@@ -76,12 +76,29 @@ const ReportForm = () => {
       })
       .catch((error) => {
         history.push("/report/menu");
-        toastr.error("There was an error while retrieving data");
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
+
+        console.log(error)
+        const Error = error.message;
+        if (Error === 'Failed to fetch') {
+          errorResponse('Network Error')
+        }
+        else if (Error === '401: unauthorized') {
+          errorResponse('User not Found or Unauthorized')
+        }
+        else if (Error === '402: unauthorized') {
+          errorResponse('Error 402: Unauthorized')
+        }
+        else if (Error === '404: not found') {
+          errorResponse('Error 404: Not Found')
+        }
       })
 
+  }
+  const errorResponse = message => {
+    toastr.error(message);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }
   const exportToPDF = () => {
     setIsLoading(true);
