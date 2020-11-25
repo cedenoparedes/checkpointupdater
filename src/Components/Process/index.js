@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Process from './ProcessForm';
 import { useLocation } from 'react-router-dom';
 import { getPieParams } from '../../api/process-api';
 import toastr from 'toastr';
 import { useHistory } from 'react-router-dom';
+import GlobalContext from "../../context/globalcontext"
+
 
 const Index = () => {
     const [totalPass, setTotalPass] = useState("")
     const [totalFail, setTotalFail] = useState("")
     const [totalProcessed, setTotalProcessed] = useState("")
     const history = useHistory();
+    const [contextState, , contextMiddleware] = useContext(GlobalContext);
+
 
     //getting State via Link
     let location = useLocation;

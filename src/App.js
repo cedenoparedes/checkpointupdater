@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     console.log(contextState.language)
     getLanguage(contextState.language)
-      .then(response => console.log(response))
+      .then(response => contextMiddleware.setLanguage(response))
       .catch(error => console.log(error));
   }, [contextState.language]);
 

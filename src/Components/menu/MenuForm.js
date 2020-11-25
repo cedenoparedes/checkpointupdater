@@ -9,7 +9,7 @@ import GlobalContext from "../../context/globalcontext"
 
 const MenuForm = () => {
     const [contextState, , contextMiddleware] = useContext(GlobalContext);
-    console.log(contextState.languageLabel)
+
 
     return (
         <div className="container-fluid h-90">
