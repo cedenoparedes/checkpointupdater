@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import GlobalContext from "../../context/globalcontext";
 import { Redirect } from "react-router-dom";
-import { getLanguage } from '../../api/language-api';
+import config from "./../../config";
+
 
 const ContextMiddleware = (props) => {
-  const [language, setLanguage] = useState("EN")
-  const [languageLabel, setLanguageLabel] = useState([])
   const [contextState, setContextState] = useState({
     isAuth: false,
     token: "",
-    languageLabel: "",
+    language: config.language,
+    languageLabel: [],
   });
 
   const getLocalCache = () => {
@@ -22,29 +22,27 @@ const ContextMiddleware = (props) => {
     if (localContextCached !== null) {
       setContextState(localContextCached);
     }
+  }, []);
 
-    getLanguage(language)
-      .then((Response) => {
-        setLanguageLabel(Response)
-      })
-      .catch((error) => console.log(error))
-  }, [language]);
-
-  const middleware = (state, setState, setLanguage, languageLabel) => {
+  const middleware = (state, setState) => {
     let localContext = Object.assign({}, { ...state });
 
-    const getLanguageLabel = () => {
+    const setLanguage = (lang) => {
       localContext = Object.assign(
         {},
         { ...localContext },
-        { languageLabel: languageLabel }
+        { languageLabel: lang }
       );
       setLocalCache(localContext);
-
     }
 
-    const setLocaLanguage = (language) => {
-      setLanguage(language)
+    const changeLanguage = (lang) => {
+      localContext = Object.assign(
+        {},
+        { ...localContext },
+        { language: lang }
+      );
+      setLocalCache(localContext);
     }
 
 
@@ -89,7 +87,7 @@ const ContextMiddleware = (props) => {
         return < Redirect to="/" />
       };
 
-    return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims, getLanguageLabel, setLocaLanguage };
+    return { logOut, logIn, getToken, routeProtectedComponent, getTokenClaims, setLanguage, changeLanguage };
   };
 
   return (
@@ -97,7 +95,7 @@ const ContextMiddleware = (props) => {
       value={[
         contextState,
         setContextState,
-        middleware(contextState, setContextState, setLanguage, languageLabel),
+        middleware(contextState, setContextState),
       ]}
     >
       {props.children}

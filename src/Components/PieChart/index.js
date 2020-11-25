@@ -6,7 +6,7 @@ import { pluginCharts } from '../Common/PlugingCharts'
 const PieChart = (props) => {
   pluginCharts();
   const { TotalPass, TotalFail, TotalProcessed } = props
-  console.log(props);
+
   useEffect(() => {
 
 
