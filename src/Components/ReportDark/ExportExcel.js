@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactExport from 'react-data-export';
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
 import { getTableData } from "../../api/report-api"
-import toastr from "toastr";
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -10,13 +9,12 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 const ExportToExcel = (props) => {
     const { customer, model, process, date, token } = props
-    const [excelData, setExcelData, litlesheet] = useState([]);
+    const [excelData, setExcelData] = useState([]);
 
-    // const  = ['']
+    const litlesheet = ['']
 
 
     useEffect(() => {
-        console.log(date)
         getTableData(customer, model, process, date, token)
             .then((Response) => {
                 let arreglo = [];
@@ -161,12 +159,7 @@ const ExportToExcel = (props) => {
                     }]
                 );
             })
-            .catch((error) => {
-                console.log(error);
-                setTimeout(() => {
-                    toastr.error("Call failed.");
-                }, 1000);
-            })
+            .catch((error) => { console.log(error) })
     }, [])
 
     const exportExelHandler = () => {
@@ -174,7 +167,7 @@ const ExportToExcel = (props) => {
     }
 
     return (
-        <div className="exporticon hoverbuttons">
+        <div className="exporticon">
             <ExcelFile filename="Check Point Data" element={<img src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
                 <ExcelSheet dataSet={excelData} name={customer + "-" + model + "-" + process + "-" + date} />
             </ExcelFile>
@@ -186,5 +179,3 @@ const ExportToExcel = (props) => {
 
 
 export default ExportToExcel;
-
-
