@@ -9,7 +9,7 @@ export const getTableData = (customer, model, process, date, token) => {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: 'Bearer ' + token
         }
 
     })
@@ -24,7 +24,7 @@ export const getPieCharData = (customer, model, process, date, token) => {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: 'Bearer ' + token
         }
 
     })

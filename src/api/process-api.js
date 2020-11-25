@@ -10,7 +10,7 @@ export function getPieParams(customer, model, process, token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: 'Bearer ' + token
         }
     })
         .then(handleResponse)
@@ -24,7 +24,7 @@ export function getFailures(customer, model, process, token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: 'Bearer ' + token
         }
     })
         .then(handleResponse)
@@ -38,7 +38,7 @@ export function saveProcess(passParams, token) {
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: 'Bearer ' + token
         },
         body: JSON.stringify(passParams),
     })

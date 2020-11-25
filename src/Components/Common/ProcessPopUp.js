@@ -28,10 +28,10 @@ const ProcessPopUp = (props) => {
                                 return (
 
                                     <div key={i}>
-                                        <button className="modal-btn btn-client" id={item.ProcessName} onClick={() => setProcessState(item.ProcessName)}>
+                                        <button className="modal-btn btn-client" id={item.processName} onClick={() => setProcessState(item.processName)}>
                                             <img className="format-img-process" src={processIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.ProcessName}</p>
+                                        <p className="modal-client-text">{item.processName}</p>
                                     </div>)
                             })}
                         </div>

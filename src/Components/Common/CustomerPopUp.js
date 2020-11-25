@@ -28,12 +28,11 @@ const CustomerPopUp = (props) => {
 
                             {customers.map((item, i) => {
                                 return (
-
                                     <div key={i}>
-                                        <button className="modal-btn btn-client" id={item.CostumerName} onClick={() => setCustomerState(item.CostumerName)}>
+                                        <button className="modal-btn btn-client" id={item.customerName} onClick={() => setCustomerState(item.customerName)}>
                                             <img className="format-img-costumer" src={customerIcon} alt="" />
                                         </button>
-                                        <p className="modal-client-text">{item.CostumerName}</p>
+                                        <p className="modal-client-text">{item.customerName}</p>
                                     </div>)
                             })}
                         </div>
