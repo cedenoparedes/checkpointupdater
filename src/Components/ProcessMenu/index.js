@@ -6,7 +6,6 @@ import ProcessMenuForm from './ProcessMenuForm.js';
 const Index = () => {
 
     return (
-
         <ProcessMenuForm />
     )
 }
