@@ -51,6 +51,12 @@ const Header = () => {
                     <figcaption className="caption">Home</figcaption>
                   </figure>
                 </Link>
+                <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <figure className="pl-3 m-0 item">
+                    <img src={HomeLogo} alt="" />
+                    <figcaption className="caption">Home</figcaption>
+                  </figure>
+                </Link>
               </div> : null
             }
           </div>

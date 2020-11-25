@@ -4,9 +4,10 @@ import FailSymbol from "../../Images/SVG/icons/cancel.svg";
 import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import GlobalContext from '../../context/globalcontext';
 import { getFailures, saveProcess, getPieParams } from '../../api/process-api'
+import Loading from '../Common/Loading'
 import toastr from 'toastr'
 
 
@@ -17,7 +18,6 @@ const ProcessForm = (props) => {
 	const [failures, setFailures] = useState([]);
 	const [passParams, setPassParams] = useState({})
 	const [chartRefrechData, setChartRefrechData] = useState({})
-
 	const userInfo = contextMiddleware.getTokenClaims();
 	const token = contextMiddleware.getToken()
 	const model = location.state.model
@@ -26,14 +26,23 @@ const ProcessForm = (props) => {
 	const [totalPass, setTotalPass] = useState()
 	const [totalFail, setTotalFail] = useState()
 	const [totalProcessed, setTotalProcessed] = useState()
+	const [isLoading, setIsloading] = useState(false)
+	const history = useHistory();
 
 
-
+	const errorResponse = message => {
+		setIsloading(true)
+		setTimeout(() => {
+			toastr.error(message)
+			setIsloading(false)
+		}, 1000);
+	}
 
 
 	//Here we are destructing the props 
 
 	useEffect(() => {
+
 
 		getPieParams(customer, model, process, token)
 			.then((Response) => {
@@ -44,10 +53,22 @@ const ProcessForm = (props) => {
 
 			.catch(
 				(error) => {
-					console.log(error);
-					setTimeout(() => {
-						toastr.error("Call failed.");
-					}, 1000);
+					console.log(error)
+					history.push("/processMenu");
+					console.log(error)
+					const Error = error.message;
+					if (Error === 'Failed to fetch') {
+						errorResponse('Network Error')
+					}
+					else if (Error === '401: unauthorized') {
+						errorResponse('User not Found or Unauthorized')
+					}
+					else if (Error === '402: unauthorized') {
+						errorResponse('Error 402: Unauthorized')
+					}
+					else if (Error === '404: not found') {
+						errorResponse('Error 404: Not Found')
+					}
 
 					//document.getElementById("tb-customer").value = ""
 				}
@@ -102,6 +123,7 @@ const ProcessForm = (props) => {
 	}
 	return (
 		<div className="container-fluid h-90">
+			{ isLoading === false ? null : <Loading />}
 			<div className="row">
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
