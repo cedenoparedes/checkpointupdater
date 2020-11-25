@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ContentRouter from "./Components/Common/ContentRouter";
 import "./Components/Process/Process.css";
@@ -14,27 +14,27 @@ import Header from "./Components/Common/Header";
 import Footer from "./Components/Common/Footer";
 import "./Components/Common/HoverButtons.css";
 import GlobalContext from "./context/globalcontext"
-import { getLanguage } from  "./api/language-api";
+import { getLanguage } from "./api/language-api";
 
 
 
 function App() {
-  const [contextState, ,contextMiddleware] = useContext(GlobalContext);
-  
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+
   useEffect(() => {
     getLanguage(contextState.language)
-    .then(response => contextMiddleware.setLanguage(response))
-    .error(error => console.log(error));
+      .then(response => contextMiddleware.setLanguage(response))
+      .catch(error => console.log(error));
   }, [contextState.language]);
 
   return (
-      <Router>
-        <Header />
-        <div className="Content">
-          <ContentRouter />
-        </div>
-        <Footer />
-      </Router>
+    <Router>
+      <Header />
+      <div className="Content">
+        <ContentRouter />
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
