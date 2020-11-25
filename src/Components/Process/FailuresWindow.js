@@ -17,7 +17,6 @@ const FailuresWindow = (props) => {
     //     FailureName: []
     // })
     const [failuresToSave, setFailuresToSave] = useState([]);
-
     const token = contextMiddleware.getToken();
     const {
         visible,
@@ -120,9 +119,9 @@ const FailuresWindow = (props) => {
     const failHandler = (failsParams, token) => {
         saveProcess(failsParams, token)
             .then((Response) => {
-                setTotalPass(Response.TotalPass)
-                setTotalFail(Response.TotalFail)
-                setTotalProcessed(Response.TotalProcessed)
+                setTotalPass(Response.totalPass)
+                setTotalFail(Response.totalFail)
+                setTotalProcessed(Response.totalProcessed)
             }).catch((error) => {
                 console.log(error);
                 setTimeout(() => {
@@ -165,7 +164,7 @@ const FailuresWindow = (props) => {
                             <div className="r-1">
                                 {failures.map((failure, i) => {
                                     if (i % 2 === 0) {
-                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.failureName}</button>
                                     }
                                 })}
                             </div>
@@ -173,7 +172,7 @@ const FailuresWindow = (props) => {
                             <div className="r-2">
                                 {failures.map((failure, i) => {
                                     if (i % 2 !== 0) {
-                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.failureName}</button>
                                     }
                                 })}
                             </div>

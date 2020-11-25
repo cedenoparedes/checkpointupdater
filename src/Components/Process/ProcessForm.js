@@ -37,10 +37,9 @@ const ProcessForm = (props) => {
 
 		getPieParams(customer, model, process, token)
 			.then((Response) => {
-				console.log(Response)
-				setTotalPass(Response.TotalPass)
-				setTotalFail(Response.TotalFail)
-				setTotalProcessed(Response.TotalProcessed)
+				setTotalPass(Response.totalPass)
+				setTotalFail(Response.totalFail)
+				setTotalProcessed(Response.totalProcessed)
 			})
 
 			.catch(
@@ -72,17 +71,12 @@ const ProcessForm = (props) => {
 			EmployeeCode: userInfo.employeeCode,
 			FailureId: []
 		})
-
-
 	}, [])
 
 	useEffect(() => {
-
-
-		setTotalPass(chartRefrechData.TotalPass)
-		setTotalFail(chartRefrechData.TotalFail)
-		setTotalProcessed(chartRefrechData.TotalProcessed)
-
+		setTotalPass(chartRefrechData.totalPass)
+		setTotalFail(chartRefrechData.totalFail)
+		setTotalProcessed(chartRefrechData.totalProcessed)
 	}, [chartRefrechData])
 
 

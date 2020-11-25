@@ -45,7 +45,7 @@ const ReportCheckPointForm = () => {
       customer: customer,
       startDate: dateToSend
     })
-  }, [models, process, customer, model, dateToSend])
+  }, [models, processes, customers, process, customer, model, dateToSend])
 
   useEffect(() => {
     getDateToSends();
@@ -82,7 +82,6 @@ const ReportCheckPointForm = () => {
     setIsLoading(true);
     getCustomers(token)
       .then((json) => {
-        console.log(json)
         setCustomers(json);
         setIsLoading(false);
         setCustomerVisible(true);
@@ -153,7 +152,6 @@ const ReportCheckPointForm = () => {
     if (model === "" || process === "" || customer === "") {
       toastr.error("Please fill all the fields")
     }
-
   }
 
   return (
@@ -261,10 +259,10 @@ const ReportCheckPointForm = () => {
                 </Link>
               </div>
               <div className="col-4 d-flex justify-content-start">
-                <Link to={model === "" || process === "" || customer === "" || dateToSend === "" ? {} : {
+                <Link to={!(model === "") && !(process === "") && !(customer === "") && !(dateToSend === "") ? {
                   pathname: '../reportDark',
                   state: params
-                }} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                } : {}} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
                     <img className="btn-next-rotate" src={BackIcon} alt="" />
                     <p className="btn-lbl">Next</p>
