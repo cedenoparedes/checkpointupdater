@@ -19,13 +19,13 @@ import { getLanguage } from "./api/language-api";
 
 
 function App() {
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  // const [contextState, , contextMiddleware] = useContext(GlobalContext);
 
-  useEffect(() => {
-    getLanguage(contextState.language)
-      .then(response => contextMiddleware.setLanguage(response))
-      .catch(error => console.log(error));
-  }, [contextState.language]);
+  // useEffect(() => {
+  //   getLanguage(contextState.language)
+  //     .then(response => contextMiddleware.setLanguage(response))
+  //     .catch(error => console.log(error));
+  // }, [contextState.language]);
 
   return (
     <Router>
