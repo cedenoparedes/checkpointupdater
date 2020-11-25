@@ -3,12 +3,13 @@ import config from "../config";
 const baseUrl = config.baseApiURL[config.env] + "/login";
 
 
-export function getLanguage(language) {
+export function getLanguage(language, token) {
     return fetch(baseUrl + language, {
         method: "GET",
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token
         }
 
     })
