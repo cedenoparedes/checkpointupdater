@@ -3,12 +3,13 @@ import Process from './ProcessForm';
 import { useLocation } from 'react-router-dom';
 import { getPieParams } from '../../api/process-api';
 import toastr from 'toastr';
-
+import { useHistory } from 'react-router-dom';
 
 const Index = () => {
     const [totalPass, setTotalPass] = useState("")
     const [totalFail, setTotalFail] = useState("")
     const [totalProcessed, setTotalProcessed] = useState("")
+    const history = useHistory();
 
     //getting State via Link
     let location = useLocation;
@@ -30,6 +31,7 @@ const Index = () => {
                 setTotalProcessed(data.TotalProcessed);
 
             }).catch((error) => {
+                history.push("/processMenu");
                 console.log(error)
                 const Error = error.message;
                 if (Error === 'Failed to fetch') {
