@@ -167,9 +167,9 @@ const ProcessForm = (props) => {
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
 						<ol className="breadcrumb">
-							<li className="breadcrumb-item"> <a href="../menu">{homeLabel}</a></li>
-							<li className="breadcrumb-item"><a href="../CheckPointProcessMenu">{checkPointLabel}</a></li>
-							<li className="breadcrumb-item active" aria-current="page">{processLabel}</li>
+							<li className="breadcrumb-item"> <a href="../menu">Home</a></li>
+							<li className="breadcrumb-item"><a href="../ProcessMenu">Checkpoint</a></li>
+							<li className="breadcrumb-item active" aria-current="page">Process</li>
 						</ol>
 					</nav>
 				</div>

@@ -153,6 +153,9 @@ const ReportCheckPointForm = () => {
       toastr.error("Please fill all the fields")
     }
   }
+  const refreshPage = () => {
+    window.location.reload()
+  }
 
   return (
     <div className="h-90">
@@ -175,7 +178,7 @@ const ReportCheckPointForm = () => {
         {modelVisible === true ? <ModelPopUP setModel={setModel} models={models} hidePopUps={hidePopUps} /> : null}
         {processVisible === true ? <ProcessPopUp setProcess={setProcess} processes={processes} hidePopUps={hidePopUps} /> : null}
         {menuVisible === true ?
-          <div className="container-fluid">
+          <div className="container-fluid" id="my-form">
             <form className="form-container">
               <div className="form-group">
                 <div className="form-row">
@@ -209,7 +212,7 @@ const ReportCheckPointForm = () => {
                     </div>
                   </div>
                   <div className="col-6 d-flex justify-content-center  input-size">
-                    <input type="text" className="form-control input-text form-control-lg " id="tb-customer" value={customer} disabled />
+                    <input type="text" className="form-control input-text form-control-lg" id="tb-customer" value={customer} disabled />
                   </div>
                 </div>
               </div>
@@ -251,8 +254,8 @@ const ReportCheckPointForm = () => {
                 </Link>
               </div>
               <div className="col-4 d-flex justify-content-center">
-                <Link to='../ReportCheckPoint' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                  <div className="back-refresh-btn justify-content-center">
+                <Link to='/report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                  <div className="back-refresh-btn justify-content-center" onClick={() => refreshPage()}>
                     <img src={RefreshIcon} alt="" />
                     <p className="btn-lbl">Refresh</p>
                   </div>

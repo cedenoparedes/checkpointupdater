@@ -157,7 +157,7 @@ const ReportForm = () => {
           <div className="row">
             <div className="col-12 d-flex  justify-content-center btn-export">
               <fieldset>
-                <legend>{exportTo}</legend>
+                <legend><span>Export to:</span></legend>
                 <div className="d-flex justify-content-start">
                   <img
                     onClick={exportToPDF}
@@ -218,8 +218,8 @@ const ReportForm = () => {
             </div>
           </div>
           <div className="back-refresh-container d-flex justify-content-right">
-            <div className="col-6 d-flex justify-content-end">
-              <Link
+            {/* <div className="col-6 d-flex justify-content-end">
+               <Link
                 to="../report/menu"
                 style={{ color: "inherit", textDecoration: "inherit" }}
               >
@@ -227,11 +227,12 @@ const ReportForm = () => {
                   <img src={BackIcon} alt="" />
                   <p className="btn-lbl">{backLabel}</p>
                 </div>
-              </Link>
-            </div>
-            <div className="col-6 d-flex justify-content-left">
+              </Link> 
+            </div> */}
+            <div className="col-12 d-flex justify-content-center">
               <Link
-                to="../Report"
+                to="../report/menu"
+                // to="../Report"
                 style={{ color: "inherit", textDecoration: "inherit" }}
               >
                 <div className="back-refresh-btn justify-content-center">
