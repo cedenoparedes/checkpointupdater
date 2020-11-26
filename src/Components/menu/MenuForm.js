@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
-import CheckIcon from '../../Images/SVG/icons/check.svg';
-import DataIcon from '../../Images/SVG/icons/data.svg';
 import { Link } from "react-router-dom";
 import GlobalContext from "../../context/globalcontext"
+import images from '../Common/Images/index'
 
 
 const MenuForm = () => {
@@ -67,7 +66,7 @@ const MenuForm = () => {
                             <Link to='../ProcessMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="div-btn-options pt-5" id="chk-point">
                                     <div className="row d-flex justify-content-center">
-                                        <img className="img-options align-bottom" src={CheckIcon} alt="" />
+                                        <img className="img-options align-bottom" src={images.checkIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
                                         <span className="label-btn-options">{checkPointLabel}</span>
@@ -79,7 +78,7 @@ const MenuForm = () => {
                             <Link to='../report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                                 <div className="div-btn-options pt-5" id="d-data">
                                     <div className="row d-flex justify-content-center">
-                                        <img className="img-options" src={DataIcon} alt="" />
+                                        <img className="img-options" src={images.dataIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
                                         <span className="label-btn-options">{dailyData}</span>

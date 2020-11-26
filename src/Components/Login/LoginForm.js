@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import LogInIMG from "../../Images/LogIn-IMG.svg";
-import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
 import GlobalContex from "../../context/globalcontext";
 import Loading from '../Common/Loading';
+import images from '../Common/Images/index.js'
+
 
 const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 
@@ -40,7 +40,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 
         <div className="container-fluid">
           <div className="d-flex justify-content-center">
-            <img src={LogInIMG} id="login-frame-size" alt="" />
+            <img src={images.loginImage} id="login-frame-size" alt="" />
           </div>
         </div>
         <div className="d-flex justify-content-center">
@@ -50,7 +50,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
                 <img
                   className="m-auto"
                   id="login-span-icon"
-                  src={CarnetIcon}
+                  src={images.carnetImage}
                   alt=""
                 />
               </span>

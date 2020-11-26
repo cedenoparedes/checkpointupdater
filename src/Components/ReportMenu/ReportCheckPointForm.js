@@ -1,11 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../Common/breadcrumb.css";
-import CustumerIcon from "../../Images/SVG/icons/custumer.svg";
-import DateIcon from "../../Images/SVG/icons/datetime.svg";
-import ModelIcon from "../../Images/SVG/icons/model.svg";
-import ProcessIcon from "../../Images/SVG/icons/process.svg";
-import BackIcon from "../../Images/SVG/icons/back.svg";
-import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
+import images from '../Common/Images/index'
 import CustomerPopUp from "../Common/CustomerPopUp";
 import ModelPopUP from "../Common/ModelPopUp"
 import ProcessPopUp from "../Common/ProcessPopUp"
@@ -185,7 +180,7 @@ const ReportCheckPointForm = () => {
                   <div className="input-group" id="datetimepicker">
                     <div className="col-6 d-flex justify-content-center p-0">
                       <div className="btn-menu form-control hoverbuttons" id="btn-date" onClick={dateTimePicker}>
-                        <img className="icon-options" src={DateIcon} alt="" />
+                        <img className="icon-options" src={images.dateTimeIcon} alt="" />
                         <p className="label-btn">Date</p>
                       </div>
                     </div>
@@ -207,7 +202,7 @@ const ReportCheckPointForm = () => {
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-client" onClick={() => getCustomerParams(token)}>
-                      <img className="icon-options" src={CustumerIcon} alt="" />
+                      <img className="icon-options" src={images.customerIcon} alt="" />
                       <p className="label-btn">Customer</p>
                     </div>
                   </div>
@@ -220,7 +215,7 @@ const ReportCheckPointForm = () => {
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-model" onClick={() => getModelParams(token)}>
-                      <img className="icon-options" src={ModelIcon} alt="" />
+                      <img className="icon-options" src={images.modelIcon} alt="" />
                       <p className="label-btn">Model</p>
                     </div>
                   </div>
@@ -233,7 +228,7 @@ const ReportCheckPointForm = () => {
                 <div className="form-row">
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-process" onClick={() => getProcessParams(token)} >
-                      <img className="icon-options" src={ProcessIcon} alt="" />
+                      <img className="icon-options" src={images.processIcon} alt="" />
                       <p className="label-btn">Process</p>
                     </div>
                   </div>
@@ -248,7 +243,7 @@ const ReportCheckPointForm = () => {
               <div className="col-4 d-flex justify-content-end">
                 <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center">
-                    <img src={BackIcon} alt="" />
+                    <img src={images.backIcon} alt="" />
                     <p className="btn-lbl">Back</p>
                   </div>
                 </Link>
@@ -256,7 +251,7 @@ const ReportCheckPointForm = () => {
               <div className="col-4 d-flex justify-content-center">
                 <Link to='/report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={() => refreshPage()}>
-                    <img src={RefreshIcon} alt="" />
+                    <img src={images.refreshIcon} alt="" />
                     <p className="btn-lbl">Refresh</p>
                   </div>
                 </Link>
@@ -267,7 +262,7 @@ const ReportCheckPointForm = () => {
                   state: params
                 } : {}} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
-                    <img className="btn-next-rotate" src={BackIcon} alt="" />
+                    <img className="btn-next-rotate" src={images.backIcon} alt="" />
                     <p className="btn-lbl">Next</p>
                   </div>
                 </Link>

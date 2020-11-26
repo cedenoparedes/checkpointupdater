@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactExport from 'react-data-export';
 import ExcelIcon from "../../Images/SVG/icons/excel.svg";
+import images from '../Common/Images/index'
 import { getTableData } from "../../api/report-api"
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -168,7 +169,7 @@ const ExportToExcel = (props) => {
 
     return (
         <div className="exporticon">
-            <ExcelFile filename="Check Point Data" element={<img src={ExcelIcon} alt="" onClick={exportExelHandler} />}>
+            <ExcelFile filename="Check Point Data" element={<img src={images.excelIcon} alt="" onClick={exportExelHandler} />}>
                 <ExcelSheet dataSet={excelData} name={customer + "-" + model + "-" + process + "-" + date} />
             </ExcelFile>
         </div>

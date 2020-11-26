@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import PassCheck from "../../Images/SVG/icons/check-symbol.svg";
-import FailSymbol from "../../Images/SVG/icons/cancel.svg";
-import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
 import PieChart from "../PieChart";
 import FailuresWindows from "./FailuresWindow";
+import images from '../Common/Images/index'
 import { Link, useLocation, useHistory } from "react-router-dom";
 import GlobalContext from '../../context/globalcontext';
 import { getFailures, saveProcess, getPieParams } from '../../api/process-api'
@@ -93,21 +91,21 @@ const ProcessForm = (props) => {
 			.catch(
 				(error) => {
 					console.log(error)
-					history.push("/processMenu");
-					console.log(error)
-					const Error = error.message;
-					if (Error === 'Failed to fetch') {
-						errorResponse('Network Error')
-					}
-					else if (Error === '401: unauthorized') {
-						errorResponse('User not Found or Unauthorized')
-					}
-					else if (Error === '402: unauthorized') {
-						errorResponse('Error 402: Unauthorized')
-					}
-					else if (Error === '404: not found') {
-						errorResponse('Error 404: Not Found')
-					}
+					// history.push("/processMenu");
+					// console.log(error)
+					// const Error = error.message;
+					// if (Error === 'Failed to fetch') {
+					// 	errorResponse('Network Error')
+					// }
+					// else if (Error === '401: unauthorized') {
+					// 	errorResponse('User not Found or Unauthorized')
+					// }
+					// else if (Error === '402: unauthorized') {
+					// 	errorResponse('Error 402: Unauthorized')
+					// }
+					// else if (Error === '404: not found') {
+					// 	errorResponse('Error 404: Not Found')
+					// }
 
 					//document.getElementById("tb-customer").value = ""
 				}
@@ -190,7 +188,7 @@ const ProcessForm = (props) => {
 							<div className="col-3">
 								<div onClick={() => passHandler(passParams, token)} className="d-flex  justify-content-center align-items-center button-pass-fail button-pass-position-color hoverbuttons" id="pass-btn">
 									<div>
-										<img className="icon-pass" src={PassCheck} alt="" />
+										<img className="icon-pass" src={images.passIcon} alt="" />
 									</div>
 									<div className="txt-porcentage">
 										<p className="percentage">{totalPass}</p>
@@ -206,7 +204,7 @@ const ProcessForm = (props) => {
 								{/* button fail */}
 								<div onClick={showFailureWindows} className="d-flex  justify-content-center align-items-center button-pass-fail button-fail-position-color hoverbuttons" id="fail-btn" >
 									<div>
-										<img className="icon-fail" id="icon-fail-margin" src={FailSymbol} alt="" />
+										<img className="icon-fail" id="icon-fail-margin" src={images.failIcon} alt="" />
 									</div>
 									<div className="txt-porcentage">
 										<p className="percentage">{totalFail}</p>
@@ -219,7 +217,7 @@ const ProcessForm = (props) => {
 							<div className="col-12 d-flex justify-content-center">
 								<Link to='../processMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
 									<div className="back-refresh-btn justify-content-center">
-										<img src={RefreshIcon} alt="" />
+										<img src={images.refreshIcon} alt="" />
 										<p className="btn-lbl">{refreshLabel}</p>
 									</div>
 								</Link>

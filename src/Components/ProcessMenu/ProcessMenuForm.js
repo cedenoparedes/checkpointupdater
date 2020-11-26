@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './ProcessMenuForm.css'
-import angleLocationLabel from '../../Images/SVG/icons/angleLocationLabel.png'
 import GlobalContext from '../../context/globalcontext'
+import images from '../Common/Images/index'
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
 
@@ -90,7 +90,7 @@ const CheckPointProcessMenu = () => {
                         <div className="form-group">
                             <div className="form-row">
                                 <div className="col-12 d-flex justify-content-center align-self-center">
-                                    <img src={angleLocationLabel} className="scanLabel" alt="" />
+                                    <img src={images.angelLabel} className="scanLabel" alt="" />
                                 </div>
                                 <div className="col d-flex justify-content-center align-self-center">
                                     <input type="text" placeholder={placeHolderScanLabel}

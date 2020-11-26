@@ -4,8 +4,7 @@ import PdfIcon from "../../Images/SVG/icons/pdf.svg";
 import PieChart from "../PieChart";
 import BarChart from "../BarChart";
 import Chart from "chart.js";
-import BackIcon from "../../Images/SVG/icons/back.svg";
-import RefreshIcon from "../../Images/SVG/icons/refresh.svg";
+import iamges from '../Common/Images/index'
 import { getPieCharData } from "../../api/report-api"
 import { Link, useLocation } from "react-router-dom";
 import { jsPdfGenerator } from './ExportPdf';
@@ -13,6 +12,7 @@ import GlobalContex from "../../context/globalcontext"
 import ExportExcel from "./ExportExcel";
 import Loading from '../Common/Loading';
 import toastr from 'toastr';
+import images from "../Common/Images/index";
 
 
 const ReportForm = () => {
@@ -162,7 +162,7 @@ const ReportForm = () => {
                   <img
                     onClick={exportToPDF}
                     className="exporticon hoverbuttons"
-                    src={PdfIcon}
+                    src={images.pdfIcon}
                     alt=""
                   />
                   <ExportExcel customer={customer} model={model} process={process} date={date} token={token} />
@@ -236,7 +236,7 @@ const ReportForm = () => {
                 style={{ color: "inherit", textDecoration: "inherit" }}
               >
                 <div className="back-refresh-btn justify-content-center">
-                  <img src={RefreshIcon} alt="" />
+                  <img src={iamges.refreshIcon} alt="" />
                   <p className="btn-lbl">{refreshLabel}</p>
                 </div>
               </Link>

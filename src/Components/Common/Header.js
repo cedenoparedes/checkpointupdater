@@ -1,13 +1,7 @@
 import React, { useContext } from 'react';
-import WhiteLogo from '../../Images/Logo-white.svg';
-import NameLogo from '../../Images/Name.svg';
-import LogOutLogo from '../../Images/Log-out.svg';
-import EmployeeLogo from '../../Images/Employee.svg';
-import HomeLogo from '../../Images/Home.svg';
-import LangugaeIcon from '../../Images/global.svg'
+import images from '../Common/Images/index'
 import GlobalContext from "../../context/globalcontext";
 import { Link, useHistory } from "react-router-dom";
-import context from 'react-bootstrap/esm/AccordionContext';
 
 
 const Header = () => {
@@ -33,10 +27,10 @@ const Header = () => {
       <div className="container-fluid">
         <div className="row align-items-center text-white">
           <div className="col-3">
-            <img src={WhiteLogo} className="logo-size" alt="" />
+            <img src={images.logoWhite} className="logo-size" alt="" />
           </div>
           <div className="col-6">
-            <img src={NameLogo} className="title-size" alt="" />
+            <img src={images.nameLogo} className="title-size" alt="" />
           </div>
           {/* Columna de los Iconos */}
           <div className="col-3">
@@ -45,23 +39,23 @@ const Header = () => {
             <div className="d-flex text-center flex-row-reverse align-items-center">
               {token !== null ?
                 <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item  hoverbuttons">
-                  <img src={LogOutLogo} alt="" />
+                  <img src={images.logOutIcon} alt="" />
                   <figcaption className="caption">Log Out</figcaption>
                 </figure>
                 : null
               }
-              <figure onClick={langeuageHandler} className="pl-3 m-0 item">
-                <img src={LangugaeIcon} alt="" />
+              <figure onClick={langeuageHandler} className="pl-3 m-0 item hoverbuttons">
+                <img src={images.languageIcon} alt="" />
                 <figcaption className="caption">{contextState.language === 'EN' ? '普通话' : 'English'}</figcaption>
               </figure>
               {token !== null ? <>
                 <figure className="pl-3 m-0 item">
-                  <img src={EmployeeLogo} alt="" />
+                  <img src={images.employeeIcon} alt="" />
                   <figcaption className="caption">{token === null ? "employee" : token.userName}</figcaption>
                 </figure>
                 <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                  <figure className="pl-3 m-0 item">
-                    <img src={HomeLogo} alt="" />
+                  <figure className="pl-3 m-0 item ">
+                    <img src={images.homeIcon} alt="" />
                     <figcaption className="caption">Home</figcaption>
                   </figure>
                 </Link>
