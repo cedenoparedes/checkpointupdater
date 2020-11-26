@@ -17,7 +17,6 @@ const FailuresWindow = (props) => {
     //     FailureName: []
     // })
     const [failuresToSave, setFailuresToSave] = useState([]);
-
     const token = contextMiddleware.getToken();
     const {
         visible,
@@ -115,19 +114,33 @@ const FailuresWindow = (props) => {
         }
     }
 
-
+    const errorResponse = message => {
+        setTimeout(() => {
+            toastr.error(message);
+        }, 1000);
+    }
     /// fail method handler
     const failHandler = (failsParams, token) => {
         saveProcess(failsParams, token)
             .then((Response) => {
-                setTotalPass(Response.TotalPass)
-                setTotalFail(Response.TotalFail)
-                setTotalProcessed(Response.TotalProcessed)
+                setTotalPass(Response.totalPass)
+                setTotalFail(Response.totalFail)
+                setTotalProcessed(Response.totalProcessed)
             }).catch((error) => {
                 console.log(error);
-                setTimeout(() => {
-                    toastr.error("Call failed.");
-                }, 1000);
+                const Error = error.message;
+                if (Error === 'Failed to fetch') {
+                    errorResponse('Network Error')
+                }
+                else if (Error === '401: unauthorized') {
+                    errorResponse('User not Found or Unauthorized')
+                }
+                else if (Error === '402: unauthorized') {
+                    errorResponse('Error 402: Unauthorized')
+                }
+                else if (Error === '404: not found') {
+                    errorResponse('Error 404: Not Found')
+                }
             })
     }
 
@@ -165,7 +178,7 @@ const FailuresWindow = (props) => {
                             <div className="r-1">
                                 {failures.map((failure, i) => {
                                     if (i % 2 === 0) {
-                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.failureName}</button>
                                     }
                                 })}
                             </div>
@@ -173,7 +186,7 @@ const FailuresWindow = (props) => {
                             <div className="r-2">
                                 {failures.map((failure, i) => {
                                     if (i % 2 !== 0) {
-                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.FailureName}</button>
+                                        return <button className="button" key={i} id={i} onClick={() => addTagToListTags(i)}>{failure.failureName}</button>
                                     }
                                 })}
                             </div>

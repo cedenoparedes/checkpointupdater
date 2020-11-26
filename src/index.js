@@ -3,15 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import ContextMiddleware from "./Components/Common/ContextMiddleware"
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
+
   <React.StrictMode>
-    <ContextMiddleware>
-    <App />
-    </ContextMiddleware>
+    <Router>
+      {window.location.pathname.includes('index.html') && <Redirect to="/" />}
+      <ContextMiddleware>
+        <App />
+      </ContextMiddleware>
+    </Router>
   </React.StrictMode>
- ,
+  ,
   document.getElementById("root")
 );
 

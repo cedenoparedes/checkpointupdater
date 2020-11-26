@@ -6,5 +6,6 @@ module.exports = {
     dev: "http://52.170.189.52:8080",
     prod: "",
   },
-  language: "EN"
+  language: "EN",
+  apiKey: "de8mTVyN2r8Ixn3sBeT0"
 };

@@ -4,6 +4,15 @@ export async function handleResponse(response) {
         // So, a server-side validation error occurred.
         // Server side validation returns a string error message, so parse as text instead of json.
         const error = await response.text();
+        if (response.status === 401) {
+            throw new Error("401: unauthorized");
+        }
+        else if (response.status === 402) {
+            throw new Error("402: unauthorized");
+        }
+        else if (response.status === 404) {
+            throw new Error("404: not found");
+        }
         throw new Error(error);
     }
     if (response.status >= 500 && response.status < 600) {

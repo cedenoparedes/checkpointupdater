@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+
 import ContentRouter from "./Components/Common/ContentRouter";
 import "./Components/Process/Process.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,13 +28,13 @@ function App() {
   }, [contextState.language]);
 
   return (
-    <Router>
+    <>
       <Header />
       <div className="Content">
         <ContentRouter />
       </div>
       <Footer />
-    </Router>
+    </>
   );
 }
 

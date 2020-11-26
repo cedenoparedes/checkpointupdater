@@ -55,6 +55,7 @@ const ReportForm = () => {
   }, [customer, process, model, date]);
 
   const getDataCharts = () => {
+    console.log(token)
     getPieCharData(customer, model, process, date, token)
       .then((Response) => {
         if (Response.TotalQtyFail === 0 && Response.TotalQtyPass === 0) {
@@ -75,12 +76,29 @@ const ReportForm = () => {
       })
       .catch((error) => {
         history.push("/report/menu");
-        toastr.error("There was an error while retrieving data");
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
+
+        console.log(error)
+        const Error = error.message;
+        if (Error === 'Failed to fetch') {
+          errorResponse('Network Error')
+        }
+        else if (Error === '401: unauthorized') {
+          errorResponse('User not Found or Unauthorized')
+        }
+        else if (Error === '402: unauthorized') {
+          errorResponse('Error 402: Unauthorized')
+        }
+        else if (Error === '404: not found') {
+          errorResponse('Error 404: Not Found')
+        }
       })
 
+  }
+  const errorResponse = message => {
+    toastr.error(message);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }
   const exportToPDF = () => {
     setIsLoading(true);
@@ -119,19 +137,19 @@ const ReportForm = () => {
               <div className="col-4">
                 <h3 className="title1">Customer</h3>
                 <span className="option1" id="CustomerBtn">
-                  {chartsData.CustomerCode}
+                  {chartsData.customerCode}
                 </span>
               </div>
               <div className="col-4">
                 <h3 className="title1">Process</h3>
                 <span className="option1" id="ProcessBtn">
-                  {chartsData.ProcessName}
+                  {chartsData.processName}
                 </span>
               </div>
               <div className="col-4">
                 <h3 className="title1">Model</h3>
                 <span className="option1" id="ModelBtn">
-                  {chartsData.ModelName}
+                  {chartsData.modelName}
                 </span>
               </div>
             </div>
@@ -139,23 +157,23 @@ const ReportForm = () => {
               <div className="col-3 d-flex justify-content-end">
                 <div className="box-yield__fail1 align-self-center ">
                   <div className="box-yield__fail1">
-                    <p className="box-text1 ">Pass: <span id="pass" />{chartsData.TotalPassPct + "%"}</p>
-                    <p className="box-text1 ">Fails: <span id="fails" />{chartsData.TotalFailsPct + "%"}</p>
+                    <p className="box-text1 ">Pass: <span id="pass" />{chartsData.totalPassPct + "%"}</p>
+                    <p className="box-text1 ">Fails: <span id="fails" />{chartsData.totalFailsPct + "%"}</p>
                   </div>
                 </div>
               </div>
               <div className="col-6 ">
                 <div id="chart1 ">{<PieChart
-                  TotalPass={chartsData.TotalQtyPass}
-                  TotalFail={chartsData.TotalQtyFail} />}</div>
+                  TotalPass={chartsData.totalQtyPass}
+                  TotalFail={chartsData.totalQtyFail} />}</div>
               </div>
             </div>
             <div className="row mt-5">
               <div className="col-12">
                 <div className="chart1"> {<BarChart
-                  totalFailures={chartsData.TotalFailures}
-                  failuresByGroup={chartsData.FailuresByGroup}
-                  FailuresByGroupPer={chartsData.FailuresByGroupPer}
+                  totalFailures={chartsData.totalFailures}
+                  failuresByGroup={chartsData.failuresByGroup}
+                  FailuresByGroupPer={chartsData.failuresByGroupPer}
                 />}</div>
               </div>
             </div>

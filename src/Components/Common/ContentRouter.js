@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "../Login";
 import Menu from "../Menu";
 import ProcessMenu from "../ProcessMenu";
@@ -39,6 +39,7 @@ const ContentRouter = () => {
         <Route path="*">
           <NoFound />
         </Route>
+        <Route render={() => <Redirect to="/" />} />
       </Switch>
     </div>
   );

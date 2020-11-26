@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
 import DataIcon from '../../Images/SVG/icons/data.svg';
 import { Link } from "react-router-dom";
+import GlobalContext from "../../context/globalcontext"
 
 
 const MenuForm = () => {
+
+    const [contextState, , contextMiddleware] = useContext(GlobalContext);
 
 
     return (

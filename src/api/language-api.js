@@ -1,15 +1,14 @@
 import { handleResponse, handleError } from "./api-utils";
 import config from "../config";
-const baseUrl = config.baseApiURL[config.env] + "/login";
+const baseUrl = config.baseApiURL[config.env] + "/checkpoint/lang/";
 
 
-export function getLanguage(language, token) {
+export function getLanguage(language) {
     return fetch(baseUrl + language, {
         method: "GET",
         mode: "cors",
         headers: {
-            "Content-Type": "application/json",
-            Authorization: 'Bearer ' + token
+            "API-KEY-CHK-X": config.apiKey,
         }
 
     })
