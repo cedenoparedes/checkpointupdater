@@ -4,19 +4,27 @@ import NameLogo from '../../Images/Name.svg';
 import LogOutLogo from '../../Images/Log-out.svg';
 import EmployeeLogo from '../../Images/Employee.svg';
 import HomeLogo from '../../Images/Home.svg';
+import LangugaeIcon from '../../Images/global.svg'
 import GlobalContext from "../../context/globalcontext";
 import { Link, useHistory } from "react-router-dom";
+import context from 'react-bootstrap/esm/AccordionContext';
 
 
 const Header = () => {
 
-  const [, , contextMiddleware] = useContext(GlobalContext)
+  const [contextState, , contextMiddleware] = useContext(GlobalContext)
   const history = useHistory()
   let token = contextMiddleware.getTokenClaims();
 
   const logOutHandler = () => {
     contextMiddleware.logOut()
     history.push("/")
+  }
+
+  const langeuageHandler = () => {
+
+    contextState.language === 'ZH' ? contextMiddleware.changeLanguage("EN") : contextMiddleware.changeLanguage("ZH")
+
   }
 
   return (
@@ -33,14 +41,20 @@ const Header = () => {
           {/* Columna de los Iconos */}
           <div className="col-3">
             {/* Iconos NavBar */}
-            {token !== null ?
-              <div className="d-flex text-center flex-row-reverse align-items-center">
 
+            <div className="d-flex text-center flex-row-reverse align-items-center">
+              {token !== null ?
                 <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item  hoverbuttons">
                   <img src={LogOutLogo} alt="" />
                   <figcaption className="caption">Log Out</figcaption>
                 </figure>
-
+                : null
+              }
+              <figure onClick={langeuageHandler} className="pl-3 m-0 item">
+                <img src={LangugaeIcon} alt="" />
+                <figcaption className="caption">{contextState.language === 'EN' ? '普通话' : 'English'}</figcaption>
+              </figure>
+              {token !== null ? <>
                 <figure className="pl-3 m-0 item">
                   <img src={EmployeeLogo} alt="" />
                   <figcaption className="caption">{token === null ? "employee" : token.userName}</figcaption>
@@ -51,14 +65,13 @@ const Header = () => {
                     <figcaption className="caption">Home</figcaption>
                   </figure>
                 </Link>
-                <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                  <figure className="pl-3 m-0 item">
-                    <img src={HomeLogo} alt="" />
-                    <figcaption className="caption">Home</figcaption>
-                  </figure>
-                </Link>
-              </div> : null
-            }
+              </>
+                : null
+              }
+
+
+            </div>
+
           </div>
         </div>
       </div>

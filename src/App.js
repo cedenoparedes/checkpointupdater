@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+
 import ContentRouter from "./Components/Common/ContentRouter";
 import "./Components/Process/Process.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,20 +22,19 @@ function App() {
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
 
   useEffect(() => {
-    console.log(contextState.language)
     getLanguage(contextState.language)
       .then(response => contextMiddleware.setLanguage(response))
       .catch(error => console.log(error));
   }, [contextState.language]);
 
   return (
-    <Router>
+    <>
       <Header />
       <div className="Content">
         <ContentRouter />
       </div>
       <Footer />
-    </Router>
+    </>
   );
 }
 
