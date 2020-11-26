@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './ProcessMenuForm.css'
 import angleLocationLabel from '../../Images/SVG/icons/angleLocationLabel.png'
+import GlobalContext from '../../context/globalcontext'
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
 
@@ -8,6 +9,34 @@ import toastr from "toastr";
 
 
 const CheckPointProcessMenu = () => {
+
+    const [contextState, , contextMiddleware] = useContext(GlobalContext);
+    const [home, setHome] = useState("")
+    const [checkPointLabel, setCheckPointLabel] = useState("")
+    const [placeHolderScanLabel, setPlaceHolderScanLabel] = useState("")
+
+
+
+    let messageLabel = contextState.languageLabel
+    useEffect(() => {
+
+        const setMessageLabel = (messages, messageCode) => {
+            if (messages === [] || messages === undefined) {
+                console.log("estoy en bre")
+            } else {
+                const found = messages.find(element => element.messageCode === messageCode)
+                if (found === undefined) {
+                    return
+                } else {
+                    return found.message
+                }
+            }
+
+        }
+        setHome(setMessageLabel(messageLabel, "CHK02"))
+        setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
+        setPlaceHolderScanLabel(setMessageLabel(messageLabel, "CHK07"))
+    }, [messageLabel])
 
     const history = useHistory();
 
@@ -48,8 +77,8 @@ const CheckPointProcessMenu = () => {
                     <div className="col-6 m-0">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="../Menu">Home</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">Checkpoint</li>
+                                <li className="breadcrumb-item"><a href="../Menu">{home}</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">{checkPointLabel}</li>
                             </ol>
                         </nav>
                     </div>
@@ -64,7 +93,7 @@ const CheckPointProcessMenu = () => {
                                     <img src={angleLocationLabel} className="scanLabel" alt="" />
                                 </div>
                                 <div className="col d-flex justify-content-center align-self-center">
-                                    <input type="text" placeholder="SCAN ANGLE LOCATION LABEL"
+                                    <input type="text" placeholder={placeHolderScanLabel}
                                         className="form-control-lg1 input-text2" id="tb-customer"
                                         onKeyPress={(e) => e.key === 'Enter' ? Splitter() : null} />
                                 </div>
