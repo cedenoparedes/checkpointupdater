@@ -4,6 +4,7 @@
   "author": "Software Team",
   "main": "./public/electron.js",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@popperjs/core": "^2.5.4",
     "@testing-library/jest-dom": "^5.11.4",
@@ -71,11 +72,11 @@
   "build": {
     "appId": "com.dm5i.com",
     "files": [
-        "build/**/*",
-        "node_modules/**/*"
+      "build/**/*",
+      "node_modules/**/*"
     ],
     "directories": {
-        "buildResources": "assets"
+      "buildResources": "assets"
     }
-}
+  }
 }
