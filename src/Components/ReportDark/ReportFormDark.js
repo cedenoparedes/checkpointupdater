@@ -18,7 +18,7 @@ import toastr from 'toastr';
 const ReportForm = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
-  const [, , contextMiddleware] = useContext(GlobalContex);
+  const [contextState, , contextMiddleware] = useContext(GlobalContex);
   const token = contextMiddleware.getToken()
   const [chartsData, setChartsData] = useState({})
   let location = useLocation;
@@ -34,6 +34,45 @@ const ReportForm = () => {
     "timeOut": "3000"
   }
 
+
+  //Language
+  const [processLabel, setProcessLabel] = useState("")
+  const [customerLabel, setCustomerLabel] = useState("")
+  const [modelLabel, setModelLabel] = useState("")
+  const [refreshLabel, setRefresh] = useState("")
+  const [exportTo, setExportto] = useState("")
+  const [passLabel, setPassLabel] = useState("")
+  const [failLabel, setFailLabel] = useState("")
+  const [backLabel, setBackLabel] = useState("")
+
+
+  let messageLabel = contextState.languageLabel
+  useEffect(() => {
+
+    const setMessageLabel = (messages, messageCode) => {
+      if (messages === [] || messages === undefined) {
+        console.log("estoy en bre")
+      } else {
+        const found = messages.find(element => element.messageCode === messageCode)
+        if (found === undefined) {
+          return
+        } else {
+          return found.message
+        }
+      }
+
+    }
+
+    setProcessLabel(setMessageLabel(messageLabel, "CHK08"))
+    setCustomerLabel(setMessageLabel(messageLabel, "CHK28"))
+    setModelLabel(setMessageLabel(messageLabel, "CHK20"))
+    setRefresh(setMessageLabel(messageLabel, "CHK22"))
+    setExportto(setMessageLabel(messageLabel, "CHK29"))
+    setPassLabel(setMessageLabel(messageLabel, "CHK29"))
+    setFailLabel(setMessageLabel(messageLabel, "CHK10"))
+    setBackLabel(setMessageLabel(messageLabel, "CHK24"))
+
+  }, [messageLabel])
 
   useEffect(() => {
     Chart.plugins.register({
@@ -118,7 +157,7 @@ const ReportForm = () => {
           <div className="row">
             <div className="col-12 d-flex  justify-content-center btn-export">
               <fieldset>
-                <legend>Export to:</legend>
+                <legend>{exportTo}</legend>
                 <div className="d-flex justify-content-start">
                   <img
                     onClick={exportToPDF}
@@ -135,19 +174,19 @@ const ReportForm = () => {
           <div className="container container-format1" id="report-container">
             <div className="row text-center">
               <div className="col-4">
-                <h3 className="title1">Customer</h3>
+                <h3 className="title1">{customerLabel}</h3>
                 <span className="option1" id="CustomerBtn">
                   {chartsData.customerCode}
                 </span>
               </div>
               <div className="col-4">
-                <h3 className="title1">Process</h3>
+                <h3 className="title1">{processLabel}</h3>
                 <span className="option1" id="ProcessBtn">
                   {chartsData.processName}
                 </span>
               </div>
               <div className="col-4">
-                <h3 className="title1">Model</h3>
+                <h3 className="title1">{modelLabel}</h3>
                 <span className="option1" id="ModelBtn">
                   {chartsData.modelName}
                 </span>
@@ -157,8 +196,8 @@ const ReportForm = () => {
               <div className="col-3 d-flex justify-content-end">
                 <div className="box-yield__fail1 align-self-center ">
                   <div className="box-yield__fail1">
-                    <p className="box-text1 ">Pass: <span id="pass" />{chartsData.totalPassPct + "%"}</p>
-                    <p className="box-text1 ">Fails: <span id="fails" />{chartsData.totalFailsPct + "%"}</p>
+                    <p className="box-text1 ">{passLabel + ' :'} <span id="pass" />{chartsData.totalPassPct + "%"}</p>
+                    <p className="box-text1 ">{failLabel + ' :'} <span id="fails" />{chartsData.totalFailsPct + "%"}</p>
                   </div>
                 </div>
               </div>
@@ -186,7 +225,7 @@ const ReportForm = () => {
               >
                 <div className="back-refresh-btn justify-content-center">
                   <img src={BackIcon} alt="" />
-                  <p className="btn-lbl">Back</p>
+                  <p className="btn-lbl">{backLabel}</p>
                 </div>
               </Link>
             </div>
@@ -197,7 +236,7 @@ const ReportForm = () => {
               >
                 <div className="back-refresh-btn justify-content-center">
                   <img src={RefreshIcon} alt="" />
-                  <p className="btn-lbl">Refresh</p>
+                  <p className="btn-lbl">{refreshLabel}</p>
                 </div>
               </Link>
             </div>

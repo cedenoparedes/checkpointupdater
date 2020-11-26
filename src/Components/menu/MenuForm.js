@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './menu.css';
 import '../Common/breadcrumb.css';
 import CheckIcon from '../../Images/SVG/icons/check.svg';
@@ -10,6 +10,38 @@ import GlobalContext from "../../context/globalcontext"
 const MenuForm = () => {
 
     const [contextState, , contextMiddleware] = useContext(GlobalContext);
+    const [titleLabel, setTitleLabel] = useState("")
+    const [checkPointLabel, setCheckPointLabel] = useState("")
+    const [dailyData, setDailyData] = useState("")
+
+
+
+
+
+    let messageLabel = contextState.languageLabel
+
+    useEffect(() => {
+
+        const setMessageLabel = (messages, messageCode) => {
+            if (messages === [] || messages === undefined) {
+                console.log("estoy en bre")
+            } else {
+                const found = messages.find(element => element.messageCode === messageCode)
+                if (found === undefined) {
+                    return
+                } else {
+                    return found.message
+                }
+            }
+
+        }
+        setTitleLabel(setMessageLabel(messageLabel, "CHK04"))
+        setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
+        setDailyData(setMessageLabel(messageLabel, "CHK06"))
+
+
+
+    }, [messageLabel])
 
 
     return (
@@ -27,7 +59,7 @@ const MenuForm = () => {
                 <div className="container-fluid p-0 m-0">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-center">
-                            <h2 id="title-body">Select An Option</h2>
+                            <h2 id="title-body">{titleLabel}</h2>
                         </div>
                     </div>
                     <div className="row mt-5 mb-5">
@@ -38,7 +70,7 @@ const MenuForm = () => {
                                         <img className="img-options align-bottom" src={CheckIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                        <span className="label-btn-options">Check Point</span>
+                                        <span className="label-btn-options">{checkPointLabel}</span>
                                     </div>
                                 </div>
                             </Link>
@@ -50,7 +82,7 @@ const MenuForm = () => {
                                         <img className="img-options" src={DataIcon} alt="" />
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                        <span className="label-btn-options">Daily Data</span>
+                                        <span className="label-btn-options">{dailyData}</span>
                                     </div>
                                 </div>
                             </Link>

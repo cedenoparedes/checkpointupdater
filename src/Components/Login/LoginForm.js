@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LogInIMG from "../../Images/LogIn-IMG.svg";
 import CarnetIcon from "../../Images/SVG/icons/carnet.svg";
+import GlobalContex from "../../context/globalcontext";
 import Loading from '../Common/Loading';
 
 const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
+
+
+  const [contextState, , contextMiddleware] = useContext(GlobalContex);
+  const [loginLabel, setLoginLabel] = useState("")
+  let messageLabel = contextState.languageLabel
+
+  useEffect(() => {
+
+    const setMessageLabel = (messages, messageCode) => {
+      if (messages === [] || messages === undefined) {
+        console.log("estoy en bre")
+      } else {
+        const found = messages.find(element => element.messageCode === messageCode)
+        if (found === undefined) {
+          return
+        } else {
+          return found.message
+        }
+      }
+
+    }
+    setLoginLabel(setMessageLabel(messageLabel, "CHK01"))
+
+
+  }, [messageLabel])
+
+
+
 
   return (
     <div className="contenedor">
@@ -51,7 +80,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
               id="login-button"
 
             >
-              Login
+              {loginLabel}
             </button>
           </div>
         </div>

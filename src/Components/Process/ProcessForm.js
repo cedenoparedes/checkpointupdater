@@ -14,7 +14,7 @@ import toastr from 'toastr'
 const ProcessForm = (props) => {
 	const location = useLocation();
 	//Here we are getting the token
-	const [, , contextMiddleware] = useContext(GlobalContext);
+	const [contextState, , contextMiddleware] = useContext(GlobalContext);
 	const [failures, setFailures] = useState([]);
 	const [passParams, setPassParams] = useState({})
 	const [chartRefrechData, setChartRefrechData] = useState({})
@@ -28,6 +28,45 @@ const ProcessForm = (props) => {
 	const [totalProcessed, setTotalProcessed] = useState()
 	const [isLoading, setIsloading] = useState(false)
 	const history = useHistory();
+
+	//Language
+	const [homeLabel, setHomeLabel] = useState("")
+	const [checkPointLabel, setCheckPointLabel] = useState("")
+	const [processLabel, setProcessLabel] = useState("")
+	const [customerLabel, setCustomerLabel] = useState("")
+	const [modelLabel, setModelLabel] = useState("")
+	const [refreshLabel, setRefresh] = useState("")
+
+
+
+
+
+
+	let messageLabel = contextState.languageLabel
+	useEffect(() => {
+
+		const setMessageLabel = (messages, messageCode) => {
+			if (messages === [] || messages === undefined) {
+				console.log("estoy en bre")
+			} else {
+				const found = messages.find(element => element.messageCode === messageCode)
+				if (found === undefined) {
+					return
+				} else {
+					return found.message
+				}
+			}
+
+		}
+
+		setHomeLabel(setMessageLabel(messageLabel, "CHK02"))
+		setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
+		setProcessLabel(setMessageLabel(messageLabel, "CHK08"))
+		setCustomerLabel(setMessageLabel(messageLabel, "CHK28"))
+		setModelLabel(setMessageLabel(messageLabel, "CHK20"))
+		setRefresh(setMessageLabel(messageLabel, "CHK22"))
+
+	}, [messageLabel])
 
 
 	const errorResponse = message => {
@@ -128,19 +167,19 @@ const ProcessForm = (props) => {
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
 						<ol className="breadcrumb">
-							<li className="breadcrumb-item"> <a href="../menu">Home</a></li>
-							<li className="breadcrumb-item"><a href="../CheckPointProcessMenu">Checkpoint</a></li>
-							<li className="breadcrumb-item active" aria-current="page">Process</li>
+							<li className="breadcrumb-item"> <a href="../menu">{homeLabel}</a></li>
+							<li className="breadcrumb-item"><a href="../CheckPointProcessMenu">{checkPointLabel}</a></li>
+							<li className="breadcrumb-item active" aria-current="page">{processLabel}</li>
 						</ol>
 					</nav>
 				</div>
 				<div className="col-6">
 					<div className="d-flex justify-content-end">
-						<p className="text">Customer: {customer}</p>
+						<p className="text">{customerLabel}: {customer}</p>
 						<p className="division"> | </p>
-						<p className="text">Model: {model}</p>
+						<p className="text">{modelLabel}: {model}</p>
 						<p className="division"> | </p>
-						<p className="text">Process: {process}</p>
+						<p className="text">{processLabel}: {process}</p>
 					</div>
 				</div>
 			</div>
@@ -181,7 +220,7 @@ const ProcessForm = (props) => {
 								<Link to='../processMenu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
 									<div className="back-refresh-btn justify-content-center">
 										<img src={RefreshIcon} alt="" />
-										<p className="btn-lbl">Refresh</p>
+										<p className="btn-lbl">{refreshLabel}</p>
 									</div>
 								</Link>
 							</div>
