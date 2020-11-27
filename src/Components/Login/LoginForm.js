@@ -8,12 +8,12 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 
 
   const [contextState, , contextMiddleware] = useContext(GlobalContex);
-  const [loginLabel, setLoginLabel] = useState("")
+  const [loginLabel, setLoginLabel] = useState("Login")
   let messageLabel = contextState.languageLabel
 
   useEffect(() => {
 
-    const setMessageLabel = (messages, messageCode) => {
+    const setMessageLabel = (messages, messageCode, stateToSet) => {
       if (messages === [] || messages === undefined) {
         console.log("estoy en bre")
       } else {
@@ -21,12 +21,13 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
         if (found === undefined) {
           return
         } else {
-          return found.message
+          stateToSet(found.message);
         }
       }
 
     }
-    setLoginLabel(setMessageLabel(messageLabel, "CHK01"))
+    setMessageLabel(messageLabel, "CHK01", setLoginLabel);
+    // setLoginLabel(setMessageLabel(messageLabel, "CHK01"))
 
 
   }, [messageLabel])

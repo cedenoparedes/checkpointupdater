@@ -9,7 +9,7 @@ const ContextMiddleware = (props) => {
     isAuth: false,
     token: "",
     language: config.language,
-    languageLabel: [],
+    languageLabel: config.messageState
   });
 
   const getLocalCache = () => {

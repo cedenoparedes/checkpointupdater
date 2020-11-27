@@ -25,6 +25,7 @@ function App() {
     getLanguage(contextState.language)
       .then(response => contextMiddleware.setLanguage(response))
       .catch(error => console.log(error));
+    console.log(contextState.languageLabel)
   }, [contextState.language]);
 
   return (
