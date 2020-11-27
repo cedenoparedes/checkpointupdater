@@ -1,7 +1,6 @@
 import React from 'react'
-import modelIcon from '../../Images/SVG/icons/model.svg'
-import backArrow from '../../Images/back-arrow.svg';
 import fowardArrow from '../../Images/foward-arrow.svg'
+import images from '../Common/Images/index'
 const ModelPopUp = (props) => {
 
     const { setModel, models, hidePopUps } = props;
@@ -46,7 +45,7 @@ const ModelPopUp = (props) => {
                         <h1 className="modal-title">{tittle}</h1>
                         <div className="modal-model__container" id="option-window">
                             <div className="back-arrow">
-                                <img src={backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
+                                <img src={images.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
                             {models.map((item, i) => {
@@ -54,13 +53,13 @@ const ModelPopUp = (props) => {
 
                                     <div key={i}>
                                         <button className="modal-btn btn-model" id={item.modelName} onClick={() => setModelState(item.modelName)}>
-                                            <img className="format-img-model" src={modelIcon} alt="" />
+                                            <img className="format-img-model" src={images.modelIcon} alt="" />
                                         </button>
                                         <p className="modal-client-text">{item.modelName}</p>
                                     </div>)
                             })}
                             <div className="foward-arrow">
-                                <img src={fowardArrow} onClick={() => scrollHandler('right')} id="slideRight" alt="" />
+                                <img src={images.fordwarArrow} onClick={() => scrollHandler('right')} id="slideRight" alt="" />
                             </div>
                         </div>
                     </div>

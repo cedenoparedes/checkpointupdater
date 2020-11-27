@@ -91,23 +91,23 @@ const ProcessForm = (props) => {
 			.catch(
 				(error) => {
 					console.log(error)
-					// history.push("/processMenu");
-					// console.log(error)
-					// const Error = error.message;
-					// if (Error === 'Failed to fetch') {
-					// 	errorResponse('Network Error')
-					// }
-					// else if (Error === '401: unauthorized') {
-					// 	errorResponse('User not Found or Unauthorized')
-					// }
-					// else if (Error === '402: unauthorized') {
-					// 	errorResponse('Error 402: Unauthorized')
-					// }
-					// else if (Error === '404: not found') {
-					// 	errorResponse('Error 404: Not Found')
-					// }
+					history.push("/processMenu");
+					console.log(error)
+					const Error = error.message;
+					if (Error === 'Failed to fetch') {
+						errorResponse('Network Error')
+					}
+					else if (Error === '401: unauthorized') {
+						errorResponse('User not Found or Unauthorized')
+					}
+					else if (Error === '402: unauthorized') {
+						errorResponse('Error 402: Unauthorized')
+					}
+					else if (Error === '404: not found') {
+						errorResponse('Error 404: Not Found')
+					}
 
-					//document.getElementById("tb-customer").value = ""
+					document.getElementById("tb-customer").value = ""
 				}
 			)
 

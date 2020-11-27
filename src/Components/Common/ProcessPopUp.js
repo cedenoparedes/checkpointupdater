@@ -1,5 +1,5 @@
 import React from 'react'
-import processIcon from '../../Images/SVG/icons/process.svg'
+import images from '../Common/Images/index'
 
 const ProcessPopUp = (props) => {
 
@@ -29,7 +29,7 @@ const ProcessPopUp = (props) => {
 
                                     <div key={i}>
                                         <button className="modal-btn btn-client" id={item.processName} onClick={() => setProcessState(item.processName)}>
-                                            <img className="format-img-process" src={processIcon} alt="" />
+                                            <img className="format-img-process" src={images.processIcon} alt="" />
                                         </button>
                                         <p className="modal-client-text">{item.processName}</p>
                                     </div>)

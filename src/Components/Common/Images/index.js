@@ -20,6 +20,8 @@ import employeeIcon from './employee-Icon'
 import homeIcon from './home-icon'
 import locationIcon from './location-icon'
 import languageIcon from './language-icon'
+import backArrow from './backArrow-icon'
+import fordwarArrow from './fordwarArrow-icon'
 
 const images = {
     loginImage: imageLogin.logingImage,
@@ -43,7 +45,9 @@ const images = {
     employeeIcon: employeeIcon.employeeIcon,
     homeIcon: homeIcon.homeIcon,
     locationIcon: locationIcon.locationIcon,
-    languageIcon: languageIcon.languageIcon
+    languageIcon: languageIcon.languageIcon,
+    backArrow: backArrow.backArrow,
+    fordwarArrow: fordwarArrow.fordwarArrow
 }
 
 export default images; 
