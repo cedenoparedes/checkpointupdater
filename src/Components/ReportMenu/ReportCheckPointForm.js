@@ -15,7 +15,7 @@ import DatePicker from 'react-datepicker'
 const ReportCheckPointForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
-  const [, , contextMiddleware] = useContext(GlobalContext);
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [customers, setCustomers] = useState([])
   const [models, setModels] = useState([])
   const [processes, setProcesses] = useState([])
@@ -30,6 +30,49 @@ const ReportCheckPointForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [dateToSend, setDateToSend] = useState("")
   let token = contextMiddleware.getToken();
+
+
+  //Language
+  const [homeLabel, setHomeLabel] = useState("Home")
+  const [ReportLabel, setReportLabel] = useState("Report")
+  const [DateButton, setDateButton] = useState("Date")
+  const [customerButton, setCustomerButton] = useState("Select Customer")
+  const [modelButton, setModelButton] = useState("Model")
+  const [processButton, setProcessButton] = useState("Prcess")
+  const [back, setback] = useState("Back")
+  const [refresh, setRefresh] = useState("Refresh")
+  const [next, setNext] = useState("Next")
+
+
+
+  let messageLabel = contextState.languageLabel
+  useEffect(() => {
+
+    const setMessageLabel = (messages, messageCode, stateToSet) => {
+      if (messages === [] || messages === undefined) {
+        console.log("estoy en bre")
+      } else {
+        const found = messages.find(element => element.messageCode === messageCode)
+        if (found === undefined) {
+          return
+        } else {
+          stateToSet(found.message)
+        }
+      }
+
+    }
+
+    setMessageLabel(messageLabel, "CHK02", setHomeLabel)
+    setMessageLabel(messageLabel, "CHK33", setReportLabel)
+    setMessageLabel(messageLabel, "CHK23", setDateButton)
+    setMessageLabel(messageLabel, "CHK19", setCustomerButton)
+    setMessageLabel(messageLabel, "CHK20", setModelButton)
+    setMessageLabel(messageLabel, "CHK08", setProcessButton)
+    setMessageLabel(messageLabel, "CHK24", setback)
+    setMessageLabel(messageLabel, "CHK22", setRefresh)
+    setMessageLabel(messageLabel, "CHK25", setNext)
+
+  }, [messageLabel])
 
 
 
@@ -159,8 +202,8 @@ const ReportCheckPointForm = () => {
           <div className="col-6 pl-3">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="./menu">Home</a></li>
-                <li className="breadcrumb-item active" aria-current="page">Report</li>
+                <li className="breadcrumb-item"><a href="./menu">{homeLabel}</a></li>
+                <li className="breadcrumb-item active" aria-current="page">{ReportLabel}</li>
               </ol>
             </nav>
           </div>
@@ -181,7 +224,7 @@ const ReportCheckPointForm = () => {
                     <div className="col-6 d-flex justify-content-center p-0">
                       <div className="btn-menu form-control hoverbuttons" id="btn-date" onClick={dateTimePicker}>
                         <img className="icon-options" src={images.dateTimeIcon} alt="" />
-                        <p className="label-btn">Date</p>
+                        <p className="label-btn">{DateButton}</p>
                       </div>
                     </div>
                     <div className="col-6 d-flex justify-content-center input-size p-0 ">
@@ -203,7 +246,7 @@ const ReportCheckPointForm = () => {
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-client" onClick={() => getCustomerParams(token)}>
                       <img className="icon-options" src={images.customerIcon} alt="" />
-                      <p className="label-btn">Customer</p>
+                      <p className="label-btn">{customerButton}</p>
                     </div>
                   </div>
                   <div className="col-6 d-flex justify-content-center  input-size">
@@ -216,7 +259,7 @@ const ReportCheckPointForm = () => {
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-model" onClick={() => getModelParams(token)}>
                       <img className="icon-options" src={images.modelIcon} alt="" />
-                      <p className="label-btn">Model</p>
+                      <p className="label-btn">{modelButton}</p>
                     </div>
                   </div>
                   <div className="col-6 d-flex justify-content-center  input-size">
@@ -229,7 +272,7 @@ const ReportCheckPointForm = () => {
                   <div className="col-6 d-flex justify-content-center">
                     <div className="btn-menu hoverbuttons" id="btn-process" onClick={() => getProcessParams(token)} >
                       <img className="icon-options" src={images.processIcon} alt="" />
-                      <p className="label-btn">Process</p>
+                      <p className="label-btn">{processButton}</p>
                     </div>
                   </div>
                   <div className="col-6 d-flex justify-content-center  input-size">
@@ -244,7 +287,7 @@ const ReportCheckPointForm = () => {
                 <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center">
                     <img src={images.backIcon} alt="" />
-                    <p className="btn-lbl">Back</p>
+                    <p className="btn-lbl">{back}</p>
                   </div>
                 </Link>
               </div>
@@ -252,7 +295,7 @@ const ReportCheckPointForm = () => {
                 <Link to='/report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={() => refreshPage()}>
                     <img src={images.refreshIcon} alt="" />
-                    <p className="btn-lbl">Refresh</p>
+                    <p className="btn-lbl">{refresh}</p>
                   </div>
                 </Link>
               </div>
@@ -263,7 +306,7 @@ const ReportCheckPointForm = () => {
                 } : {}} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <div className="back-refresh-btn justify-content-center" onClick={fieldValidation} >
                     <img className="btn-next-rotate" src={images.backIcon} alt="" />
-                    <p className="btn-lbl">Next</p>
+                    <p className="btn-lbl">{next}</p>
                   </div>
                 </Link>
               </div>
