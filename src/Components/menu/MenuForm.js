@@ -9,6 +9,7 @@ import images from '../Common/Images/index'
 const MenuForm = () => {
 
     const [contextState, , contextMiddleware] = useContext(GlobalContext);
+    const [homeLabel, setHomeLabel] = useState("Home")
     const [titleLabel, setTitleLabel] = useState("Select Option")
     const [checkPointLabel, setCheckPointLabel] = useState("CheckPoint")
     const [dailyData, setDailyData] = useState("Daily Data")
@@ -34,6 +35,7 @@ const MenuForm = () => {
             }
 
         }
+        setMessageLabel(messageLabel, "CHK02", setHomeLabel)
         setMessageLabel(messageLabel, "CHK04", setTitleLabel)
         setMessageLabel(messageLabel, "CHK05", setCheckPointLabel)
         setMessageLabel(messageLabel, "CHK06", setDailyData)
@@ -49,7 +51,7 @@ const MenuForm = () => {
                 <div className="col-6 m-0 pl-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item active" aria-current="page">Home</li>
+                            <li className="breadcrumb-item active" aria-current="page">{homeLabel}</li>
                         </ol>
                     </nav>
                 </div>

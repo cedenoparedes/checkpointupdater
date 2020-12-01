@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import BackIcon from '../../Images/back-arrow.svg'
 import FowardIcon from '../../Images/foward-arrow.svg'
 import GlobalContext from '../../context/globalcontext'
@@ -6,7 +6,7 @@ import { saveProcess } from '../../api/process-api.js'
 import toastr from "toastr";
 
 const FailuresWindow = (props) => {
-    const [, , contextMiddleware] = useContext(GlobalContext)
+    const [contextState, , contextMiddleware] = useContext(GlobalContext)
     const userInfo = contextMiddleware.getTokenClaims();
     // const [failsParams, setFailsParams] = useState({
     //     CustomerCode: "",
@@ -29,6 +29,31 @@ const FailuresWindow = (props) => {
         setTotalFail,
         setTotalProcessed
     } = props
+
+    //Language
+    const [completeButton, setCompleteButton] = useState("Complete")
+
+    let messageLabel = contextState.languageLabel
+    useEffect(() => {
+
+        const setMessageLabel = (messages, messageCode, stateToSet) => {
+            if (messages === [] || messages === undefined) {
+                console.log("estoy en bre")
+            } else {
+                const found = messages.find(element => element.messageCode === messageCode)
+                if (found === undefined) {
+                    return
+                } else {
+                    stateToSet(found.message)
+                }
+            }
+
+        }
+
+        setMessageLabel(messageLabel, "CHK18", setCompleteButton)
+
+    }, [messageLabel])
+
 
 
     const sideScroll = (element, direction, speed, distance, step) => {
@@ -198,7 +223,7 @@ const FailuresWindow = (props) => {
                 </div>
                 <div className="col-12 p-2">
                     <div className="submit-btn" onClick={() => setFailures(failHandler, token)} id="submit-btn">
-                        <button>Complete</button>
+                        <button>{completeButton}</button>
                     </div>
                 </div>
             </div>

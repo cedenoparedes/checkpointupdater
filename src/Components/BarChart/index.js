@@ -1,21 +1,55 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Chart from "chart.js";
 import { pluginCharts } from '../Common/PlugingCharts'
+import GlobalContext from "../../context/globalcontext"
+
 
 
 const NewChartjs = (props) => {
 
   const { totalFailures, failuresByGroup, FailuresByGroupPer } = props
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+
+  //Language
+  const [failsLabel, setFailsLabel] = useState("Fails %")
+  const [failuresLabel, setFailuresLabel] = useState("Failures")
+  const [quantityLabel, setQuantityLabel] = useState("Quantity")
+  const [percentageLabel, setPercentageLabel] = useState("Percentage")
+
+  let messageLabel = contextState.languageLabel
+  useEffect(() => {
+
+    const setMessageLabel = (messages, messageCode, stateToSet) => {
+      if (messages === [] || messages === undefined) {
+        console.log("estoy en bre")
+      } else {
+        const found = messages.find(element => element.messageCode === messageCode)
+        if (found === undefined) {
+          return
+        } else {
+          stateToSet(found.message)
+        }
+      }
+
+    }
+
+    setMessageLabel(messageLabel, "CHK31", setFailsLabel)
+    setMessageLabel(messageLabel, "CHK32", setFailuresLabel)
+    setMessageLabel(messageLabel, "CHK34", setQuantityLabel)
+    setMessageLabel(messageLabel, "CHK35", setPercentageLabel)
+  }, [messageLabel])
+
 
   useEffect(() => {
     pluginCharts()
+    console.log(failsLabel)
     const ctx = document.getElementById("barChart");
     let data = {
       labels: failuresByGroup,
       datasets: [
         {
           type: "line",
-          label: "Fails %",
+          label: failsLabel,
           borderColor: "#BA1E14",
           backgroundColor: "#BA1E14",
           pointBorderWidth: 5,
@@ -25,7 +59,7 @@ const NewChartjs = (props) => {
         },
         {
           type: "bar",
-          label: "Failures",
+          label: failuresLabel,
           borderColor: "#e63946",
           backgroundColor: "#e63946",
           data: totalFailures,
@@ -57,7 +91,7 @@ const NewChartjs = (props) => {
             },
             scaleLabel: {
               display: true,
-              labelString: "Quantity",
+              labelString: quantityLabel,
             },
           },
           {
@@ -72,7 +106,7 @@ const NewChartjs = (props) => {
             },
             scaleLabel: {
               display: true,
-              labelString: "Percentage",
+              labelString: percentageLabel,
             },
           },
         ],
@@ -84,7 +118,7 @@ const NewChartjs = (props) => {
       data: data,
       options: options,
     });
-  }, [totalFailures, failuresByGroup, FailuresByGroupPer]);
+  }, [totalFailures, failuresByGroup, FailuresByGroupPer, messageLabel]);
 
   return (
     // <div>
