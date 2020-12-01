@@ -36,20 +36,20 @@ const ReportForm = () => {
 
 
   //Language
-  const [processLabel, setProcessLabel] = useState("")
-  const [customerLabel, setCustomerLabel] = useState("")
-  const [modelLabel, setModelLabel] = useState("")
-  const [refreshLabel, setRefresh] = useState("")
-  const [exportTo, setExportto] = useState("")
-  const [passLabel, setPassLabel] = useState("")
-  const [failLabel, setFailLabel] = useState("")
-  const [backLabel, setBackLabel] = useState("")
+  const [processLabel, setProcessLabel] = useState("Process")
+  const [customerLabel, setCustomerLabel] = useState("Select Customer")
+  const [modelLabel, setModelLabel] = useState("Model")
+  const [refreshLabel, setRefresh] = useState("refresh")
+  const [exportTo, setExportto] = useState("Export to")
+  const [passLabel, setPassLabel] = useState("Pass")
+  const [failLabel, setFailLabel] = useState("Fail")
+  const [backLabel, setBackLabel] = useState("Back")
 
 
   let messageLabel = contextState.languageLabel
   useEffect(() => {
 
-    const setMessageLabel = (messages, messageCode) => {
+    const setMessageLabel = (messages, messageCode, stateToSet) => {
       if (messages === [] || messages === undefined) {
         console.log("estoy en bre")
       } else {
@@ -57,20 +57,20 @@ const ReportForm = () => {
         if (found === undefined) {
           return
         } else {
-          return found.message
+          stateToSet(found.message)
         }
       }
 
     }
 
-    setProcessLabel(setMessageLabel(messageLabel, "CHK08"))
-    setCustomerLabel(setMessageLabel(messageLabel, "CHK28"))
-    setModelLabel(setMessageLabel(messageLabel, "CHK20"))
-    setRefresh(setMessageLabel(messageLabel, "CHK22"))
-    setExportto(setMessageLabel(messageLabel, "CHK29"))
-    setPassLabel(setMessageLabel(messageLabel, "CHK29"))
-    setFailLabel(setMessageLabel(messageLabel, "CHK10"))
-    setBackLabel(setMessageLabel(messageLabel, "CHK24"))
+    setMessageLabel(messageLabel, "CHK08", setProcessLabel)
+    setMessageLabel(messageLabel, "CHK19", setCustomerLabel)
+    setMessageLabel(messageLabel, "CHK20", setModelLabel)
+    setMessageLabel(messageLabel, "CHK22", setRefresh)
+    setMessageLabel(messageLabel, "CHK29", setExportto)
+    setMessageLabel(messageLabel, "CHK09", setPassLabel)
+    setMessageLabel(messageLabel, "CHK10", setFailLabel)
+    setMessageLabel(messageLabel, "CHK24", setBackLabel)
 
   }, [messageLabel])
 
@@ -157,7 +157,7 @@ const ReportForm = () => {
           <div className="row">
             <div className="col-12 d-flex  justify-content-center btn-export">
               <fieldset>
-                <legend><span>Export to:</span></legend>
+                <legend><span>{exportTo + ' :'}</span></legend>
                 <div className="d-flex justify-content-start">
                   <img
                     onClick={exportToPDF}
@@ -218,17 +218,6 @@ const ReportForm = () => {
             </div>
           </div>
           <div className="back-refresh-container d-flex justify-content-right">
-            {/* <div className="col-6 d-flex justify-content-end">
-               <Link
-                to="../report/menu"
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                <div className="back-refresh-btn justify-content-center">
-                  <img src={BackIcon} alt="" />
-                  <p className="btn-lbl">{backLabel}</p>
-                </div>
-              </Link> 
-            </div> */}
             <div className="col-12 d-flex justify-content-center">
               <Link
                 to="../report/menu"

@@ -27,7 +27,7 @@ const LoginForm = ({ employeeCodeState, loginHandler, isLoading }) => {
 
     }
     setMessageLabel(messageLabel, "CHK01", setLoginLabel);
-    // setLoginLabel(setMessageLabel(messageLabel, "CHK01"))
+    setMessageLabel(messageLabel, "CHK01", setLoginLabel);
 
 
   }, [messageLabel])

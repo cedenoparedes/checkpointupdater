@@ -28,12 +28,12 @@ const ProcessForm = (props) => {
 	const history = useHistory();
 
 	//Language
-	const [homeLabel, setHomeLabel] = useState("")
-	const [checkPointLabel, setCheckPointLabel] = useState("")
-	const [processLabel, setProcessLabel] = useState("")
-	const [customerLabel, setCustomerLabel] = useState("")
-	const [modelLabel, setModelLabel] = useState("")
-	const [refreshLabel, setRefresh] = useState("")
+	const [homeLabel, setHomeLabel] = useState("Home")
+	const [checkPointLabel, setCheckPointLabel] = useState("CheckPoint")
+	const [processLabel, setProcessLabel] = useState("Process")
+	const [customerLabel, setCustomerLabel] = useState("Select Customer")
+	const [modelLabel, setModelLabel] = useState("Model")
+	const [refreshLabel, setRefresh] = useState("refresh")
 
 
 
@@ -43,7 +43,7 @@ const ProcessForm = (props) => {
 	let messageLabel = contextState.languageLabel
 	useEffect(() => {
 
-		const setMessageLabel = (messages, messageCode) => {
+		const setMessageLabel = (messages, messageCode, stateToSet) => {
 			if (messages === [] || messages === undefined) {
 				console.log("estoy en bre")
 			} else {
@@ -51,18 +51,18 @@ const ProcessForm = (props) => {
 				if (found === undefined) {
 					return
 				} else {
-					return found.message
+					stateToSet(found.message)
 				}
 			}
 
 		}
 
-		setHomeLabel(setMessageLabel(messageLabel, "CHK02"))
-		setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
-		setProcessLabel(setMessageLabel(messageLabel, "CHK08"))
-		setCustomerLabel(setMessageLabel(messageLabel, "CHK28"))
-		setModelLabel(setMessageLabel(messageLabel, "CHK20"))
-		setRefresh(setMessageLabel(messageLabel, "CHK22"))
+		setMessageLabel(messageLabel, "CHK02", setHomeLabel)
+		setMessageLabel(messageLabel, "CHK05", setCheckPointLabel)
+		setMessageLabel(messageLabel, "CHK08", setProcessLabel)
+		setMessageLabel(messageLabel, "CHK19", setCustomerLabel)
+		setMessageLabel(messageLabel, "CHK20", setModelLabel)
+		setMessageLabel(messageLabel, "CHK22", setRefresh)
 
 	}, [messageLabel])
 
@@ -90,24 +90,24 @@ const ProcessForm = (props) => {
 
 			.catch(
 				(error) => {
-					console.log(error)
-					history.push("/processMenu");
-					console.log(error)
-					const Error = error.message;
-					if (Error === 'Failed to fetch') {
-						errorResponse('Network Error')
-					}
-					else if (Error === '401: unauthorized') {
-						errorResponse('User not Found or Unauthorized')
-					}
-					else if (Error === '402: unauthorized') {
-						errorResponse('Error 402: Unauthorized')
-					}
-					else if (Error === '404: not found') {
-						errorResponse('Error 404: Not Found')
-					}
+					// console.log(error)
+					// history.push("/processMenu");
+					// console.log(error)
+					// const Error = error.message;
+					// // if (Error === 'Failed to fetch') {
+					// // 	errorResponse('Network Error')
+					// // }
+					// // else if (Error === '401: unauthorized') {
+					// // 	errorResponse('User not Found or Unauthorized')
+					// // }
+					// // else if (Error === '402: unauthorized') {
+					// // 	errorResponse('Error 402: Unauthorized')
+					// // }
+					// // else if (Error === '404: not found') {
+					// // 	errorResponse('Error 404: Not Found')
+					// // // }
 
-					document.getElementById("tb-customer").value = ""
+					// document.getElementById("tb-customer").value = ""
 				}
 			)
 
@@ -165,9 +165,9 @@ const ProcessForm = (props) => {
 				<div className="col-6">
 					<nav aria-label="breadcrumb">
 						<ol className="breadcrumb">
-							<li className="breadcrumb-item"> <a href="../menu">Home</a></li>
-							<li className="breadcrumb-item"><a href="../ProcessMenu">Checkpoint</a></li>
-							<li className="breadcrumb-item active" aria-current="page">Process</li>
+							<li className="breadcrumb-item"> <a href="../menu">{homeLabel}</a></li>
+							<li className="breadcrumb-item"><a href="../ProcessMenu">{checkPointLabel}</a></li>
+							<li className="breadcrumb-item active" aria-current="page">{processLabel}</li>
 						</ol>
 					</nav>
 				</div>

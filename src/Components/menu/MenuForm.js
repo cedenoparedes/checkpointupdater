@@ -9,9 +9,9 @@ import images from '../Common/Images/index'
 const MenuForm = () => {
 
     const [contextState, , contextMiddleware] = useContext(GlobalContext);
-    const [titleLabel, setTitleLabel] = useState("")
-    const [checkPointLabel, setCheckPointLabel] = useState("")
-    const [dailyData, setDailyData] = useState("")
+    const [titleLabel, setTitleLabel] = useState("Select Option")
+    const [checkPointLabel, setCheckPointLabel] = useState("CheckPoint")
+    const [dailyData, setDailyData] = useState("Daily Data")
 
 
 
@@ -21,7 +21,7 @@ const MenuForm = () => {
 
     useEffect(() => {
 
-        const setMessageLabel = (messages, messageCode) => {
+        const setMessageLabel = (messages, messageCode, stateToSet) => {
             if (messages === [] || messages === undefined) {
                 console.log("estoy en bre")
             } else {
@@ -29,14 +29,14 @@ const MenuForm = () => {
                 if (found === undefined) {
                     return
                 } else {
-                    return found.message
+                    stateToSet(found.message)
                 }
             }
 
         }
-        setTitleLabel(setMessageLabel(messageLabel, "CHK04"))
-        setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
-        setDailyData(setMessageLabel(messageLabel, "CHK06"))
+        setMessageLabel(messageLabel, "CHK04", setTitleLabel)
+        setMessageLabel(messageLabel, "CHK05", setCheckPointLabel)
+        setMessageLabel(messageLabel, "CHK06", setDailyData)
 
 
 

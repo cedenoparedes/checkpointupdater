@@ -11,31 +11,32 @@ import toastr from "toastr";
 const CheckPointProcessMenu = () => {
 
     const [contextState, , contextMiddleware] = useContext(GlobalContext);
-    const [home, setHome] = useState("")
-    const [checkPointLabel, setCheckPointLabel] = useState("")
-    const [placeHolderScanLabel, setPlaceHolderScanLabel] = useState("")
+    const [home, setHome] = useState("Home")
+    const [checkPointLabel, setCheckPointLabel] = useState("CheckPoint")
+    const [placeHolderScanLabel, setPlaceHolderScanLabel] = useState("Scan Angle Location Label")
 
 
 
     let messageLabel = contextState.languageLabel
     useEffect(() => {
 
-        const setMessageLabel = (messages, messageCode) => {
+        const setMessageLabel = (messages, messageCode, stateToSet) => {
             if (messages === [] || messages === undefined) {
-                console.log("estoy en bre")
             } else {
                 const found = messages.find(element => element.messageCode === messageCode)
                 if (found === undefined) {
                     return
                 } else {
-                    return found.message
+                    stateToSet(found.message)
                 }
             }
 
         }
-        setHome(setMessageLabel(messageLabel, "CHK02"))
-        setCheckPointLabel(setMessageLabel(messageLabel, "CHK05"))
-        setPlaceHolderScanLabel(setMessageLabel(messageLabel, "CHK07"))
+        setMessageLabel(messageLabel, "CHK02", setHome)
+        setMessageLabel(messageLabel, "CHK05", setCheckPointLabel)
+        setMessageLabel(messageLabel, "CHK07", setPlaceHolderScanLabel)
+
+
     }, [messageLabel])
 
     const history = useHistory();
