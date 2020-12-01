@@ -4,6 +4,7 @@ import GlobalContext from '../../context/globalcontext'
 import images from '../Common/Images/index'
 import { useHistory } from "react-router-dom";
 import toastr from "toastr";
+import { Link } from "react-router-dom";
 
 
 
@@ -103,6 +104,18 @@ const CheckPointProcessMenu = () => {
                     </div>
                 </div>
 
+            </div>
+            <div className="row">
+                <div className="back-refresh-container d-flex justify-content-center">
+                    <div className="col-12 d-flex justify-content-center">
+                        <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                            <div className="back-refresh-btn justify-content-center">
+                                <img src={images.backIcon} alt="" />
+                                <p className="btn-lbl">Back</p>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div >
 

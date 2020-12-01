@@ -191,10 +191,21 @@ const ReportCheckPointForm = () => {
       toastr.error("Please fill all the fields")
     }
   }
-  const refreshPage = () => {
-    window.location.reload()
-  }
+  // const refreshPage = () => {
+  //   Document.location.reload()
+  // }
+  const clearFields = () => {
 
+    setModel("")
+    setProcess("")
+    setCustomer("")
+
+    document.getElementById('tb-customer').value = ''
+    document.getElementById('tb-model').value = ''
+    document.getElementById('tb-process').value = ''
+
+
+  }
   return (
     <div className="h-90">
       <div className="container-fluid">
@@ -293,7 +304,7 @@ const ReportCheckPointForm = () => {
               </div>
               <div className="col-4 d-flex justify-content-center">
                 <Link to='/report/menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                  <div className="back-refresh-btn justify-content-center" onClick={() => refreshPage()}>
+                  <div className="back-refresh-btn justify-content-center" onClick={clearFields}>
                     <img src={images.refreshIcon} alt="" />
                     <p className="btn-lbl">{refresh}</p>
                   </div>
