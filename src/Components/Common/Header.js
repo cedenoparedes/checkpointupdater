@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import images from '../Common/Images/index'
 import GlobalContext from "../../context/globalcontext";
 import { Link, useHistory } from "react-router-dom";
@@ -8,6 +8,10 @@ const Header = () => {
 
   const [contextState, , contextMiddleware] = useContext(GlobalContext)
   const history = useHistory()
+
+  //Language
+  const [homeHeader, setHomeHeader] = useState("Home")
+  const [logOutHeader, setlogOutHeader] = useState("Log Out")
   let token = contextMiddleware.getTokenClaims();
 
   const logOutHandler = () => {
@@ -20,6 +24,29 @@ const Header = () => {
     contextState.language === 'ZH' ? contextMiddleware.changeLanguage("EN") : contextMiddleware.changeLanguage("ZH")
 
   }
+
+  let messageLabel = contextState.languageLabel
+  useEffect(() => {
+
+    const setMessageLabel = (messages, messageCode, stateToSet) => {
+      if (messages === [] || messages === undefined) {
+        console.log("estoy en bre")
+      } else {
+        const found = messages.find(element => element.messageCode === messageCode)
+        if (found === undefined) {
+          return
+        } else {
+          stateToSet(found.message)
+        }
+      }
+
+    }
+
+    setMessageLabel(messageLabel, "CHK02", setlogOutHeader)
+    setMessageLabel(messageLabel, "CHK03", setHomeHeader)
+
+  }, [messageLabel])
+
 
   return (
     <nav className="navigation-bar py-1">
@@ -40,7 +67,7 @@ const Header = () => {
               {token !== null ?
                 <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item  hoverbuttons">
                   <img src={images.logOutIcon} alt="" />
-                  <figcaption className="caption">Log Out</figcaption>
+                  <figcaption className="caption">{logOutHeader}</figcaption>
                 </figure>
                 : null
               }
@@ -56,7 +83,7 @@ const Header = () => {
                 <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <figure className="pl-3 m-0 item ">
                     <img src={images.homeIcon} alt="" />
-                    <figcaption className="caption">Home</figcaption>
+                    <figcaption className="caption">{homeHeader}</figcaption>
                   </figure>
                 </Link>
               </>
