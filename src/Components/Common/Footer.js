@@ -12,12 +12,16 @@ const Footer = () => {
 
     return (
         <footer className="Footer">
-            <div className="footer-style pl-2 pt-1 d-flex text-center align-items-center">
-                <figure className="location-img">
-                    <img src={images.locationIcon} alt="" />
-                    <figcaption className="caption-location text-white">Location</figcaption>
-                </figure>
-                <spam> {version}</spam>
+            <div className="row">
+                <div className="col-6 footer-style pl-2 pt-1 d-flex text-center align-items-center">
+                    <figure className="location-img">
+                        <img src={images.locationIcon} alt="" />
+                        <figcaption className="caption-location text-white">Location</figcaption>
+                    </figure>
+                </div>
+                <div className="col-6 footer-style  d-flex justify-content-end">
+                    <spam> {version}</spam>
+                </div>
             </div>
         </footer>
     )
