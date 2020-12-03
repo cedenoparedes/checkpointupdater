@@ -1,6 +1,8 @@
+import { nodeName } from 'jquery';
 import React from 'react'
 import fowardArrow from '../../Images/foward-arrow.svg'
 import images from '../Common/Images/index'
+import $ from 'jquery'
 const ModelPopUp = (props) => {
 
     const { setModel, models, hidePopUps } = props;
@@ -36,6 +38,16 @@ const ModelPopUp = (props) => {
 
     let tittle = "Select Model";
 
+    const HiddenArrow = () => {
+        // var slideHide = document.getElementById('slideLeft');
+        // slideHide.style.display = 'none'
+        // var slideHide1 = document.getElementById('slideRight');
+        // slideHide1.style.display = 'none'
+
+        $("#slideLeft").css("display", "none");
+        $("#slideRight").css("display", "none");
+    }
+
     return (
         <div className="d-block w-100">
             <div className="backdrop" onClick={hidePopUps} id="backdrop"></div>
@@ -43,9 +55,9 @@ const ModelPopUp = (props) => {
                 <div className="col-12">
                     <div className="modal" id="modal-model">
                         <h1 className="modal-title">{tittle}</h1>
-                        <div className="modal-model__container" id="option-window">
+                        <div className={`modal-model__container d-flex justify-content-center ${models.length <= 3 ? HiddenArrow() : "justify-content-center"}`} id="option-window">
                             <div className="back-arrow">
-                                <img src={images.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
+                                <img src={models.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
                             {models.map((item, i) => {

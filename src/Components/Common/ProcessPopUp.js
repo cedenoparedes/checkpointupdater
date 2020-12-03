@@ -22,7 +22,7 @@ const ProcessPopUp = (props) => {
                 <div className="col-12">
                     <div className="modal" id="modal-client">
                         <h1 className="modal-title">{tittle}</h1>
-                        <div className="d-flex justify-content-between">
+                        <div className={`d-flex ${processes.length <= 3 ? "justify-content-center" : "justify-content-between"}`}>
 
                             {processes.map((item, i) => {
                                 return (

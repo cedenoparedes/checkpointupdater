@@ -24,7 +24,7 @@ const CustomerPopUp = (props) => {
                 <div className="col-12">
                     <div className="modal" id="modal-client">
                         <h1 className="modal-title">{tittle}</h1>
-                        <div className="d-flex justify-content-between">
+                        <div className={`d-flex ${customers.length <= 3 ? "justify-content-center" : "justify-content-between"}`}>
 
                             {customers.map((item, i) => {
                                 return (
