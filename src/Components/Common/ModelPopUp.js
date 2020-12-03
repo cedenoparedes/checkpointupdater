@@ -57,7 +57,7 @@ const ModelPopUp = (props) => {
                     <div className="modal" id="modal-model">
                         <h1 className="modal-title">{tittle}</h1>
                         <div className={`modal-model__container d-flex ${models.length <= 3 ? "justify-content-center" : "justify-content-between"}`} id="option-window">
-                            <div className={`back-arrow ${onscroll = true ? "" : "d-none"}`}>
+                            <div className={`back-arrow ${models.length <= 3 ? "d-none" : ""}`}>
                                 <img src={models.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
@@ -71,7 +71,7 @@ const ModelPopUp = (props) => {
                                         <p className="modal-client-text">{item.modelName}</p>
                                     </div>)
                             })}
-                            <div className={`foward-arrow  ${onscroll == true ? "" : "d-none"}`}>
+                            <div className={`foward-arrow  ${models.length <= 3 ? "d-none" : ""}`}>
                                 <img src={images.fordwarArrow} onClick={() => scrollHandler('right')} id="slideRight" alt="" />
                             </div>
                         </div>
