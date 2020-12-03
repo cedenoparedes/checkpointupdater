@@ -46,6 +46,7 @@ const ModelPopUp = (props) => {
 
         $("#slideLeft").css("display", "none");
         $("#slideRight").css("display", "none");
+
     }
 
     return (
@@ -55,8 +56,8 @@ const ModelPopUp = (props) => {
                 <div className="col-12">
                     <div className="modal" id="modal-model">
                         <h1 className="modal-title">{tittle}</h1>
-                        <div className={`modal-model__container d-flex justify-content-center ${models.length <= 3 ? HiddenArrow() : "justify-content-center"}`} id="option-window">
-                            <div className="back-arrow">
+                        <div className={`modal-model__container d-flex ${models.length <= 3 ? "justify-content-center" : "justify-content-between"}`} id="option-window">
+                            <div className={`back-arrow ${onscroll = true ? "" : "d-none"}`}>
                                 <img src={models.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
@@ -70,7 +71,7 @@ const ModelPopUp = (props) => {
                                         <p className="modal-client-text">{item.modelName}</p>
                                     </div>)
                             })}
-                            <div className="foward-arrow">
+                            <div className={`foward-arrow  ${onscroll == true ? "" : "d-none"}`}>
                                 <img src={images.fordwarArrow} onClick={() => scrollHandler('right')} id="slideRight" alt="" />
                             </div>
                         </div>
