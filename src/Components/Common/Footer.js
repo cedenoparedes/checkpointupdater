@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import images from './Images/index'
 
+
 const Footer = () => {
 
     const jpson = require('../../../package.json');
     const versionString = jpson.version
-    const version = <p id="version-text"> {versionString}</p>
+    const version = <p id="version-text"> V: {versionString}</p>
 
-    console.log(version)
+    // console.log(version)
 
 
     return (
@@ -19,7 +20,7 @@ const Footer = () => {
                         <figcaption className="caption-location text-white">Location</figcaption>
                     </figure>
                 </div>
-                <div className="col-6 footer-style  d-flex justify-content-end">
+                <div className="col-6 footer-style  d-flex justify-content-end align-items-end">
                     <spam> {version}</spam>
                 </div>
             </div>

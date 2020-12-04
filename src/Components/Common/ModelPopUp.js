@@ -1,4 +1,3 @@
-import { nodeName } from 'jquery';
 import React from 'react'
 import fowardArrow from '../../Images/foward-arrow.svg'
 import images from '../Common/Images/index'
@@ -58,7 +57,7 @@ const ModelPopUp = (props) => {
                         <h1 className="modal-title">{tittle}</h1>
                         <div className={`modal-model__container d-flex ${models.length <= 3 ? "justify-content-center" : "justify-content-between"}`} id="option-window">
                             <div className={`back-arrow ${models.length <= 3 ? "d-none" : ""}`}>
-                                <img src={models.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
+                                <img src={images.backArrow} onClick={() => scrollHandler('left')} id="slideLeft" alt="" />
                             </div>
 
                             {models.map((item, i) => {
