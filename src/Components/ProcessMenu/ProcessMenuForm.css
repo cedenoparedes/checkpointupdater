@@ -65,6 +65,21 @@ body {
   overflow-x: hidden;
   margin: 0px 50px;
 }
+.modal-process__container {
+  display: flex;
+  overflow-x: hidden;
+  margin: 0px 50px;
+}
+.modal-customer__container {
+  display: flex;
+  overflow-x: hidden;
+  margin: 0px 50px;
+}
+.modal-customer {
+  display: flex;
+  overflow-x: hidden;
+  margin: 0px 50px;
+}
 .modal-client {
   text-align: center;
   color: white;

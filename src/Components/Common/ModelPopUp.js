@@ -1,7 +1,7 @@
 import React from 'react'
-import fowardArrow from '../../Images/foward-arrow.svg'
+// import fowardArrow from '../../Images/foward-arrow.svg'
 import images from '../Common/Images/index'
-import $ from 'jquery'
+// import $ from 'jquery'
 const ModelPopUp = (props) => {
 
     const { setModel, models, hidePopUps } = props;
@@ -37,23 +37,12 @@ const ModelPopUp = (props) => {
 
     let tittle = "Select Model";
 
-    const HiddenArrow = () => {
-        // var slideHide = document.getElementById('slideLeft');
-        // slideHide.style.display = 'none'
-        // var slideHide1 = document.getElementById('slideRight');
-        // slideHide1.style.display = 'none'
-
-        $("#slideLeft").css("display", "none");
-        $("#slideRight").css("display", "none");
-
-    }
-
     return (
         <div className="d-block w-100">
             <div className="backdrop" onClick={hidePopUps} id="backdrop"></div>
             <div className="row">
                 <div className="col-12">
-                    <div className="modal" id="modal-model">
+                    <div className="modal" id=" ">
                         <h1 className="modal-title">{tittle}</h1>
                         <div className={`modal-model__container d-flex ${models.length <= 3 ? "justify-content-center" : "justify-content-between"}`} id="option-window">
                             <div className={`back-arrow ${models.length <= 3 ? "d-none" : ""}`}>
