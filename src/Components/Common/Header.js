@@ -42,8 +42,8 @@ const Header = () => {
 
     }
 
-    setMessageLabel(messageLabel, "CHK02", setlogOutHeader)
-    setMessageLabel(messageLabel, "CHK03", setHomeHeader)
+    setMessageLabel(messageLabel, "CHK03", setlogOutHeader)
+    setMessageLabel(messageLabel, "CHK02", setHomeHeader)
 
   }, [messageLabel])
 
