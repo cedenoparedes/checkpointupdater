@@ -34,6 +34,8 @@ const ProcessForm = (props) => {
 	const [customerLabel, setCustomerLabel] = useState("Select Customer")
 	const [modelLabel, setModelLabel] = useState("Model")
 	const [refreshLabel, setRefresh] = useState("refresh")
+	const [stepLabel, setStepLabel] = useState("Step")
+
 
 
 
@@ -63,6 +65,8 @@ const ProcessForm = (props) => {
 		setMessageLabel(messageLabel, "CHK19", setCustomerLabel)
 		setMessageLabel(messageLabel, "CHK20", setModelLabel)
 		setMessageLabel(messageLabel, "CHK22", setRefresh)
+		setMessageLabel(messageLabel, "CHK36", setStepLabel)
+
 
 	}, [messageLabel])
 
@@ -175,9 +179,12 @@ const ProcessForm = (props) => {
 					<div className="d-flex justify-content-end">
 						<p className="text">{customerLabel}: {customer}</p>
 						<p className="division"> | </p>
-						<p className="text">{modelLabel}: {model}</p>
-						<p className="division"> | </p>
 						<p className="text">{processLabel}: {process}</p>
+						<p className="division"> | </p>
+						<p className="text">{stepLabel} : "DSM1"</p>
+						<p className="division"> | </p>
+						<p className="text">{modelLabel}: {model}</p>
+
 					</div>
 				</div>
 			</div>
