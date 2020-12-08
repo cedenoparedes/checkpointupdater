@@ -140,7 +140,6 @@ const FailuresWindow = (props) => {
     }
     /// fail method handler
     const failHandler = (failsParams, token) => {
-        console.log(failsParams)
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.totalPass)

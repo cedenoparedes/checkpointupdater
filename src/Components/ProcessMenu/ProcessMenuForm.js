@@ -20,7 +20,7 @@ const CheckPointProcessMenu = () => {
 
     let messageLabel = contextState.languageLabel
     useEffect(() => {
-
+        document.getElementById("tb-customer").focus()
         const setMessageLabel = (messages, messageCode, stateToSet) => {
             if (messages === [] || messages === undefined) {
             } else {

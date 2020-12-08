@@ -89,33 +89,38 @@ const ProcessForm = (props) => {
 
 		getPieParams(customer, model, process, partNumber, token)
 			.then((Response) => {
-				console.log(Response)
-				setTotalPass(Response.totalPass);
-				setTotalFail(Response.totalFail);
-				setTotalProcessed(Response.totalProcessed);
-				setStepProcess(Response.processStep);
+				if (Response.processStep !== 'N/A') {
+					setTotalPass(Response.totalPass);
+					setTotalFail(Response.totalFail);
+					setTotalProcessed(Response.totalProcessed);
+					setStepProcess(Response.processStep);
+				} else {
+					errorResponse('The part number: ' + partNumber + " is invalid")
+					history.push("/processMenu");
+				}
+
 			})
 
 			.catch(
 				(error) => {
-					// console.log(error)
-					// history.push("/processMenu");
-					// console.log(error)
-					// const Error = error.message;
-					// // if (Error === 'Failed to fetch') {
-					// // 	errorResponse('Network Error')
-					// // }
-					// // else if (Error === '401: unauthorized') {
-					// // 	errorResponse('User not Found or Unauthorized')
-					// // }
-					// // else if (Error === '402: unauthorized') {
-					// // 	errorResponse('Error 402: Unauthorized')
-					// // }
-					// // else if (Error === '404: not found') {
-					// // 	errorResponse('Error 404: Not Found')
-					// // // }
+					console.log(error)
+					history.push("/processMenu");
+					console.log(error)
+					const Error = error.message;
+					if (Error === 'Failed to fetch') {
+						errorResponse('Network Error')
+					}
+					else if (Error === '401: unauthorized') {
+						errorResponse('User not Found or Unauthorized')
+					}
+					else if (Error === '402: unauthorized') {
+						errorResponse('Error 402: Unauthorized')
+					}
+					else if (Error === '404: not found') {
+						errorResponse('Error 404: Not Found')
+					}
 
-					// document.getElementById("tb-customer").value = ""
+					document.getElementById("tb-customer").value = ""
 				}
 			)
 
@@ -123,25 +128,31 @@ const ProcessForm = (props) => {
 	}, [])
 
 	useEffect(() => {
-		getFailures(customer, model, process, stepProcess, token)
-			.then((Response) => {
-				if (Response === null) {
-					toastr.error("no failures")
-				} else {
 
-					setFailures(Response)
-				}
-			}).catch((error) => { console.log(error) })
+		if (stepProcess !== 'N/A') {
+			getFailures(customer, model, process, stepProcess, token)
+				.then((Response) => {
+					if (Response === null) {
+						toastr.error("no failures")
+					} else {
 
-		setPassParams({
-			customerCode: customer,
-			processName: process,
-			modelName: model,
-			result: "pass",
-			employeeCode: userInfo.employeeCode,
-			stepProcess: stepProcess,
-			partNumber: partNumber
-		})
+						setFailures(Response)
+					}
+				}).catch((error) => { console.log(error) })
+
+			setPassParams({
+				customerCode: customer,
+				processName: process,
+				modelName: model,
+				result: "pass",
+				employeeCode: userInfo.employeeCode,
+				stepProcess: stepProcess,
+				partNumber: partNumber
+			})
+		} else {
+			return
+		}
+
 	}, [stepProcess])
 
 	useEffect(() => {
