@@ -164,6 +164,18 @@ const FailuresWindow = (props) => {
     }
 
     const setFailures = (failHandler, token) => {
+        if (failuresToSave !== []) {
+            const obj = {
+                CustomerCode: customer,
+                ProcessName: process,
+                ModelName: model,
+                Result: "fail",
+                EmployeeCode: userInfo.employeeCode,
+                FailureName: failuresToSave
+            }
+            failHandler(obj, token);
+        }
+        else {
 
         const obj = {
             customerCode: customer,
@@ -180,6 +192,7 @@ const FailuresWindow = (props) => {
         failHandler(obj, token);
         ClearListError();
         setFailuresToSave([]);
+
 
     }
 
