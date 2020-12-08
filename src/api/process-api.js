@@ -2,10 +2,11 @@ import { handleResponse, handleError } from "./api-utils";
 import config from "../config";
 let baseUrl = `${config.baseApiURL[config.env]}/checkpoint/process/`;
 
-export function getPieParams(customer, model, process, token) {
+///resume/:customername/:modelname/:processname/:partnumber
+export function getPieParams(customer, model, process, partnumber, token) {
 
 
-    return fetch(baseUrl + "resume/" + customer + "/" + model + "/" + process, {
+    return fetch(baseUrl + "resume/" + customer + "/" + model + "/" + process + "/" + partnumber, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -17,9 +18,9 @@ export function getPieParams(customer, model, process, token) {
         .catch(handleError);
 }
 
-export function getFailures(customer, model, process, token) {
+export function getFailures(customer, model, process, stepProcess, token) {
 
-    return fetch(baseUrl + "failure/" + customer + "/" + model + "/" + process, {
+    return fetch(baseUrl + "failure/" + customer + "/" + model + "/" + process + "/" + stepProcess, {
         method: "GET",
         mode: "cors",
         headers: {

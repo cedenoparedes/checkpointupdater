@@ -52,6 +52,7 @@ const CheckPointProcessMenu = () => {
             customer: ArrayString[0],
             model: ArrayString[1],
             process: ArrayString[2],
+            partNumber: ArrayString[4]
         }
         pushProcess(params)
 

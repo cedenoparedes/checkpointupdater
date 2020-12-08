@@ -21,9 +21,11 @@ const ProcessForm = (props) => {
 	const model = location.state.model
 	const customer = location.state.customer
 	const process = location.state.process
+	const partNumber = location.state.partNumber
 	const [totalPass, setTotalPass] = useState()
 	const [totalFail, setTotalFail] = useState()
-	const [totalProcessed, setTotalProcessed] = useState()
+	const [totalProcessed, setTotalProcessed] = useState();
+	const [processStep, setProcessStep] = useState();
 	const [isLoading, setIsloading] = useState(false)
 	const history = useHistory();
 
@@ -34,8 +36,6 @@ const ProcessForm = (props) => {
 	const [customerLabel, setCustomerLabel] = useState("Select Customer")
 	const [modelLabel, setModelLabel] = useState("Model")
 	const [refreshLabel, setRefresh] = useState("refresh")
-	const [stepLabel, setStepLabel] = useState("Step")
-
 
 
 
@@ -65,8 +65,6 @@ const ProcessForm = (props) => {
 		setMessageLabel(messageLabel, "CHK19", setCustomerLabel)
 		setMessageLabel(messageLabel, "CHK20", setModelLabel)
 		setMessageLabel(messageLabel, "CHK22", setRefresh)
-		setMessageLabel(messageLabel, "CHK36", setStepLabel)
-
 
 	}, [messageLabel])
 
@@ -85,11 +83,12 @@ const ProcessForm = (props) => {
 	useEffect(() => {
 
 
-		getPieParams(customer, model, process, token)
+		getPieParams(customer, model, process, partNumber, token)
 			.then((Response) => {
-				setTotalPass(Response.totalPass)
-				setTotalFail(Response.totalFail)
-				setTotalProcessed(Response.totalProcessed)
+				setTotalPass(Response.totalPass);
+				setTotalFail(Response.totalFail);
+				setTotalProcessed(Response.totalProcessed);
+				setProcessStep(Response.processStep);
 			})
 
 			.catch(
@@ -115,16 +114,6 @@ const ProcessForm = (props) => {
 				}
 			)
 
-		getFailures(customer, model, process, token)
-			.then((Response) => {
-				if (Response === null) {
-					toastr.error("no failures")
-				} else {
-
-					setFailures(Response)
-				}
-			}).catch((error) => { console.log(error) })
-
 		setPassParams({
 			CustomerCode: customer,
 			ProcessName: process,
@@ -136,10 +125,23 @@ const ProcessForm = (props) => {
 	}, [])
 
 	useEffect(() => {
+		getFailures(customer, model, process, processStep, token)
+			.then((Response) => {
+				if (Response === null) {
+					toastr.error("no failures")
+				} else {
+
+					setFailures(Response)
+				}
+			}).catch((error) => { console.log(error) })
+	}, [processStep])
+
+	useEffect(() => {
 		setTotalPass(chartRefrechData.totalPass)
 		setTotalFail(chartRefrechData.totalFail)
 		setTotalProcessed(chartRefrechData.totalProcessed)
 	}, [chartRefrechData])
+
 
 
 	// The following state and Funtion controls the visibility of the FailuresWindow
@@ -179,12 +181,9 @@ const ProcessForm = (props) => {
 					<div className="d-flex justify-content-end">
 						<p className="text">{customerLabel}: {customer}</p>
 						<p className="division"> | </p>
-						<p className="text">{processLabel}: {process}</p>
-						<p className="division"> | </p>
-						<p className="text">{stepLabel} : "DSM1"</p>
-						<p className="division"> | </p>
 						<p className="text">{modelLabel}: {model}</p>
-
+						<p className="division"> | </p>
+						<p className="text">{processLabel}: {process}</p>
 					</div>
 				</div>
 			</div>
