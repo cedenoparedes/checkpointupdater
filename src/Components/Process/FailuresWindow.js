@@ -164,36 +164,28 @@ const FailuresWindow = (props) => {
     }
 
     const setFailures = (failHandler, token) => {
-        if (failuresToSave !== []) {
+        if (failuresToSave.length >= 1) {
+
             const obj = {
-                CustomerCode: customer,
-                ProcessName: process,
-                ModelName: model,
-                Result: "fail",
-                EmployeeCode: userInfo.employeeCode,
-                FailureName: failuresToSave
+                customerCode: customer,
+                processName: process,
+                modelName: model,
+                result: "fail",
+                employeeCode: userInfo.employeeCode,
+                stepProcess: stepProcess,
+                partNumber: partNumber,
+                failureName: failuresToSave
+
+
             }
             failHandler(obj, token);
         }
         else {
-
-        const obj = {
-            customerCode: customer,
-            processName: process,
-            modelName: model,
-            result: "fail",
-            employeeCode: userInfo.employeeCode,
-            stepProcess: stepProcess,
-            partNumber: partNumber,
-            failureName: failuresToSave
-
-
+            console.log(failuresToSave);
+            console.log('error');
         }
-        failHandler(obj, token);
         ClearListError();
         setFailuresToSave([]);
-
-
     }
 
     return (
@@ -241,5 +233,6 @@ const FailuresWindow = (props) => {
         </div>
     )
 }
+
 
 export default FailuresWindow;
