@@ -140,8 +140,7 @@ const ProcessForm = (props) => {
 			result: "pass",
 			employeeCode: userInfo.employeeCode,
 			stepProcess: stepProcess,
-			partNumber: partNumber,
-			failureName: []
+			partNumber: partNumber
 		})
 	}, [stepProcess])
 
