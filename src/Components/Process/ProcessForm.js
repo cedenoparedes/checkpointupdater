@@ -25,7 +25,7 @@ const ProcessForm = (props) => {
 	const [totalPass, setTotalPass] = useState()
 	const [totalFail, setTotalFail] = useState()
 	const [totalProcessed, setTotalProcessed] = useState();
-	const [processStep, setProcessStep] = useState();
+	const [stepProcess, setStepProcess] = useState();
 	const [isLoading, setIsloading] = useState(false)
 	const history = useHistory();
 
@@ -36,6 +36,8 @@ const ProcessForm = (props) => {
 	const [customerLabel, setCustomerLabel] = useState("Select Customer")
 	const [modelLabel, setModelLabel] = useState("Model")
 	const [refreshLabel, setRefresh] = useState("refresh")
+	const [stepLabel, setStepLabel] = useState("Step")
+
 
 
 
@@ -65,6 +67,8 @@ const ProcessForm = (props) => {
 		setMessageLabel(messageLabel, "CHK19", setCustomerLabel)
 		setMessageLabel(messageLabel, "CHK20", setModelLabel)
 		setMessageLabel(messageLabel, "CHK22", setRefresh)
+		setMessageLabel(messageLabel, "CHK36", setStepLabel)
+
 
 	}, [messageLabel])
 
@@ -85,10 +89,11 @@ const ProcessForm = (props) => {
 
 		getPieParams(customer, model, process, partNumber, token)
 			.then((Response) => {
+				console.log(Response)
 				setTotalPass(Response.totalPass);
 				setTotalFail(Response.totalFail);
 				setTotalProcessed(Response.totalProcessed);
-				setProcessStep(Response.processStep);
+				setStepProcess(Response.processStep);
 			})
 
 			.catch(
@@ -114,18 +119,11 @@ const ProcessForm = (props) => {
 				}
 			)
 
-		setPassParams({
-			CustomerCode: customer,
-			ProcessName: process,
-			ModelName: model,
-			Result: "pass",
-			EmployeeCode: userInfo.employeeCode,
-			FailureId: []
-		})
+
 	}, [])
 
 	useEffect(() => {
-		getFailures(customer, model, process, processStep, token)
+		getFailures(customer, model, process, stepProcess, token)
 			.then((Response) => {
 				if (Response === null) {
 					toastr.error("no failures")
@@ -134,7 +132,18 @@ const ProcessForm = (props) => {
 					setFailures(Response)
 				}
 			}).catch((error) => { console.log(error) })
-	}, [processStep])
+
+		setPassParams({
+			customerCode: customer,
+			processName: process,
+			modelName: model,
+			result: "pass",
+			employeeCode: userInfo.employeeCode,
+			stepProcess: stepProcess,
+			partNumber: partNumber,
+			failureName: []
+		})
+	}, [stepProcess])
 
 	useEffect(() => {
 		setTotalPass(chartRefrechData.totalPass)
@@ -159,8 +168,10 @@ const ProcessForm = (props) => {
 
 	// pass method handler
 	const passHandler = (passParams, token) => {
+		console.log(passParams)
 		saveProcess(passParams, token)
 			.then((Response) => {
+				console.log(Response)
 				setChartRefrechData(Response)
 			}).catch((error) => { console.log(error) })
 	}
@@ -181,9 +192,11 @@ const ProcessForm = (props) => {
 					<div className="d-flex justify-content-end">
 						<p className="text">{customerLabel}: {customer}</p>
 						<p className="division"> | </p>
-						<p className="text">{modelLabel}: {model}</p>
-						<p className="division"> | </p>
 						<p className="text">{processLabel}: {process}</p>
+						<p className="division"> | </p>
+						<p className="text">{stepLabel}: {stepProcess}</p>
+						<p className="division"> | </p>
+						<p className="text">{modelLabel}: {model}</p>
 					</div>
 				</div>
 			</div>
@@ -240,6 +253,8 @@ const ProcessForm = (props) => {
 						setTotalPass={setTotalPass}
 						setTotalFail={setTotalFail}
 						setTotalProcessed={setTotalProcessed}
+						stepProcess={stepProcess}
+						partNumber={partNumber}
 
 					/>
 

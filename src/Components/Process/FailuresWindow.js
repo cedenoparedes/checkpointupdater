@@ -8,14 +8,6 @@ import toastr from "toastr";
 const FailuresWindow = (props) => {
     const [contextState, , contextMiddleware] = useContext(GlobalContext)
     const userInfo = contextMiddleware.getTokenClaims();
-    // const [failsParams, setFailsParams] = useState({
-    //     CustomerCode: "",
-    //     ProcessName: "",
-    //     ModelName: "",
-    //     Result: "",
-    //     EmployeeCode: "",
-    //     FailureName: []
-    // })
     const [failuresToSave, setFailuresToSave] = useState([]);
     const token = contextMiddleware.getToken();
     const {
@@ -27,7 +19,9 @@ const FailuresWindow = (props) => {
         customer,
         setTotalPass,
         setTotalFail,
-        setTotalProcessed
+        setTotalProcessed,
+        partNumber,
+        stepProcess
     } = props
 
     //Language
@@ -146,6 +140,7 @@ const FailuresWindow = (props) => {
     }
     /// fail method handler
     const failHandler = (failsParams, token) => {
+        console.log(failsParams)
         saveProcess(failsParams, token)
             .then((Response) => {
                 setTotalPass(Response.totalPass)
@@ -172,16 +167,20 @@ const FailuresWindow = (props) => {
     const setFailures = (failHandler, token) => {
 
         const obj = {
-            CustomerCode: customer,
-            ProcessName: process,
-            ModelName: model,
-            Result: "fail",
-            EmployeeCode: userInfo.employeeCode,
-            FailureName: failuresToSave
+            customerCode: customer,
+            processName: process,
+            modelName: model,
+            result: "fail",
+            employeeCode: userInfo.employeeCode,
+            stepProcess: stepProcess,
+            partNumber: partNumber,
+            failureName: failuresToSave
+
+
         }
+        failHandler(obj, token);
         ClearListError();
         setFailuresToSave([]);
-        failHandler(obj, token);
 
     }
 
