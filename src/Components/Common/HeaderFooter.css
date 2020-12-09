@@ -47,6 +47,8 @@ body {
 }
 .Content {
   flex: 1 0 auto;
+  height: 10vw;
+  /* width: 98vw; */
 }
 .Footer {
   flex-shrink: 0;
