@@ -107,6 +107,18 @@ const ExportToExcel = (props) => {
                                     },
                                 },
                                 {
+                                    title: "ProcessStep", width: { wpx: 120 }, style: {
+                                        font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
+                                        fill: { patternType: "solid", fgColor: { rgb: "215967" } },
+                                        alignment: { vertical: "center", horizontal: "center" },
+                                        border: {
+                                            top: { style: "medium", color: { rgb: "343232" } }, bottom: { style: "medium", color: { rgb: "343232" } },
+                                            left: { style: "medium", color: { rgb: "343232" } }, right: { style: "medium", color: { rgb: "343232" } },
+                                            diagonal: { style: "medium", color: { rgb: "FFFFFF" } }
+                                        }
+                                    },
+                                },
+                                {
                                     title: "ModelName", width: { wpx: 120 }, style: {
                                         font: { name: "Century Gothic", sz: "10", bold: true, patternType: "solid", color: { rgb: "FFFFFF" } },
                                         fill: { patternType: "solid", fgColor: { rgb: "215967" } },

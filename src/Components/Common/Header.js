@@ -65,23 +65,23 @@ const Header = () => {
 
             <div className="d-flex text-center flex-row-reverse align-items-center">
               {token !== null ?
-                <figure onClick={() => { logOutHandler() }} className="pl-3 m-0 item  hoverbuttons">
+                <figure onClick={() => { logOutHandler() }} className="pl-2 m-0 item  hoverbuttons">
                   <img src={images.logOutIcon} alt="" />
                   <figcaption className="caption">{logOutHeader}</figcaption>
                 </figure>
                 : null
               }
-              <figure onClick={langeuageHandler} className="pl-3 m-0 item hoverbuttons">
+              <figure onClick={langeuageHandler} className="pl-2 m-0 item hoverbuttons">
                 <img src={images.languageIcon} alt="" />
                 <figcaption className="caption">{contextState.language === 'EN' ? '普通话' : 'English'}</figcaption>
               </figure>
               {token !== null ? <>
-                <figure className="pl-3 m-0 item">
+                <figure className="pl-2 m-0 item">
                   <img src={images.employeeIcon} alt="" />
                   <figcaption className="caption">{token === null ? "employee" : token.userName}</figcaption>
                 </figure>
                 <Link to='../Menu' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                  <figure className="pl-3 m-0 item ">
+                  <figure className="pl-2 m-0 item ">
                     <img src={images.homeIcon} alt="" />
                     <figcaption className="caption">{homeHeader}</figcaption>
                   </figure>
