@@ -36,7 +36,7 @@ const ProcessPopUp = (props) => {
         sideScroll(container, direction, 10, cWidth, 10);
     };
     return (
-        <div className='d-block'>
+        <div className="d-block w-100">
             <div className="backdrop" onClick={hidePopUps} id="backdrop"></div>
             <div className="row">
                 <div className="col-12">
