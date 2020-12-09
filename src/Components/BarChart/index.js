@@ -75,7 +75,7 @@ const NewChartjs = (props) => {
             stacked: true,
             scaleLabel: {
               display: true,
-              labelString: "Estaciones",
+              labelString: "Failures",
             },
           },
         ],
