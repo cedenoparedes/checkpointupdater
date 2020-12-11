@@ -1,6 +1,6 @@
 {
   "name": "checkpoint",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Software Team",
   "main": "./public/electron.js",
   "private": true,
@@ -73,8 +73,20 @@
     "appId": "com.dm5i.com",
     "files": [
       "build/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "**/*",
+      "build/assets/icons/win/Icon.*"
     ],
+    "win": {
+      "asar": true,
+      "target": "nsis",
+      "icon": "build/assets/icons/win/Icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "build/assets/icons/win/Icon.ico",
+      "installerHeaderIcon": "build/assets/icons/win/Icon.ico",
+      "deleteAppDataOnUninstall": true
+    },
     "directories": {
       "buildResources": "assets"
     }
