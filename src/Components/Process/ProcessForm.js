@@ -49,7 +49,7 @@ const ProcessForm = (props) => {
 
 		const setMessageLabel = (messages, messageCode, stateToSet) => {
 			if (messages === [] || messages === undefined) {
-				console.log("estoy en bre")
+
 			} else {
 				const found = messages.find(element => element.messageCode === messageCode)
 				if (found === undefined) {
@@ -95,7 +95,7 @@ const ProcessForm = (props) => {
 					setTotalProcessed(Response.totalProcessed);
 					setStepProcess(Response.processStep);
 				} else {
-					errorResponse('The part number: ' + partNumber + " is invalid")
+					errorResponse("Wrong QR")
 					history.push("/processMenu");
 				}
 
