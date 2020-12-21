@@ -1,8 +1,10 @@
-const electron = require('electron');
-const { Menu } = electron;
-const app = electron.app;
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { autoUpdater } = require('electron-updater');
+// const { Menu } = electron;
+// const app = electron.app;
+// const BrowserWindow = electron.BrowserWindow;
+
 app.name = 'CheckPoint';
-const BrowserWindow = electron.BrowserWindow;
 
 const isMac = process.platform === 'darwin'
 const path = require('path');
@@ -136,10 +138,16 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   }
   mainWindow.on('closed', () => mainWindow = null);
+  
+  mainWindow.once('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
 
 }
 
 app.on('ready', createWindow);
+
+
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -151,4 +159,16 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
 });
