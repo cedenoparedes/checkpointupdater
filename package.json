@@ -2,7 +2,9 @@
   "name": "checkpoint",
   "version": "0.2.0",
   "author": "Software Team",
-  "main": "./public/electron.js",
+  "license": "ISC",
+  "description": "CheckPoint AutoUpdater",
+  "main": "electron.js",
   "private": true,
   "homepage": "./",
   "dependencies": {
@@ -41,6 +43,7 @@
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \" yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js",
+    "deploy": "electron-builder -c.extraMetadata.main=build/electron.js --win --publish always",
     "preelectron-pack": "yarn build"
   },
   "eslintConfig": {
@@ -70,14 +73,17 @@
     "wait-on": "^5.2.0",
     "yarn": "^1.22.10"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cedenoparedes/checkpointupdater.git"
+  },
   "build": {
     "appId": "com.dm5i.com",
     "files": [
       "build/**/*",
-      "node_modules/**/*",
-      "**/*",
-      "build/assets/icons/win/Icon.*"
+      "node_modules/**/*"
     ],
+    "extends": null,
     "win": {
       "asar": true,
       "target": "nsis",
